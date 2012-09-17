@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/reset")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jqueryuicss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/jUI/jui.jlayout.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jlayout.js")"></script>
+
+	@RenderSection("head", required: false)
+</head>
+<body>
+    <header id="TopDiv">
+		@RenderSection("header", required: false)
+    </header>
+    <div id="ContentDiv">
+        <aside id="LeftDiv">
+            @RenderSection("left", required: false)
+        </aside>
+        <aside id="RightDiv">
+            @RenderSection("right", required: false)
+        </aside>
+        <div id="MainDiv">
+           @RenderBody()
+        </div>
+    </div>
+    <footer id="BottomDiv">
+        @RenderSection("footer", required: false)
+    </footer>
+	 @RenderSection("scripts", required: false)
+</body>
+</html>
