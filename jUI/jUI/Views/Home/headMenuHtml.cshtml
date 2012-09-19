@@ -2,4 +2,65 @@
     ViewBag.Title = "headMenuHtml";
 }
 
+@section head{
+	<style type="text/css">
+        .jui-headMenu
+        {
+        }
+            .jui-headMenu .jui-headMenu-aciveItem {
+                background:#73f;
+            }
+
+            .jui-headMenu .jui-headMenu-image {
+                float:left; 
+                position:relative;
+                left:10px;top:1px; 
+                width:15px; 
+                height:15px;
+            }
+            .jui-headMenu .jui-headMenu-icon {
+                float:left;
+                position:relative;
+                left:10px;
+                top:0px; 
+                background-repeat:no-repeat;
+            }
+	</style>
+    <script type="text/javascript">
+        $(function () {
+            var dataLength = 6;
+
+            var listOne = "<ul id='outUl'></ul>";//一级菜单
+            var note = "<div style='color:red;font-family:arial;'>参数不全！</div>";//错误提示
+            for (var i = 0; i < dataLength; i++) {
+                if (i % 2 == 0) {
+                    listOne.append("<li><div id='liItem'><a id='content'></a><span class=''></span></div></li>");//生成一级菜单中有子项的选项
+                }
+            }
+
+            var containerDiv = $("#headMenu");
+            containerDiv.empty();
+            containerDiv.append(listOne);
+        });
+    </script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
 <h2>headMenuHtml</h2>
+
+<div id="headMenu">
+</div>

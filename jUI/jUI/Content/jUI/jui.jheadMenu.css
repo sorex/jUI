@@ -1,2 +1,21 @@
-﻿body {
+﻿.jui-headMenu
+{
 }
+    .jui-headMenu .jui-headMenu-aciveItem {
+        background:#73f;
+    }
+
+    .jui-headMenu .jui-headMenu-image {
+        float:left; 
+        position:relative;
+        left:10px;top:1px; 
+        width:15px; 
+        height:15px;
+    }
+    .jui-headMenu .jui-headMenu-icon {
+        float:left;
+        position:relative;
+        left:10px;
+        top:0px; 
+        background-repeat:no-repeat;
+    }
