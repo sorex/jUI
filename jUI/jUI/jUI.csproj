@@ -143,8 +143,13 @@
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jUI\jui.jbutton.css" />
+    <Content Include="Content\jUI\jui.jcheckbox.css" />
+    <Content Include="Content\jUI\jui.jheadMenu.css" />
     <Content Include="Content\jUI\jui.jlayout.css" />
     <Content Include="Content\jUI\jui.jleftMenu.css" />
+    <Content Include="Content\jUI\jui.jradio.css" />
+    <Content Include="Content\jUI\jui.jtable.css" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -156,8 +161,13 @@
     <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jUI\jui.jbutton.js" />
+    <Content Include="Scripts\jUI\jui.jcheckbox.js" />
+    <Content Include="Scripts\jUI\jui.jheadMenu.js" />
     <Content Include="Scripts\jUI\jui.jlayout.js" />
     <Content Include="Scripts\jUI\jui.jleftMenu.js" />
+    <Content Include="Scripts\jUI\jui.jradio.js" />
+    <Content Include="Scripts\jUI\jui.jtable.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -186,6 +196,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\leftMenuHtml.cshtml" />
+    <Content Include="Views\Home\leftMenu.cshtml" />
+    <Content Include="Views\Home\buttonHtml.cshtml" />
+    <Content Include="Views\Home\checkboxHtml.cshtml" />
+    <Content Include="Views\Home\radioHtml.cshtml" />
+    <Content Include="Views\Home\headMenuHtml.cshtml" />
+    <Content Include="Views\Home\tableHtml.cshtml" />
+    <Content Include="Views\Home\button.cshtml" />
+    <Content Include="Views\Home\checkbox.cshtml" />
+    <Content Include="Views\Home\radio.cshtml" />
+    <Content Include="Views\Home\headMenu.cshtml" />
+    <Content Include="Views\Home\table.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
