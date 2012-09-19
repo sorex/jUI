@@ -27,12 +27,32 @@
 				background-color: #d4d4d4;
 			}
 	</style>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("div", $("#test")).each(function ()
+			{
+				$(this).click(function ()
+				{
+					$(".jui-leftMenu-item-active", $("#test")).removeClass("jui-leftMenu-item-active");
+					$(this).addClass("jui-leftMenu-item-active");
+					alert($(this).html());
+				});
+			});
+		});
+	</script>
 }
 
 @section header{
 }
 
 @section left{
+	<div id="test" class="jui-leftMenu">
+		<div class="jui-leftMenu-item">文件A</div>
+		<div class="jui-leftMenu-item">文件B</div>
+		<div class="jui-leftMenu-item">文件C</div>
+		<div class="jui-leftMenu-item">文件D</div>
+	</div>
 }
 
 @section right{
