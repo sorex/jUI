@@ -146,7 +146,7 @@
 	                var listOneItem = "<li ><div id='d" + id + "' class='ui-jnavigation-d'><a  href='" + href + "' id='" + id + "'>" + name + "</a><span class='ui-jnavigation-sp'>&nbsp;</span></div></li>";
 	                $("#outUl").append(listOneItem); //一级菜单有子项的标识
 	                if (activeId != null && activeId == id) {
-	                    $("#" + activeId).parent().parent().addClass("jui-headMenu-aciveItem")//.css("background", "#73f"); //activeId样式
+	                    $("#" + activeId).parent().parent().addClass("jui-headMenu-aciveItem");//.css("background", "#73f"); //activeId样式
 	                }
 	                if (image != null && image != "" && (icon == null || icon == "")) {
 	                    var img = "<img class='jui-headMenu-image' src='" + image + "'/>";

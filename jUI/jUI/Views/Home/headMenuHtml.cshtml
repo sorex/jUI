@@ -3,44 +3,214 @@
 }
 
 @section head{
-	<style type="text/css">
-        .jui-headMenu
-        {
+    <style type="text/css">
+        .jui-headMenu {
+            height:40px;
+            width:100%;
+            background-color:#094ab2;
+            white-space: nowrap;/*禁止文字自动换行*/
+            position:relative;
+            display:block;
         }
-            .jui-headMenu .jui-headMenu-aciveItem {
-                background:#73f;
+            .jui-headMenu a {
+                font-weight: inherit;
+                text-decoration: none;
+                padding-left:10px;
+                padding-right:10px;
             }
-
-            .jui-headMenu .jui-headMenu-image {
-                float:left; 
+            .jui-headMenu a:hover {
+                background-color:#073d92;
+            }
+            .jui-headMenu .jui-headMenu-ju {
+                float: left;
+                height: 40px;
+            }
+        .jui-headMenu .jui-headMenu-ju>li{
+            height:40px;
+            display: inline-block;
+            margin-bottom:2px;            
+            position:relative;
+            float:left;
+        }
+        .jui-headMenu .jui-headMenu-ju>li:hover{
+                background-color:#073d92;
+        }
+        .jui-headMenu .jui-headMenu-ju li{
+            list-style:none;
+            cursor: pointer;
+        }
+        .jui-headMenu .jui-headMenu-lass {
+            vertical-align: middle;
+            color:#fff;
+            font-size:large;
+            position:relative;
+            top:4px;
+        }
+        .jui-headMenu .jui-headMenu-lass_icon {
+            display: inline-block;
+            position:relative;
+            top:3px;
+        }
+            .jui-headMenu .jui-headMenu-u1 {
+                padding-top:10px;
                 position:relative;
-                left:10px;top:1px; 
-                width:15px; 
-                height:15px;
+                top:8px;
+                border-style:solid;
+                border-width:0 2px 2px 2px;
+                border-color:#094AB2;
+                z-index:40000;
             }
-            .jui-headMenu .jui-headMenu-icon {
-                float:left;
-                position:relative;
-                left:10px;
-                top:0px; 
-                background-repeat:no-repeat;
-            }
-	</style>
+                .jui-headMenu .jui-headMenu-u1 li {
+                    margin-bottom:10px;
+                }
+                
+                .jui-headMenu .jui-headMenu-u1 li span {
+                    color:black;
+                }
+                
+                .jui-headMenu .jui-headMenu-u1 li a {
+                    padding-left:14px;
+                    padding-right:14px;
+                }
+    </style>
     <script type="text/javascript">
-        $(function () {
-            var dataLength = 6;
 
-            var listOne = "<ul id='outUl'></ul>";//一级菜单
-            var note = "<div style='color:red;font-family:arial;'>参数不全！</div>";//错误提示
-            for (var i = 0; i < dataLength; i++) {
+        function datas() {
+            return [
+						{
+						    name: "创建"//名称
+							, href: "#"
+                            ,id: "A1"//链接
+							, bgImage: "abc/abc.png"//小图片
+							, children: [
+												{
+												    name: "文件夹"
+													, href: "#"
+													, id: "A21"
+												}
+												, { type: "space" }
+												, {
+												    name: "Word 文档"
+													, href: "#"
+													, id: "A22"
+												}
+												, { type: "" }
+												, {
+												    name: "Excel 工作薄"
+													, href: "#"
+													, id: "A22"
+												}
+							]//子项
+						}
+						, { type: "" }//空格或横条
+						, {
+						    name: "管理"
+							, href: "#"
+							, id: "B1"
+							, bgImage: "dgdfgd"
+							//, children: [
+							//					{
+							//					    name: "重命名"
+							//						, href: "#"
+							//						, id: "B21"
+							//					}
+							//					, { type: "" }
+							//					, {
+							//					    name: "删除"
+							//						, href: "#"
+							//						, id: "B22"
+							//					}
+							//					, { type: "" }
+							//					, {
+							//					    name: "移致"
+							//						, href: "#"
+							//						, id: "B23"
+							//					}
+							//					, { type: "space" }
+							//					, {
+							//					    name: "属性"
+							//						, href: "#"
+							//						, id: "B24"
+							//					}
+							//]
+						}
+            ];
+        }
+
+        function AddNavigation(uid, id, name, href, icon, image) {
+            //$("#"+uid).append("<li><div class='jui-headMenu-itemDiv' id='d" + id + "'><a href='"+href+"' id='" + id + "'>" + name + "</a><span class='jui-headMenu-span'></span></div></li>");//生成一级菜单中有子项的选项
+            $("#" + uid).append("<li><a href='" + href + "' id='" + id + "'><span><span><span class='jui-headMenu-span_img'><span class='" + icon + "'></span></span>" +
+                name + "</span></span>" +
+                "<span><span><img class='ui-icon ui-icon-triangle-1-s'/></span></span></a>");//生成一级菜单中有子项的选项
+
+            if (image != null && image != "" && (icon == null || icon == "")) {
+                var img = "<img class='jui-headMenu-image' src='" + image + "'/>";
+                $("#d" + id).append(img);
+            }
+            else if (icon != null && icon != "" && (image == null || image == "")) {
+                var span = "<span class='jui-headMenu-icon'>&nbsp;</span>";
+                $("#d" + id).append(span);
+                $(".jui-headMenu-icon").addClass(icon);
+            } else if (icon != null && icon != "" && image != null && image != "") {
+                $("#d" + id).append("<img class='jui-headMenu-image' src='" + image + "'/>");
+            }
+
+        }
+
+        $(function () {
+            var data = datas();
+            $("#headMenu").addClass('jui-headMenu').empty().append("<ul class='jui-headMenu-ju'></ul>").bind("selectstart", function () { return false; });
+            for (var i = 0; i < data.length; i++) {
                 if (i % 2 == 0) {
-                    listOne.append("<li><div id='liItem'><a id='content'></a><span class=''></span></div></li>");//生成一级菜单中有子项的选项
+                    var id = data[i]["id"];
+                    var name = data[i]["name"];
+                    var href = data[i]["href"];
+                    var image = data[i]["bgImage"];
+                    var children = data[i]["children"];
+
+                    if (image != null && image != "") {
+                        $(".jui-headMenu-ju").append("<li id='l" + id + "'><a>"
+                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_icon'><span><img style='width:26px;height:26px;' src='" + image + "'/></span></span> " + name + "</span> </span>"
+                            + "</a></li>");
+                    } else {
+                        $(".jui-headMenu-ju").append("<li id='l" + id + "'><a>"
+                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_icon'></span> " + name + "</span> </span>"
+                            + "</a></li>");                        
+                    }
+                    var lw = 0;
+                    if (children != null && children.length) {
+                        $("#l" +id).append("<ul class='jui-headMenu-u1' id='u" + id + "'></ul>"); //二级菜单
+                        for (var j = 0; j < children.length; j++) {
+                            var uid = children[j]["id"];
+                            var uname = children[j]["name"];
+                            var uhref = children[j]["href"];
+                            if (j % 2 == 0) {
+                                $("#u" + id).append("<li id='" + uid + "'><a href='" + uhref + "'><span>" + uname + "</span></a></li>");
+                                lw = $("#l" + id).width();
+                                $("#u" + id).css("width", 2 * lw);
+                                $("#l" + id).width(lw);
+                                lw = 0;
+                            }
+                            //if (j % 2 != 0 && children[j]["type"] == "space") {
+                            //    $("#d" + children[j - 1]["id"]).parent().addClass("jui-headMenu-border");
+                            //    $("#d" + children[j + 1]["id"]).parent().addClass("jui-headMenu-border");
+                            //}
+                        }
+                    }
+                }
+                if (i % 2 != 0 && data[i]["type"] == "space") {
+                    //$("#d" + data[i - 1]["id"]).parent().addClass("jui-headMenu-m1");
+                    //$("#d" + data[i + 1]["id"]).parent().addClass("jui-headMenu-m2");
                 }
             }
 
-            var containerDiv = $("#headMenu");
-            containerDiv.empty();
-            containerDiv.append(listOne);
+            //containerDiv.children("ul").children("li").addClass("jui-headMenu-u"); //一级菜单
+            //containerDiv.find("li").has("ul").children("div").children(".jui-headMenu-span").addClass("ui-icon ui-icon-triangle-1-s");
+            
+            //containerDiv.children("ul").children("li").click(function () {
+            //    $(this).children("ul").toggle().end().siblings().has("ul:visible").children("ul").hide();
+            //});
+
         });
     </script>
 }
@@ -60,7 +230,6 @@
 @section scripts{
 }
 
-<h2>headMenuHtml</h2>
-
 <div id="headMenu">
+
 </div>

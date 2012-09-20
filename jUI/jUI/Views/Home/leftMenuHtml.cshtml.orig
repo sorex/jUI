@@ -1,0 +1,75 @@
+﻿@{
+	ViewBag.Title = "leftMenuHtml";
+}
+
+@section head{
+	<style type="text/css">
+		.jui-leftMenu
+		{
+		}
+
+			.jui-leftMenu .jui-leftMenu-item
+			{
+				font-size: 150%;
+				height: 32px;
+				line-height: 32px;
+				padding-left: 20px;
+				cursor: pointer;
+			}
+
+				.jui-leftMenu .jui-leftMenu-item:hover
+				{
+					background-color: #e2e2e2;
+				}
+
+			.jui-leftMenu .jui-leftMenu-item-active
+			{
+				background-color: #d4d4d4;
+			}
+	</style>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("div", $("#test")).each(function ()
+			{
+				$(this).click(function ()
+				{
+					$(".jui-leftMenu-item-active", $("#test")).removeClass("jui-leftMenu-item-active");
+					$(this).addClass("jui-leftMenu-item-active");
+					alert($(this).html());
+				});
+			});
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+	<div id="test" class="jui-leftMenu">
+		<div class="jui-leftMenu-item">文件A</div>
+		<div class="jui-leftMenu-item">文件B</div>
+		<div class="jui-leftMenu-item">文件C</div>
+		<div class="jui-leftMenu-item">文件D</div>
+	</div>
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<h2>leftMenuHtml</h2>
+
+<div>
+<<<<<<< HEAD
+
+</div>
+=======
+</div>
+>>>>>>> b33ab76a66a2e8f9d9d45d38cc3db675972db7c7
