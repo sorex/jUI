@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery UI 1.8.23
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)

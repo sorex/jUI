@@ -130,16 +130,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\111.png" />
-    <Content Include="Content\images\ui-bg_flat_0_073884_40x100.png" />
-    <Content Include="Content\images\ui-bg_flat_0_08419c_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_0_062f72_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_0_073d92_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_094ab2_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_cccccc_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_e2e2e2_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_fef1ec_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_ffffff_40x100.png" />
-    <Content Include="Content\images\ui-icons_000000_256x240.png" />
     <Content Include="Content\images\ui-icons_094ab2_256x240.png" />
+    <Content Include="Content\images\ui-icons_666666_256x240.png" />
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
