@@ -130,6 +130,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\carat-s-666666.png" />
+    <Content Include="Content\images\carat-s-ffffff.png" />
     <Content Include="Content\images\ui-bg_flat_0_062f72_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_073d92_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_094ab2_40x100.png" />
@@ -144,16 +146,25 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jUI\jui.jbutton.css" />
     <Content Include="Content\jUI\jui.jcheckbox.css" />
+    <Content Include="Content\jUI\jui.jdatapager.css" />
+    <Content Include="Content\jUI\jui.jdatetimepicker.css" />
     <Content Include="Content\jUI\jui.jheadMenu.css" />
     <Content Include="Content\jUI\jui.jlayout.css" />
     <Content Include="Content\jUI\jui.jleftMenu.css" />
+    <Content Include="Content\jUI\jui.jlink.css" />
+    <Content Include="Content\jUI\jui.jlinkButton.css" />
+    <Content Include="Content\jUI\jui.jmultiSelect.css" />
     <Content Include="Content\jUI\jui.jradio.css" />
+    <Content Include="Content\jUI\jui.jselect.css" />
+    <Content Include="Content\jUI\jui.jsortSelect.css" />
     <Content Include="Content\jUI\jui.jtable.css" />
+    <Content Include="Content\jUI\jui.jtip.css" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
+    <Content Include="Images\headMenuTestImage.png" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
@@ -162,11 +173,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jUI\jui.jbutton.js" />
     <Content Include="Scripts\jUI\jui.jcheckbox.js" />
+    <Content Include="Scripts\jUI\jui.jdatapager.js" />
+    <Content Include="Scripts\jUI\jui.jdatetimepicker.js" />
     <Content Include="Scripts\jUI\jui.jheadMenu.js" />
     <Content Include="Scripts\jUI\jui.jlayout.js" />
     <Content Include="Scripts\jUI\jui.jleftMenu.js" />
+    <Content Include="Scripts\jUI\jui.jlink.js" />
+    <Content Include="Scripts\jUI\jui.jlinkButton.js" />
+    <Content Include="Scripts\jUI\jui.jmultiSelect.js" />
     <Content Include="Scripts\jUI\jui.jradio.js" />
+    <Content Include="Scripts\jUI\jui.jselect.js" />
+    <Content Include="Scripts\jUI\jui.jsortSelect.js" />
     <Content Include="Scripts\jUI\jui.jtable.js" />
+    <Content Include="Scripts\jUI\jui.jtip.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -176,9 +195,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
@@ -207,6 +223,22 @@
     <Content Include="Views\Home\radio.cshtml" />
     <Content Include="Views\Home\headMenu.cshtml" />
     <Content Include="Views\Home\table.cshtml" />
+    <Content Include="Views\Home\datapager.cshtml" />
+    <Content Include="Views\Home\datapagerHtml.cshtml" />
+    <Content Include="Views\Home\datetimepicker.cshtml" />
+    <Content Include="Views\Home\datetimepickerHtml.cshtml" />
+    <Content Include="Views\Home\tip.cshtml" />
+    <Content Include="Views\Home\tipHtml.cshtml" />
+    <Content Include="Views\Home\select.cshtml" />
+    <Content Include="Views\Home\selectHtml.cshtml" />
+    <Content Include="Views\Home\sortSelect.cshtml" />
+    <Content Include="Views\Home\sortSelectHtml.cshtml" />
+    <Content Include="Views\Home\multiSelect.cshtml" />
+    <Content Include="Views\Home\multiSelectHtml.cshtml" />
+    <Content Include="Views\Home\link.cshtml" />
+    <Content Include="Views\Home\linkHtml.cshtml" />
+    <Content Include="Views\Home\linkButton.cshtml" />
+    <Content Include="Views\Home\linkButtonHtml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

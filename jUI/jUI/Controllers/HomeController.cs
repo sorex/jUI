@@ -63,6 +63,70 @@ namespace jUI.Controllers
 		{
 			return View();
 		}
+		public ActionResult datapager()
+		{
+			return View();
+		}
+		public ActionResult datapagerHtml()
+		{
+			return View();
+		}
+		public ActionResult datetimepicker()
+		{
+			return View();
+		}
+		public ActionResult datetimepickerHtml()
+		{
+			return View();
+		}
+		public ActionResult tip()
+		{
+			return View();
+		}
+		public ActionResult tipHtml()
+		{
+			return View();
+		}
+		public ActionResult select()
+		{
+			return View();
+		}
+		public ActionResult selectHtml()
+		{
+			return View();
+		}
+		public ActionResult sortSelect()
+		{
+			return View();
+		}
+		public ActionResult sortSelectHtml()
+		{
+			return View();
+		}
+		public ActionResult multiSelect()
+		{
+			return View();
+		}
+		public ActionResult multiSelectHtml()
+		{
+			return View();
+		}
+		public ActionResult link()
+		{
+			return View();
+		}
+		public ActionResult linkHtml()
+		{
+			return View();
+		}
+		public ActionResult linkButton()
+		{
+			return View();
+		}
+		public ActionResult linkButtonHtml()
+		{
+			return View();
+		}
 
 	}
 }
