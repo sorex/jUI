@@ -2,6 +2,54 @@
     ViewBag.Title = "buttonHtml.cshtml";
 }
 
-<h2>buttonHtml.cshtml</h2>
+@section head{
+    <style type="text/css">
+        input[type="button"], input[type="submit"], input[type="reset"]
+        {
+            border-width: 0px;
+            background-color: #094ab2;
+            cursor: pointer;
+            color: #ffffff;
+        }
 
-<div>aaa</div>
+         input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
+         {
+           background-color: #073d92;
+         }
+    </style>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
+<h2>button</h2>
+
+普通按钮
+    <input id="btn1" type="button" value="普通按钮" />
+<br />
+<br />
+
+提交按钮
+    <input id="btn2" type="submit" value="提交按钮" />
+<br />
+<br />
+重置按钮
+    <input id="btn3" type="reset" value="大按钮" />
+
+
+
