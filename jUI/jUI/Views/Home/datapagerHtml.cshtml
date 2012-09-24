@@ -1,5 +1,100 @@
 ﻿@{
-    ViewBag.Title = "datapagerHtml";
+	ViewBag.Title = "datapagerHtml";
+}
+
+@section head{
+	<style type="text/css">
+		.jui-datapager
+		{
+			color: #094ab2;
+		}
+			/*.jui-datapager .jui-datapager-start
+			{
+				background-position: -78px -158px;
+			}
+			.jui-datapager .jui-datapager-prev
+			{
+				background-position: -46px -158px;
+			}
+			.jui-datapager .jui-datapager-next
+			{
+				background-position: -29px -158px;
+			}
+			.jui-datapager .jui-datapager-end
+			{
+				background-position: -61px -158px;
+			}*/
+
+			.jui-datapager .jui-datapager-item
+			{
+				border: 1px solid #cccccc;
+				display: block;
+				overflow: hidden;
+				float: left;
+				height: 21px;
+				min-width: 21px;
+				text-align: center;
+				cursor: pointer;
+				margin: 4px;
+			}
+
+				.jui-datapager .jui-datapager-item:hover
+				{
+					background-color: #f3f3f3;
+				}
+
+
+			.jui-datapager .jui-datapager-item-active
+			{
+				border: 1px solid #ffffff;
+				font-weight:bold;
+				display: block;
+				overflow: hidden;
+				float: left;
+				height: 21px;
+				min-width: 21px;
+				text-align: center;
+				margin: 4px;
+				color:#000000;
+			}
+	</style>
+	<script type="text/javascript">
+		$(function ()
+		{
+
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
 }
 
 <h2>datapagerHtml</h2>
+	<div id="test" class="jui-datapager ui-helper-clearfix">
+		<span class="ui-state-disabled jui-datapager-item">首页</span>
+		<span class="ui-state-disabled jui-datapager-item">&lt;上一页</span>
+		<span class="jui-datapager-item">0</span>
+		<span class="jui-datapager-item">1</span>
+		<span class="jui-datapager-item">2</span>
+		<span class="jui-datapager-item">3</span>
+		<span class="jui-datapager-item">4</span>
+		<span class="jui-datapager-item">5</span>
+		<span class="jui-datapager-item-active">6</span>
+		<span class="jui-datapager-item">7</span>
+		<span class="jui-datapager-item">8</span>
+		<span class="jui-datapager-item">9</span>
+		<span class="jui-datapager-item">下一页&gt;</span>
+		<span class="jui-datapager-item">尾页</span>
+	</div>
