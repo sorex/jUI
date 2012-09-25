@@ -18,5 +18,10 @@
 
 	.jui-leftMenu .jui-leftMenu-item-active
 	{
+		font-size: 150%;
+		height: 32px;
+		line-height: 32px;
+		padding-left: 20px;
+		cursor: pointer;
 		background-color: #d4d4d4;
 	}
