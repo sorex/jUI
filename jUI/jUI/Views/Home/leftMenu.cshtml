@@ -4,29 +4,27 @@
 
 @section head{
 	<style type="text/css">
-		.jui-leftMenu
+	</style>
+	<script type="text/javascript">
+		function aaaaaa(a,b,c)
 		{
+			if (a)
+			{
+				alert(a);
+			}
+			if (b != undefined)
+			{
+				alert(b);
+			}
 		}
 
-			.jui-leftMenu .jui-leftMenu-item
-			{
-				font-size: 150%;
-				height: 32px;
-				line-height: 32px;
-				padding-left: 20px;
-				cursor: pointer;
-			}
-
-				.jui-leftMenu .jui-leftMenu-item:hover
-				{
-					background-color: #e2e2e2;
-				}
-
-			.jui-leftMenu .jui-leftMenu-item-active
-			{
-				background-color: #d4d4d4;
-			}
-	</style>
+		aaaaaa();
+		alert("无参数完成");
+		aaaaaa(true);
+		alert("一参数完成");
+		aaaaaa("bcd", "abc");
+		alert("二参数完成");
+</script>
 }
 
 @section header{
@@ -45,3 +43,17 @@
 }
 
 <h2>leftMenu</h2>
+
+<div id="bb" style="background-color: gray; position: relative; left: 500px; top: 100px; width: 150px; /*display: table-cell; vertical-align: middle; */" class="ui-helper-clearfix">
+	<span style="background-color: blue; float: left;">aaa<br />
+		bbb</span>
+	<div id="aa" style="background-color: red; height: 100%; position: relative; float: left; display: table-cell; vertical-align: middle;">
+		<span style="background-color: blue; display: block;">z</span>
+	</div>
+</div>
+
+<div style="background-color: red; height: 150px; width: 15px; position: absolute;">
+	<div style="display: table-cell; vertical-align: middle; background-color: green; height: 100%;">
+		<span style="background-color: blue; display: block;">z</span>
+	</div>
+</div>
