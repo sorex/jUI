@@ -3,3 +3,55 @@
 }
 
 <h2>datapager</h2>
+@section head{
+    <link href="@Url.Content("~/Content/jUI/jui.jdatapager.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatapager.js")"></script>
+
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#MyPager1").jdatapager({
+				recordCount: 160,
+				onPageChange: function (index)
+				{
+					$("#action1").text("翻到第" + index + "页。");
+				}
+			});
+			$("#MyPager2").jdatapager({
+				recordCount: 500,
+				onPageChange: function (index, size)
+				{
+					$("#action2").text("翻到第" + index + "页，每页" + size+"条数据。");
+				}
+			});
+			$("#MyPager3").jdatapager({
+				recordCount: 0,
+				onPageChange: function (index, size)
+				{
+					
+				}
+			});
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="MyPager1"></div>
+<span id="action1"></span>
+<div id="MyPager2"></div>
+<span id="action2"></span>
+<div id="MyPager3"></div>
