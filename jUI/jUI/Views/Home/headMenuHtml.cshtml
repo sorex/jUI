@@ -5,73 +5,147 @@
 @section head{
     <style type="text/css">
         .jui-headMenu {
-            height:40px;
-            width:100%;
-            background-color:#094ab2;
-            white-space: nowrap;/*禁止文字自动换行*/
-            position:relative;
-            display:block;
+            height: 40px;
+            width: 100%;
+            background-color: #094ab2;
+            white-space: nowrap; /*禁止文字自动换行*/
+            position: relative;
+            display: block;
         }
+
             .jui-headMenu a {
-                font-weight: inherit;
                 text-decoration: none;
-                padding-left:10px;
-                padding-right:10px;
             }
-            .jui-headMenu a:hover {
-                background-color:#073d92;
-            }
+
+                .jui-headMenu a:hover {
+                    background-color: #073d92;
+                }
+
             .jui-headMenu .jui-headMenu-ju {
                 float: left;
                 height: 40px;
             }
-        .jui-headMenu .jui-headMenu-ju>li{
-            height:40px;
-            display: inline-block;
-            margin-bottom:2px;            
-            position:relative;
-            float:left;
-        }
-        .jui-headMenu .jui-headMenu-ju>li:hover{
-                background-color:#073d92;
-        }
-        .jui-headMenu .jui-headMenu-ju li{
-            list-style:none;
-            cursor: pointer;
-        }
-        .jui-headMenu .jui-headMenu-lass {
-            vertical-align: middle;
-            color:#fff;
-            font-size:large;
-            position:relative;
-            top:4px;
-        }
-        .jui-headMenu .jui-headMenu-lass_icon {
-            display: inline-block;
-            position:relative;
-            top:3px;
-        }
-            .jui-headMenu .jui-headMenu-u1 {
-                padding-top:10px;
-                position:relative;
-                top:8px;
-                border-style:solid;
-                border-width:0 2px 2px 2px;
-                border-color:#094AB2;
-                z-index:40000;
+
+                .jui-headMenu .jui-headMenu-ju > li {
+                    height: 40px;
+                    padding-right: 15px;
+                    position: relative;
+                    float: left;
+                }
+
+                    .jui-headMenu .jui-headMenu-ju > li > a {
+                        margin-right: 5px;
+                    }
+
+                    .jui-headMenu .jui-headMenu-ju > li:hover {
+                        background-color: #073d92;
+                    }
+
+                .jui-headMenu .jui-headMenu-ju li {
+                    list-style: none;
+                    cursor: pointer;
+                }
+
+            .jui-headMenu .jui-headMenu-lass {
+                vertical-align: middle;
+                color: #fff;
+                font-size: 14px;
+                position: relative;
+                padding-left: 4px;
             }
-                .jui-headMenu .jui-headMenu-u1 li {
-                    margin-bottom:10px;
-                }
-                
-                .jui-headMenu .jui-headMenu-u1 li span {
-                    color:black;
-                }
-                
+
+            .jui-headMenu .jui-headMenu-lass_endicon {
+                display: inline-block;
+                position: relative;
+                top: 3px;
+            }
+
+            .jui-headMenu .jui-headMenu-u1 {
+                padding-top: 4px;
+                padding-bottom: 4px;
+                position: relative;
+                top: 9px;
+                border-style: solid;
+                border-width: 0 2px 2px 2px;
+                border-color: #094AB2;
+                z-index: 40000;
+                cursor: default;
+                display: none;
+                background-color: #ffffff;
+            }
                 .jui-headMenu .jui-headMenu-u1 li a {
-                    padding-left:14px;
-                    padding-right:14px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    text-align: left;
+                    color: black;
+                    display: block;
                 }
+
+                    .jui-headMenu .jui-headMenu-u1 li a:hover {
+                        background-color: #f0f0f0;
+                    }
+
+            .jui-headMenu .jui-headMenu-solid {
+                display: block;
+                border-bottom: 1px solid #666;
+                border-left: 0 none;
+                border-right: 0 none;
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                cursor: default;
+            }
+
+            .jui-headMenu .jui-headMenu-vsolid {
+                display: block;
+                height: 20px;
+                border-left: 1px solid #ffffff;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                float: left;
+            }
+
+            .jui-headMenu .jui-headMenu-showul {
+                visibility: visible;
+            }
+
+            .jui-headMenu .jui-headMenu-hideul {
+                visibility: hidden;
+            }
+
+        /*==图标==*/
+        img {
+            position: absolute;
+        }
+        /*白色加号图标*/
+        .jui-headMenu .jui-headMenu-icon-whiteplus {
+            clip: rect(0px 27px 27px 0px);
+        }
+        /*黑色加号图标*/
+        .jui-headMenu .jui-headMenu-icon-blackplus {
+            clip: rect(0px 54px 27px 27px);
+            left: -27px;
+        }
+        /*白色箭头图标*/
+        .jui-headMenu .jui-headMenu-icon-whitearrows {
+            clip: rect(0px 81px 27px 54px);
+            left: -54px;
+        }
+        /*黑色箭头图标*/
+        .jui-headMenu .jui-headMenu-icon-blackarrows {
+            clip: rect(0px 108px 27px 82px);
+            left: -81px;
+        }
+
+
+        .jui-headMenu .jui-headMenu-endImg {
+            position: relative;
+            top: 1px;
+            left: 4px;
+        }
     </style>
     <script type="text/javascript">
 
@@ -80,21 +154,21 @@
 						{
 						    name: "创建"//名称
 							, href: "#"
-                            ,id: "A1"//链接
-							, bgImage: "abc/abc.png"//小图片
+                            , id: "A1"//链接
+							, icon: "whiteplus"//图标 
+                            ,line:true//分割线
 							, children: [
 												{
 												    name: "文件夹"
 													, href: "#"
 													, id: "A21"
+												    ,line:true//分割线
 												}
-												, { type: "space" }
 												, {
 												    name: "Word 文档"
 													, href: "#"
 													, id: "A22"
 												}
-												, { type: "" }
 												, {
 												    name: "Excel 工作薄"
 													, href: "#"
@@ -102,116 +176,119 @@
 												}
 							]//子项
 						}
-						, { type: "" }//空格或横条
+						, {
+						    name: "上载"
+							, href: "#"
+							, id: "B1"
+							, icon: "whitearrows"
+						}
+						, {
+						    name: "打开"
+							, href: "#"
+							, id: "C1"
+							, icon: ""
+						}
 						, {
 						    name: "管理"
 							, href: "#"
-							, id: "B1"
-							, bgImage: "dgdfgd"
-							//, children: [
-							//					{
-							//					    name: "重命名"
-							//						, href: "#"
-							//						, id: "B21"
-							//					}
-							//					, { type: "" }
-							//					, {
-							//					    name: "删除"
-							//						, href: "#"
-							//						, id: "B22"
-							//					}
-							//					, { type: "" }
-							//					, {
-							//					    name: "移致"
-							//						, href: "#"
-							//						, id: "B23"
-							//					}
-							//					, { type: "space" }
-							//					, {
-							//					    name: "属性"
-							//						, href: "#"
-							//						, id: "B24"
-							//					}
-							//]
+							, id: "G1"
+							, icon: ""
+							, children: [
+												{
+												    name: "重命名"
+													, href: "#"
+													, id: "B21"
+												}
+												, {
+												    name: "删除"
+													, href: "#"
+													, id: "B22"
+												}
+												, {
+												    name: "移致"
+													, href: "#"
+													, id: "B23"
+												    , line: true
+												}
+												, {
+												    name: "属性"
+													, href: "#"
+													, id: "B24"
+												}
+							]
+						}
+						, {
+						    name: "清除选定内容"
+							, href: "#"
+							, id: "F1"
+							, icon: ""
 						}
             ];
-        }
-
-        function AddNavigation(uid, id, name, href, icon, image) {
-            //$("#"+uid).append("<li><div class='jui-headMenu-itemDiv' id='d" + id + "'><a href='"+href+"' id='" + id + "'>" + name + "</a><span class='jui-headMenu-span'></span></div></li>");//生成一级菜单中有子项的选项
-            $("#" + uid).append("<li><a href='" + href + "' id='" + id + "'><span><span><span class='jui-headMenu-span_img'><span class='" + icon + "'></span></span>" +
-                name + "</span></span>" +
-                "<span><span><img class='ui-icon ui-icon-triangle-1-s'/></span></span></a>");//生成一级菜单中有子项的选项
-
-            if (image != null && image != "" && (icon == null || icon == "")) {
-                var img = "<img class='jui-headMenu-image' src='" + image + "'/>";
-                $("#d" + id).append(img);
-            }
-            else if (icon != null && icon != "" && (image == null || image == "")) {
-                var span = "<span class='jui-headMenu-icon'>&nbsp;</span>";
-                $("#d" + id).append(span);
-                $(".jui-headMenu-icon").addClass(icon);
-            } else if (icon != null && icon != "" && image != null && image != "") {
-                $("#d" + id).append("<img class='jui-headMenu-image' src='" + image + "'/>");
-            }
-
         }
 
         $(function () {
             var data = datas();
             $("#headMenu").addClass('jui-headMenu').empty().append("<ul class='jui-headMenu-ju'></ul>").bind("selectstart", function () { return false; });
             for (var i = 0; i < data.length; i++) {
-                if (i % 2 == 0) {
                     var id = data[i]["id"];
                     var name = data[i]["name"];
                     var href = data[i]["href"];
-                    var image = data[i]["bgImage"];
+                    var icon = data[i]["icon"];
+                    var image = "../../Images/headMenuTestImage.png";
                     var children = data[i]["children"];
+                    var hline = data[i]["line"];
+                    var position = data[i]["position"]; 
 
-                    if (image != null && image != "") {
+                    if (icon != null && icon != "") {
                         $(".jui-headMenu-ju").append("<li id='l" + id + "'><a>"
-                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_icon'><span><img style='width:26px;height:26px;' src='" + image + "'/></span></span> " + name + "</span> </span>"
+                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='width:26px;height:26px;float:left;position:relative;top:4px;'><img class='jui-headMenu-icon-"
+                            + icon + "'  src='" + image + "'/></span></span> " + name + "</span> </span>"
                             + "</a></li>");
                     } else {
                         $(".jui-headMenu-ju").append("<li id='l" + id + "'><a>"
-                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_icon'></span> " + name + "</span> </span>"
-                            + "</a></li>");                        
+                            + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='height:26px;float:left;position:relative;top:4px;'></span></span> " + name + "</span> </span>"
+                            + "</a></li>");
                     }
                     var lw = 0;
                     if (children != null && children.length) {
-                        $("#l" +id).append("<ul class='jui-headMenu-u1' id='u" + id + "'></ul>"); //二级菜单
-                        for (var j = 0; j < children.length; j++) {
+                        $("#l" + id).append("<ul class='jui-headMenu-u1' id='u" + id + "'></ul>"); //二级菜单
+                        for (var j = 0; j < children.length; j++) {                            
                             var uid = children[j]["id"];
                             var uname = children[j]["name"];
                             var uhref = children[j]["href"];
-                            if (j % 2 == 0) {
-                                $("#u" + id).append("<li id='" + uid + "'><a href='" + uhref + "'><span>" + uname + "</span></a></li>");
-                                lw = $("#l" + id).width();
-                                $("#u" + id).css("width", 2 * lw);
-                                $("#l" + id).width(lw);
-                                lw = 0;
+                            var uline = children[j]["line"];
+                            $("#u" + id).append("<li id='" + uid + "'><a href='" + uhref + "'><span>" + uname + "</span></a></li>");
+                            if(uline==true)
+                                $("#u" + id).find("li").eq(j).append("<span  class='jui-headMenu-solid'></span>");
+                            lw = $("#l" + id).width();
+                            $("#u" + id).css("width", 2 * lw);
+                            $("#l" + id).width(lw);
+
+                            if (i == data.length - 1) {
+                                $("#l" + id).children("ul").css({ "left": -lw+12+"px" });
                             }
-                            //if (j % 2 != 0 && children[j]["type"] == "space") {
-                            //    $("#d" + children[j - 1]["id"]).parent().addClass("jui-headMenu-border");
-                            //    $("#d" + children[j + 1]["id"]).parent().addClass("jui-headMenu-border");
-                            //}
+                            lw = 0;
                         }
                     }
-                }
-                if (i % 2 != 0 && data[i]["type"] == "space") {
-                    //$("#d" + data[i - 1]["id"]).parent().addClass("jui-headMenu-m1");
-                    //$("#d" + data[i + 1]["id"]).parent().addClass("jui-headMenu-m2");
-                }
+                    if (hline == true) {
+                        $("#l"+id).after("<span class='jui-headMenu-vsolid '></span>");
+                    }
             }
-
-            //containerDiv.children("ul").children("li").addClass("jui-headMenu-u"); //一级菜单
-            //containerDiv.find("li").has("ul").children("div").children(".jui-headMenu-span").addClass("ui-icon ui-icon-triangle-1-s");
-            
-            //containerDiv.children("ul").children("li").click(function () {
-            //    $(this).children("ul").toggle().end().siblings().has("ul:visible").children("ul").hide();
-            //});
-
+            var endImg = '../../Content/images/carat-s-ffffff.png';//箭头图标
+            $("#headMenu").find("li").has("ul").find(".jui-headMenu-lass").after("<img class='jui-headMenu-endImg' style='' src='" + endImg + "'/>");
+            $("#headMenu").children("ul").children("li").click(function () {
+                $(this).children("ul").slideToggle("fast").end().siblings().has("ul:visible").children("ul").hide();
+            });
+            $("#headMenu").find("li").bind("click", function () {
+                if ($(this).find(".jui-headMenu-endImg").length == 0) {
+                    ClickAction($(this).text());
+                }
+            });
         });
+
+        function ClickAction(name){
+            alert(name);
+        }
     </script>
 }
 
@@ -229,7 +306,250 @@
 
 @section scripts{
 }
+<style type="text/css">
+    .jui-model {
+            width:100%;
+            height:100%;
+            font-size:10px;
+    }
+        .jui-model .left-nav {
+            width:20%;
+            height:100%;
+            vertical-align: top;
+        }
+        .jui-model .jui-model-demos-nav {
+            float:left;
+            font-size:1.3em;
+            padding:14px 23px 8px 22px;
+            margin:0;
+        }
+            .jui-model .jui-model-demos-nav dd a {
+                border-bottom: 1px solid #F4F4F4;
+                display: block;
+                padding: 2px 3px 2px 8px;
+                font-size: 90%;
+                text-decoration: none;
+                color: #555;
+                margin: 2px 0;
+                height: 13px;
+            }
+                .jui-model .jui-model-demos-nav dd a:hover {
+                    background-color:#f0f0f0;
+                }
+        .jui-model .demo-head {
+            float:left;
+            width:100%;            
+            border-bottom: 1px solid #EEE;
+        }
+            .jui-model .demo-head h2 {                           
+                clear: left;
+                font-size: 32px;
+                padding: 0 0 5px;
+            }
+            
+        .jui-model .normal {
+            height:100%;
+            border-left: 1px solid #EEE;
+            padding: 20px 24px;
+        }
+        .jui-model .demo-config {
+            clear: left;
+            padding: 20px 0 0;
+        }
+        .jui-model .demo-frame {
+            float:left;
+            height:400px;
+            width:500px;
+            border: 1px solid #DDD;
+            overflow: auto;
+            position: relative;
+            padding:5px;
+        }
+        .jui-model .demo-config-menu {
+            float: right;
+            width:100px;
+        }
+        .jui-model .demo-config-menu h4 {
+            font-size: 13px;
+            color: #666;
+            font-weight: normal;
+            border: 0;
+            padding-left: 18px;
+        }
+        .jui-model .demo-source {
+            clear:both;
+            margin-top:20px;
+        }
+        .jui-model .demo-note {            
+            clear: both;
+            width: 506px;
+            color: #666;
+            padding: 15px 0 0 0;
+        }
+        .jui-model .demo-source a {
+            font-size: 12px;
+            text-decoration: none;
+        } 
+        .jui-model .demo-source a:hover
+        ,.jui-model .demo-source a:visited
+        ,.jui-model .demo-source a:active{
+            background-color:#f0f0f0;
+        }
 
-<div id="headMenu">
-
-</div>
+    .jui-model-demos-nav li {
+        font-size: 11px;
+        padding: 0 0 0 10px;
+        margin: 3px 0;
+        zoom: 1;
+    }
+    .jui-model-demos-nav li a {
+        color: #1B75BB;
+        text-decoration: none;
+        display: block;
+        padding: 1px 8px 4px;
+        border-bottom: 1px dotted #B3B3B3;
+    }
+    .jui-model-demos-nav li a:hover {
+        background-color:#f0f0f0;
+    }
+    .jui-model .detail {
+        display:none;
+    }
+    .jui-model .demo-source pre {
+        font-size: 1.1em;
+        padding: 10px;
+        border: 1px solid #CCC;
+        width: 600px;
+        color: #666;
+        overflow: auto;
+    }
+    .jui-model .doc-ul {
+        padding: 0 0 0 2px;
+        border: 1px solid white;
+        background: #464646;
+        color: white;
+        font-weight: bold;
+        margin-top:20px;
+    }
+    .jui-model .doc-ul li {
+        border: 1px solid #666;
+        background: #666666;
+        font-weight: normal;
+        color: white;
+        outline: none;
+        list-style: none;
+        float: left;
+        position: relative;
+        top: 1px;
+        margin: 0 .2em 1px 0;
+        border-bottom: 0 !important;
+        padding: 0;
+        white-space: nowrap;
+    }
+        .jui-model .doc-ul li a{            
+            float: left;
+            text-decoration: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px 1.2em 3px;
+            color: white;
+        }
+            .jui-model .doc-ul li a:hover {
+                background-color:#000000;
+            }
+    .jui-model .dependencis-h3 {        
+        font-size: 12px;
+        color: black;
+        border: 0;
+        font-weight: bold;
+        padding:4px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#widget-doc>div").eq(0).nextAll().hide();
+        $(".demo-source a").click(function () {
+            $(this).next().toggleClass("detail");
+        });
+        $(".doc-ul li").click(function () {
+            $("#widget-doc>div").css({"padding":"4px"});
+            $("#widget-doc>div").hide();
+            $("#widget-doc>div").eq($(this).prevAll().length).toggle();
+        });
+    })
+</script>
+<table class="jui-model">
+    <tbody>
+        <tr>
+            <td  class="left-nav">             
+                    <dl class="jui-model-demos-nav">
+                        <dt>JUI</dt>
+                        <dd><a href="headMenuHtml">HeadMenu</a></dd>
+                        <dd><a href="datetimepickerHtml">DataTimePicker</a></dd>
+                        <dd><a href="tableHtml">Table</a></dd>
+                        <dd><a href="linkHtml">Link</a></dd>
+                        <dd><a href="linkButtonHtml">LinkButton</a></dd>
+                    </dl>
+            </td>
+            <td>
+                <div class="normal">                    
+                    <div class="demo-head"><h2>HeadMenu</h2></div>
+                    <div class="demo-config"></div>
+                    <div class="demo-frame">
+                        <div id="headMenu" style="width:500px;">
+                        </div>
+                    </div>
+                    <div class="demo-config-menu">
+                        <div class="jui-model-demos-nav">
+                           @* <h4>例子</h4>
+                            <ul>
+                                <li><a href="#">xxxxxx</a></li>
+                                <li><a href="#">xxxxxx</a></li>
+                                <li><a href="#">xxxxxx</a></li>
+                                <li><a href="#">xxxxxx</a></li>
+                                <li><a href="#">xxxxxx</a></li>
+                            </ul>*@
+                        </div>
+                    </div>
+                    <div class="demo-note">
+                        <p>自定义样式的二级菜单</p>
+                    </div>
+                    <div class="demo-source">
+                        <a href="#">查看源代码</a>
+                        <div class="detail">
+                            <pre><code>1111111</code></pre>
+                        </div>
+                    </div>
+                    <div id="widget-doc">
+                        <ul class="doc-ul">
+                            <li><a href="#">综述</a></li>
+                            <li><a href="#">选项</a></li>
+                            <li><a href="#">事件</a></li>
+                            <li><a href="#">方法</a></li>
+                            <li><a href="#">主题</a></li>
+                        </ul>
+                        <div id="overview">
+                            <div id="overview-main" style="float:left;width:400px;padding:4px;">
+                                <h3 class="dependencis-h3">综述</h3>
+                                <div style="padding:4px;">二级菜单</div>
+                            </div>
+                            <div id="overview-dependencies" style="float:right;width:200px;padding:4px;">
+                                <h3 class="dependencis-h3">引用</h3>
+                                <ul>
+                                    <li>UI Core</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="options" style="float:left;width:400px;padding:4px;">
+                            选项
+                        </div>
+                        <div id="events" style="float:left;width:400px;padding:4px;">事件</div>
+                        <div id="methods" style="float:left;width:400px;padding:4px;">方法</div>
+                        <div id="theming" style="float:left;width:400px;padding:4px;">主题</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

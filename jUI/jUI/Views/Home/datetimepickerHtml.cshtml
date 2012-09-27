@@ -2,4 +2,1006 @@
     ViewBag.Title = "datetimepickerHtml";
 }
 
-<h2>datetimepickerHtml</h2>
+<script type="text/javascript">
+    function datas() {
+        return {
+            datetimeType: "yyyy-MM-dd-hh-mm-ss"
+            , datetimeParse: "china"
+            , display: ""
+            ,readonly:null
+        };
+    }
+
+    $(function () {
+        var data = datas();
+        var e = $("#txt_datapicker1");
+        var datetimeType = data.datetimeType;
+        var datetimeParse = data.datetimeParse;
+        var display = data.display;
+        var readonly = data.readonly;
+        var date = new Date();
+        var y = date.getFullYear(); //今年
+        var m = date.getMonth();//当月
+        var longMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var shortWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+        var longWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var shortWeekCN = ['日', '一', '二', '三', '四', '五', '六'];
+        var longWeekCN = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var MonthNamesCN = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+
+        var fullDay = [1, 3, 5, 7, 8, 10, 12];
+        var maxDay = null;
+        var max = false;
+        var weekResult = null;//列
+        var roll = null;//行    
+
+        //外层div
+        var outDiv = "<div id='outDiv' class='jui-datetimepicker jui-datetimepicker-corner-all'></div>";
+        //头部
+        var head = "<div id='headDiv' class='jui-datetimepicker-dhead jui-datetimepicker-corner-all'>"
+        + "<a id='prev' title='上一页' class='jui-datetimepicker-al jui-datetimepicker-corner-all'><span class='ui-icon ui-icon-circle-triangle-w'>&nbsp;</span></a>"
+        + "<a id='next' title='下一页' class='jui-datetimepicker-ar jui-datetimepicker-corner-all'><span class='ui-icon ui-icon-circle-triangle-e'>&nbsp;</span></a>"
+        + "<div id='yearDiv' class='jui-datetimepicker-dhcenter'><span>" + (y - 5) + "~" + (y + 4) + "</span></div>"
+        + "</div>";
+        //text占一行
+        e.wrap("<p></p>").after(outDiv);
+        //添加头部内容
+        $("#outDiv").append(head);
+        //填日期
+        var writeDate = function () {
+            var selectedY = parseInt($("#yearDiv").children("select:eq(1)").val());//当前选择的年份
+            var selectedM = parseInt($("#yearDiv").children("select:eq(0)").val()) + 1;//当前选择的月份
+            var fullDay = [1, 3, 5, 7, 8, 10, 12];
+            var maxDay = null;
+            var max = false;
+            $.each(fullDay, function (key, val) {
+                if (val == selectedM)
+                    max = true;
+            });
+            if (max) {
+                maxDay = 31;
+            } else {
+                if (selectedM == 2) {
+                    if ((selectedY % 4 == 0 && selectedY % 100 != 0) || (selectedY % 400 == 0)) {
+                        maxDay = 29;
+                    } else {
+                        maxDay = 28;
+                    }
+                } else {
+                    maxDay = 30;
+                }
+            }
+            var myDate = new Date();
+            myDate.setFullYear(selectedY);
+            myDate.setMonth(selectedM - 1);
+            myDate.setDate(1);
+            var fir = myDate.getDay();//例:0(周日)
+            var weekResult = null;//列
+            var roll = null;//行           
+            for (var i = 1; i <= maxDay; i++) {
+                $("#tb").find("tr:eq(6)").remove();
+                myDate.setDate(i);
+                weekResult = myDate.getDay();//例:0(周日)
+                if (i < (8 - fir))
+                    roll = 1;
+                if (i >= (8 - fir) && i < (15 - fir))
+                    roll = 2;
+                if (i >= (15 - fir) && i < (22 - fir))
+                    roll = 3;
+                if (i >= (22 - fir) && i < (29 - fir))
+                    roll = 4;
+                if (i >= (29 - fir) && i < (36 - fir))
+                    roll = 5;
+                if (i >= (36 - fir)) {
+                    roll = 6;
+                    $("#tb").append("<tr></tr>");
+                    if (i == 31) {
+                        $("#tb").find("tr:eq(6)").empty();
+                        if (fir == 5)
+                            $("#tb").find("tr:eq(6)").append("<td ><a href='#'></a></td>");
+                        if(fir == 6)
+                            $("#tb").find("tr:eq(6)").append("<td ><a href='#'></a></td><td ><a href='#'></a></td>");
+                        $("#tb").find("tr:eq(" + roll + ")").find("td:eq(" + (weekResult - 1) + ")").find("a").html(i - 1);
+                    }
+                    if (i == 30) {
+                        $("#tb").find("tr:eq(6)").empty();
+                        $("#tb").find("tr:eq(6)").append("<td ><a href='#'></a></td>");
+                    }
+                    $("#tb").find("a").addClass("jui-datetimepicker-table-tr-a");
+                    setVal();
+                }
+                $("#tb").find("tr:eq(" + roll + ")").find("td:eq(" + weekResult + ")").find("a").html(i);
+                $("#tb").find("a").addClass("jui-datetimepicker-table-tr-a");
+                activeCss();//默认高亮当日
+                clickToHide();
+                noCss();
+            }
+
+        }
+        //去样式
+        var noCss = function () {
+            $("#tb td a").each(function () {
+                var a = $(this);
+                if (a.text() == "") {
+                    a.removeClass();
+                }
+            });
+        }
+        //默认选中当天日期的样式
+        var activeCss = function () {
+            var selectedY = parseInt($("#yearDiv").children("select:eq(1)").val());
+            var selectedM = parseInt($("#yearDiv").children("select:eq(0)").val()) + 1;//当前选择的月份
+            $("#tb a").each(function(){
+                if ($(this).text() == date.getDate() && selectedY == date.getFullYear() && (selectedM == (date.getMonth() + 1)))
+                    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-active");
+            });
+        }
+        //高亮并赋值
+        var setVal = function () {
+            $("#tb td a").click(function () {
+                var hideValue = $(this).text();
+                $("#tb td a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
+                $(this).addClass("jui-datetimepicker-active"); //高亮	 
+                if (hideValue != "") {
+                    var setVal_y = $("#yearDiv").children("select:eq(1)").val();
+                    var setVal_M = $("#yearDiv").children("select:eq(0)").val();
+                    var international_val = function (setVal_y, setVal_M) {
+                        if ((parseInt(setVal_M) + 1) < 10) {
+                            if (parseInt(hideValue) < 10) {
+                                e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+                            } else {
+                                e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值 
+                            }
+                        } else {
+                            if (parseInt(hideValue) < 10) {
+                                e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+                            } else {
+                                e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值                         
+                            }
+                        }
+                    }
+                    switch (datetimeParse) {
+                        case 'china':
+                            e.val(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月" + hideValue + "日"); break; //赋值      
+                        case 'europe':
+                            for (var i = 0; i < longMonthNames.length; i++) {
+                                if ((parseInt(setVal_M) + 1) == (i + 1)) {
+                                    e.val(hideValue + " " + longMonthNames[i] + "," + setVal_y); //赋值    
+                                }
+                            } break;
+                        case 'international':
+                            international_val(setVal_y, setVal_M);
+                            break;
+                        default:
+                            international_val(setVal_y, setVal_M);
+                    }     
+                }
+                noCss();
+            });
+        }
+        //添加年份
+        var addOptions = function () {
+            for (var i = y - 10; i < y; i++) {
+                var op = "<option value='" + i + "'>" + i + "</option>";
+                if (datetimeParse == "china") {
+                    op = "<option value='" + i + "'>" + i + "年</option>";
+                }
+                $("#yearDiv").children("select:eq(1)").append(op);
+            }
+            for (var i = y; i <= y + 10; i++) {
+                var op = "<option value='" + i + "'>" + i + "</option>";
+                if (datetimeParse == "china") {
+                    op = "<option value='" + i + "'>" + i + "年</option>";
+                }
+                $("#yearDiv").children("select:eq(1)").append(op);
+            }
+        }
+        //添加年份下拉列表
+        var addYear = function () {
+            addOptions();
+            $("#yearDiv").children("select:eq(1)").find("option").each(function () {
+                if ($(this).val() == y)
+                    $(this).attr("selected", "selected");
+            });//默认今年                
+            $("#yearDiv").children("select:eq(1)").bind("change", function () {
+                $("#tb").find("a").removeClass("jui-datetimepicker-active");
+                y = parseInt($(this).val());
+                $(this).empty();
+                addOptions();
+                $(this).children("option").removeAttr("selected");
+                $("#yearDiv").children("select:eq(1)").find("option").each(function () {
+                    if ($(this).val() == y)
+                        $(this).attr("selected", "selected");
+                });
+                $("#tb a").text("");//清空
+                writeDate();
+            });//年份动态添加          
+            $("#yearDiv").children("select:eq(0)").bind("change", function () {
+                $("#tb").find("a").removeClass("jui-datetimepicker-active");
+                $("#tb a").text("");//清空
+                writeDate();
+            });//日期随月份动态添加
+        }
+        //添加月份下拉列表
+        var addMonth = function () {
+            //添加月下拉列表
+            for (var i = 0; i < shortMonthNames.length; i++) {
+                var op = "<option value='" + i + "'>" + shortMonthNames[i] + "</option>";
+                if (datetimeParse == "china") {
+                    op = "<option value='" + i + "'>" + MonthNamesCN[i] + "</option>";
+                }
+                $("#yearDiv").children("select:eq(0)").append(op);
+            }
+            $("#yearDiv").children("select:eq(0)").find("option").each(function () {
+                if ($(this).val() == m)
+                    $(this).attr("selected", "selected");
+            });//默认当前月
+        }
+        //高亮并赋值
+        var lightAndSetValue = function () {
+            $("#tb td").click(function () {
+                e.val($(this).text());//赋值
+                $("#tb a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
+                $(this).children("a").removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-active");//高亮
+            });
+        }
+        //默认高亮
+        var defaultheightLight = function () {
+            $("#tb td").each(function () {
+                if ($(this).text() == e.val()) {
+                    $(this).children("a").addClass("jui-datetimepicker-active");
+                }
+            });
+        }
+        //点击消失
+        var clickToHide = function () {
+            if (display == "click" || display == "" && datetimeType != "yyyy-MM-dd-hh-mm-ss") {
+                $("#tb a").click(function () {
+                    $("#outDiv").hide();
+                });
+            }
+        }
+        //年
+        var whenYYYY = function () {
+            var table = "<table id='tb' class='jui-datetimepicker-table'></table>"; //表格
+            $("#outDiv").append(table); //添加下部内容
+            var makeCells = function (y) {
+                $("#tb").empty();
+                for (var i = 0; i < 5; i++) {
+                    $("#tb").append("<tr><td><a href='#'>" + (y - 5 + i) + "</a></td><td><a href='#'>" + (y + i) + "</a></td></tr>");
+                }
+                $("#yearDiv").text((y - 5) + "~" + (y + 4));
+                $("#tb a").addClass("jui-datetimepicker-table-tr-a");
+            }
+            //前翻页
+            $("#prev").bind("click", function () {
+                y = y - 10;
+                makeCells(y);
+                lightAndSetValue();
+                defaultheightLight();
+                clickToHide();
+            });
+            //后翻页
+            $("#next").bind("click", function () {
+                y = y + 10;
+                makeCells(y);
+                lightAndSetValue();
+                defaultheightLight();
+                clickToHide();
+            });
+            makeCells(y);
+            lightAndSetValue();
+            clickToHide();
+        }
+        //年月
+        var yM = function () {
+            var saveM;
+            $("#yearDiv").children("span").text(y);
+            $("#outDiv").append("<table id='tb' class='jui-datetimepicker-table'></table>"); //添加下部内容
+            for (var i = 0; i < 6; i++) {
+                $("#tb").append("<tr><td><a href='#'>" + (2 * i + 1) + "</a></td><td><a href='#'>" + (2 * i + 2) + "</a></td></tr>");
+            }
+            var click_yM = function (y) {
+                $("#yearDiv > span").text(y);
+            }
+            //前翻页
+            $("#prev").bind("click", function () {
+                y = y - 1;
+                click_yM(y);
+            });
+            //后翻页
+            $("#next").bind("click", function () {
+                y = y + 1;
+                click_yM(y);
+            });
+            //高亮并赋值            
+            $("#tb td").click(function () {
+                saveM = $(this).text();
+                switch (datetimeParse) {
+                    case 'china':
+                        e.val(y + "年" + $(this).text() + "月");
+                        break; //赋值      
+                    case 'europe':
+                        for (var i = 0; i < longMonthNames.length; i++) {
+                            if ($(this).text() == (i + 1))
+                                e.val(longMonthNames[i] + "," + y); //赋值    
+                        }
+                        break;
+                    case 'international':
+                        if ($(this).text() < 10) {
+                            e.val(y + "-0" + $(this).text()); //赋值                                     
+                        } else {
+                            e.val(y + "-" + $(this).text()); //赋值                                     
+                        }
+                        break;
+                    default:
+                        e.val(y + "年" + $(this).text() + "月"); //赋值    
+                }
+                $("#tb td a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
+                $(this).children("a").addClass("jui-datetimepicker-active"); //高亮	                    
+                $("#tb").find("td").each(function () {
+                    if ($(this).text() != saveM) {
+                        $(this).children("a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
+                    }
+                });
+            });
+            clickToHide();//点击消失
+            $("#tb td a").addClass("jui-datetimepicker-table-tr-a");
+        }
+        //年月日
+        var yMd = function () {
+            $("#yearDiv").children("span").remove("span");
+            $("#yearDiv").append("<select class='jui-datetimepicker-select'></select><select class='jui-datetimepicker-select'></select>");//年月的下拉列表
+            if (datetimeParse == "europe" || datetimeParse == "international" || datetimeParse == "") {
+                $("#headDiv").children("a:eq(1)").attr("title", "next");
+                $("#headDiv").children("a:eq(0)").attr("title", "previous");
+            }
+            addMonth();
+            addYear();
+            //显示日期的表格结构
+            var table = "<table id='tb' class='jui-datetimepicker-table'></table>";
+            $("#outDiv").append(table);
+            $("#tb").append("<tr></tr>");//表格头部
+            var long_week,short_week;
+            //添加下部表格中内容
+            if (datetimeParse == "china") {
+                long_week = longWeekCN;
+                short_week = shortWeekCN;
+            } else {
+                long_week = longWeek;
+                short_week = shortWeek;
+            }
+            for (var k = 0; k < short_week.length; k++) {
+                $("#tb tr").append("<td ><span class='jui-datetimepicker-week' title='" + long_week[k] + "'>" + short_week[k] + "</span></td>");
+            }
+            for (var i = 0; i < 5; i++) {
+                $("#tb").append("<tr></tr>");
+                for (var j = 0; j < 7; j++) {
+                    $("#tb").find("tr:eq(" + (i + 1) + ")").append("<td><a href='#'></a></td>");
+                }
+            }      
+            writeDate();
+            $("#prev").click(function () {
+                $("#tb a").removeClass("jui-datetimepicker-active");
+                m = $("#yearDiv").children("select:eq(0)").val() - 1;
+                if (m == -1) {
+                    m = 11;
+                    y = $("#yearDiv").children("select:eq(1)").val() - 1;
+                    $("#yearDiv").children("select:eq(1)").find("option").each(function () {
+                        $(this).removeAttr("selected"); //清空选择项                        
+                        if ($(this).val() == y)
+                            $(this).attr("selected", "selected");
+                    });
+                    $("#yearDiv").children("select:eq(1)").val(y);
+                }
+                $("#yearDiv").children("select:eq(0)").find("option").each(function () {
+                    $(this).removeAttr("selected"); //清空选择项
+                    if ($(this).val() == m)
+                        $(this).attr("selected", "selected");
+                });
+                $("#yearDiv").children("select:eq(0)").val(m);
+                $("#tb a").text("");//清空
+                writeDate();
+            }); //前翻
+            $("#next").bind("click", function () {
+                $("#tb").find("a").removeClass("jui-datetimepicker-active");
+                m = parseInt($("#yearDiv").children("select:eq(0)").val()) + 1;
+                if (m == 12) {
+                    m = 0;
+                    y = parseInt($("#yearDiv").children("select:eq(1)").val()) + 1;
+                    $("#yearDiv").children("select:eq(1)").find("option").each(function () {
+                        $(this).removeAttr("selected"); //清空选择项                        
+                        if ($(this).val() == y)
+                            $(this).attr("selected", "selected");
+                    });
+                    $("#yearDiv").children("select:eq(1)").val(y);
+                }
+                $("#yearDiv").children("select:eq(0)").find("option").each(function () {
+                    $(this).removeAttr("selected"); //清空选择项
+                    if ($(this).val() == m)
+                        $(this).attr("selected", "selected");
+                });
+                $("#yearDiv").children("select:eq(0)").val(m);
+                $("#tb a").text("");//清空
+                writeDate();
+            });//后翻
+        }
+        //年月日时分秒
+        var ymdhms = function () {
+            e.css("width", "200px");
+            yMd();
+            var divBottom = "<div id='bottom' class='jui-datetimepicker-hms'><dl></dl></div>";
+            var time = "<dt id='lableTime'>Time:</dt><dd id='showTime'>00:00:00</dd>";
+            var hour = "<dt id='lableHour'>Hour:</dt><dd id='showHour'><div id='hourDiv' class='jui-datetimepicker-slider jui-datetimepicker-corner-all'><a href='#' style='left:0%;' class='jui-datetimepicker-handle jui-datetimepicker-corner-all'></a></div></dd>";
+            var minute = "<dt id='lableMinute'>Minute:</dt><dd id='showMinute'><div id='minuteDiv' class='jui-datetimepicker-slider jui-datetimepicker-corner-all'><a href='#' style='left:0%;' class='jui-datetimepicker-handle jui-datetimepicker-corner-all'></a></div></dd>";
+            var second = "<dt id='lableSecond'>Second:</dt><dd id='showSecond'><div id='secondDiv' class='jui-datetimepicker-slider jui-datetimepicker-corner-all'><a href='#' style='left:0%;' class='jui-datetimepicker-handle jui-datetimepicker-corner-all'></a></div></dd>";
+
+            $("#outDiv").append(divBottom);
+            $("#bottom").children("dl").append(time).append(hour).append(minute).append(second).find("div").addClass("jui-datetimepicker-hms");
+            $("#outDiv").append("<div class='jui-datetimepicker-content'></div>");
+            $(".jui-datetimepicker-content").append("<button type='button' id='btnNow' class='jui-datetimepicker-butNow jui-datetimepicker-corner-all'>现在</button><button type='button' id='btnDone' class='jui-datetimepicker-butDone jui-datetimepicker-corner-all'>完成</button>");
+            $("#btnNow").bind("click", function () {
+                var d = new Date();
+                var nowy = d.getFullYear();
+                var nowmo = d.getMonth() + 1;
+                var nowd = d.getDate();
+                var nowh = d.getHours();
+                var nowmi = d.getMinutes();
+                var nows = d.getSeconds();
+                if (nowh < 10)
+                    nowh = "0" + nowh;
+                if (nowmi < 10)
+                    nowmi = "0" + nowmi;
+                if (nows < 10)
+                    nows = "0" + nows;
+                $("#yearDiv").find("select").empty();
+                y = d.getFullYear();
+                m = d.getMonth();
+                addMonth();
+                addYear();
+                $("#tb").find("tr:not(:eq(0))").find("td").find("a").text("");//清空
+                writeDate();
+                $("#tb").find("a").addClass("jui-datetimepicker-table-tr-a");
+                noCss();
+                activeCss();//默认高亮当日
+                switch (datetimeParse) {
+                    case 'china':
+                        e.val(nowy + "年" + nowmo + "月" + nowd + "日" + nowh + "点" + nowmi + "分" + nows + "秒"); break; //赋值      
+                    case 'europe':
+                        for (var i = 0; i < longMonthNames.length; i++) {
+                            if (nowmo == i + 1) {
+                                e.val(nowd + " " + longMonthNames[i] + "," + nowy + " " + nowh + ":" + nowmi + ":" + nows);
+                            }
+                        } break;
+                    case 'international':
+                        if (nowmo < 10) {
+                            if (nowd < 10) {
+                                e.val(nowy + "-0" + nowmo + "-0" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            } else {
+                                e.val(nowy + "-0" + nowmo + "-" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            }
+                        } else {
+                            if (parseInt($(this).text()) < 10) {
+                                e.val(nowy + "-" + nowmo + "-0" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            } else {
+                                e.val(nowy + "-" + nowmo + "-" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            }
+                        } break;
+                    default:
+                        if (nowmo < 10) {
+                            if (nowd < 10) {
+                                e.val(nowy + "-0" + (nowmo + 1) + "-0" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            } else {
+                                e.val(nowy + "-0" + (nowmo + 1) + "-" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            }
+                        } else {
+                            if (parseInt($(this).text()) < 10) {
+                                e.val(nowy + "-" + nowmo + "-0" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            } else {
+                                e.val(nowy + "-" + nowmo + "-" + nowd + " " + nowh + ":" + nowmi + ":" + nows);
+                            }
+                        }
+                }
+                $("#showTime").html(nowh + ":" + nowmi + ":" + nows);
+                $("#tb").find("tr:not(:eq(0))").find("td").find("a").each(function () {
+                    if ($(this).text() != nowd) {
+                        $(this).removeClass("jui-datetimepicker-active");
+                    }
+                });
+            });
+            $("#btnDone").bind("click", function () {
+                $("#outDiv").hide();
+            });
+
+        }
+
+        switch (datetimeType) {
+            case 'yyyy':
+                whenYYYY();
+                break;
+            case 'yyyy-MM':
+                yM();
+                break;
+            case 'yyyy-MM-dd':
+                yMd();
+                break;
+            case 'yyyy-MM-dd-hh-mm-ss':
+                ymdhms();
+                break;
+            default:
+                yMd();
+        }
+
+        //判断点击显示或总是显示
+        if (display == "click" || display == "") {
+            $("#outDiv").hide();
+            e.focus(function () {
+                $("#outDiv").show();
+            });
+        }
+        //只读  
+        if (readonly == true || readonly == null) {
+            e.attr("readonly", "readonly");
+        }
+        $("#outDiv").bind("selectstart", function () { return false; });//界面无法选中
+   
+    })
+</script>
+<style type="text/css">
+    .jui-datetimepicker a {
+        padding:0px;
+    }
+    /*圆角*/
+    /*.jui-datetimepicker-corner-all{
+        -moz-border-radius-topright: 4px;
+        -webkit-border-top-right-radius: 4px;
+        -khtml-border-top-right-radius: 4px;
+        -border-top-right-radius: 4px;
+        -moz-border-radius-bottomright: 4px;
+        -webkit-border-bottom-right-radius: 4px;
+        -khtml-border-bottom-right-radius: 4px;
+        -border-bottom-right-radius: 4px;
+        -moz-border-radius-bottomleft: 4px;
+        -webkit-border-bottom-left-radius: 4px;
+        -khtml-border-bottom-left-radius: 4px;
+        -border-bottom-left-radius: 4px;
+        -moz-border-radius-topleft: 4px;
+        -webkit-border-top-left-radius: 4px;
+        -khtml-border-top-left-radius: 4px;
+        -border-top-left-radius: 4px;
+    }*/
+    /*外层div*/    
+    .jui-datetimepicker {
+        width:220px;
+        background-color:#f3f3f3;
+        padding: .2em .2em 0;
+        border:1px solid #DDD;
+        font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+        font-size: 0.8em;
+    }
+    /*头部div样式*/    
+    .jui-datetimepicker-dhcenter{
+        width:160px;
+        margin: 0 0 0 2.4em;
+        line-height: 1.8em;
+        text-align: center;
+        color: white;
+    }/*头部div中中间div样式*/  
+    .jui-datetimepicker-dhead{
+        width:220px; 
+        background-color:#094ab2;
+        font-weight: bold;
+        border: 1px solid #062f72;
+        padding: .2em 0; 
+        position:relative;
+    }
+    .jui-datetimepicker-dhead a{ display:block; position:absolute; width:22px; height:22px; top:3px;}/*左右翻页按钮样式*/
+    .jui-datetimepicker-dhead a:hover{ background-color:#062f72;}/*鼠标覆盖翻页按钮后样式*/
+    .jui-datetimepicker-dhead a span{position:absolute;top: 2px;display: block;position: absolute;left: 50%;margin-left: -8px;top: 50%;margin-top: -8px;}/*按钮图片定位*/
+    .jui-datetimepicker-al span{ left:2px;right:auto;top:3px;}/*左图标定位*/    
+    .jui-datetimepicker-ar{ left:auto; right:2px; top:3px;}/*右图标定位*/  
+    .jui-datetimepicker-select{
+        width:75px;
+        font-family: Verdana,Arial,sans-serif;
+    }    
+    .jui-datetimepicker .jui-datetimepicker-active{
+        border: 1px solid #062f72;
+        background-color: #062f72;
+        font-weight: bold;
+        color: #ffffff;
+        outline: none;
+        display: block;
+        /*padding: .2em;*/
+        text-decoration: none;
+    }/*点击选中项 */     
+    .jui-datetimepicker-unactive{border: 1px solid #CCC;background: #F6F6F6;font-weight: bold;color: #1C94C4;outline: none;display: block;padding: .2em;text-decoration: none;}/*未点击选中项*/
+    .jui-datetimepicker-table-tr-a{        
+        border: 1px solid #bababa;
+        background-color: #ffffff;
+        font-weight: bold;
+        color:  #094ab2;
+        outline: none;
+        display: block;
+        padding: .2em;
+        margin: .2em;
+        text-decoration: none;
+    }/*表格内容样式*/
+
+     /*鼠标移动到单元格上*/
+    .jui-datetimepicker-table tr a:hover{ 
+        border:1px solid #062f72;
+        background-color:#073d92;
+        font-weight:bold; 
+        color:#ffffff; 
+        outline:none;
+    }
+    .jui-datetimepicker-table{ width:220px; margin-top:5px;}/*内容表格样式*/
+    .jui-datetimepicker-table tr{ text-align:center;}/*表格内容居中*/
+    .jui-datetimepicker-week{font-weight: bold;color: Black;outline: none;display: block;padding: .2em;font-weight:bolder;}/*星期样式*/
+    .jui-datetimepicker-al-span_text_toggle{width:20px;}/*点击年份后生成的输入框样式*/
+    /*时分秒样式*/
+    .jui-datetimepicker-hms{ font-size:80%;}
+    .jui-datetimepicker-hms dl dt{height: 25px;margin-bottom: -25px;}
+    .jui-datetimepicker-hms dl dd{margin: 0 10px 10px 65px;}
+    .jui-datetimepicker-hms dl{ text-align:left;}
+    .jui-datetimepicker-slider{
+        position: relative;
+        text-align: left;
+        height: .8em;
+        font-size: 1em;
+        border: 1px solid #DDD;
+        background: #FFF 50% top repeat-x;
+        color: #333;
+    }    
+    .jui-datetimepicker-handle{
+        top: -.3em;margin-left: -.6em;border: 1px solid #CCC;
+        background: #F6F6F6 50% 50% repeat-x;
+        font-weight: bold;
+        color: #1C94C4;position: absolute;
+        z-index: 2;
+        width: 1.2em;
+        height: 1.2em;
+        cursor: default;
+    }    
+    .jui-datetimepicker-focus,.jui-datetimepicker-handle:hover,.jui-datetimepicker-butNow:hover,.jui-datetimepicker-butDone:hover{
+        border: 1px solid #FBCB09;
+        background: #FDF5CE;
+        font-weight: bold;
+        color: #C77405;
+    }
+    /*分割线*/
+    .jui-datetimepicker-content{
+        border: 1px solid #DDD;
+        background: #EEE  50% top repeat-x;
+        color: #333;background-image: none;
+        margin: .7em 0 0 0;
+        padding: 0 .2em;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+    }
+    /*左按钮*/
+    .jui-datetimepicker-butNow{
+        margin: .5em .2em .4em;
+        cursor: pointer;
+        padding: .2em .6em .3em .6em;
+        width: auto;
+        overflow: visible;border: 1px solid #CCC;
+        background: #F6F6F6 50% 50% repeat-x;
+        font-weight: bold;
+        color: #1C94C4;
+    }
+    /*右按钮*/
+    .jui-datetimepicker-butDone{
+        float: right;
+        margin: .5em .2em .4em;
+        cursor: pointer;
+        padding: .2em .6em .3em .6em;
+        width: auto;
+        overflow: visible;border: 1px solid #CCC;
+        background: #F6F6F6  50% 50% repeat-x;
+        font-weight: bold;
+        color: #1C94C4;
+    }
+
+</style>
+
+
+<style type="text/css">
+    .jui-model {
+            width:100%;
+            height:100%;
+            font-size:10px;
+    }
+        .jui-model .left-nav {
+            width:20%;
+            height:100%;
+            vertical-align: top;
+        }
+        .jui-model .jui-model-demos-nav {
+            float:left;
+            font-size:1.3em;
+            /*padding:14px 23px 8px 22px;*/
+            margin:0;
+        }
+            .jui-model .jui-model-demos-nav dd a {
+                border-bottom: 1px solid #F4F4F4;
+                display: block;
+                padding: 2px 3px 2px 8px;
+                font-size: 90%;
+                text-decoration: none;
+                color: #555;
+                margin: 2px 0;
+                height: 13px;
+            }
+                .jui-model .jui-model-demos-nav dd a:hover {
+                    background-color:#f0f0f0;
+                }
+        .jui-model .demo-head {
+            float:left;
+            width:100%;            
+            border-bottom: 1px solid #EEE;
+        }
+            .jui-model .demo-head h2 {                           
+                clear: left;
+                font-size: 32px;
+                padding: 0 0 5px;
+            }
+            
+        .jui-model .normal {
+            height:100%;
+            border-left: 1px solid #EEE;
+            padding: 20px 24px;
+        }
+        .jui-model .demo-config {
+            clear: left;
+            padding: 20px 0 0;
+        }
+        .jui-model .demo-frame {
+            float:left;
+            height:400px;
+            width:500px;
+            border: 1px solid #DDD;
+            overflow: auto;
+            position: relative;
+            padding:5px;
+        }
+        .jui-model .demo-config-menu {
+            float: right;
+            width:100px;
+        }
+        .jui-model .demo-config-menu h4 {
+            font-size: 13px;
+            color: #666;
+            font-weight: normal;
+            border: 0;
+            padding-left: 18px;
+        }
+        .jui-model .demo-source {
+            clear:both;
+            margin-top:20px;
+        }
+        .jui-model .demo-note {            
+            clear: both;
+            width: 506px;
+            color: #666;
+            padding: 15px 0 0 0;
+        }
+        .jui-model .demo-source a {
+            font-size: 12px;
+            text-decoration: none;
+        } 
+        .jui-model .demo-source a:hover
+        ,.jui-model .demo-source a:visited
+        ,.jui-model .demo-source a:active{
+            background-color:#f0f0f0;
+        }
+
+    .jui-model-demos-nav li {
+        font-size: 11px;
+        padding: 0 0 0 10px;
+        margin: 3px 0;
+        zoom: 1;
+    }
+    .jui-model-demos-nav li a {
+        color: #1B75BB;
+        text-decoration: none;
+        display: block;
+        padding: 1px 8px 4px;
+        border-bottom: 1px dotted #B3B3B3;
+    }
+    .jui-model-demos-nav li a:hover {
+        background-color:#f0f0f0;
+    }
+    .jui-model .detail {
+        display:none;
+    }
+    .jui-model .demo-source pre {
+        font-size: 1.1em;
+        padding: 10px;
+        border: 1px solid #CCC;
+        width: 600px;
+        color: #666;
+        overflow: auto;
+    }
+    .jui-model .doc-ul {
+        padding: 0 0 0 2px;
+        border: 1px solid white;
+        background: #464646;
+        color: white;
+        font-weight: bold;
+        margin-top:20px;
+    }
+    .jui-model .doc-ul li {
+        border: 1px solid #666;
+        background: #666666;
+        font-weight: normal;
+        color: white;
+        outline: none;
+        list-style: none;
+        float: left;
+        position: relative;
+        top: 1px;
+        margin: 0 .2em 1px 0;
+        border-bottom: 0 !important;
+        padding: 0;
+        white-space: nowrap;
+    }
+        .jui-model .doc-ul li a{            
+            float: left;
+            text-decoration: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px 1.2em 3px;
+            color: white;
+        }
+            .jui-model .doc-ul li a:hover {
+                background-color:#000000;
+            }
+    .jui-model .dependencis-h3 {        
+        font-size: 12px;
+        color: black;
+        border: 0;
+        font-weight: bold;
+        padding:4px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(document).bind("selectstart", function () { return false; });
+        $("#widget-doc>div").eq(0).nextAll().hide();
+        $(".demo-frame>div").eq(0).nextAll().hide();
+        $(".demo-note>p").eq(0).nextAll().hide();
+        $(".demo-source pre").eq(0).nextAll().hide();
+        $(".demo-source a").click(function () {
+            $(this).next().toggleClass("detail");
+        });
+        $(".doc-ul li").click(function () {
+            $("#widget-doc>div").hide();
+            $("#widget-doc>div").eq($(this).prevAll().length).toggle();
+        });
+        $(".jui-model-demos-nav li").click(function () {
+            $(".demo-frame>div").hide();
+            $(".demo-frame>div").eq($(this).prevAll().length).toggle();
+            $(".demo-note>p").hide();
+            $(".demo-note>p").eq($(this).prevAll().length).toggle();
+            $(".demo-source pre").hide();
+            $(".demo-source pre").eq($(this).prevAll().length).toggle();
+        });
+    })
+</script>
+<table class="jui-model">
+    <tbody>
+        <tr>
+            <td  class="left-nav">             
+                    <dl class="jui-model-demos-nav">
+                        <dt>JUI</dt>
+                        <dd><a href="headMenuHtml">HeadMenu</a></dd>
+                        <dd><a href="datetimepickerHtml">DataTimePicker</a></dd>
+                        <dd><a href="tableHtml">Table</a></dd>
+                        <dd><a href="linkHtml">Link</a></dd>
+                        <dd><a href="linkButtonHtml">LinkButton</a></dd>
+                    </dl>
+            </td>
+            <td>
+                <div class="normal">                    
+                    <div class="demo-head"><h2>DataTimePicker</h2></div>
+                    <div class="demo-config"></div>
+                    <div class="demo-frame">
+                        <div id="datapicker1" style="width:500px;">
+                            日期(默认页面):<input id="txt_datapicker1" type="text" />
+                        </div>
+                        <div id="datapicker2" style="width:500px;">
+                            日期(显示年份):<input id="txt_datapicker2" type="text" />
+                        </div>
+                        <div id="datapicker3" style="width:500px;">
+                            日期(显示年月日):<input id="txt_datapicker3" type="text" />
+                        </div>
+                        <div id="datapicker4" style="width:500px;">
+                            日期(显示年月日小时分秒):<input id="txt_datapicker4" type="text" />
+                        </div>
+                        <div id="datapicker5" style="width:500px;">
+                            日期(日历总是显示):<input id="txt_datapicker5" type="text" />
+                        </div>
+                        <div id="datapicker6" style="width:500px;">
+                            日期(中文日期格式):<input id="txt_datapicker6" type="text" />
+                        </div>
+                        <div id="datapicker7" style="width:500px;">
+                            日期(西方日期格式):<input id="txt_datapicker7" type="text" />
+                        </div>
+                        <div id="datapicker8" style="width:500px;">
+                            日期(国际日期格式):<input id="txt_datapicker8" type="text" />
+                        </div>
+                    </div>
+                    <div class="demo-config-menu">
+                        <div class="jui-model-demos-nav">
+                            <h4>例子</h4>
+                            <ul>
+                                <li><a href="#">默认页面</a></li>
+                                <li><a href="#">显示年份</a></li>
+                                <li><a href="#">显示年月日</a></li>
+                                <li><a href="#">显示年月日小时分秒</a></li>
+                                <li><a href="#">日历总是显示</a></li>
+                                <li><a href="#">中文日期格式</a></li>
+                                <li><a href="#">西方日期格式</a></li>
+                                <li><a href="#">国际日期格式</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="demo-note">
+                        <p>不同格式的日期选择1</p>
+                        <p>不同格式的日期选择2</p>
+                        <p>不同格式的日期选择3</p>
+                        <p>不同格式的日期选择4</p>
+                        <p>不同格式的日期选择5</p>
+                        <p>不同格式的日期选择6</p>
+                        <p>不同格式的日期选择7</p>
+                        <p>不同格式的日期选择8</p>
+                    </div>
+                    <div class="demo-source">
+                        <a href="#">查看源代码</a>
+                        <div class="detail">
+                            <pre><code>1111111</code></pre>
+                            <pre><code>2222222</code></pre>
+                            <pre><code>3333333</code></pre>
+                            <pre><code>4444444</code></pre>
+                            <pre><code>5555555</code></pre>
+                            <pre><code>66</code></pre>
+                            <pre><code>77</code></pre>
+                            <pre><code>88</code></pre>
+                        </div>
+                    </div>
+                    <div id="widget-doc">
+                        <ul class="doc-ul">
+                            <li><a href="#">综述</a></li>
+                            <li><a href="#">选项</a></li>
+                            <li><a href="#">事件</a></li>
+                            <li><a href="#">方法</a></li>
+                            <li><a href="#">主题</a></li>
+                        </ul>
+                        <div id="overview">
+                            <div id="overview-main" style="float:left;width:400px;padding:4px;">
+                                <h3 class="dependencis-h3">综述</h3>
+                                <div style="padding:4px;">二级菜单</div>
+                            </div>
+                            <div id="overview-dependencies" style="float:right;width:200px;padding:4px;">
+                                <h3 class="dependencis-h3">引用</h3>
+                                <ul>
+                                    <li>UI Core</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="options" style="float:left;width:400px;padding:4px;">
+                            选项
+                        </div>
+                        <div id="events" style="float:left;width:400px;padding:4px;">事件</div>
+                        <div id="methods" style="float:left;width:400px;padding:4px;">方法</div>
+                        <div id="theming" style="float:left;width:400px;padding:4px;">主题</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
