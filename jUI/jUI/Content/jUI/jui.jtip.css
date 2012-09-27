@@ -1,2 +1,80 @@
-﻿body {
-}
+﻿        .jui-jtip
+        {
+        }
+
+
+        .jui-jtip-left-arrowhead
+        {
+            background-image: url(/Content/images/jui-jtip-carat-w-cccccc.png);
+            background-repeat: no-repeat;
+            height: 13px;
+            width: 7px;
+        }
+
+        .jui-jtip-left-arrowhead-error
+        {
+            background-image: url(/Content/images/jui-jtip-carat-w-fef1ec.png);
+            background-repeat: no-repeat;
+            height: 13px;
+            width: 7px;
+        }
+
+
+        .jui-jtip-up-arrowhead
+        {
+            background-image: url(/Content/images/jui-jtip-carat-n-cccccc.png);
+            background-repeat: no-repeat;
+            height: 7px;
+            width: 13px;
+        }
+
+        .jui-jtip-up-arrowhead-error
+        {
+            background-image: url(/Content/images/jui-jtip-carat-n-fef1ec.png);
+            background-repeat: no-repeat;
+            height: 7px;
+            width: 13px;
+        }
+
+
+        .jui-jitp-nomal-left-content
+        {
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+
+
+        .jui-jtip-success-left-content
+        {
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+        .jui-jtip-error-left-content
+        {
+            background-color: #cccccc;
+            color: #cd0a0a;
+        }
+
+
+
+        .jui-jitp-nomal-up-content
+        {
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+
+
+        .jui-jtip-success-up-content
+        {
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+        .jui-jtip-error-up-content
+        {
+            background-color: #cccccc;
+            color: #cd0a0a;
+        }

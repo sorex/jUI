@@ -1,17 +1,17 @@
 ﻿@{
-    ViewBag.Title = "datapager";
+	ViewBag.Title = "datapager";
 }
 
 <h2>datapager</h2>
 @section head{
-    <link href="@Url.Content("~/Content/jUI/jui.jdatapager.css")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatapager.js")"></script>
-
+	<link href="@Url.Content("~/Content/jUI/jui.jdatapager.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatapager.js")"></script>
+	
 	<script type="text/javascript">
 		$(function ()
 		{
 			$("#MyPager1").jdatapager({
-				recordCount: 160,
+				recordCount: 75,
 				onPageChange: function (index)
 				{
 					$("#action1").text("翻到第" + index + "页。");
@@ -21,16 +21,17 @@
 				recordCount: 500,
 				onPageChange: function (index, size)
 				{
-					$("#action2").text("翻到第" + index + "页，每页" + size+"条数据。");
+					$("#action2").text("翻到第" + index + "页，每页" + size + "条数据。");
 				}
 			});
 			$("#MyPager3").jdatapager({
 				recordCount: 0,
 				onPageChange: function (index, size)
 				{
-					
+
 				}
 			});
+			$("#tabs").tabs();
 		});
 	</script>
 }
@@ -50,8 +51,62 @@
 @section scripts{
 }
 
-<div id="MyPager1"></div>
-<span id="action1"></span>
-<div id="MyPager2"></div>
-<span id="action2"></span>
-<div id="MyPager3"></div>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">页数不超过11个</a></li>
+		<li><a href="#tabs-2">页数超过11个</a></li>
+		<li><a href="#tabs-3">无数据</a></li>
+	</ul>
+	<div id="tabs-1">
+		<div id="MyPager1"></div>
+		<span id="action1"></span>
+		<h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="MyPager1"&gt;&lt;/div&gt;
+			&lt;span id="action1"&gt;&lt;/span&gt;
+
+			&lt;script type="text/javascript"&gt;
+			$("#MyPager1").jdatapager({
+				recordCount: 75,
+				onPageChange: function (index)
+				{
+					$("#action1").text("翻到第" + index + "页。");
+				}
+			});
+			&lt;/script&gt;</pre>
+	</div>
+	<div id="tabs-2">
+		<div id="MyPager2"></div>
+		<span id="action2"></span>
+		<h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="MyPager2"&gt;&lt;/div&gt;
+			&lt;span id="action2"&gt;&lt;/span&gt;
+
+			&lt;script type="text/javascript"&gt;
+			$("#MyPager2").jdatapager({
+				recordCount: 500,
+				onPageChange: function (index, size)
+				{
+					$("#action2").text("翻到第" + index + "页，每页" + size + "条数据。");
+				}
+			});
+			&lt;/script&gt;</pre>
+	</div>
+	<div id="tabs-3">
+		<div id="MyPager3"></div>
+		<h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="MyPager3"&gt;&lt;/div&gt;
+
+			&lt;script type="text/javascript"&gt;
+			$("#MyPager3").jdatapager({
+				recordCount: 0,
+				onPageChange: function (index, size)
+				{
+
+				}
+			});
+			&lt;/script&gt;</pre>
+	</div>
+</div>
