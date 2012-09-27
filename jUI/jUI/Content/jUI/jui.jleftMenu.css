@@ -1,14 +1,17 @@
 ﻿.jui-leftMenu
 {
 }
-
-	.jui-leftMenu .jui-leftMenu-item
+	.jui-leftMenu div
 	{
 		font-size: 150%;
 		height: 32px;
 		line-height: 32px;
 		padding-left: 20px;
 		cursor: pointer;
+	}
+
+	.jui-leftMenu .jui-leftMenu-item
+	{
 	}
 
 		.jui-leftMenu .jui-leftMenu-item:hover

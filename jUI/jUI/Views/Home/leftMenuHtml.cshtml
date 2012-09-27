@@ -24,6 +24,11 @@
 
 			.jui-leftMenu .jui-leftMenu-item-active
 			{
+				font-size: 150%;
+				height: 32px;
+				line-height: 32px;
+				padding-left: 20px;
+				cursor: pointer;
 				background-color: #d4d4d4;
 			}
 	</style>
@@ -34,8 +39,8 @@
 			{
 				$(this).click(function ()
 				{
-					$(".jui-leftMenu-item-active", $("#test")).removeClass("jui-leftMenu-item-active");
-					$(this).addClass("jui-leftMenu-item-active");
+					$(".jui-leftMenu-item-active", $("#test")).addClass("jui-leftMenu-item").removeClass("jui-leftMenu-item-active");
+					$(this).addClass("jui-leftMenu-item-active").removeClass("jui-leftMenu-item");
 					alert($(this).html());
 				});
 			});
@@ -50,7 +55,7 @@
 	<div id="test" class="jui-leftMenu">
 		<div class="jui-leftMenu-item">文件A</div>
 		<div class="jui-leftMenu-item">文件B</div>
-		<div class="jui-leftMenu-item">文件C</div>
+		<div class="jui-leftMenu-item-active">文件C</div>
 		<div class="jui-leftMenu-item">文件D</div>
 	</div>
 }

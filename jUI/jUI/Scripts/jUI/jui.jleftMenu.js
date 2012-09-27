@@ -65,8 +65,8 @@
 						var _item = item;
 						item.click(function ()
 						{
-							$(".jui-leftMenu-item-active", $(self.element)).removeClass("jui-leftMenu-item-active");
-							_item.addClass("jui-leftMenu-item-active");
+							$(".jui-leftMenu-item-active", $(self.element)).removeClass("jui-leftMenu-item-active").addClass("jui-leftMenu-item");
+							_item.removeClass("jui-leftMenu-item").addClass("jui-leftMenu-item-active");
 							o.onClick(_index, _text);
 						});
 					})();
