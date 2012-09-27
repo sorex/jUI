@@ -1,5 +1,269 @@
-﻿@{
-    ViewBag.Title = "tipHtml";
+﻿@{  
+    ViewBag.Title = "tipHtml.cshtml";
 }
 
-<h2>tipHtml</h2>
+@section head{
+    <style type="text/css">
+        .jui-jtip
+        {
+        }
+
+            .jui-jtip .ui-icon
+            {
+                background-image: url(/Content/images/ui-icons_cd0a0a_256x240.png);
+            }
+
+        .jui-jtip-left-arrowhead
+        {
+            background-image: url(../Content/images/jui-tip-left.png);
+            background-repeat: no-repeat;
+            height: 13px;
+            width: 7px;
+        }
+
+        .jui-jtip-up-arrowhead
+        {
+            background-image: url(../Content/images/jui-tip-up.png);
+            background-repeat: no-repeat;
+            height: 7px;
+            width: 13px;
+        }
+
+        .jui-jitp-nomal-left-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 200px;
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+
+
+        .jui-jtip-success-left-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 200px;
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+        .jui-jtip-error-left-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 200px;
+            background-color: #cccccc;
+            color: #cd0a0a;
+        }
+
+
+
+         .jui-jitp-nomal-up-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 100px;
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+
+
+        .jui-jtip-success-up-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 100px;
+            background-color: #cccccc;
+            color: #ffffff;
+        }
+
+        .jui-jtip-error-up-content
+        {
+            border: 1px solid #D9D9D9;
+            width: 100px;
+            background-color: #cccccc;
+            color: #cd0a0a;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#Name").bind('mousemove', function () {
+                $("#Name-tip-arrowhead").position({
+                    of: $("#Name"),
+                    my: "left middle",
+                    at: "right middle"
+                });
+                $("#Name-tip-nomal-conetent").position({
+                    of: $("#Name"),
+                    my: "left middle",
+                    at: "right middle",
+                    offset: '7 0'
+                });
+            });
+
+            $("#scuccess").bind('mousemove', function () {
+                $("#Div1").position({
+                    of: $("#scuccess"),
+                    my: "left middle",
+                    at: "right middle"
+                });
+                $("#Name-tip-nomal-success").position({
+                    of: $("#scuccess"),
+                    my: "left middle",
+                    at: "right middle",
+                    offset: '7 0'
+                });
+            });
+
+
+
+            $("#Error").bind('mousemove', function () {
+                $("#Div2").position({
+                    of: $("#Error"),
+                    my: "left middle",
+                    at: "right middle"
+                });
+                $("#Name-tip-nomal-error").position({
+                    of: $("#Error"),
+                    my: "left middle",
+                    at: "right middle",
+                    offset: '7 0'
+                });
+            });
+
+
+
+
+            $("#Name1").bind('mousemove', function () {
+                $("#Name1-tip-arrowhead").position({
+                    of: $("#Name1"),
+                    my: "center top",
+                    at: "center bottom"
+                });
+                $("#Name1-tip-nomal-conetent").position({
+                    of: $("#Name1"),
+                    my: "center top",
+                    at: "center bottom",
+                    offset: '0 7'
+                });
+            });
+
+
+
+            $("#scuccess1").bind('mousemove', function () {
+                $("#Div11").position({
+                    of: $("#scuccess1"),
+                    my: "center top",
+                    at: "center bottom"
+                });
+                $("#Name1-tip-nomal-success").position({
+                    of: $("#scuccess1"),
+                    my: "center top",
+                    at: "center bottom",
+                    offset: '0 7'
+                });
+            });
+
+
+            $("#Error1").bind('mousemove', function () {
+                $("#Div22").position({
+                    of: $("#Error1"),
+                    my: "center top",
+                    at: "center bottom"
+                });
+                $("#Name1-tip-nomal-error").position({
+                    of: $("#Error1"),
+                    my: "center top",
+                    at: "center bottom",
+                    offset: '0 7'
+                });
+            });
+
+        });
+
+    </script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+
+}
+
+
+<h2>鼠标移入文本框实现效果</h2>
+<h3>左边提示效果</h3>
+普通提示效果
+<input id="Name" type="text" />
+<br />
+
+<div id="Name-tip-arrowhead" class="jui-jtip-left-arrowhead">
+</div>
+<div id="Name-tip-nomal-conetent" class="jui-jitp-nomal-left-content">
+    <span>请按规则填写</span>
+</div>
+<br />
+正确提示效果
+<input id="scuccess" type="text" />
+<div id="Div1" class="jui-jtip-left-arrowhead">
+</div>
+<div>
+    <div id="Name-tip-nomal-success" class="jui-jtip-success-left-content">
+        <span class="ui-icon ui-icon-check" style="float: left;"></span><span>输入成功</span>
+    </div>
+</div>
+<br />
+
+错误提示效果
+	<input id="Error" type="text" />
+<div id="Div2" class="jui-jtip-left-arrowhead">
+</div>
+<div id="Name-tip-nomal-error" class="jui-jtip jui-jtip-error-left-content">
+    <span class="ui-icon ui-icon-alert" style="float: left;"></span><span>对不起您的输入不合法</span>
+</div>
+
+
+<h3>底部提示效果</h3>
+普通提示效果<input id="Name1" type="text" />
+<div id="Name1-tip-arrowhead" class="jui-jtip-up-arrowhead">
+</div>
+<div id="Name1-tip-nomal-conetent" class="jui-jitp-nomal-up-content">
+    <span>请输入英文字母或者下划线(_)或者数字的组合字符</span>
+</div>
+<br />
+
+
+正确提示效果
+<input id="scuccess1" type="text" />
+<div id="Div11"class="jui-jtip-up-arrowhead">
+</div>
+<div>
+    <div id="Name1-tip-nomal-success" class="jui-jtip-success-up-content">
+        <span class="ui-icon ui-icon-check" style="float: left;"></span><span>输入成功</span>
+    </div>
+</div>
+<br />
+
+
+
+错误提示效果
+	<input id="Error1" type="text" />
+<div id="Div22" class="jui-jtip-up-arrowhead">
+</div>
+<div id="Name1-tip-nomal-error" class="jui-jtip jui-jtip-error-up-content" >
+    <span class="ui-icon ui-icon-alert" style="float: left;"></span><span>对不起您的输入不合法</span>
+</div>
