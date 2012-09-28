@@ -34,6 +34,22 @@
 		//SyntaxHighlighter.config.strings.expandSource = "查看源代码";
 		//SyntaxHighlighter.defaults['collapse'] = true;
 
+		SyntaxHighlighter.toolbar.items.list = ['expandSource', 'foldingSource', 'help'];
+		SyntaxHighlighter.toolbar.items.foldingSource = {
+			getHtml: function (highlighter)
+			{
+				if (highlighter.getParam('collapse') != true)
+					return '';
+				return SyntaxHighlighter.toolbar.getButtonHtml(highlighter, 'foldingSource', "-");
+			},
+			execute: function (highlighter)
+			{
+				var prefix = 'highlighter_';
+				var divID = highlighter.id.indexOf(prefix) == 0 ? highlighter.id : prefix + highlighter.id;
+				$("#" + divID).addClass('collapsed');
+			}
+		};
+
 		SyntaxHighlighter.all();
 	</script>
 
