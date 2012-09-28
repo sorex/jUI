@@ -30,27 +30,34 @@
 	<script type="text/javascript">
 		$(function ()
 		{
-			$("#MyPager1").jdatapager({
-				recordCount: 75,
-				onPageChange: function (options)
-				{
-					$("#action1").text("翻到第" + options.pageIndex + "页。");
-				}
-			});
-			$("#MyPager2").jdatapager({
-				recordCount: 500,
-				onPageChange: function (options)
-				{
-					$("#action2").text("翻到第" + options.pageIndex + "页，每页" + options.pageSize + "条数据。");
-				}
-			});
-			$("#MyPager3").jdatapager({
-				recordCount: 0,
-				onPageChange: function (options)
-				{
+			function refresh1()
+			{
+				$("#MyPager1").jdatapager({
+					recordCount: $("#recordCountValue").val(),
+					pageIndex: $("#pageIndexValue").val(),
+					pageSize: $("#pageSizeValue").val(),
+					onPageChange: function (options)
+					{
+						$("#action1").text("翻到第" + options.pageIndex + "页，每页" + options.pageSize + "条数据。");
+					}
+				});
+			}
 
-				}
-			});
+			$("#recordCountValue").bind("click keyup change", refresh1);
+			$("#pageIndexValue").bind("click keyup change", refresh1);
+			$("#pageSizeValue").bind("click keyup change", refresh1);
+			refresh1();
+
+			function refresh2()
+			{
+				$("#MyPager2").jdatapager({
+					recordCount: 0,
+					noResultsText: $("#noResultsTextValue").val()
+				});
+			}
+
+			$("#noResultsTextValue").bind("click keyup change", refresh2);
+			refresh2();
 		});
 	</script>
 }
@@ -72,58 +79,66 @@
 
 <div id="demoTabs">
 	<ul>
-		<li><a href="#tab1">页数不超过11个</a></li>
-		<li><a href="#tab2">页数超过11个</a></li>
-		<li><a href="#tab3">无数据</a></li>
+		<li><a href="#tab1">默认</a></li>
+		<li><a href="#tab2">无数据</a></li>
 	</ul>
 	<div id="tab1">
+		<span style="display: inline-block; width: 150px;">recordCount:</span><input type="text" id="recordCountValue" value="500" /><br />
+		<span style="display: inline-block; width: 150px;">pageIndex:</span><input type="text" id="pageIndexValue" value="1" /><br />
+		<span style="display: inline-block; width: 150px;">pageSize:</span><input type="text" id="pageSizeValue" value="15" /><br />
 		<div id="MyPager1"></div>
 		<span id="action1"></span>
 		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			&lt;span style="display: inline-block; width: 150px;"&gt;recordCount:&lt;/span&gt;&lt;input type="text" id="recordCountValue" value="500" /&gt;&lt;br /&gt;
+			&lt;span style="display: inline-block; width: 150px;"&gt;pageIndex:&lt;/span&gt;&lt;input type="text" id="pageIndexValue" value="1" /&gt;&lt;br /&gt;
+			&lt;span style="display: inline-block; width: 150px;"&gt;pageSize:&lt;/span&gt;&lt;input type="text" id="pageSizeValue" value="15" /&gt;&lt;br /&gt;
 			&lt;div id="MyPager1"&gt;&lt;/div&gt;
 			&lt;span id="action1"&gt;&lt;/span&gt;
 
 			&lt;script type="text/javascript"&gt;
-			$("#MyPager1").jdatapager({
-				recordCount: 75,
-				onPageChange: function (index)
+			$(function ()
+			{
+				function refresh1()
 				{
-					$("#action1").text("翻到第" + index + "页。");
+					$("#MyPager1").jdatapager({
+						recordCount: $("#recordCountValue").val(),
+						pageIndex: $("#pageIndexValue").val(),
+						pageSize: $("#pageSizeValue").val(),
+						onPageChange: function (options)
+						{
+							$("#action1").text("翻到第" + options.pageIndex + "页，每页" + options.pageSize + "条数据。");
+						}
+					});
 				}
+
+				$("#recordCountValue").bind("click keyup change", refresh1);
+				$("#pageIndexValue").bind("click keyup change", refresh1);
+				$("#pageSizeValue").bind("click keyup change", refresh1);
+				refresh1();
 			});
 			&lt;/script&gt;
 		</pre>
 	</div>
 	<div id="tab2">
+		<span style="display: inline-block; width: 150px;">noResultsText:</span><input type="text" id="noResultsTextValue" value="对不起，没有找到您的搜索结果。" style="width: 400px;" /><br />
 		<div id="MyPager2"></div>
-		<span id="action2"></span>
 		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			&lt;span style="display: inline-block; width: 150px;"&gt;noResultsText:&lt;/span&gt;&lt;input type="text" id="noResultsTextValue" value="对不起，没有找到您的搜索结果。" style="width: 400px;" /&gt;&lt;br /&gt;
 			&lt;div id="MyPager2"&gt;&lt;/div&gt;
-			&lt;span id="action2"&gt;&lt;/span&gt;
 
 			&lt;script type="text/javascript"&gt;
-			$("#MyPager2").jdatapager({
-				recordCount: 500,
-				onPageChange: function (index, size)
+			$(function ()
+			{
+				function refresh2()
 				{
-					$("#action2").text("翻到第" + index + "页，每页" + size + "条数据。");
+					$("#MyPager2").jdatapager({
+						recordCount: 0,
+						noResultsText: $("#noResultsTextValue").val()
+					});
 				}
-			});
-			&lt;/script&gt;
-		</pre>
-	</div>
-	<div id="tab3">
-		<div id="MyPager3"></div>
-		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
-			&lt;div id="MyPager3"&gt;&lt;/div&gt;
 
-			&lt;script type="text/javascript"&gt;
-			$("#MyPager3").jdatapager({
-				recordCount: 0,
-				onPageChange: function (index, size)
-				{
-
-				}
+				$("#noResultsTextValue").bind("click keyup change", refresh2);
+				refresh2();
 			});
 			&lt;/script&gt;
 		</pre>
@@ -162,7 +177,7 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">pageIndex</span>
+				<span class="description-option-name">[pageIndex]</span>
 				<span class="description-option-type">Number</span>
 				<span class="description-option-value">1</span>
 			</h3>
@@ -181,7 +196,7 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">pageSize</span>
+				<span class="description-option-name">[pageSize]</span>
 				<span class="description-option-type">Number</span>
 				<span class="description-option-value">15</span>
 			</h3>
@@ -200,7 +215,7 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">noResultsText</span>
+				<span class="description-option-name">[noResultsText]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">"对不起，没有找到您的搜索结果。"</span>
 			</h3>
@@ -247,13 +262,6 @@
 							alert("当前页数：" + options.pageIndex + " 每页数据条数：" + options.pageSize + " 总数据条数：" + options.recordCount);
 						}
 					});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var recordCount = $("#myDatapager").jdatapager( "option", "recordCount" );
-					//设置(必须使用options赋值)
-					$("#myDatapager").accordion("options", { recordCount: 50 });
 				</pre>
 			</div>
 		</div>
