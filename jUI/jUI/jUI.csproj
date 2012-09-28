@@ -166,8 +166,11 @@
     <Content Include="Content\jUI\jui.jtable.css" />
     <Content Include="Content\jUI\jui.jtip.css" />
     <Content Include="Content\reset.css" />
+    <Content Include="Content\syntaxhighlighter\shCoreDefault.css" />
+    <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\桌面.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
     <Content Include="Images\headMenuTestImage.png" />
@@ -193,6 +196,13 @@
     <Content Include="Scripts\jUI\jui.jtable.js" />
     <Content Include="Scripts\jUI\jui.jtip.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\syntaxhighlighter\configSH.js" />
+    <Content Include="Scripts\syntaxhighlighter\shAutoloader.js" />
+    <Content Include="Scripts\syntaxhighlighter\shBrushCSharp.js" />
+    <Content Include="Scripts\syntaxhighlighter\shBrushCss.js" />
+    <Content Include="Scripts\syntaxhighlighter\shBrushJScript.js" />
+    <Content Include="Scripts\syntaxhighlighter\shBrushXml.js" />
+    <Content Include="Scripts\syntaxhighlighter\shCore.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

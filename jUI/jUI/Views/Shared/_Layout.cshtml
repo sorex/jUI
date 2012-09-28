@@ -4,42 +4,14 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
-	@Styles.Render("~/Content/reset")
-	@Styles.Render("~/Content/css")
-	@Styles.Render("~/Content/jqueryuicss")
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/jqueryui")
-	@Scripts.Render("~/bundles/jqueryval")
-	@Scripts.Render("~/bundles/modernizr")
-	<link href="@Url.Content("~/Content/jUI/jui.jlayout.css")" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jlayout.js")"></script>
 
-	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCoreDefault.css" rel="stylesheet" type="text/css" />
-	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js" type="text/javascript"></script>
+	@Styles.Render("~/css/basic")
+	@Scripts.Render("~/script/basic")
 
-	<script type="text/javascript">
-		//SyntaxHighlighter.autoloader([
-		//'js jscript javascript  http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js',
-		//'c# c-sharp csharp      http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js',
-		//'css                    http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js',
-		//'xml xhtml xslt html    http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js'
-		//]);
-		//SyntaxHighlighter.defaults['html-script'] = true;
-		//SyntaxHighlighter.config.strings.expandSource = "查看源代码";
-		//SyntaxHighlighter.defaults['collapse'] = true;
-
-		SyntaxHighlighter.all();
-	</script>
-
+	@Styles.Render("~/css/syntaxhighlighter")
+	@Scripts.Render("~/script/syntaxhighlighter")
 	
 	<link href="@Url.Content("~/Content/jui.description.css")" rel="stylesheet" type="text/css" />
-
 
 	@RenderSection("head", required: false)
 </head>

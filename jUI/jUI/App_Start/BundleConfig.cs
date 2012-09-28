@@ -8,28 +8,35 @@ namespace jUI
 		// 有关 Bundling 的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkId=254725
 		public static void RegisterBundles(BundleCollection bundles)
 		{
-			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-						"~/Scripts/jquery-{version}.js"));
+			bundles.Add(new ScriptBundle("~/script/basic").Include(
+						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/jquery-ui-{version}.js",
+						"~/Scripts/jquery.validate*",
+						"~/Scripts/modernizr-*",
+						"~/Scripts/jUI/jui.jlayout.js"
+						));
 
-			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-						"~/Scripts/jquery-ui-{version}.js"));
+			bundles.Add(new StyleBundle("~/css/basic").Include(
+						"~/Content/reset.css",
+						"~/Content/site.css",
+						"~/Content/jquery-ui.css",
+						"~/Content/jUI/jui.jlayout.css"
+						));
 
-			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-						"~/Scripts/jquery.validate*"));
+			//添加syntaxhighlighter相关的包
+			bundles.Add(new ScriptBundle("~/script/syntaxhighlighter").Include(
+						"~/Scripts/syntaxhighlighter/shCore.js",
+						"~/Scripts/syntaxhighlighter/shAutoloader.js",
+						"~/Scripts/syntaxhighlighter/shBrushXml.js",
+						"~/Scripts/syntaxhighlighter/shBrushJScript.js",
+						"~/Scripts/syntaxhighlighter/shBrushCSharp.js",
+						"~/Scripts/syntaxhighlighter/shBrushCss.js",
+						"~/Scripts/syntaxhighlighter/configSH.js"
+						));
+			bundles.Add(new StyleBundle("~/css/syntaxhighlighter").Include(
+				"~/Content/syntaxhighlighter/shCoreDefault.css",
+				"~/Content/syntaxhighlighter/shThemeDefault.css"));
 
-			// 使用 Modernizr 的开发版本进行开发和了解信息。然后，当你做好
-			// 生产准备时，请使用 http://modernizr.com 上的生成工具来仅选择所需的测试。
-			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-						"~/Scripts/modernizr-*"));
-
-			bundles.Add(new StyleBundle("~/Content/reset").Include(
-				"~/Content/reset.css"));
-
-			bundles.Add(new StyleBundle("~/Content/css").Include(
-				"~/Content/site.css"));
-
-			bundles.Add(new StyleBundle("~/Content/jqueryuicss").Include(
-				"~/Content/jquery-ui.css"));
 		}
 	}
 }
