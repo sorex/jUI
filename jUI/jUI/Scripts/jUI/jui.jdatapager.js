@@ -181,7 +181,7 @@
 					refresh = true;
 			});
 			if (refresh && self.options.onPageChange != null)
-				self.options.onPageChange(self.options.pageIndex, self.options.pageSize);
+				self.options.onPageChange(self.options);
 			self._jdatapagerify();
 		},
 
