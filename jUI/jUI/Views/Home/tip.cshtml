@@ -1,5 +1,177 @@
 ﻿@{
-    ViewBag.Title = "tip";
+	ViewBag.Title = "tip";
 }
 
-<h2>tip</h2>
+<h2>jtip</h2>
+@section head{
+
+    <link href="@Url.Content("~/Content/jUI/jui.jtip.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtip.js")"></script>
+	
+	<script type="text/javascript">
+	    $(function () {
+
+	     /*普通提示效果*/
+	        $("#n_w").jtip({
+	            type: "nomal",
+	            positon: "w",
+	            width: "150px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+
+	        $("#n_n").jtip({
+	            type: "nomal",
+	            positon: "n",
+	            width: "100px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+
+        /*成功提示效果*/
+	        //$("#s-w").jtip({
+	        //    type: "success",
+	        //    positon: "w",
+	        //    width: "150px",
+	        //    content: "您好这里表示成功了",
+	        //    autoshow: false
+	        //});
+
+	        //$("#s-w").jtip({
+	        //    type: "success",
+	        //    positon: "n",
+	        //    width: "100px",
+	        //    content: "您好这里表示成功了",
+	        //    autoshow: false
+	        //});
+
+	        $("#tabs").tabs();
+	     
+
+	        $("#n_w").mouseover(function () {
+	            $("#n_w").jtip("show");
+	        });
+
+	        $("#n_w").mouseout(function () {
+	            $("#n_w").jtip("hide");
+	        });
+
+
+
+	        $("#n_n").mouseover(function () {
+	           $("#n_n").jtip("show");
+	        });
+
+	        $("#n_n").mouseout(function () {
+	            $("#n_n").jtip("hide");
+	        });
+	 
+	    });
+	</script>
+}
+
+
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">普通提示效果</a></li>
+		<li><a href="#tabs-2">成功提示效果</a></li>
+		<li><a href="#tabs-3">错误提示效果</a></li>
+	</ul>
+	<div id="tabs-1">
+		<div id="Nomal-left">
+            左边普通提示：<input id="n_w" type="text" style=" width:100px;" />
+            <br />
+            <h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+         
+	       左边普通提示：&lt;input id="n_w" type="text" style=" width:100px;"&gt;
+            &lt;script type="text/javascript" &gt;
+              $(function () {
+                         /*初始化jtip*/
+	                   $("#n_w").jtip({
+	                       type: "nomal",
+	                       positon: "w",
+	                       width: "150px",
+	                       content: "您好这里有详细介绍",
+	                       autoshow: false
+	                   });
+
+                      $("#n_w").mouseover(function () {
+	                         $("#n_w").jtip("show");/*jtip显示*/
+	                    });
+
+	                  $("#n_w").mouseout(function () {
+	                        $("#n_w").jtip("hide");/*jitp隐藏*/
+	                  });
+
+            });
+            &lt;/script&gt;
+           
+			</pre>
+		</div>
+        	<div id="Nomal-up">
+           底部普通提示：<input id="n_n" type="text" />
+            <br />
+            <h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+         底部普通提示：&lt;input id="n_n" type="text" style=" width:100px;"&gt;
+            &lt;script type="text/javascript" &gt;
+              $(function () {
+                         /*初始化jtip*/
+	                   $("#n_n").jtip({
+	                       type: "nomal",
+	                       positon: "n",
+	                       width: "100px",
+	                       content: "您好这里有详细介绍",
+	                       autoshow: false
+	                   });
+
+                      $("#n_n").mouseover(function () {
+	                         $("#n_n").jtip("show");/*jtip显示*/
+	                    });
+
+	                  $("#n_n").mouseout(function () {
+	                        $("#n_n").jtip("hide");/*jitp隐藏*/
+	                  });
+
+            });
+            &lt;/script&gt;
+			</pre>
+		</div>
+		
+	</div>
+	<div id="tabs-2">
+		<div id="Success-left">
+	右边正确提示效果:<input id="s-w" type="text" />
+		<h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+
+			</pre>
+       </div>
+	</div>
+	<div id="tabs-3">
+		<div id="MyPager3"></div>
+		<h3>Source:</h3>
+		<pre class="brush: js; html-script: true;">
+		
+
+
+
+
+	
+			</pre>
+	</div>
+</div>
