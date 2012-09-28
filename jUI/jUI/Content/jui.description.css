@@ -1,0 +1,67 @@
+﻿.description-option-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-option-type
+{
+	display: inline-block;
+	text-decoration: underline;
+	width: 200px;
+}
+
+.description-option-value
+{
+	display: inline-block;
+	font-weight: bold;
+}
+
+	.description-option-value:before
+	{
+		content: "Default:";
+		color: #bababa;
+	}
+
+.description-event-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-event-returnType
+{
+	display: inline-block;
+}
+
+	.description-event-returnType:before
+	{
+		content: "Type:";
+		color: #bababa;
+	}
+
+.description-method-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-method-returnType
+{
+	display: inline-block;
+	width: 200px;
+}
+
+	.description-method-returnType:before
+	{
+		content: "Type:";
+		color: #bababa;
+	}
+
+.description-method-demo
+{
+	display: inline-block;
+}

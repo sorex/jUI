@@ -149,6 +149,7 @@
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jui.description.css" />
     <Content Include="Content\jUI\jui.jbutton.css" />
     <Content Include="Content\jUI\jui.jcheckbox.css" />
     <Content Include="Content\jUI\jui.jdatapager.css" />

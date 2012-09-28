@@ -31,8 +31,15 @@
 		//'xml xhtml xslt html    http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js'
 		//]);
 		//SyntaxHighlighter.defaults['html-script'] = true;
+		//SyntaxHighlighter.config.strings.expandSource = "查看源代码";
+		//SyntaxHighlighter.defaults['collapse'] = true;
+
 		SyntaxHighlighter.all();
 	</script>
+
+	
+	<link href="@Url.Content("~/Content/jui.description.css")" rel="stylesheet" type="text/css" />
+
 
 	@RenderSection("head", required: false)
 </head>
