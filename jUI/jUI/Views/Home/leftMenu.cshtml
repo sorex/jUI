@@ -67,10 +67,10 @@
 		<li><a href="#tab1">默认</a></li>
 	</ul>
 	<div id="tab1">
-		<div style="width: 200px; background-color: #f3f3f3; float:left;" class="ui-helper-clearfix">
+		<div style="width: 200px; background-color: #f3f3f3;">
 			<div id="leftMenu1"></div>
 		</div>
-		<span id="action1"></span>
+		<span id="action1" style="display:block;"></span>
 		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
 			&lt;div style="width: 200px; background-color: #f3f3f3;"&gt;
 				&lt;div id="leftMenu1"&gt;&lt;/div&gt;
@@ -104,84 +104,43 @@
 		<li><a href="#themingTab">主题</a></li>
 	</ul>
 	<div id="overviewTab">
-		<p>用于生成一个翻页控件</p>
+		<p>用于生成一个左侧边栏的菜单。(目前仅支持一级菜单)</p>
 	</div>
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">recordCount</span>
-				<span class="description-option-type">Number</span>
-				<span class="description-option-value">0</span>
+				<span class="description-option-name">items</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[{ top: 20, text: "这是一个空的LeftMenu", isSelect: true }]</span>
 			</h3>
 			<div>
-				<p>获取或设置总数据条数。</p>
+				<p>初始化时设置菜单项的列表。</p>
+				<pre class="brush: js;">
+					items:
+						[item,item...]	//使用item列表为其赋值
+
+					item:
+						text			//菜单内的文本
+						[top]			//Default:0		离上一个菜单的距离
+						[isSelect]		//Default:false	菜单是否被选中(如设置多个，仅最后一个有效)
+				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatapager").jdatapager({ recordCount: 30 });
+					$("#leftMenu1").jleftMenu({
+						items: [{ top: 20, text: "菜单A", isSelect: true },
+						{ text: "菜单B" },
+						{ text: "菜单C" },
+						{ top: 20, text: "菜单D" }],
+						onClick: function (index, text)
+						{
+							$("#action1").text("您点击的是：" + text + "菜单（index=" + index + "）。");
+						}
+					});
 				</pre>
-				<p>获取和设置</p>
+				<p>获取</p>
 				<pre class="brush: js;">
 					//获取
-					var recordCount = $("#myDatapager").jdatapager( "option", "recordCount" );
-					//设置
-					$("#myDatapager").accordion("option", { recordCount: 50 });
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">[pageIndex]</span>
-				<span class="description-option-type">Number</span>
-				<span class="description-option-value">1</span>
-			</h3>
-			<div>
-				<p>获取或设置当前页数。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myDatapager").jdatapager({ recordCount: 50, pageIndex: 2 });
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var pageIndex = $("#myDatapager").jdatapager( "option", "pageIndex" );
-					//设置
-					$("#myDatapager").accordion("option", { pageIndex: 3 });
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">[pageSize]</span>
-				<span class="description-option-type">Number</span>
-				<span class="description-option-value">15</span>
-			</h3>
-			<div>
-				<p>获取或设置每页显示数据条数。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myDatapager").jdatapager({ recordCount: 50, pageSize: 20 });
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var pageSize = $("#myDatapager").jdatapager( "option", "pageSize" );
-					//设置
-					$("#myDatapager").accordion("option", { pageSize: 10 });
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">[noResultsText]</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">"对不起，没有找到您的搜索结果。"</span>
-			</h3>
-			<div>
-				<p>获取或设置每页显示数据条数。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myDatapager").jdatapager({ recordCount: 50, noResultsText: "无数据！" });
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var noResultsText = $("#myDatapager").jdatapager( "option", "noResultsText" );
-					//设置
-					$("#myDatapager").accordion("option", { noResultsText: "=.=!" });
+					var items = $("#leftMenu1").jdatapager( "option", "items" );
 				</pre>
 			</div>
 		</div>
@@ -189,28 +148,26 @@
 	<div id="eventsTab">
 		<div id="eventsAccordion">
 			<h3>
-				<span class="description-event-name">onPageChange</span>
+				<span class="description-event-name">onClick</span>
 				<span class="description-event-returnType">Null</span>
 			</h3>
 			<div>
-				<p>当页面改变时引发的事件。</p>
+				<p>点击菜单项时引发的事件。</p>
 				<p>参数列表：</p>
 				<pre class="brush: js;">
-					options：{ 
-						pageIndex,		//当前页号
-						pageSize,		//当前每页数据条数
-						recordCount,	//总数据条数
-						noResultsText,	//无数据时显示的文本
-						onPageChange	//页面改变的事件
-					}
+					index		//点击的菜单项的索引
+					text		//点击的菜单项的文本
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatapager").jdatapager({
-						recordCount: 75,
-						onPageChange: function (options)
+					$("#leftMenu1").jleftMenu({
+						items: [{ top: 20, text: "菜单A", isSelect: true },
+						{ text: "菜单B" },
+						{ text: "菜单C" },
+						{ top: 20, text: "菜单D" }],
+						onClick: function (index, text)
 						{
-							alert("当前页数：" + options.pageIndex + " 每页数据条数：" + options.pageSize + " 总数据条数：" + options.recordCount);
+							$("#action1").text("您点击的是：" + text + "菜单（index=" + index + "）。");
 						}
 					});
 				</pre>
@@ -222,7 +179,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">由optionName定</span>
-				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+				<span class="description-method-demo">.jleftMenu("option" , optionName , [value])</span>
 			</h3>
 			<div>
 				<p>获取或设置option中optionName的值。</p>
@@ -230,7 +187,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">无特殊返回值</span>
-				<span class="description-method-demo">.jdatapager("option" , options)</span>
+				<span class="description-method-demo">.jleftMenu("option" , options)</span>
 			</h3>
 			<div>
 				<p>设置option的值为options。</p>
@@ -240,14 +197,11 @@
 	<div id="themingTab">
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
-			&lt;div id="myDatapager" class="jui-datapager ui-helper-clearfix"&gt;
-				&lt;span class="jui-datapager-item-disabled"&gt;首页&lt;/span&gt;
-				&lt;span class="jui-datapager-item-disabled"&gt;&amp;lt;上一页&lt;/span&gt;
-				&lt;span class="jui-datapager-item-active"&gt;1&lt;/span&gt;
-				&lt;span class="jui-datapager-item"&gt;2&lt;/span&gt;
-				&lt;span class="jui-datapager-item"&gt;3&lt;/span&gt;
-				&lt;span class="jui-datapager-item"&gt;下一页&amp;gt;&lt;/span&gt;
-				&lt;span class="jui-datapager-item"&gt;尾页&lt;/span&gt;
+			&lt;div id="test" class="jui-leftMenu"&gt;
+				&lt;div class="jui-leftMenu-item"&gt;文件A&lt;/div&gt;
+				&lt;div class="jui-leftMenu-item"&gt;文件B&lt;/div&gt;
+				&lt;div class="jui-leftMenu-item-active"&gt;文件C&lt;/div&gt;
+				&lt;div class="jui-leftMenu-item"&gt;文件D&lt;/div&gt;
 			&lt;/div&gt;
 		</pre>
 	</div>
