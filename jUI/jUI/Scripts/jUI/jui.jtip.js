@@ -21,7 +21,7 @@
 /*
 * options:
 *		type;表示提示的类型包括(nomal[常规],success[成功],error[错误])
-*		postiton;表示提示出现的位置(w[底部中间提示],n[右边中间提示])
+*		position;表示提示出现的位置(w[底部中间提示],n[右边中间提示])
 *		width：表示提示框的长度
 *		content:表示提示的内容
 *       autoshow:表示是否直接显示（false[初始化为隐藏],true[初始化为显示]）
@@ -74,12 +74,12 @@
 	                switch (o.positon) {
 	                    case "w":/*箭头朝西*/
 	                     
-	                        $("body").append("<div id=" + contentId + " class='jui-jitp-success-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+	                        $("body").append("<div id=" + contentId + " class='jui-jtip-success-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
 	                        $("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead'></div>");
 	                        break;
 	                    case "n":/*箭头朝北*/
 	                     
-	                        $("body").append("<div id=" + contentId + " class='jui-jitp-success-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+	                        $("body").append("<div id=" + contentId + " class='jui-jtip-success-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
 	                        $("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead'></div>");
 	                        break;
 	                }
@@ -88,12 +88,12 @@
 	                switch (o.positon) {
 	                    case "w":/*箭头朝西*/
 	                     
-	                        $("body").append("<div id=" + contentId + " class='ui-state-error jui-jitp-error-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+	                        $("body").append("<div id=" + contentId + " class='ui-state-error jui-jtip-error-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
 	                        $("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead-error'></div>");
 	                        break;
 	                    case "n":/*箭头朝北*/
 	                     
-	                        $("body").append("<div id=" + contentId + " class='ui-state-error  jui-jitp-error-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+	                        $("body").append("<div id=" + contentId + " class='ui-state-error  jui-jtip-error-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
 	                        $("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead-error'></div>");
 	                        break;
 	                }
