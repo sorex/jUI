@@ -84,9 +84,9 @@
 			var AddButton = function (pageIndex, text, type)
 			{
 				if (type)
-					return '<span class="jui-datapager-item-' + type + '" pageIndex="' + pageIndex + '">' + text + '</span>';
+					return '<span class="jui-datapager-item-' + type + '" data-pageIndex="' + pageIndex + '">' + text + '</span>';
 				else
-					return '<span class="jui-datapager-item" pageIndex="' + pageIndex + '">' + text + '</span>';
+					return '<span class="jui-datapager-item" data-pageIndex="' + pageIndex + '">' + text + '</span>';
 			};
 
 			if (recordCount > 0)
@@ -152,7 +152,7 @@
 				/*事件*/
 				$("span.jui-datapager-item", $(self.element)).click(function ()
 				{
-					self._setOptions({ "pageIndex": $(this).attr("pageIndex") });
+					self._setOptions({ "pageIndex": $(this).attr("data-pageIndex") });
 				});
 			}
 			else

@@ -1,5 +1,641 @@
 ﻿@{
-    ViewBag.Title = "tip";
+	ViewBag.Title = "tip";
 }
 
-<h2>tip</h2>
+<h2>jtip</h2>
+@section head{
+  <script type="text/javascript">
+    	    $(function () {
+    	        $("#demoTabs").tabs();
+    	        $("#descriptionTabs").tabs();
+    	        $("#optionsAccordion").accordion({
+    	            autoHeight: false,
+    	            navigation: true
+    	        });
+    	        $("#eventsAccordion").accordion({
+    	            autoHeight: false,
+    	            navigation: true
+    	        });
+    	        $("#methodsAccordion").accordion({
+    	            autoHeight: false,
+    	            navigation: true
+    	        });
+
+    	        $("#themingTabAccordion").accordion({
+    	            autoHeight: false,
+    	            navigation: true
+    	        });
+    	    });
+	</script>
+
+
+    <link href="@Url.Content("~/Content/jUI/jui.jtip.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtip.js")"></script>
+	
+	<script type="text/javascript">
+	    $(function () {
+
+	         /*左边普通提示初始化*/
+	        $("#n_w").jtip({
+	            type: "nomal",
+	            positon: "w",
+	            width: "150px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+	        /*底部普通提示初始化*/
+	        $("#n_n").jtip({
+	            type: "nomal",
+	            positon: "n",
+	            width: "100px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+
+	        /*鼠标移上左边普通提示显示*/
+	        $("#n_w").mouseover(function () {
+	            $("#n_w").jtip("show");
+	        });
+	        /*鼠标移出左边普通提示隐藏*/
+	        $("#n_w").mouseout(function () {
+	            $("#n_w").jtip("hide");
+	        });
+	        /*鼠标移上底部普通提示显示*/
+	        $("#n_n").mouseover(function () {
+	            $("#n_n").jtip("show");
+	        });
+	        /*鼠标移出底部普通提示隐藏*/
+	        $("#n_n").mouseout(function () {
+	            $("#n_n").jtip("hide");
+	        });
+
+
+
+	        /*左边成功提示初始化*/
+	        $("#s_w").jtip({
+	            type: "success",
+	            positon: "w",
+	            width: "150px",
+	            content: "恭喜您成功了",
+	            autoshow: false
+	        });
+	        /*底部成功提示初始化*/
+	        $("#s_n").jtip({
+	            type: "success",
+	            positon: "n",
+	            width: "100px",
+	            content: "底部成功",
+	            autoshow: false
+	        });
+
+
+	     
+	        /*鼠标移上左边成功提示显示*/
+	        $("#s_w").mouseover(function () {
+	            $("#s_w").jtip("show");
+	        });
+	        /*鼠标移出左边普通提示隐藏*/
+	        $("#s_w").mouseout(function () {
+	            $("#s_w").jtip("hide");
+	        });
+	        /*鼠标移上底部普通提示显示*/
+	        $("#s_n").mouseover(function () {
+	            $("#s_n").jtip("show");
+	        });
+	        /*鼠标移出底部普通提示隐藏*/
+	        $("#s_n").mouseout(function () {
+	            $("#s_n").jtip("hide");
+	        });
+
+
+	        /*左边错误提示初始化*/
+	        $("#e_w").jtip({
+	            type: "error",
+	            positon: "w",
+	            width: "150px",
+	            content: "sorry有错请检查",
+	            autoshow: false
+	        });
+	        /*底部错误提示初始化*/
+	        $("#e_n").jtip({
+	            type: "error",
+	            positon: "n",
+	            width: "100px",
+	            content: "错误报告在底部",
+	            autoshow: false
+	        });
+
+	        /*鼠标移上左边错误提示显示*/
+	        $("#e_w").mouseover(function () {
+	            $("#e_w").jtip("show");
+	        });
+	        /*鼠标移出左边错误提示隐藏*/
+	        $("#e_w").mouseout(function () {
+	            $("#e_w").jtip("hide");
+	        });
+	        /*鼠标移上底部错误提示显示*/
+	        $("#e_n").mouseover(function () {
+	            $("#e_n").jtip("show");
+	        });
+	        /*鼠标移出底部错误提示隐藏*/
+	        $("#e_n").mouseout(function () {
+	            $("#e_n").jtip("hide");
+	        });
+	 
+	    });
+	</script>
+}
+
+
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">普通提示效果</a></li>
+		<li><a href="#tab2">成功提示效果</a></li>
+		<li><a href="#tab3">失败提示效果</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="tip1">鼠标移入文本框 左边出现普通提示:<input id="n_w" type="text"/>
+            <br />
+            <br />
+           鼠标移入文本框 底部出现普通提示:<input id="n_n" type="text"/>
+		</div>
+        <br />
+		<span id="action1"></span>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			鼠标移入文本框 左边出现普通提示:&lt;input id="n_w" type="text"/ &gt;
+            鼠标移入文本框 底部出现普通提示:&lt;input id="n_n" type="text"/ &gt;
+			&lt;script type="text/javascript"&gt;
+
+		     /*左边普通提示初始化*/
+	        $("#n_w").jtip({
+	            type: "nomal",
+	            positon: "w",
+	            width: "150px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+	        /*底部普通提示初始化*/
+	        $("#n_n").jtip({
+	            type: "nomal",
+	            positon: "n",
+	            width: "100px",
+	            content: "您好这里有详细介绍",
+	            autoshow: false
+	        });
+
+	        /*鼠标移上左边普通提示显示*/
+	        $("#n_w").mouseover(function () {
+	            $("#n_w").jtip("show");
+	        });
+	        /*鼠标移出左边普通提示隐藏*/
+	        $("#n_w").mouseout(function () {
+	            $("#n_w").jtip("hide");
+	        });
+	        /*鼠标移上底部普通提示显示*/
+	        $("#n_n").mouseover(function () {
+	            $("#n_n").jtip("show");
+	        });
+	        /*鼠标移出底部普通提示隐藏*/
+	        $("#n_n").mouseout(function () {
+	            $("#n_n").jtip("hide");
+	        });
+			&lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab2">
+		<div id="tip2">
+            鼠标移入文本框 左边出现成功提示:<input id="s_w" type="text"/>
+            <br />
+            <br />
+           鼠标移入文本框 底部出现成功提示:<input id="s_n" type="text"/>
+
+		</div>
+		<span id="action2"></span>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			鼠标移入文本框 左边出现成功提示:&lt;input id="s_w" type="text"/ &gt;
+            鼠标移入文本框 底部出现成功提示:&lt;input id="s_n" type="text"/ &gt;
+			&lt;script type="text/javascript"&gt;
+
+		     /*左边成功提示初始化*/
+	        $("#s_w").jtip({
+	            type: "success",
+	            positon: "w",
+	            width: "150px",
+	            content: "恭喜您成功了",
+	            autoshow: false
+	        });
+	        /*底部成功提示初始化*/
+	        $("#s_n").jtip({
+	            type: "success",
+	            positon: "n",
+	            width: "100px",
+	            content: "底部成功",
+	            autoshow: false
+	        });
+
+	        /*鼠标移上左边成功提示显示*/
+	        $("#s_w").mouseover(function () {
+	            $("#s_w").jtip("show");
+	        });
+	        /*鼠标移出左边成功提示隐藏*/
+	        $("#s_w").mouseout(function () {
+	            $("#s_w").jtip("hide");
+	        });
+	        /*鼠标移上底部成功提示显示*/
+	        $("#s_n").mouseover(function () {
+	            $("#s_n").jtip("show");
+	        });
+	        /*鼠标移出底部成功提示隐藏*/
+	        $("#s_n").mouseout(function () {
+	            $("#s_n").jtip("hide");
+	        });
+			&lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab3">
+		<div id="tip3">
+            鼠标移入文本框 左边出现错误提示:<input id="e_w" type="text"/>
+            <br />
+            <br />
+           鼠标移入文本框 底部出现错误提示:<input id="e_n" type="text"/>
+		</div>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			鼠标移入文本框 左边出现成功提示:&lt;input id="e_w" type="text"/ &gt;
+            鼠标移入文本框 底部出现成功提示:&lt;input id="e_n" type="text"/ &gt;
+			&lt;script type="text/javascript"&gt;
+
+		     /*左边错误提示初始化*/
+	        $("#e_w").jtip({
+	            type: "error",
+	            positon: "w",
+	            width: "150px",
+	            content: "sorry有错请检查",
+	            autoshow: false
+	        });
+	        /*底部错误提示初始化*/
+	        $("#e_n").jtip({
+	            type: "error",
+	            positon: "n",
+	            width: "100px",
+	            content: "错误报告在底部",
+	            autoshow: false
+	        });
+
+	        /*鼠标移上左边错误提示显示*/
+	        $("#e_w").mouseover(function () {
+	            $("#e_w").jtip("show");
+	        });
+	        /*鼠标移出左边错误提示隐藏*/
+	        $("#e_w").mouseout(function () {
+	            $("#e_w").jtip("hide");
+	        });
+	        /*鼠标移上底部错误提示显示*/
+	        $("#e_n").mouseover(function () {
+	            $("#e_n").jtip("show");
+	        });
+	        /*鼠标移出底部错误提示隐藏*/
+	        $("#e_n").mouseout(function () {
+	            $("#e_n").jtip("hide");
+	        });
+			&lt;/script&gt;
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>这是一个消息提示控件 用于对指定位置进行 解释说明 提示输入  以及错误警告</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[type]</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">nomal</span>
+			</h3>
+			<div>
+				<p>设置消息提示的类别(必选参数)</p>
+				<pre class="brush: js;">
+				type://只能是以下三个参数(三选一)
+                         nomal      //普通消息提示
+                        
+                        success    //成功消息提示
+
+                        error      //错误消息提示
+				</pre>
+                <p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var type = $("#tagId").jtip( "option", "type" );
+					//设置
+                       $("#tagId").jtip({
+	                           type: "nomal",/*类别修改在此处*/
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "您好这里有详细介绍",
+	                           autoshow: false
+	                         });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[position]</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">w</span>
+			</h3>
+			<div>
+				<p>设置提示的位置(必选参数)</p>
+				<pre class="brush: js;">
+					position：//只能是以下两个参数(二选一)
+                                w       //箭头朝西指向（出现在目标右边边线的中间位置）
+                                n       //箭头朝北指向 (出现在目标底部边线的中间位置)
+				</pre>
+
+                  <p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var position = $("#tagId").jtip( "option", "position" );
+					//设置
+                       $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",/*位置修改在此处*/
+	                           width: "150px",
+	                           content: "您好这里有详细介绍",
+	                           autoshow: false
+	                         });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[width]</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">150px</span>
+			</h3>
+			<div>
+				<p>设置消息提示的长度(必须使用)</p>
+				<pre class="brush: js;">
+					例如:width：150px //表示提示内容的长度为150px
+
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var width = $("#tagId").jtip( "option", "width" );
+					//设置
+                       $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",/*长度修改在此处*/
+	                           content: "您好这里有详细介绍",
+	                           autoshow: false
+	                         });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[content]</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">""</span>
+			</h3>
+			<div>
+				<p>设置提示的内容（必选参数）</p>
+
+				<pre class="brush: js;">
+				例如:content:"请输入1-6位字符"
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var noResultsText = $("#tagId").jdatapager( "option", "content" );
+					//设置
+					 $("#content").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符",/*内容修改在此处*/
+	                           autoshow: false
+	                         });
+				</pre>
+			</div>
+
+            	<h3>
+				<span class="description-option-name">autoshow</span>
+				<span class="description-option-type">bool</span>
+				<span class="description-option-value">false</span>
+			</h3>
+            	<div>
+				<p>初始化是是否直接显示（建议使用）</p>
+
+				<pre class="brush: js;">
+				autoshow://只能是以下两个参数(二选一)
+                            false       //初始化时隐藏
+
+                            true        //初始化时显示
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var autoshow = $("#tagId").jdatapager( "option", "autoshow" );
+					//设置
+					 $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符*/
+	                           autoshow: false /*是否直接显示修改在此处*/
+	                         });
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">show</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>设置提示消息为显示</p>
+				
+				<pre class="brush: js;">
+                    //初始化
+                        $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符",
+	                           autoshow: false 
+	                         });
+                    //显示
+				        $("#tagId").jtip("show"); /*消息提示框显示 注意：之前必须先初始化控件*/
+				</pre>
+			</div>
+
+
+            	<h3>
+				<span class="description-event-name">hide</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>设置提示消息为隐藏</p>
+				
+				<pre class="brush: js;">
+                    //初始化
+                         $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符",
+	                           autoshow: true 
+	                         });
+                    //显示
+				        $("#tagId").jtip("hide"); /*消息提示框隐藏 注意：之前必须先初始化控件*/
+				</pre>
+			</div>
+
+            <h3>
+				<span class="description-event-name">refreshPositon</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>设置提示消息重新定位</p>
+				
+				<pre class="brush: js;">
+                    //初始化
+                        $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符",
+	                           autoshow: true 
+	                         });
+                    //显示
+				        $("#tagId").jtip("refreshPositon"); /*消息提示框隐藏 注意：之前必须先初始化控件*/
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jtip("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>调用方法</p>
+                	
+				<pre class="brush: js;">
+                    //调用直接显示
+                        $("#tagId").jtip({
+	                           type: "nomal",
+	                           positon: "w",
+	                           width: "150px",
+	                           content: "请输入1-6位字符",
+	                           autoshow: true 
+	                         });
+               
+				</pre>
+
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jtip("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		
+	    <div id="themingTabAccordion">
+            <h3>
+				<span class="description-theme-describe">普通提示样式</span>
+			</h3>
+            <div>
+                <p>样式说明</p>
+                <pre class="brush: js;">
+                 左边提示样式:
+                                &lt;div id="Name-tip-nomal-conetent" class="jui-jitp-nomal-w-content" style="width: 200px; filter: alpha(opacity = 0); opacity:0;"&gt;
+                                 &lt;span&gt;请按规则填写&lt;/span&gt;
+                                 &lt;/div&gt;
+                                &lt;div id="Name-tip-arrowhead" class="jui-jtip-w-arrowhead" style="filter: alpha(opacity = 0); opacity:0;"&gt;&lt;/div&gt;
+                
+                 底部提示样式：
+                                 &lt;id="Name1-tip-nomal-conetent" class="jui-jitp-nomal-n-content" style="width: 100px;filter: alpha(opacity = 0); opacity:0;"&gt;
+                                     &lt;span&gt;请输入英文字母或者下划线(_)或者数字的组合字符&lt;/span&gt;
+                                 &lt;/div&gt;
+                                  &lt;div id="Name1-tip-arrowhead" class="jui-jtip-n-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;"&gt; &lt;/div&gt
+
+				</pre>
+            </div>
+              <h3>
+				<span class="description-theme-describe">成功提示样式</span>
+			</h3>
+            <div>
+                <p>样式说明</p>
+                <pre class="brush: js;">
+                 左边提示样式:
+                
+                            &lt;div id="Name-tip-nomal-success" class="jui-jtip-success-w-content" style="width: 200px;filter: alpha(opacity = 0); opacity:0;"&gt;
+                               &lt;span class="ui-icon ui-icon-check" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"&gt;&lt;/span&gt;&lt;span&gt;输入成功&lt;span&gt;
+                              &lt;/div&gt;
+
+                            &lt;div id="Div1" class="jui-jtip-w-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;"&gt; &lt;/div&gt;
+
+                 底部提示样式：
+                            &lt;div id="Name-tip-nomal-success" class="jui-jtip-success-n-content" style="width: 200px;filter: alpha(opacity = 0); opacity:0;"&gt;
+                               &lt;span class="ui-icon ui-icon-check" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"&gt;&lt;/span&gt;&lt;span&gt;输入成功&lt;span&gt;
+                              &lt;/div&gt;
+
+                            &lt;div id="Div1" class="jui-jtip-n-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;"&gt; &lt;/div&gt;
+				</pre>
+            </div>
+              <h3>
+				<span class="description-theme-describe">失败提示样式</span>
+			</h3>
+            <div>
+                <p>样式说明</p>
+                <pre class="brush: js;">
+                 左边提示样式: 
+                            &lt;div id="Name-tip-nomal-success" class="ui-state-error jui-jtip-error-w-content" style="width: 200px;filter: alpha(opacity = 0); opacity:0;"&gt;
+                               &lt;span class="ui-icon ui-icon-alert" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"&gt;&lt;/span&gt;&lt;span&gt;对不起 您的输入不合法&lt;span&gt;
+                             &lt;/div&gt;
+
+                            &lt;div id="error3" class="jui-jtip-w-arrowhead-error"  style="filter: alpha(opacity = 0); opacity:0;"&gt; &lt;/div&gt;
+
+                 底部提示样式：
+                             &lt;div id="Name-tip-nomal-error" class="ui-state-error jui-jtip-error-n-content" style="width: 200px;filter: alpha(opacity = 0); opacity:0;"&gt;
+                               &lt;span class="ui-icon ui-icon-alert" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"&gt;&lt;/span&gt;&lt;span&gt;对不起 您的输入不合法&lt;span&gt;
+                             &lt;/div&gt;
+
+                            &lt;div id="error4" class="jui-jtip-n-arrowhead-error"  style="filter: alpha(opacity = 0); opacity:0;"&gt; &lt;/div&gt;
+
+				</pre>
+            </div>
+            </div>
+	    </div>
+	</div>
+
