@@ -1,5 +1,39 @@
 ﻿@{
-    ViewBag.Title = "button";
+    ViewBag.Title = "button.cshtml";
 }
 
+@section head{
+	<link href="@Url.Content("~/Content/jUI/jui.jbutton.css")" rel="stylesheet" />
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
 <h2>button</h2>
+
+普通按钮
+    <input id="btn1" type="button" value="普通按钮" />
+<br />
+<br />
+
+提交按钮
+    <input id="btn2" type="submit" value="提交按钮" />
+<br />
+<br />
+重置按钮
+    <input id="btn3" type="reset" value="大按钮" />
