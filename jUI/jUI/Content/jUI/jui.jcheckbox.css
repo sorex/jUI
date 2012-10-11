@@ -1,2 +1,25 @@
-﻿body {
+﻿.jui-checkbox
+{
+	padding-left: 24px;
+	cursor: pointer;
+	background: url(/Content/images/jui-jcheckbox.png) no-repeat 0px 0px;
+	vertical-align: middle;
+	line-height: 22px;
+	height: 21px;
+	display: inline-block;
 }
+
+	.jui-checkbox:hover
+	{
+		background-position: 0px -21px;
+	}
+
+.jui-checkbox-checked
+{
+	background-position: 0px -42px;
+}
+
+	.jui-checkbox-checked:hover
+	{
+		background-position: 0px -63px;
+	}
