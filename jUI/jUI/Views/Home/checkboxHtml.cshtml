@@ -6,61 +6,63 @@
     <style type="text/css">
         .jui-checkbox
         {
-        }
-
-       .jui-checkbox label.checkbox
-        {
             padding-left: 24px;
             cursor: pointer;
-            background: url(/Content/images/jui-jcheckbox.png) no-repeat left -21px;
+            background: url(/Content/images/jui-jcheckbox.png) no-repeat 0px 0px;
+            vertical-align: middle;
             line-height: 22px;
             height: 21px;
             display: inline-block;
         }
+            .jui-checkbox:hover
+            {
+                background-position: 0px -21px;
+            }
 
-        .jui-checkbox label.checked
+        .jui-checkbox-checked
         {
-            background-position: left 100%;
+            background-position: 0px -42px;
         }
 
-         .jui-checkbox label.disabled
-        {
-            background-position: left 0px;
-        }
+            .jui-checkbox-checked:hover
+            {
+                background-position: 0px -63px;
+            }
     </style>
     <script type="text/javascript">
 
         $(function () {
-            $(":checkbox+label").each(function () {
 
-                $(this).addClass('checkbox'); /*给lable加样式*/
-                if ($(this).prev().is(':disabled') == false) { /*判断状态*/
-                    if ($(this).prev().is(':checked'))
-                        $(this).addClass("checked");
-                } else {
-                    $(this).addClass('disabled');
-                }
-
-            }).click(function (event) { /*点击之后样式的改变*/
-
-                if (!$(this).prev().is(':checked')) {
-                    $(this).addClass("checked");
-                    $(this).prev().checked = true;
+            $(":checkbox").after("<span class='jui-checkbox'></span>").click(function (event) {
+                if ($(this).is(':checked')) {
+                    $(this).next().addClass("jui-checkbox-checked");
+                    $(this).checked = true;
                 }
                 else {
-                    $(this).removeClass('checked');
-                    $(this).prev().checked = false;
+                    $(this).next().removeClass('jui-checkbox-checked');
+                    $(this).checked = false;
                 }
+                event.stopPropagation();
+            }).hide().next().click(function (event) {
+                var myObject = document.getElementById($(this).prev().attr("id"));
+                if (myObject.checked == true) {
+                    $(this).removeClass('jui-checkbox-checked')
+                    myObject.checked = false;
+                } else {
 
-                event.stopPropagation();/*方法终止*/
+                    myObject.checked = true;
+                    $(this).addClass('jui-checkbox-checked')
+                }
+                event.stopPropagation();
+            });
 
-            }).prev().hide();/*checkbox隐藏*/
         });
 
     </script>
 }
 
 @section header{
+
 }
 
 @section left{
@@ -80,11 +82,11 @@
 
 <h2>checkbox</h2>
 
-<div id="checkbox" class="jui-checkbox">
-    <input id="checkbox1" type="checkbox" value="选项一" name="cb" /><label for="checkbox1">选项一</label>
-    <input id="checkbox2" type="checkbox" value="选项二" name="cb" /><label for="checkbox2">选项二</label>
-    <input id="checkbox3" type="checkbox" value="选项三" name="cb" /><label for="checkbox3">选项三</label>
-    <input id="checkbox4" type="checkbox" value="选项四" name="cb" /><label for="checkbox4">选项四</label>
-    <input id="checkbox5" type="checkbox" value="选项五" name="cb" /><label for="checkbox5">选项五</label>
-    <input id="checkbox6" type="checkbox" value="选项六" name="cb" /><label for="checkbox6">选项六</label>
-</div>
+
+<input id="checkbox1" type="checkbox" value="选项一" name="cb" /><label for="checkbox1">选项一</label>
+<input id="checkbox2" type="checkbox" value="选项二" name="cb" /><label for="checkbox2">选项二</label>
+<input id="checkbox3" type="checkbox" value="选项三" name="cb" /><label for="checkbox3">选项三</label>
+<input id="checkbox4" type="checkbox" value="选项四" name="cb" /><label for="checkbox4">选项四</label>
+<input id="checkbox5" type="checkbox" value="选项五" name="cb" /><label for="checkbox5">选项五</label>
+<input id="checkbox6" type="checkbox" value="选项六" name="cb" /><label for="checkbox6">选项六</label>
+

@@ -1,5 +1,61 @@
 ﻿@{
-    ViewBag.Title = "radioHtml";
+    ViewBag.Title = "radioHtml.cshtml";
 }
 
-<h2>radioHtml</h2>
+@section head{
+    <style type="text/css">
+        .jui-radio
+        {
+           padding-left: 22px;
+			display: inline-block;
+			background: transparent url(radio.png) no-repeat left top;
+			height: 19px;
+			line-height: 20px;
+			cursor: pointer;
+			vertical-align: middle;
+        }
+        .jui-radio-checked
+        {
+            background-position: left bottom;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        $(function () {
+
+        
+
+        });
+
+    </script>
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
+<h2>radio</h2>
+
+<h3>选择你喜欢的运动</h3>
+<input id="radio1" type="radio" value="篮球" name="radio"/><label for="radio1">篮球</label>
+<input id="radio2" type="radio" value="足球" name="radio"/><label for="radio2">足球</label>
+<input id="radio3" type="radio" value="排球" name="radio"/><label for="radio3">排球</label>
+<input id="radio4" type="radio" value="羽毛球" name="radio"/><label for="radio4">羽毛球</label>
+
+
