@@ -20,20 +20,11 @@
 
 /*
 * items:
-*		activeId: 默认选中项
 *		data:菜单对象列表
-*           [{name:'nameA1'，href:'actionName1',id:'A1',icon:'ui-icon ui-icon-circle-plus',image:'../../Content/themes/base/images/xxx.png'}
-            ,{type:''}
-            ,{name:'nameA2'，href:'actionName2',id:'A2',icon:'ui-icon ui-icon-circle-plus',image:'../../Content/themes/base/images/xxx.png'
-            ,children:[{name:'nameB1',href:'actionName3',id:'B1'},{type:'space'}
-                ,{name:'nameB2',href:'actionName4',id:'B2'}]}
-            ]
 *       name:菜单各项显示内容
-*       href:点击选项后调用的js
 *       id:选项id
-*       icon:给选项前添加jquery-ui 小图标
-*       image:给选项前添加图片
-*       type:设置选项间距为空格或分割线
+*       icon:给选项前添加小图标
+*       line:设置选项间距为空格或分割线
 *       children:设置是否有二级菜单
 */
 
@@ -42,128 +33,90 @@
 	{
 	    // default options
 	    options: {
-	        activeId: 'A1',
-	        data: [
-						{
-						    name: "JDatepicker"//名称
-							, href: "/Control/JDatepicker"//链接
-							, id: "1"
-							, icon: "ui-icon ui-icon-circle-plus"//小图标
-						}
-						, { type: "" }//空格或横条
-						, {
-						    name: "JTableSorter"
-							, href: "/Control/JTableSorter"
-							, id: "2"
-							, icon: ""
-							, children: [
-												{
-												    name: "name B21"
-													, href: "#"
-													, id: "B21"
-												}
-												, { type: "space" }
-												, {
-												    name: "name B22"
-													, href: "#"
-													, id: "B22"
-												}
-												, { type: "space" }
-												, {
-												    name: "name B23"
-													, href: "#"
-													, id: "B23"
-												}
-												, { type: "space" }
-												, {
-												    name: "name B24"
-													, href: "#"
-													, id: "B24"
-												}
-							]
-						}
-						, { type: "" }
-						, {
-						    name: "JNavigation"
-							, href: "/Control/JNavigation"
-							, id: "3"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}
-						, { type: "" }
-						, {
-						    name: "JDatapager"
-							, href: "/Control/JDatapager"
-							, id: "4"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}
-						, { type: "" }
-						, {
-						    name: "Jsearch"
-							, href: "/Control/Jsearch"
-							, id: "5"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}
-						, { type: "" }
-						, {
-						    name: "JSearchs"
-							, href: "/Control/JSearchs"
-							, id: "6"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}
-						, { type: "" }
-						, {
-						    name: "JTip"
-							, href: "/Control/JTip"
-							, id: "7"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}
-						, { type: "" }
-						, {
-						    name: "TestModel"
-							, href: "/Control/TestModel"
-							, id: "8"
-							, icon: "ui-icon ui-icon-circle-zoomout"
-						}],
+            data: [{
+                        name: "创建",id: "A1", icon: "whiteplus", line: true                
+                                 ,children: [{ name: "文件夹",id: "A21", line: true }
+                                               ,{name: "Word 文档",id: "A22"}
+                                               ,{name: "Excel 工作薄",id: "A22"}]}
+                        ,{name: "上载",id: "B1", icon: "whitearrows"}
+                        ,{name: "打开",id: "C1", icon: ""}
+                        ,{name: "管理",id: "G1", icon: ""
+                                 ,children: [{ name: "重命名",id: "B21" }
+                                               ,{name: "删除",id: "B22"}
+                                               ,{name: "移致",id: "B23", line: true}
+                                               ,{name: "属性",id: "B24"}]}
+                        ,{name: "清除选定内容",id: "F1", icon: ""
+                    }]
+            , onItemClick: null
 	    },
 
 	    _create: function () {
-	        $(this.element).empty();
-	        var self = this,
-				o = this.options;
+	        this._jdatapagerify();
+	    },
+
+	    _jdatapagerify:function(){	        
+	        var self = this,o = this.options;
 	        e = $(this.element);
 	        e.empty();
-	        var listOne = "<ul id='outUl'></ul>";//一级菜单
-	        e.append(listOne);
-	        var note = "<div style='color:red;font-family:arial;'>参数不全！</div>";//错误提示
-	        var activeId = o.activeId;
-	        for (var i = 0; i < o.data.length; i++) {
-	            if (i % 2 == 0) {
-	                var id = o.data[i]['id'];
-	                var href = o.data[i]['href'];
-	                var name = o.data[i]['name'];
-	                var icon = o.data[i]['icon'];
-	                var image = o.data[i]['image'];
-	                var listOneItem = "<li ><div id='d" + id + "' class='ui-jnavigation-d'><a  href='" + href + "' id='" + id + "'>" + name + "</a><span class='ui-jnavigation-sp'>&nbsp;</span></div></li>";
-	                $("#outUl").append(listOneItem); //一级菜单有子项的标识
-	                if (activeId != null && activeId == id) {
-	                    $("#" + activeId).parent().parent().addClass("jui-headMenu-aciveItem");//.css("background", "#73f"); //activeId样式
-	                }
-	                if (image != null && image != "" && (icon == null || icon == "")) {
-	                    var img = "<img class='jui-headMenu-image' src='" + image + "'/>";
-	                    $("#d" + id).append(img);
-	                }
-	                else if (icon != null && icon != "" && (image == null || image == "")) {
-	                    var span = "<span class='jui-headMenu-icon'>&nbsp;</span>";
-	                    $("#d" + id).append(span);
-	                    $(".jui-headMenu-icon").addClass(icon);
-	                } else if (icon != null && icon != "" && image != null && image != "") {
-	                    $("#d" + id).append("<img class='jui-headMenu-image' src='" + image + "'/>");
+	        var eid = $(this.element).attr("id");
+	        var data = o.data;
+	        e.addClass('jui-headMenu').empty().append("<ul id='" + eid + "_ul' class='jui-headMenu-ju'></ul>").bind("selectstart", function () { return false; });
+	        for (var i = 0; i < data.length; i++) {
+	            var id = data[i]["id"];
+	            var name = data[i]["name"];
+	            var icon = data[i]["icon"];
+	            var image = "../../Images/headMenuTestImage.png";
+	            var children = data[i]["children"];
+	            var hline = data[i]["line"];
+	            var position = data[i]["position"];
+
+	            if (icon != null && icon != "") {
+	                $("#"+eid+"_ul").append("<li id='l" + id + "'><a>"
+                        + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='width:26px;height:26px;float:left;position:relative;top:4px;'><img class='jui-headMenu-icon-"
+                        + icon + "'  src='" + image + "'/></span></span> " + name + "</span> </span>"
+                        + "</a></li>");
+	            } else {
+	                $("#" + eid + "_ul").append("<li id='l" + id + "'><a>"
+                        + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='height:26px;float:left;position:relative;top:4px;'></span></span> " + name + "</span> </span>"
+                        + "</a></li>");
+	            }
+	            var lw = 0;
+	            if (children != null && children.length) {
+	                $("#l" + id).append("<ul class='jui-headMenu-u1' id='u" + id + "'></ul>"); //二级菜单
+	                for (var j = 0; j < children.length; j++) {
+	                    var uid = children[j]["id"];
+	                    var uname = children[j]["name"];
+	                    var uline = children[j]["line"];
+	                    $("#u" + id).append("<li id='" + uid + "'><a><span>" + uname + "</span></a></li>");
+	                    if (uline == true)
+	                        $("#u" + id).find("li").eq(j).append("<span  class='jui-headMenu-solid'></span>");
+	                    lw = $("#l" + id).width();
+	                    $("#u" + id).css("width", 2 * lw);
+	                    $("#l" + id).width(lw);
+
+	                    if (i == data.length - 1) {
+	                        $("#l" + id).children("ul").css({ "left": -lw + 12 + "px" });
+	                    }
+	                    lw = 0;
 	                }
 	            }
-	            if (i % 2 != 0 && o.data[i]["type"] == "space") {
-
+	            if (hline == true) {
+	                $("#l" + id).after("<span class='jui-headMenu-vsolid '></span>");
 	            }
 	        }
+	        var endImg = '../../Content/images/jui-jheadMenu-carat-s-ffffff.png';//箭头图标
+	        e.find("li").has("ul").find(".jui-headMenu-lass").after("<img class='jui-headMenu-endImg' style='' src='" + endImg + "'/>");
+	        e.children("ul").children("li").click(function () {
+	            $(this).children("ul").slideToggle("fast").end().siblings().has("ul:visible").children("ul").hide();
+	        });
+
+	        e.find("li").bind("click", function () {
+	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
+	                self.options.onItemClick($(this).text());
+	                //self._setOptions($(this).text());
+	            }
+	        });
+
 	    },
 
 	    _setOption: function (key, value) {
@@ -177,12 +130,13 @@
 	        $.each(options, function (key, value) {
 	            this._setOption(key, value);
 	        });
+	        //self.options.onItemClick(options);
+	        this._jdatapagerify();
 	    },
 
 	    _destroy: function () {
 	        $(this.element).empty();
 	        $(this).empty();
-
 	        return this;
 	    }
 	});

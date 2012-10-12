@@ -1,2 +1,9 @@
-﻿body {
+﻿.jui-jlink-link {
+    color:#094ab2;
+    cursor:pointer;
+    text-decoration:none;
 }
+    .jui-jlink-link:hover {
+        background-color:transparent;
+        text-decoration:underline;
+    }

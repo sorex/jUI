@@ -3,3 +3,429 @@
 }
 
 <h2>table</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+
+	<script type="text/javascript">
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+		$(function ()
+		{
+		    $("#MyTable1").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:
+                    [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                    ], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+		    });
+
+
+		    $("#MyTable2").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:
+                    [], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+		    });
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="MyTable1"></div>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+    &lt;div id="MyTable1"&gt;&lt;/div&gt;
+	&lt;script type="text/javascript"&gt;
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+		$(function ()
+		{
+		    $("#MyTable1").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:
+                    [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                    ], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
+
+"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true//是否开启鼠标点击
+		    });
+		});
+	&lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab2">
+		<div id="MyTable2"></div>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+            
+    &lt;div id="MyTable1"&gt;&lt;/div&gt;
+	&lt;script type="text/javascript"&gt;
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+		$(function ()
+		{
+		    $("#MyTable2").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:[], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
+
+"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+	            noResultsText:'对不起，没有找到生成表格的数据。'//错误提示
+		    });
+		});
+	&lt;/script&gt;
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个表格</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[tableHeight]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">'30%'</span>
+			</h3>
+			<div>
+				<p>获取或设置表格高度。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ tableHeight: '30%' });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var tableHeight = $("#myTable").jtable( "option", "tableHeight" );
+					//设置
+					$("#myTable").jtable("option", { tableHeight: '30%' });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[tableWidth]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">'90%'</span>
+			</h3>
+			<div>
+				<p>获取或设置表格宽度。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#tableWidth").jtable({ tableWidth: '90%'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var tableWidth = $("#myTable").jtable( "option", "tableWidth" );
+					//设置
+					$("#myTable").jtable("option", { tableWidth: '90%' });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">data</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>获取或设置每页显示数据。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ data:[
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" }]});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var data = $("#myTable").jtable( "option", "data" );
+					//设置
+					$("#myTable").jtable("option", { data: [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" }] });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">columns</span>
+				<span class="description-option-type">List<></span>
+				<span class="description-option-value">{}</span>
+			</h3>
+			<div>
+				<p>获取或设置表格头部数据</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        }});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var columns = $("#myTable").jtable( "option", "columns" );
+					//设置
+					$("#myTable").jtable("option", { "columns":  {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        }});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">overColor</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">''</span>
+			</h3>
+			<div>
+				<p>鼠标覆盖后行颜色。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ 'overColor':'#e2e2e2'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var overColor = $("#myTable").jtable( "option", "overColor" );
+					//设置
+					$("#myTable").jtable("option", { 'overColor':'#e2e2e2'});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">outColor</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">''</span>
+			</h3>
+			<div>
+				<p>鼠标移开后行颜色。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ 'outColor':'#f3f3f3'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var outColor = $("#myTable").jtable( "option", "outColor" );
+					//设置
+					$("#myTable").jtable("option", { 'outColor':'#f3f3f3'});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">onClickColor</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">''</span>
+			</h3>
+			<div>
+				<p>鼠标移开后行颜色。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ 'onClickColor':'#d4d4d4'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var onClickColor = $("#myTable").jtable( "option", "onClickColor" );
+					//设置
+					$("#myTable").jtable("option", { 'onClickColor':'#d4d4d4'});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">onClick</span>
+				<span class="description-option-type">Boolen</span>
+				<span class="description-option-value">true</span>
+			</h3>
+			<div>
+				<p>是否开启鼠标点击。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ 'onClick':true});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var onClick = $("#myTable").jtable( "option", "onClick" );
+					//设置
+					$("#myTable").jtable("option", { 'onClick':true});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">noResultsText</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">对不起，没有找到生成表格的数据。</span>
+			</h3>
+			<div>
+				<p>错误提示。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jtable({ 'noResultsText':'对不起，没有找到生成表格的数据。'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var noResultsText = $("#myTable").jtable( "option", "noResultsText" );
+					//设置
+					$("#myTable").jtable("option", { 'noResultsText':'对不起，没有找到生成表格的数据。'});
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="eventsTab">
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatapager("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+			&lt;div id="myDatapager" class="jui-table"&gt;
+			&lt;/div&gt;
+		</pre>
+	</div>
+</div>

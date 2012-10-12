@@ -1,5 +1,333 @@
 ﻿@{
-    ViewBag.Title = "datetimepicker";
+	ViewBag.Title = "datetimepicker";
 }
 
 <h2>datetimepicker</h2>
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<link href="@Url.Content("~/Content/jUI/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
+    
+	<script type="text/javascript">
+	    $(function () {
+	        //默认显示年月日
+	        $("#MyDatetimepicker1").jdatetimepicker();
+            //仅显示年份
+	        $("#MyDatetimepicker2").jdatetimepicker({
+	            datetimeType: "yyyy"
+	        });
+            //仅显示年份及月份
+	        $("#MyDatetimepicker3").jdatetimepicker({
+	            datetimeType: "yyyy-MM"
+	        });
+            //日期显示格式为英文格式
+	        $("#MyDatetimepicker7").jdatetimepicker({
+                datetimeParse: "yyyy-MM-dd"
+	        });
+            //日历总是显示
+	        $("#MyDatetimepicker8").jdatetimepicker({
+               display: "display"//click为点击显示
+	        });
+	        //显示时分秒
+	        $("#MyDatetimepicker9").jdatetimepicker({
+	            datetimeType: "hh-mm-ss"
+	        });
+	        //显示时分
+	        $("#MyDatetimepicker10").jdatetimepicker({
+	            datetimeType: "hh-mm"
+	        });
+	        //显示时
+	        $("#MyDatetimepicker11").jdatetimepicker({
+	            datetimeType: "hh"
+	        });
+	        //显示当天
+	        $("#MyDatetimepicker12").jdatetimepicker({
+	            showToday:true
+	        });
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+		<li><a href="#tab2">显示年份</a></li>
+		<li><a href="#tab3">显示年份及月份</a></li>
+		<li><a href="#tab7">显示格式为英文格式</a></li>
+		<li><a href="#tab8">日历总是显示</a></li>
+		<li><a href="#tab9">显示时分秒</a></li>
+		<li><a href="#tab10">显示时分</a></li>
+		<li><a href="#tab11">显示时</a></li>
+		<li><a href="#tab12">显示当天</a></li>
+	</ul>
+	<div id="tab1">
+        <input type="text"  id="MyDatetimepicker1"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker1"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker1").jdatetimepicker();
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab2">
+        <input type="text"  id="MyDatetimepicker2"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker2"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker2").jdatetimepicker({
+	                        datetimeType: "yyyy"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab3">
+        <input type="text"  id="MyDatetimepicker3"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker3"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker3").jdatetimepicker({
+	                        datetimeType: "yyyy-MM"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab7">
+        <input type="text"  id="MyDatetimepicker7"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker7"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker7").jdatetimepicker({
+	                        datetimeParse: "yyyy-MM-dd"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab8">
+        <input type="text"  id="MyDatetimepicker8"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker8"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker8").jdatetimepicker({
+                            display: "display"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab9">
+        <input type="text"  id="MyDatetimepicker9"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker9"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker9").jdatetimepicker({
+	                        datetimeType: "hh-mm-ss"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab10">
+        <input type="text"  id="MyDatetimepicker10"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker10"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker10").jdatetimepicker({
+	                        datetimeType: "hh-mm"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab11">
+        <input type="text"  id="MyDatetimepicker11"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker11"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker11").jdatetimepicker({
+	                        datetimeType: "hh"
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab12">
+        <input type="text"  id="MyDatetimepicker12"/>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		        &ltinput type="text"  id="MyDatetimepicker12"/&gt
+	            &ltscript type="text/javascript"&gt
+	                    $("#MyDatetimepicker12").jdatetimepicker({
+	                        showToday:true
+	                    });
+	    &lt/script&gt
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个日期选择器</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[datetimeType]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy-MM-dd"</span>
+			</h3>
+			<div>
+				<p>日期显示类型</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({datetimeType: "yyyy-MM-dd"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeType" );
+					//设置
+					$("#myDatetimepicker").jdatapager("option","datetimeType", "yyyy-MM-dd");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[datetimeParse]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy年MM月dd日"</span>
+			</h3>
+			<div>
+				<p>日期显示格式</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({datetimeParse: "yyyy年MM月dd日"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeParse" );
+					//设置
+					$("#myDatetimepicker").jdatapager("option","datetimeParse", "yyyy年MM月dd日");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[display]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"display"</span>
+			</h3>
+			<div>
+				<p>始终显示日期选择器</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({display:"display"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "display" );
+					//设置
+					$("#myDatetimepicker").jdatapager("option","display", "click");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[readonly]</span>
+				<span class="description-option-type">Boolen</span>
+				<span class="description-option-value">false</span>
+			</h3>
+			<div>
+				<p>设置文本框只读</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({readonly:true});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "readonly" );
+					//设置
+					$("#myDatetimepicker").jdatapager("option","readonly",true);
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[showToday]</span>
+				<span class="description-option-type">Boolen</span>
+				<span class="description-option-value">true</span>
+			</h3>
+			<div>
+				<p>是否有显示当天按钮</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({showToday:true});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "showToday" );
+					//设置
+					$("#myDatetimepicker").jdatapager("option","showToday",true);
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatapager("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+
+		</pre>
+	</div>
+</div>
