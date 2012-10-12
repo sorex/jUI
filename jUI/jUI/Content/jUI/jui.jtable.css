@@ -1,2 +1,10 @@
-﻿body {
+﻿
+.jui-table {
+    border:1px solid #ffffff;
 }
+	.jui-table a {
+        text-decoration:none;
+	}
+	.jui-table a:hover {
+        background-color:transparent;
+	}

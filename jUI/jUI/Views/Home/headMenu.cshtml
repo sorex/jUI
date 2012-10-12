@@ -1,5 +1,234 @@
 ﻿@{
     ViewBag.Title = "headMenu";
 }
-
 <h2>headMenu</h2>
+
+@section head{
+	<script type="text/javascript">
+	    $(function () {
+	        $("#demoTabs").tabs();
+	        $("#descriptionTabs").tabs();
+	        $("#optionsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#eventsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#methodsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	    });
+	</script>
+
+    <link href="@Url.Content("~/Content/jUI/jui.jheadMenu.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jheadMenu.js")"></script>
+
+	<script type="text/javascript">
+	    $(function () {
+	        $("#MyHeadMenu1").jheadMenu({
+	            data: [{
+	                name: "创建", id: "A1", icon: "whiteplus", line: true
+                             , children: [{ name: "文件夹", id: "A21", line: true }
+                                           , { name: "Word 文档", id: "A22" }
+                                           , { name: "Excel 工作薄", id: "A22" }]
+	            }
+                    , { name: "上载", id: "B1", icon: "whitearrows" }
+                    , { name: "打开", id: "C1", icon: "" }
+                    , {
+                        name: "管理", id: "G1", icon: ""
+                             , children: [{ name: "重命名", id: "B21" }
+                                           , { name: "删除", id: "B22" }
+                                           , { name: "移致", id: "B23", line: true }
+                                           , { name: "属性", id: "B24" }]
+                    }
+                    , {
+                        name: "清除选定内容", id: "F1", icon: ""
+                    }]
+                , onItemClick: function (options) {
+                    alert(options);
+                }
+	        });
+
+	        //$("#MyHeadMenu2").jheadMenu({
+	        //    data: []
+            //    , onItemClick: function () { }
+	        //});
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认菜单</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="MyHeadMenu1"></div>
+		@*<div id="MyHeadMenu2" style="width:400px;float:left;"></div>*@
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+            &lt;div id="MyHeadMenu1"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	            $(function () {
+	                $("#MyHeadMenu1").jheadMenu({
+	                        data: [{
+                        name: "创建",id: "A1", icon: "whiteplus", line: true                
+                                 ,children: [{ name: "文件夹",id: "A21", line: true }
+                                               ,{name: "Word 文档",id: "A22"}
+                                               ,{name: "Excel 工作薄",id: "A22"}]}
+                        ,{name: "上载",id: "B1", icon: "whitearrows"}
+                        ,{name: "打开",id: "C1", icon: ""}
+                        ,{name: "管理",id: "G1", icon: ""
+                                 ,children: [{ name: "重命名",id: "B21" }
+                                               ,{name: "删除",id: "B22"}
+                                               ,{name: "移致",id: "B23", line: true}
+                                               ,{name: "属性",id: "B24"}]}
+                        ,{name: "清除选定内容",id: "F1", icon: ""
+                    }]
+                        , onItemClick: function (options) {
+                            alert(options);
+                	        }
+	                });
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab2">
+		@*<div id="MyHeadMenu2"></div>*@
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			&lt;div id="MyHeadMenu2"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	            $(function () {
+	                $("#MyHeadMenu2").jdatapager({
+	                    data: []
+                        , onItemClick: function () { }
+	                });
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个二级顶部菜单</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">data</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>生成菜单的数据源</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myHeadMenu").jheadMenu({data:[{name: "创建", id: "A1", icon: "whiteplus", line: true}] });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var data = $("#myHeadMenu").jdatapager( "option", "data" );
+					//设置
+					$("#myHeadMenu").jdatapager("option","data", [{name: "创建", id: "A1", icon: "whiteplus", line: true}]);
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onItemClick</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>点击菜单时触发的事件</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+					options：{ 
+						data,		//表格数据源
+						onItemClick,		//点击菜单的事件
+					}
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myHeadMenu").jheadMenu({
+	                        data: [{
+	                            name: "创建", id: "A1", icon: "whiteplus", line: true
+                                         , children: [{ name: "文件夹", id: "A21", line: true }
+                                                       , { name: "Word 文档", id: "A22" }
+                                                       , { name: "Excel 工作薄", id: "A22" }]}
+                                , { name: "上载", id: "B1", icon: "whitearrows" }
+                                , { name: "打开", id: "C1", icon: "" }
+                                , {
+                                    name: "管理", id: "G1", icon: ""
+                                         , children: [{ name: "重命名", id: "B21" }
+                                                       , { name: "删除", id: "B22" }
+                                                       , { name: "移致", id: "B23", line: true }
+                                                       , { name: "属性", id: "B24" }]}
+                                , {
+                                    name: "清除选定内容", id: "F1", icon: ""
+                                }]
+                            , onItemClick: function (options) {
+                                alert(options);
+                            }
+					});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatapager("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+
+		</pre>
+	</div>
+</div>
+
+
+

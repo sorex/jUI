@@ -1,2 +1,10 @@
-﻿body {
+﻿.jui-jlinkButton {
+    background:none !important;
+    border:none !important;
+    color:#094ab2 !important;
+    cursor:pointer;            
 }
+    .jui-jlinkButton:hover {
+        text-decoration:underline;
+        background:none !important;
+    }
