@@ -154,6 +154,8 @@
     <Content Include="Content\jui.description.css" />
     <Content Include="Content\jUI\jui.jbutton.css" />
     <Content Include="Content\jUI\jui.jcheckbox.css" />
+    <Content Include="Content\jUI\jui.jcheckTable.css" />
+    <Content Include="Content\jUI\jui.jcheckTree.css" />
     <Content Include="Content\jUI\jui.jdatapager.css" />
     <Content Include="Content\jUI\jui.jdatetimepicker.css" />
     <Content Include="Content\jUI\jui.jheadMenu.css" />
@@ -163,10 +165,15 @@
     <Content Include="Content\jUI\jui.jlinkButton.css" />
     <Content Include="Content\jUI\jui.jmultiSelect.css" />
     <Content Include="Content\jUI\jui.jradio.css" />
+    <Content Include="Content\jUI\jui.jradioTable.css" />
+    <Content Include="Content\jUI\jui.jradioTree.css" />
+    <Content Include="Content\jUI\jui.jsearch.css" />
     <Content Include="Content\jUI\jui.jselect.css" />
     <Content Include="Content\jUI\jui.jsortSelect.css" />
     <Content Include="Content\jUI\jui.jtable.css" />
+    <Content Include="Content\jUI\jui.jtext.css" />
     <Content Include="Content\jUI\jui.jtip.css" />
+    <Content Include="Content\jUI\jui.jtree.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\syntaxhighlighter\shCoreDefault.css" />
     <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
@@ -184,6 +191,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jUI\jui.jbutton.js" />
     <Content Include="Scripts\jUI\jui.jcheckbox.js" />
+    <Content Include="Scripts\jUI\jui.jcheckTable.js" />
+    <Content Include="Scripts\jUI\jui.jcheckTree.js" />
     <Content Include="Scripts\jUI\jui.jdatapager.js" />
     <Content Include="Scripts\jUI\jui.jdatetimepicker.js" />
     <Content Include="Scripts\jUI\jui.jheadMenu.js" />
@@ -193,10 +202,15 @@
     <Content Include="Scripts\jUI\jui.jlinkButton.js" />
     <Content Include="Scripts\jUI\jui.jmultiSelect.js" />
     <Content Include="Scripts\jUI\jui.jradio.js" />
+    <Content Include="Scripts\jUI\jui.jradioTable.js" />
+    <Content Include="Scripts\jUI\jui.jradioTree.js" />
+    <Content Include="Scripts\jUI\jui.jsearch.js" />
     <Content Include="Scripts\jUI\jui.jselect.js" />
     <Content Include="Scripts\jUI\jui.jsortSelect.js" />
     <Content Include="Scripts\jUI\jui.jtable.js" />
+    <Content Include="Scripts\jUI\jui.jtext.js" />
     <Content Include="Scripts\jUI\jui.jtip.js" />
+    <Content Include="Scripts\jUI\jui.jtree.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\syntaxhighlighter\configSH.js" />
     <Content Include="Scripts\syntaxhighlighter\shAutoloader.js" />
@@ -259,6 +273,20 @@
     <Content Include="Views\Home\linkButtonHtml.cshtml" />
     <Content Include="Views\Standards\Basic.cshtml" />
     <Content Include="Views\Standards\Index.cshtml" />
+    <Content Include="Views\Home\checkTable.cshtml" />
+    <Content Include="Views\Home\checkTableHtml.cshtml" />
+    <Content Include="Views\Home\radioTable.cshtml" />
+    <Content Include="Views\Home\radioTableHtml.cshtml" />
+    <Content Include="Views\Home\tree.cshtml" />
+    <Content Include="Views\Home\treeHtml.cshtml" />
+    <Content Include="Views\Home\text.cshtml" />
+    <Content Include="Views\Home\textHtml.cshtml" />
+    <Content Include="Views\Home\checkTree.cshtml" />
+    <Content Include="Views\Home\checkTreeHtml.cshtml" />
+    <Content Include="Views\Home\radioTree.cshtml" />
+    <Content Include="Views\Home\radioTreeHtml.cshtml" />
+    <Content Include="Views\Home\search.cshtml" />
+    <Content Include="Views\Home\searchHtml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

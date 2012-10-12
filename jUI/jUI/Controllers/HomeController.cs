@@ -13,6 +13,7 @@ namespace jUI.Controllers
 			return View();
 		}
 
+		#region 一期
 		public ActionResult leftMenu()
 		{
 			return View();
@@ -127,6 +128,67 @@ namespace jUI.Controllers
 		{
 			return View();
 		}
+		#endregion
+
+		#region 二期
+		public ActionResult checkTable()
+		{
+			return View();
+		}
+		public ActionResult checkTableHtml()
+		{
+			return View();
+		}
+		public ActionResult radioTable()
+		{
+			return View();
+		}
+		public ActionResult radioTableHtml()
+		{
+			return View();
+		}
+		public ActionResult tree()
+		{
+			return View();
+		}
+		public ActionResult treeHtml()
+		{
+			return View();
+		}
+		public ActionResult text()
+		{
+			return View();
+		}
+		public ActionResult textHtml()
+		{
+			return View();
+		}
+		public ActionResult checkTree()
+		{
+			return View();
+		}
+		public ActionResult checkTreeHtml()
+		{
+			return View();
+		}
+		public ActionResult radioTree()
+		{
+			return View();
+		}
+		public ActionResult radioTreeHtml()
+		{
+			return View();
+		}
+		public ActionResult search()
+		{
+			return View();
+		}
+		public ActionResult searchHtml()
+		{
+			return View();
+		}
+
+		#endregion
 
 	}
 }
