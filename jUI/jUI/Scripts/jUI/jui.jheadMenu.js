@@ -23,7 +23,8 @@
 *		data:菜单对象列表
 *       name:菜单各项显示内容
 *       id:选项id
-*       icon:给选项前添加小图标(注：图标宽高各为27px)
+*       position:定位图片的坐标字符串
+*       image:给选项前添加小图标(注：图标宽高各为27px)
 *       line:设置选项间距为空格或分割线
 *       children:设置是否有二级菜单
 */
@@ -35,16 +36,20 @@
 	    options: {
 	        data: [
                 {
-                    name: "创建", id: "A1", icon: "../../Images/headMenuTestImage.png", line: true
+                    name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png"
+                    ,position:"0px 0px"
+                    , line: true
+
                                  , children: [
                                      {name: "文件夹", id: "A21", line: true }
                                     ,{name: "Word 文档",id: "A22"}
                                     ,{name: "Excel 工作薄", id: "A22" }
                                  ]
                 }
-                        , { name: "上载", id: "B1", icon: "../../Images/headMenuTestImage.png" }
-                        ,{name: "打开",id: "C1", icon: ""}
-                        ,{name: "管理",id: "G1", icon: ""
+                        , { name: "上载", id: "B1", image: "../../Images/headMenuTestImage.png" }
+                        , { name: "打开", id: "C1", image: "" }
+                        , {
+                            name: "管理", id: "G1", image: ""
                                  , children: [
                                      {name: "重命名", id: "B21" }
                                     ,{name: "删除",id: "B22"}
@@ -52,7 +57,7 @@
                                     ,{name: "属性", id: "B24" }
                                  ]
                         }
-                        ,{name: "清除选定内容",id: "F1", icon: ""}
+                        , { name: "清除选定内容", id: "F1", image: "" }
 	        ]
             , onItemClick: null
 	    },
@@ -71,23 +76,18 @@
 	        for (var i = 0; i < data.length; i++) {
 	            var id = data[i]["id"];
 	            var name = data[i]["name"];
-	            var icon = data[i]["icon"];
+	            var image = data[i]["image"];
 	            var children = data[i]["children"];
 	            var hline = data[i]["line"];
 	            var position = data[i]["position"];
-	            var x = 0;
-	            var y = 0;
-	            if (name == "上载") {
-	                x = -54;
-	            }
-	            if (icon != null && icon != "") {
+	            if (image != null && image != "") {
 	                //$("#"+eid+"_ul").append("<li id='"+eid+"_"+id+"'><a>"
                     //    + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='width:26px;height:26px;float:left;position:relative;top:4px;'><img class='jui-headMenu-icon-"
-                    //    + icon + "'  src=''/></span></span> " + name + "</span> </span>"
+	                //    + image + "'  src=''/></span></span> " + name + "</span> </span>"
                     //    + "</a></li>");
                     $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><a>"
                         + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'>" +
-                        "<span style='width:27px;height:27px;float:left;position:relative;top:4px;background-image:url("+icon+");background-position:"+x+"px "+y+"px;' ></span></span> " + name + "</span> </span>"
+                        "<span style='width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(" + image + ");background-position:" + position + ";' ></span></span> " + name + "</span> </span>"
                         + "</a></li>");
 	            } else {
 	                $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><a>"

@@ -28,16 +28,17 @@
 	        $("#MyHeadMenu1").jheadMenu({
 	            data: [
                     {
-                        name: "创建", id: "A1", icon: "../../Images/headMenuTestImage.png", line: true,
+                        name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png",position:"0px 0px",line: true,
                             children: [
                                 { name: "文件夹", id: "A21", line: true },
                                 { name: "Word 文档", id: "A22" },
                                 { name: "Excel 工作薄", id: "A22" }
                             ]
 	                }
-                    , { name: "上载", id: "B1", icon: "../../Images/headMenuTestImage.png" }
-                    , {name: "打开", id: "C1", icon: "" }
-                    , {name: "管理", id: "G1", icon: "",
+                    , { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" }
+                    , { name: "打开", id: "C1", image: "" }
+                    , {
+                        name: "管理", id: "G1", image: "",
                             children: [
                                 { name: "重命名", id: "B21" }
                                 , { name: "删除", id: "B22" }
@@ -45,7 +46,8 @@
                                 , { name: "属性", id: "B24" }
                         ]
                     }
-                    , {name: "清除选定内容", id: "F1", icon: ""
+                    , {
+                        name: "清除选定内容", id: "F1", image: ""
                     }]
                 , onItemClick: function (options) {
                     alert(options);
@@ -55,16 +57,18 @@
 
 	        $("#MyHeadMenu2").jheadMenu({
 	            data: [
-                    {name: "创建", id: "A1", icon: "../../Images/headMenuTestImage.png", line: true,
+                    {
+                        name: "创建", id: "A1", position: "0px 0px", image: "../../Images/headMenuTestImage.png", line: true,
                         children: [
                             { name: "文件夹", id: "A21", line: true },
                             { name: "Word 文档", id: "A22" },
                             { name: "Excel 工作薄", id: "A22" }
                         ]
                     },
-                    {name: "上载", id: "B1", icon: "../../Images/headMenuTestImage.png" },
-                    {name: "打开", id: "C1", icon: "" },
-                    {name: "管理", id: "G1", icon: "",
+                    { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" },
+                    { name: "打开", id: "C1", image: "" },
+                    {
+                        name: "管理", id: "G1", image: "",
                         children: [
                             {name: "重命名", id: "B21" },
                             {name: "删除", id: "B22" },
@@ -72,7 +76,7 @@
                             { name: "属性", id: "B24" }
                         ]
                     },
-                    {name: "清除选定内容", id: "F1", icon: ""}
+                    { name: "清除选定内容", id: "F1", image: "" }
 	            ],
                 onItemClick: function (options) {
                     alert(options);
