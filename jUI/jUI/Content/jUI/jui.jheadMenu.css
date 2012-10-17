@@ -1,7 +1,6 @@
 ﻿
         .jui-headMenu {
             height: 40px;
-            width: 100%;
             background-color: #094ab2;
             white-space: nowrap; /*禁止文字自动换行*/
             position: relative;
@@ -20,7 +19,9 @@
                 float: left;
                 height: 40px;
             }
-
+            .jui-headMenu .jui-headMenu-clicked {
+                background-color:#062f72 !important;
+            }
                 .jui-headMenu .jui-headMenu-ju > li {
                     height: 40px;
                     padding-right: 15px;
@@ -33,7 +34,7 @@
                     }
 
                     .jui-headMenu .jui-headMenu-ju > li:hover {
-                        background-color: #073d92;
+                        background-color: #073d92 ;
                     }
 
                 .jui-headMenu .jui-headMenu-ju li {
@@ -59,7 +60,7 @@
                 padding-top: 4px;
                 padding-bottom: 4px;
                 position: relative;
-                top: 9px;
+                top: 8px;
                 border-style: solid;
                 border-width: 0 2px 2px 2px;
                 border-color: #094AB2;
@@ -117,7 +118,12 @@
         }
         /*白色加号图标*/
         .jui-headMenu .jui-headMenu-icon-whiteplus {
-            clip: rect(0px 27px 27px 0px);
+            background-image:url('../../Images/headMenuTestImage.png');
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-position:27px 27px;
+            /*background:transparent url('../../Images/headMenuTestImage.png') no-repeat fixed 27px 27px;*/
+
         }
         /*黑色加号图标*/
         .jui-headMenu .jui-headMenu-icon-blackplus {

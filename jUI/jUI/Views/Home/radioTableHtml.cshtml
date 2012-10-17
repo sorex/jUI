@@ -2,4 +2,71 @@
     ViewBag.Title = "radioTableHtml";
 }
 
+@section head{    
+	<link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jradioTable.js")"></script>
+    
+	<script type="text/javascript">
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    $(function () {
+	        $("#MyTable1").jtable({
+	            tableHeight: '30%', //表高
+	            tableWidth: '100%', //表宽
+	            data:
+                    [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                    ], //数据源
+	            columns: {
+	                "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+	            },//列名
+	            overColor: '#e2e2e2',//鼠标覆盖后行颜色
+	            outColor: '#f3f3f3',//鼠标移开后行颜色
+	            onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+	            onClick: true,//是否开启鼠标点击
+	            noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+	        }).jradioTable({
+	            checkedItem: 1//默认选中项
+	        });
+	    });
+
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
 <h2>radioTableHtml</h2>
+
+<div id="MyTable1"></div>

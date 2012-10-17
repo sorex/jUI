@@ -39,6 +39,7 @@
 	    _jtableCreate: function () {
 	        var self = this,
             o = this.options;
+	        $(this.element).empty();
 	        var image = "../../Images/orderedList0.png";
 	        $(document).bind("selectstart", function () { 
 	            var image = "../../Images/headMenuTestImage.png";return false; }); //控制文本不能被选中
@@ -47,7 +48,7 @@
 	        } else {
 	            $(this.element).empty().addClass("jui-table");
 	            var tableId = $(this.element).attr("id");
-	            $(this.element).append("<table id='" + tableId + "_tableSorter' width='" + o.tableWidth + "' height='" + o.tableHeight + "'><thead><tr></tr></thead><tbody></tbody></table>");
+	            $(this.element).append("<table id='" + tableId + "_tableSorter' width='" + o.tableWidth + "' height='" + o.tableHeight + "'><thead><tr></tr></thead><tbody></tbody></table><span id='dis_checkedItems' style='display:none;'></span>");
 	            var dataArray = new Array();
 	            for (d in o.data[0]) {
 	                dataArray.push(d);
@@ -82,14 +83,15 @@
 	                    $("#" + tableId + "_tableSorter tbody tr:eq(" + i + ")").append("<td>" + str + "</td>"); //列 
 	                    str = "";
 	                }
-
+                    //隐藏域保存行ID
+	                $("#" + tableId + "_tableSorter tbody tr:eq(" + i + ") td:eq(0)").prepend("<span style='display:none;'>"+o.data[i]["ID"]+"</span>");
 	            }
 	            var table = $("#" + tableId + "_tableSorter");
 
 	            var $tr = table.children("tbody").find('tr');
 
 	            table.find("td").css({ "padding-top": "5px", "padding-bottom": "5px" });
-                table.find('tr').find('td:eq(0)').append("<img style='float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;' src='"+image+"'/>");
+	            table.find('tr').find('td:eq(0)').append("<img style='float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;' src='" + image + "'/>");
 	            //给tr设置LOCK、初始颜色,设置tr默认为没单击,设置背景色
 	            $tr.attr('Lock', 'false').css('background-color', o.outColor);
 	            //设置表格样式
@@ -147,6 +149,7 @@
 	        $.each(options, function (key, value) {
 	            self._setOption(key, value);
 	        });
+	        this._jtableCreate();
 	    },
 
 	    _destroy: function () {
