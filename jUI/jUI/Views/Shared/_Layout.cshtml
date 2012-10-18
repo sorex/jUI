@@ -5,11 +5,14 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
 
-	@Styles.Render("~/css/basic")
-	@Scripts.Render("~/script/basic")
+	@Scripts.Render("~/Scripts/basic")
+	@Styles.Render("~/Content/basic")
 
-	@Styles.Render("~/css/syntaxhighlighter")
-	@Scripts.Render("~/script/syntaxhighlighter")
+	@Scripts.Render("~/Scripts/syntaxhighlighter/js")
+	@Styles.Render("~/Content/syntaxhighlighter/css")
+
+	@Scripts.Render("~/Scripts/jUI/files")
+	@Styles.Render("~/Content/jUI/files")
 
 	<link href="@Url.Content("~/Content/jui.description.css")" rel="stylesheet" type="text/css" />
 
@@ -52,8 +55,7 @@
 				],
 				onItemClick: function (id, name)
 				{
-					//TODO
-					window.location.href = "/Home/" + name;
+					window.location.href = "@Url.Content("~")" + "Home/" + name;
 				}
 			});
 		});
