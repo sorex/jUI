@@ -124,6 +124,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StandardsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,13 +133,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\jui-jcheckbox.png" />
-    <Content Include="Content\images\jui-jheadMenu-carat-s-666666.png" />
+    <Content Include="Content\images\jui-jselect-bullet-666666.png" />
+    <Content Include="Content\images\jui-jselect-carat-s-666666.png" />
     <Content Include="Content\images\jui-jheadMenu-carat-s-ffffff.png" />
     <Content Include="Content\images\jui-jradio.png" />
     <Content Include="Content\images\jui-jtip-carat-w-cccccc.png" />
     <Content Include="Content\images\jui-jtip-carat-w-fef1ec.png" />
     <Content Include="Content\images\jui-jtip-carat-n-cccccc.png" />
     <Content Include="Content\images\jui-jtip-carat-n-fef1ec.png" />
+    <Content Include="Content\images\jui-logo.png" />
     <Content Include="Content\images\ui-bg_flat_0_062f72_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_073d92_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_0_094ab2_40x100.png" />
@@ -287,6 +290,7 @@
     <Content Include="Views\Home\radioTreeHtml.cshtml" />
     <Content Include="Views\Home\search.cshtml" />
     <Content Include="Views\Home\searchHtml.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

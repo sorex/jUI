@@ -66,3 +66,11 @@ body
 	z-index: 99;
 	background-color: #ffffff;
 }
+
+#TopLogoDiv
+{
+	float: left; 
+	background-image:url(../images/jui-logo.png); 
+	height:40px; 
+	width:150px;
+}

@@ -10,14 +10,64 @@
 
 	@Styles.Render("~/css/syntaxhighlighter")
 	@Scripts.Render("~/script/syntaxhighlighter")
-	
+
 	<link href="@Url.Content("~/Content/jui.description.css")" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#headMenu").jheadMenu({
+				data: [
+					{
+						name: "菜单类", id: "1", image: "@Url.Content("~/Images/headMenuTestImage.png")", position: "0px 0px", line: true, children: [
+							{ name: "headMenu", id: "1_1" },
+							{ name: "leftMenu", id: "1_2" },
+						]
+					},
+					{
+						name: "基本控件", id: "2", image: "@Url.Content("~/Images/headMenuTestImage.png")", position: "-54px 0px", line: true, children: [
+							  { name: "button", id: "2_1" },
+							  { name: "checkbox", id: "2_2" },
+							  { name: "radio", id: "2_3" },
+							  { name: "select", id: "2_4" },
+							  { name: "link", id: "2_5" },
+							  { name: "linkButton", id: "2_6" , line: true },
+							  { name: "sortSelect", id: "2_7" },
+							  { name: "multiSelect", id: "2_8" }
+						]
+					},
+					{
+						name: "数据控件", id: "3", image: "", line: true, children: [
+							{ name: "datapager", id: "3_1" },
+							{ name: "table", id: "3_2" }
+						]
+					},
+					{
+						name: "其他控件", id: "4", image: "", children: [
+							  { name: "tip", id: "4_1" },
+							  { name: "datetimepicker", id: "4_2" }
+						]
+					},
+					{ name: "清除选定内容", id: "F1", image: "" }
+				],
+				onItemClick: function (id, name)
+				{
+					//TODO
+					window.location.href = "/Home/" + name;
+				}
+			});
+		});
+
+	</script>
 
 	@RenderSection("head", required: false)
 </head>
 <body>
 	<header id="TopDiv">
 		@RenderSection("header", required: false)
+		<div id="TopLogoDiv"></div>
+		<div id="headMenu" style="float: left"></div>
+		<div id="headActionMenu" style="float: left"></div>
 	</header>
 	<div id="ContentDiv">
 		<aside id="LeftDiv">
