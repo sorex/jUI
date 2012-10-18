@@ -111,36 +111,7 @@
             .jui-headMenu .jui-headMenu-hideul {
                 visibility: hidden;
             }
-
-        /*==图标==*/
-        img {
-            position: absolute;
-        }
-        /*白色加号图标*/
-        .jui-headMenu .jui-headMenu-icon-whiteplus {
-            background-image:url('../../Images/headMenuTestImage.png');
-            background-repeat:no-repeat;
-            background-attachment:fixed;
-            background-position:27px 27px;
-            /*background:transparent url('../../Images/headMenuTestImage.png') no-repeat fixed 27px 27px;*/
-
-        }
-        /*黑色加号图标*/
-        .jui-headMenu .jui-headMenu-icon-blackplus {
-            clip: rect(0px 54px 27px 27px);
-            left: -27px;
-        }
-        /*白色箭头图标*/
-        .jui-headMenu .jui-headMenu-icon-whitearrows {
-            clip: rect(0px 81px 27px 54px);
-            left: -54px;
-        }
-        /*黑色箭头图标*/
-        .jui-headMenu .jui-headMenu-icon-blackarrows {
-            clip: rect(0px 108px 27px 82px);
-            left: -81px;
-        }
-
+            
 
         .jui-headMenu .jui-headMenu-endImg {
             position: relative;
