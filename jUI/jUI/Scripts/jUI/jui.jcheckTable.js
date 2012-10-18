@@ -130,7 +130,7 @@
 	    },
 
 	    _init: function () {
-	        this._jcheckTable();
+	        //this._jcheckTable();
 	    },
 
 	    _setOption: function (key, value) {

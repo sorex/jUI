@@ -69,15 +69,14 @@
 		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
 		    }).jcheckTable({
 		        checkedItems: [1, 2, 3]//默认选择项
-                , count: 6//限制可供勾选的checkBox的个数
+                , count: 8//限制可供勾选的checkBox的个数
 		    });
 
 
 		    $("#MyTable2").jtable({
 		        tableHeight: '30%', //表高
 		        tableWidth: '100%', //表宽
-		        data:
-                    [], //数据源
+		        data:[], //数据源
 		        columns: {
 		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
                         "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
@@ -90,7 +89,7 @@
 		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
 		    }).jcheckTable({
 		        checkedItems: [1, 2, 3]//默认选择项
-                , count: 6//限制可供勾选的checkBox的个数
+                , count: 8//限制可供勾选的checkBox的个数
 		    });
 		});
 	</script>
@@ -162,7 +161,7 @@
 		        onClick: true//是否开启鼠标点击
 		    }).jcheckTable({
 	            checkedItems: [1,2,3]//默认选择项
-                , count:6//限制可供勾选的checkBox的个数
+                , count:8//限制可供勾选的checkBox的个数
 	        });
 		});
 	&lt;/script&gt;
@@ -194,7 +193,7 @@
 	            noResultsText:'对不起，没有找到生成表格的数据。'//错误提示
 		    }).jcheckTable({
 	            checkedItems: [1,2,3]//默认选择项
-                , count:6//限制可供勾选的checkBox的个数
+                , count:8//限制可供勾选的checkBox的个数
 	        });
 		});
 	&lt;/script&gt;
@@ -282,7 +281,7 @@
 				<span class="description-method-demo">.jcheckTable("option" , options)</span>
 			</h3>
 			<div>
-				<p>返回选择行的ID。</p>
+				<p>返回所选择行的id的数组形式</p>
 			</div>
 
 		</div>

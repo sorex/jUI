@@ -39,7 +39,8 @@
 	        var tableId = $(this.element).attr("id");
 	        var table = $("#" + tableId + "_tableSorter");
 	        $("#" + tableId + "_tableSorter").find("td:has(input)").remove();
-	        $("#" + tableId + "_tableSorter tr").prepend("<td><input  type='radio'  name='radio_" + tableId + "'/></td>");
+	        $("#" + tableId + "_tableSorter thead tr").prepend("<td></td>");
+	        $("#" + tableId + "_tableSorter tbody tr").prepend("<td><input  type='radio'  name='radio_" + tableId + "'/></td>");
 	        ////默认选中的项
 	        for (var j = 0; j < table.find("tbody tr").length; j++) {
 	            var rowId = table.find("tbody tr").eq(j).find("td:eq(1)").find("span").html();
@@ -65,7 +66,7 @@
 	    },
 
 	    _init: function () {
-	        this._jcheckTable();
+	        //this._jcheckTable();
 	    },
 
 	    _setOption: function (key, value) {

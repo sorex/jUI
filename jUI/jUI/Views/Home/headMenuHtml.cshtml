@@ -8,71 +8,100 @@
 
 	<script type="text/javascript">
 	    $(function () {
+
+
 	        $("#MyHeadMenu1").jheadMenu({
 	            data: [
                     {
-                        name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png",position:"0px 0px",line: true,
-                            children: [
-                                { name: "文件夹", id: "A21", line: true },
-                                { name: "Word 文档", id: "A22" },
-                                { name: "Excel 工作薄", id: "A22" }
-                            ]
-	                }
-                    , { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" }
-                    , { name: "打开", id: "C1", image: "" }
+                        name: "创建",image: "../../Images/headMenuTestImage.png", position: "0px 0px", line: true,
+                        children: [
+                            { name: "文件夹",line: true },
+                            { name: "Word 文档"},
+                            { name: "Excel 工作薄Excel" }
+                        ]
+                    }
+                    , { name: "上载", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" }
+                    , { name: "打开", image: "" }
                     , {
-                        name: "管理", id: "G1", image: "",
-                            children: [
-                                { name: "重命名", id: "B21" }
-                                , { name: "删除", id: "B22" }
-                                , { name: "移致", id: "B23", line: true }
-                                , { name: "属性", id: "B24" }
+                        name: "", image: "",
+                        children: [
+                            { name: "重命名"}
+                            , { name: "删除" }
+                            , { name: "移致", line: true }
+                            , { name: "属性"}
                         ]
                     }
                     , {
-                        name: "清除选定内容", id: "F1", image: ""
+                        name: "清除选定内容", image: ""
                     }]
-                , onItemClick: function (id,name) {
-                    alert("id:"+id+",name:"+name);
+                , onItemClick: function (id, name) {
+                    //alert("id:"+id+",name:"+name);
                 }
 	        });
 
+	        //$("#MyHeadMenu1").jheadMenu({
+	        //    data: [
+            //        {
+            //            name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png",position:"0px 0px",line: true,
+            //                children: [
+            //                    { name: "文件夹", id: "A21", line: true },
+            //                    { name: "Word 文档", id: "A22" },
+            //                    { name: "Excel 工作薄", id: "A22" }
+            //                ]
+	        //        }
+            //        , { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" }
+            //        , { name: "打开", id: "C1", image: "" }
+            //        , {
+            //            name: "管理", id: "G1", image: "",
+            //                children: [
+            //                    { name: "重命名", id: "B21" }
+            //                    , { name: "删除", id: "B22" }
+            //                    , { name: "移致", id: "B23", line: true }
+            //                    , { name: "属性", id: "B24" }
+            //            ]
+            //        }
+            //        , {
+            //            name: "清除选定内容", id: "F1", image: ""
+            //        }]
+            //    , onItemClick: function (id,name) {
+            //        //alert("id:"+id+",name:"+name);
+            //    }
+	        //});
 
-	        $("#MyHeadMenu2").jheadMenu({
-	            data: [
-                    {
-                        name: "创建", id: "A1", position: "0px 0px", image: "../../Images/headMenuTestImage.png", line: true,
-                        children: [
-                            { name: "文件夹", id: "A21", line: true },
-                            { name: "Word 文档", id: "A22" },
-                            { name: "Excel 工作薄", id: "A23" }
-                        ]
-                    },
-                    { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" },
-                    { name: "打开", id: "C1", image: "" },
-                    {
-                        name: "管理", id: "G1", image: "",
-                        children: [
-                            {name: "重命名", id: "B21" },
-                            {name: "删除", id: "B22" },
-                            {name: "移致", id: "B23", line: true },
-                            { name: "属性", id: "B24" }
-                        ]
-                    },
-                    { name: "清除选定内容", id: "F1", image: "" }
-	            ],
-	            onItemClick: function (id,name) {
-	                alert("id:" + id + ",name:" + name);
-                }
-	        });
+
+	        //$("#MyHeadMenu2").jheadMenu({
+	        //    data: [
+            //        {
+            //            name: "创建", id: "A1", position: "0px 0px", image: "../../Images/headMenuTestImage.png", line: true,
+            //            children: [
+            //                { name: "文件夹", id: "A21", line: true },
+            //                { name: "Word 文档", id: "A22" },
+            //                { name: "Excel 工作薄", id: "A23" }
+            //            ]
+            //        },
+            //        { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" },
+            //        { name: "打开", id: "C1", image: "" },
+            //        {
+            //            name: "管理", id: "G1", image: "",
+            //            children: [
+            //                {name: "重命名", id: "B21" },
+            //                {name: "删除", id: "B22" },
+            //                {name: "移致", id: "B23", line: true },
+            //                { name: "属性", id: "B24" }
+            //            ]
+            //        },
+            //        { name: "清除选定内容", id: "F1", image: "" }
+	        //    ],
+	        //    onItemClick: function (id,name) {
+	        //        alert("id:" + id + ",name:" + name);
+            //    }
+	        //});
 	    });
 	</script>
 
 }
 
 @section header{
-<div id="MyHeadMenu1" style="float:left;"></div>
-<div id="MyHeadMenu2" style="float:left;"></div>
 }
 
 @section left{
@@ -88,4 +117,5 @@
 }
 
 
-
+<div id="MyHeadMenu1" style="float:left;"></div>
+@*<div id="MyHeadMenu2" style="float:left;"></div>*@

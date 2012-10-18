@@ -19,14 +19,18 @@
 */
 
 /*
-* items:
-*		data:菜单对象列表
+* data:[item,item....]
+* item:
 *       name:菜单各项显示内容
 *       id:选项id
 *       position:定位图片的坐标字符串
 *       image:给选项前添加小图标(注：图标宽高各为27px)
 *       line:设置选项间距为空格或分割线
 *       children:设置是否有二级菜单
+*       onItemClick(id, name):
+*		    点击菜单时的事件
+*		    id：点击项的id
+*		    name：点击项的文本内容
 */
 
 (function ($, undefined) {
@@ -34,31 +38,7 @@
 	{
 	    // default options
 	    options: {
-	        data: [
-                {
-                    name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png"
-                    ,position:"0px 0px"
-                    , line: true
-
-                                 , children: [
-                                     {name: "文件夹", id: "A21", line: true }
-                                    ,{name: "Word 文档",id: "A22"}
-                                    ,{name: "Excel 工作薄", id: "A22" }
-                                 ]
-                }
-                        , { name: "上载", id: "B1", image: "../../Images/headMenuTestImage.png" }
-                        , { name: "打开", id: "C1", image: "" }
-                        , {
-                            name: "管理", id: "G1", image: ""
-                                 , children: [
-                                     {name: "重命名", id: "B21" }
-                                    ,{name: "删除",id: "B22"}
-                                    ,{name: "移致",id: "B23", line: true}
-                                    ,{name: "属性", id: "B24" }
-                                 ]
-                        }
-                        , { name: "清除选定内容", id: "F1", image: "" }
-	        ]
+	        data: []
             , onItemClick: null
 	    },
 
@@ -70,48 +50,54 @@
 	        var self = this,o = this.options;
 	        e = $(this.element);
 	        e.empty();
-	        var eid = $(this.element).attr("id");
+	        var eid= $(this.element).attr("id");
 	        var data = o.data;
 	        e.addClass('jui-headMenu').empty().append("<ul id='" + eid + "_ul' class='jui-headMenu-ju'></ul>").bind("selectstart", function () { return false; });
 	        for (var i = 0; i < data.length; i++) {
 	            var id = data[i]["id"];
+	            if (id == "" || id == null) {
+	                id = i;
+	            }
 	            var name = data[i]["name"];
 	            var image = data[i]["image"];
 	            var children = data[i]["children"];
 	            var hline = data[i]["line"];
 	            var position = data[i]["position"];
 	            if (image != null && image != "") {
-	                //$("#"+eid+"_ul").append("<li id='"+eid+"_"+id+"'><a>"
-                    //    + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='width:26px;height:26px;float:left;position:relative;top:4px;'><img class='jui-headMenu-icon-"
-	                //    + image + "'  src=''/></span></span> " + name + "</span> </span>"
-                    //    + "</a></li>");
-                    $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><a>"
+                    $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><span style='display:none;'>"+id+"</span><a>"
                         + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'>" +
                         "<span style='width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(" + image + ");background-position:" + position + ";' ></span></span> " + name + "</span> </span>"
                         + "</a></li>");
 	            } else {
-	                $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><a>"
+	                $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><span style='display:none;'>" + id + "</span><a>"
                         + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='height:26px;float:left;position:relative;top:4px;'></span></span> " + name + "</span> </span>"
                         + "</a></li>");
 	            }
 	            var lw = 0;
 	            if (children != null && children.length) {
-	                $("#" + eid + "_" + id).append("<ul class='jui-headMenu-u1' id='u" + eid +"_"+ id + "'></ul>"); //二级菜单
+	                $("#" + eid + "_" + id).append("<ul class='jui-headMenu-u1' id='u" + eid + "_" + id + "'></ul>"); //二级菜单
 	                for (var j = 0; j < children.length; j++) {
 	                    var uid = children[j]["id"];
+	                    if (uid == "" || uid == null) {
+	                        uid = i+"_"+j;
+	                    }
 	                    var uname = children[j]["name"];
 	                    var uline = children[j]["line"];
-	                    $("#u" + eid + "_" + id).append("<li id='" + uid + "'><a><span>" + uname + "</span></a></li>");
-	                    if (uline == true)
-	                        $("#u" + eid + "_" + id).find("li").eq(j).append("<span  class='jui-headMenu-solid'></span>");
+	                    $("#u" + eid + "_" + id).append("<li id='" + eid +"_"+ uid + "'><span style='display:none;'>" + uid + "</span><a><span>" + uname + "</span></a></li>");
+	                    if (uline == true) {
+	                        $("#u" + eid + "_" + id).find("li").eq(j).append("<span id='_lsolid'  class='jui-headMenu-solid'></span>");
+	                    }
 	                    lw = $("#" + eid + "_" + id).width();
-	                    $("#u" + eid + "_" + id).css("width", 2 * lw);
-	                    $("#" + eid + "_" + id).width(lw);
+	                    if (lw < 50) {
+	                        $("#u" + eid + "_" + id).css("width", 2 * lw+100);//ul
+	                    } else {
+	                        $("#u" + eid + "_" + id).css("width", 2 * lw);//ul
+	                    }
+	                    $("#" + eid + "_" + id).width(lw);//li
 
 	                    if (i == data.length - 1) {
 	                        $("#" + eid + "_" + id).children("ul").css({ "left": -lw + 12 + "px" });
 	                    }
-	                    lw = 0;
 	                }
 	            }
 	            if (hline == true) {
@@ -119,18 +105,28 @@
 	            }
 	        }
 	        var endImg = '../../Content/images/jui-jheadMenu-carat-s-ffffff.png';//箭头图标
+
+
 	        e.find("li").has("ul").find(".jui-headMenu-lass").after("<img class='jui-headMenu-endImg' style='' src='" + endImg + "'/>");
-	        e.children("ul").children("li").click(function () {
+	        e.children("ul").children("li").mousedown(function () {
 	            $("body").find("li").not(this).has("ul:visible").children("ul").slideUp("fast");
-	            $(this).children("ul").slideToggle("fast");                
-                $("body").find("li").removeClass("jui-headMenu-clicked");
-                $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
-                $(this).addClass("jui-headMenu-clicked");
-                $(this).children("a").addClass("jui-headMenu-clicked");
+	            $(this).children("ul").slideToggle("fast");
+
+	            $("body").find("li").removeClass("jui-headMenu-clicked");
+	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
+	            $(this).addClass("jui-headMenu-clicked");
+	            $(this).children("a").addClass("jui-headMenu-clicked");
+                
+	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
+	                $(this).mouseup(function () {
+	                    $(this).removeClass("jui-headMenu-clicked");
+	                    $(this).children("a").removeClass("jui-headMenu-clicked");
+	                });
+	            }
 	        });
 	        e.find("li").bind("click", function () {
 	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
-	                self.options.onItemClick($(this).text());
+	                self.options.onItemClick($(this).children("span").text().trim(),$(this).children("a").text().trim());
 	            }
 	        });
 	        //点击空白处下拉列表收起
@@ -143,8 +139,23 @@
 	            }
 	        });
 	        document.onclick = function () {
-                $("body").find("li").has("ul:visible").children("ul").slideUp("fast");
-	        };
+	            $("body").find("li").has("ul:visible").children("ul").slideUp("fast");
+	            $("body").find("li").removeClass("jui-headMenu-clicked");
+	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
+	        };            
+	        //当菜单项中无文字而只有下拉图标时候，调整下拉箭头样式
+	        e.find("li").has("ul").find(".jui-headMenu-lass").each(function () {
+	            var t = $(this).text();
+	            var img = $(this).next();
+	            var ul = $(this).parent().parent().next();
+	            var li = $(this).parent("li");
+	            if (t.trim() == "" || t.trim() == null) {
+	                $(this).remove();
+	                img.css({ "top": "9px", "left": "6px" });
+	                ul.css({ "top": "19px" });
+	                //li.css({"width":"30px"});
+	            }
+	        });
 
 	    },
 
