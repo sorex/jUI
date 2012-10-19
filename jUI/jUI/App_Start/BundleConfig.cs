@@ -39,12 +39,14 @@ namespace jUI
 			//添加jUI相关的包
 			bundles.Add(new ScriptBundle("~/Scripts/jUI/files").Include(
 				"~/Scripts/jUI/jui.jlayout.js",
-				"~/Scripts/jUI/jui.jheadMenu.js"
+				"~/Scripts/jUI/jui.jheadMenu.js",
+				"~/Scripts/jUI/jui.jleftMenu.js"
 				));
 
 			bundles.Add(new StyleBundle("~/Content/jUI/files").Include(
 				"~/Content/jUI/jui.jlayout.css",
-				"~/Content/jUI/jui.jheadMenu.css"
+				"~/Content/jUI/jui.jheadMenu.css",
+				"~/Content/jUI/jui.jleftMenu.css"
 				));
 		}
 	}

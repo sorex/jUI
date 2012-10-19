@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "datapager";
+}
+
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#leftMenu").jleftMenu({
+				items: [
+					{ top: 20, text: "Demo" },
+					{ text: "Test", isSelect: true }
+				],
+				onClick: function (index, text)
+				{
+					if (text == "Test")
+						window.location.href = "@Url.Content("~")" + "Test/" + "@ViewBag.Title";
+					else
+						window.location.href = "@Url.Content("~")" + "Home/" + "@ViewBag.Title";
+				}
+			});
+		});
+	</script>
+}
+
+<h2>datapager</h2>

@@ -22,7 +22,7 @@
 			$("#headMenu").jheadMenu({
 				data: [
 					{
-						name: "菜单类", id: "1", image: "@Url.Content("~/Images/headMenuTestImage.png")", position: "0px 0px", line: true, children: [
+						name: "菜单类", id: "1", image: "@Url.Content("~/Images/MenuIcon27.png")", line: true, children: [
 							{ name: "headMenu", id: "1_1" },
 							{ name: "leftMenu", id: "1_2" },
 						]
@@ -74,6 +74,7 @@
 	<div id="ContentDiv">
 		<aside id="LeftDiv">
 			@RenderSection("left", required: false)
+			<div id="leftMenu"></div>
 		</aside>
 		<aside id="RightDiv">
 			@RenderSection("right", required: false)

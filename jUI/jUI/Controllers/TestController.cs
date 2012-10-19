@@ -16,5 +16,14 @@ namespace jUI.Controllers
             return View();
         }
 
-    }
+		public ActionResult layout()
+		{
+			return View();
+		}
+
+		public ActionResult datapager()
+		{
+			return View();
+		}
+	}
 }
