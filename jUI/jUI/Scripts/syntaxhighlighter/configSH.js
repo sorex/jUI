@@ -25,9 +25,5 @@ SyntaxHighlighter.all();
 
 function viewSource(self)
 {
-	var x = $(self).next();
-	if (x.css("display") == "none")
-		x.show();
-	else
-		x.hide();
+	$(self).next().slideToggle("fast");
 }
