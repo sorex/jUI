@@ -55,45 +55,9 @@
     
     <script type="text/javascript">
         $(function () {
-            //$("#btn_checked").click(function () {
-            //    alert($("#MyTable1").jcheckTable("checkd").length);
-            //});
-            //$("#btn_next").click(function () {
-            //    alert($("#dis_checkedItems").text().split(","))
-            //    $("#MyTable1").jtable("option", {
-            //        "data": [
-            //                    { "ID": 11, "Name": "AA---AAA", "Name2": "8*/*8", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-            //                    { "ID": 12, "Name": "-*-*-", "Name2": "5++6+9", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
-            //                    { "ID": 13, "Name": "+*/++", "Name2": "*-*99+", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" }
-            //        ]
-            //    })
-            //        .jcheckTable({
-            //            checkedItems: $("#dis_checkedItems").text().split(",")//默认选择项
-            //    , count: 6//限制可供勾选的checkBox的个数
-            //    });
-            //    //.jcheckTable("option", { "checkedItems": $("#dis_checkedItems").text().split(",") });
-            //});
-
-            //$("#btn_prev").click(function () {
-            //    alert($("#dis_checkedItems").text().split(","))
-            //    $("#MyTable1").jtable("option", {
-            //        "data": [
-            //                { "ID": 1, "Name": "AA---AAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-            //                { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
-            //                { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
-            //                { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
-            //                { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
-            //                { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
-            //                { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
-            //        ]
-            //    })
-            //        .jcheckTable({
-            //            checkedItems: $("#dis_checkedItems").text().split(",")//默认选择项
-            //    , count: 6//限制可供勾选的checkBox的个数
-            //    });
-            //    //.jcheckTable("option", { "checkedItems": $("#dis_checkedItems").text().split(",") });
-            //});
-
+            $("#btn_checked").click(function () {
+                alert($("#MyTable1").jcheckTable("checkd").join());
+            });
         });
     </script>
 }
@@ -116,6 +80,5 @@
 <h2>checkTableHtml</h2>
 
 <div id="MyTable1"></div>
-<button id="btn_checked">获得选中项个数</button>
-@*<button id="btn_prev">上一页</button>
-<button id="btn_next">下一页</button>*@
+<div id="MyTable2"></div>
+<button id="btn_checked">获取选中项ID</button>
