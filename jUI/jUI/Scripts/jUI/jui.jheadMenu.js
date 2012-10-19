@@ -85,7 +85,7 @@
 	                    var uline = children[j]["line"];
 	                    $("#u" + eid + "_" + id).append("<li id='" + eid +"_"+ uid + "'><span style='display:none;'>" + uid + "</span><a><span>" + uname + "</span></a></li>");
 	                    if (uline == true) {
-	                        $("#u" + eid + "_" + id).find("li").eq(j).append("<span id='_lsolid'  class='jui-headMenu-solid'></span>");
+	                        $("#u" + eid + "_" + id).find("li").eq(j).append("<span class='jui-headMenu-solid'><span style='border-bottom:1px solid #666;display: block;'></span> </span>");
 	                    }
 	                    lw = $("#" + eid + "_" + id).width();
 	                    if (lw < 50) {
@@ -104,31 +104,29 @@
 	                $("#" + eid + "_" + id).after("<span class='jui-headMenu-vsolid '></span>");
 	            }
 	        }
-	        var endImg = '../../Content/images/jui-jheadMenu-carat-s-ffffff.png';//箭头图标
+	        e.find("li").has("ul").find(".jui-headMenu-lass").after("<span class='jui-headMenu-endImg'></span>");
 
-
-	        e.find("li").has("ul").find(".jui-headMenu-lass").after("<img class='jui-headMenu-endImg' style='' src='" + endImg + "'/>");
-	        e.children("ul").children("li").mousedown(function () {
+	        e.children("ul").children("li").click(function () {
 	            $("body").find("li").not(this).has("ul:visible").children("ul").slideUp("fast");
 	            $(this).children("ul").slideToggle("fast");
-
+	        });
+	        e.children("ul").children("li").mousedown(function () {
 	            $("body").find("li").removeClass("jui-headMenu-clicked");
 	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
 	            $(this).addClass("jui-headMenu-clicked");
 	            $(this).children("a").addClass("jui-headMenu-clicked");
-                
-	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
-	                $(this).mouseup(function () {
-	                    $(this).removeClass("jui-headMenu-clicked");
-	                    $(this).children("a").removeClass("jui-headMenu-clicked");
-	                });
-	            }
+	            $(this).mouseup(function () {
+	                $(this).removeClass("jui-headMenu-clicked");
+	                $(this).children("a").removeClass("jui-headMenu-clicked");
+	            });	       
 	        });
+
 	        e.find("li").bind("click", function () {
 	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
 	                self.options.onItemClick($(this).children("span").text().trim(),$(this).children("a").text().trim());
 	            }
 	        });
+
 	        //点击空白处下拉列表收起
 	        e.click(function (event) {
 	            var e = window.event || event;
@@ -138,11 +136,11 @@
 	                e.cancelBubble = true;
 	            }
 	        });
-	        document.onclick = function () {
+	        $(document).bind("click", function () {
 	            $("body").find("li").has("ul:visible").children("ul").slideUp("fast");
 	            $("body").find("li").removeClass("jui-headMenu-clicked");
 	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
-	        };            
+	        })
 	        //当菜单项中无文字而只有下拉图标时候，调整下拉箭头样式
 	        e.find("li").has("ul").find(".jui-headMenu-lass").each(function () {
 	            var t = $(this).text();
@@ -153,9 +151,14 @@
 	                $(this).remove();
 	                img.css({ "top": "9px", "left": "6px" });
 	                ul.css({ "top": "19px" });
-	                //li.css({"width":"30px"});
 	            }
 	        });
+	        $(".jui-headMenu-ju").find("li").has("ul").addClass("jui-headMenu-ju_li");
+
+	        $(".jui-headMenu-solid").click(function (event) {
+	            event.stopPropagation();	            
+	        });
+
 
 	    },
 
