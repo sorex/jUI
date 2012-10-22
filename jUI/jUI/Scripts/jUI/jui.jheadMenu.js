@@ -70,7 +70,7 @@
                         + "</a></li>");
 	            } else {
 	                $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><span style='display:none;'>" + id + "</span><a>"
-                        + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='height:26px;float:left;position:relative;top:4px;'></span></span> " + name + "</span> </span>"
+                        + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'><span style='height:27px;float:left;position:relative;top:4px;'></span></span> " + name + "</span> </span>"
                         + "</a></li>");
 	            }
 	            var lw = 0;
@@ -123,7 +123,7 @@
 
 	        e.find("li").bind("click", function () {
 	            if ($(this).find(".jui-headMenu-endImg").length == 0) {
-	                self.options.onItemClick($(this).children("span").text().trim(),$(this).children("a").text().trim());
+	                self.options.onItemClick($(this).children("span").text().trim(), $(this).children("a").text().trim());
 	            }
 	        });
 
@@ -149,7 +149,7 @@
 	            var li = $(this).parent("li");
 	            if (t.trim() == "" || t.trim() == null) {
 	                $(this).remove();
-	                img.css({ "top": "9px", "left": "6px" });
+	                img.css({ "top": "12px", "left": "6px" });
 	                ul.css({ "top": "19px" });
 	            }
 	        });

@@ -770,7 +770,6 @@
 	            e.attr("readonly", "readonly");
 	        }
 	        $("#" + elementId + "_outDiv").bind("selectstart", function () { return false; });//界面无法选中
-
 	    },
         
 	    _setOption: function (key, value) {

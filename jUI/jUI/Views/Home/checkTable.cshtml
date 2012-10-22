@@ -223,14 +223,14 @@
 				<p>默认选中的checkbox选项。</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myTable").jtable({ checkedItems:[1,2,3]});
+					$("#myTable").jcheckTable({ checkedItems:[1,2,3]});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var checkedItems = $("#myTable").jtable( "option", "checkedItems" );
+					var checkedItems = $("#myTable").jcheckTable( "option", "checkedItems" );
 					//设置
-					$("#myTable").jtable("option", { checkedItems: [1,2,3] });
+					$("#myTable").jcheckTable("option", { checkedItems: [1,2,3] });
 				</pre>
 			</div>
 			<h3>
@@ -242,14 +242,14 @@
 				<p>限制可供勾选的checkBox的个数</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#tableWidth").jtable({ count:0});
+					$("#tableWidth").jcheckTable({ count:0});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var count = $("#myTable").jtable( "option", "count" );
+					var count = $("#myTable").jcheckTable( "option", "count" );
 					//设置
-					$("#myTable").jtable("option", { count:6});
+					$("#myTable").jcheckTable("option", { count:6});
 				</pre>
 			</div>
             
@@ -279,7 +279,7 @@
 			<h3>
 				<span class="description-method-name">checked</span>
 				<span class="description-method-returnType">返回选择行的ID</span>
-				<span class="description-method-demo">.jcheckTable("option" , options)</span>
+				<span class="description-method-demo">.jcheckTable("option" , checked)</span>
 			</h3>
 			<div>
 				<p>返回所选择行的id的数组形式</p>
@@ -290,8 +290,55 @@
 	<div id="themingTab">
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
-			&lt;div id="myDatapager" class="jui-table"&gt;
-			&lt;/div&gt;
+&lt;div id="divId" class="jui-table"&gt;
+    &lt;table id="tableSorter" width="90%" height="30%"&gt;
+        &lt;thead&gt;
+            &lt;tr style="color: rgb(255, 255, 255); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px;"&gt;
+                    名称
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td&gt;名称2&lt;/td&gt;
+                &lt;td&gt;名称3&lt;/td&gt;
+                &lt;td&gt;名称4&lt;/td&gt;
+                &lt;td&gt;名称5&lt;/td&gt;
+                &lt;td&gt;操作&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;AAAAA(aaaaa)(1)
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaa4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaaaa5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;
+                    &lt;a href="#" onclick="ActionEdit(1,'AAAAA','aaaaa')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(1,'AAAAA','aaaaa')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(1,'AAAAA','aaaaa')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;BBBBBBB(bbbbb)(2)
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;&lt;a href="#" onclick="ActionEdit(2,'BBBBBBB','bbbbb')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(2,'BBBBBBB','bbbbb')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(2,'BBBBBBB','bbbbb')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
 		</pre>
 	</div>
 </div>

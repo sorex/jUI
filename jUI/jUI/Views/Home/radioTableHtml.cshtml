@@ -50,6 +50,13 @@
 	    });
 
 	</script>
+	<script type="text/javascript">
+	    $(function () {
+	        $("#_b").click(function () {
+	            alert($("#MyTable1").jradioTable("checked").trim());
+	        });
+	    })
+	</script>
 }
 
 @section header{
@@ -70,3 +77,4 @@
 <h2>radioTableHtml</h2>
 
 <div id="MyTable1"></div>
+<button id="_b">显示选中项</button>
