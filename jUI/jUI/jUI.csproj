@@ -186,6 +186,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
     <Content Include="Images\headMenuTestImage.png" />
+    <Content Include="Images\MenuIcon27.png" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
@@ -291,6 +292,8 @@
     <Content Include="Views\Home\search.cshtml" />
     <Content Include="Views\Home\searchHtml.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\layout.cshtml" />
+    <Content Include="Views\Test\datapager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

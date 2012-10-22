@@ -36,7 +36,7 @@
 	{
 		// default options
 		options: {
-			items: [{ top: 20, text: "这是一个空的LeftMenu", isSelect: true }],
+			items: [],
 			onClick: null
 		},
 

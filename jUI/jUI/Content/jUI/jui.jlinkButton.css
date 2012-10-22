@@ -1,10 +1,11 @@
-﻿.jui-jlinkButton {
+﻿.jui-linkButton
+{
     background:none !important;
     border:none !important;
     color:#094ab2 !important;
     cursor:pointer;            
 }
-    .jui-jlinkButton:hover {
+    .jui-linkButton:hover {
         text-decoration:underline;
         background:none !important;
     }

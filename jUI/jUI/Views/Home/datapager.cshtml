@@ -2,7 +2,6 @@
 	ViewBag.Title = "datapager";
 }
 
-<h2>datapager</h2>
 @section head{
 	<script type="text/javascript">
 		$(function ()
@@ -22,6 +21,23 @@
 				navigation: true
 			});
 		});
+	</script>
+
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#leftMenu").jleftMenu({
+				items: [{ top: 20, text: "Demo", isSelect: true },
+				{ text: "Test" }],
+				onClick: function (index, text)
+				{
+					if (text == "Test")
+						window.location.href = "@Url.Content("~")" + "Test/" + "@ViewBag.Title";
+						else
+							window.location.href = "@Url.Content("~")" + "Home/" + "@ViewBag.Title";
+					}
+				});
+			});
 	</script>
 
 	<link href="@Url.Content("~/Content/jUI/jui.jdatapager.css")" rel="stylesheet" type="text/css" />
@@ -66,6 +82,7 @@
 }
 
 @section left{
+
 }
 
 @section right{
@@ -76,6 +93,8 @@
 
 @section scripts{
 }
+
+<h2>datapager</h2>
 
 <div id="demoTabs">
 	<ul>

@@ -6,15 +6,16 @@
             position: relative;
             display: block;
         }
-        
+
             .jui-headMenu .jui-headMenu-solid {
                 display: block;
-                height:auto;
+                height:10px;
                 width:auto;
                 border-left: 0 none;
                 border-right: 0 none;
-                border-bottom: 1px solid #666;
-                margin:10px 15px;
+                /*border-bottom: 1px solid #666;*/
+                /*margin: 10px 15px;*/
+                padding:10px 15px 0px 15px;
                 cursor: default;
             }
 
@@ -35,9 +36,12 @@
             }
                 .jui-headMenu .jui-headMenu-ju > li {
                     height: 40px;
-                    padding-right: 15px;
-                    position: relative;
+                    /*padding-right: 15px;*/
+                    position:relative;
                     float: left;
+                }
+                .jui-headMenu .jui-headMenu-ju_li {
+                    padding-right: 15px;
                 }
 
                     .jui-headMenu .jui-headMenu-ju > li > a {
@@ -48,7 +52,7 @@
                         background-color: #073d92 ;
                     }
 
-                .jui-headMenu .jui-headMenu-ju li {
+                .jui-headMenu .jui-headMenu-ju>li {
                     list-style: none;
                     cursor: pointer;
                 }
@@ -89,6 +93,7 @@
                     text-align: left;
                     color: black;
                     display: block;
+                cursor: pointer;
                 }
                 jui-headMenu .jui-headMenu-u1 li:hover {
                     cursor:default;
@@ -113,11 +118,15 @@
 
             .jui-headMenu .jui-headMenu-hideul {
                 visibility: hidden;
-            }
-            
+            }           
 
         .jui-headMenu .jui-headMenu-endImg {
-            position: relative;
-            top: 1px;
-            left: 4px;
+            background-image:url(images/jui-jheadMenu-carat-s-ffffff.png);
+            background-repeat:no-repeat;
+            display:inline-block;
+            width:12px;
+            height:10px;
+            position:relative;
+            left:5px;
+            top:2px;
         }
