@@ -1,5 +1,186 @@
 ﻿@{
-    ViewBag.Title = "sortSelectHtml";
+	ViewBag.Title = "sortSelectHtml.cshtml";
 }
 
+@section head{
+	<style type="text/css">
+		.jui-jsortSelect
+		{
+		}
+		.jui-jsortSelect-ul
+		{
+			list-style: none;
+			border: 2px solid #666666;
+			background-color: #f3f3f3;
+			color: #000000;
+			margin: 0px;
+			padding: 0px;
+			cursor: pointer;
+			z-index:9999;
+			width:120px;
+			position: relative;
+		
+		}
+		.jui-jsortSelect-ul > li
+		{
+			padding-left: 35px;
+			padding-right: 10px;
+			margin-top: 7px;
+			margin-bottom: 7px;
+		}
+		.jui-jsortSelect-ul > li:hover
+		{
+			background-color: #d4d4d4;
+		}
+		.jui-jsortSelect-ul > li.select
+		{
+		background: transparent url("@Url.Content("~/Content/jUI/images/jui-jselect-bullet-666666.png")") no-repeat 0 0;
+		background-position: 18px 8px;
+		}
+
+
+		.jui-jsortSelect-ul > div
+		{
+			margin: 0px;
+
+		}
+		.jui-jsortSelect-ul > div ul
+		{
+			list-style: none;
+			width: 120px;
+			background-color: #f3f3f3;
+			color: #000000;
+			margin: 0px;
+			padding: 0px;
+			cursor: pointer;
+		}
+		.jui-jsortSelect-ul > div ul > li
+		{
+			padding-left: 35px;
+			padding-right: 10px;
+			margin-top: 7px;
+			margin-bottom: 10px;
+		}
+		.jui-jsortSelect-ul > div ul > li:hover
+		{
+			background-color: #d4d4d4;
+		}
+		
+		.jui-jsortSelect-ul > div ul > li.select
+		{
+	
+			background: transparent url("@Url.Content("~/Content/jUI/images/jui-jselect-bullet-666666.png")") no-repeat 0 0;
+			background-position: 18px 8px;
+		}
+		.jui-jsortSelect-downBtn
+		{
+			background: transparent url("@Url.Content("~/Content/jUI/images/jui-jselect-carat-s-666666.png")") no-repeat 0px 0px;
+			cursor: pointer;
+			display: inline-block;
+			text-indent: -99999px;
+			overflow: hidden;
+			width: 11px;
+			height: 9px;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		$(function () {
+
+			$("#tag").click(function (event) {
+				//取消事件冒泡
+				event.stopPropagation();
+				$("#testUl").slideToggle("fast");
+			});
+			//里面的点击事件
+			$("#testUl > li,#testUl2 > li").click(function (event) {
+				$(this).siblings().removeClass("select");
+				$(this).addClass("select");
+				if ($("#testUl > li").hasClass("select") && $("#testUl2 > li").hasClass("select")) {
+					switch ($(this).html()) {
+						case "降序":
+							$("#content").attr("value", "desc");
+							break;
+						case "升序":
+							$("#content").attr("value", 'asc');
+							break;
+						default:
+							if ($(this).attr("default") == "desc") {
+								$("#testUl2 > li").siblings().removeClass("select");
+								$("#testUl2 > li").eq(1).addClass("select");
+								$("#content").attr("value", "desc");
+							} else {
+								$("#testUl2 > li").siblings().removeClass("select");
+								$("#testUl2 > li").eq(0).addClass("select");
+								$("#content").attr("value", 'asc');
+							}
+							$("#content").html($(this).html());
+							break;
+					}
+					$("#testUl").slideToggle("fast");
+				}
+				event.stopPropagation();
+			});
+
+			$("body").click(function () {
+				if (!$("#testUl").is(":hidden")) {
+					$("#testUl").slideUp("fast");
+				}
+			});
+			$("#testUl").position({
+				of: $("#tag"),
+				my: "left top",
+				at: "left bottom",
+				offset: '0 0'
+			}).css("display", "none");
+
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
 <h2>sortSelectHtml</h2>
+
+
+
+
+
+<span id="tag" style="cursor: pointer; border: 1px solid red;">排序方式:<span id="content" style="cursor: pointer" value="asc">名称</span><span
+	class="jui-jsortSelect-downBtn">&nbsp;&nbsp;</span></span>
+
+
+
+<ul class="jui-jsortSelect-ul" id="testUl">
+	<li data-li-name="name" default="asc">名称</li>
+	<li data-li-startdate="startDate" default="desc">创建日期</li>
+	<li data-li-finishdata="finisthDate" default="desc">完成日期</li>
+	<li data-li-size="size" default="desc">大小</li>
+	<div>
+		<hr style="margin: 12px" />
+		<ul id="testUl2">
+			<li class="select">升序</li>
+			<li>降序</li>
+		</ul>
+
+	</div>
+
+</ul>
+
