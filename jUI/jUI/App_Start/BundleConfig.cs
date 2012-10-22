@@ -12,7 +12,8 @@ namespace jUI
 				"~/Scripts/jquery-{version}.js",
 				"~/Scripts/jquery-ui-{version}.js",
 				"~/Scripts/jquery.validate*",
-				"~/Scripts/modernizr-*"
+				"~/Scripts/modernizr-*",
+				"~/Scripts/extendjs.js"
 				));
 
 			bundles.Add(new StyleBundle("~/Content/basic").Include(
