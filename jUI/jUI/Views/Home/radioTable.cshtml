@@ -3,3 +3,318 @@
 }
 
 <h2>radioTable</h2>
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<link href="@Url.Content("~/Content/jUI/jui.jradioTable.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jradioTable.js")"></script>
+	<link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+
+	<script type="text/javascript">
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+		$(function ()
+		{
+		    $("#MyTable1").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:
+                    [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                    ], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+		    }).jradioTable({
+		        checkedItem: 1//默认选中项
+		    });
+
+
+		    $("#MyTable2").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:[], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
+                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
+                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+		    }).jradioTable({
+		        checkedItem: 1//默认选中项
+		    });
+		});
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="MyTable1"></div>
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+        <pre class="brush: js; html-script: true;">
+    &lt;div id="MyTable1"&gt;&lt;/div&gt;
+	&lt;script type="text/javascript"&gt;
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+		$(function ()
+		{
+		    $("#MyTable1").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:
+                    [
+                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                    ], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
+
+"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true//是否开启鼠标点击
+		    }).jradioTable({
+		        checkedItem: 1//默认选中项
+	        });
+		});
+	&lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab2">
+		<div id="MyTable2"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+            
+    &lt;div id="MyTable1"&gt;&lt;/div&gt;
+	&lt;script type="text/javascript"&gt;
+		$(function ()
+		{
+		    $("#MyTable2").jtable({
+		        tableHeight: '30%', //表高
+		        tableWidth: '100%', //表宽
+		        data:[], //数据源
+		        columns: {
+		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
+
+"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
+                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
+		        },//列名
+		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
+		        outColor: '#f3f3f3',//鼠标移开后行颜色
+		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
+		        onClick: true,//是否开启鼠标点击
+	            noResultsText:'对不起，没有找到生成表格的数据。'//错误提示
+		    }).jradioTable({
+		        checkedItem: 1//默认选中项
+	        });
+		});
+	&lt;/script&gt;
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于表格头部生成多个radio按钮</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[checkedItems]</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>默认选中的radio选项。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jradioTable({ checkedItems:1});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var checkedItems = $("#myTable").jradioTable( "option", "checkedItems" );
+					//设置
+					$("#myTable").jradioTable("option", { checkedItems: [1,2,3] });
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jradioTable("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jradioTable("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">checked</span>
+				<span class="description-method-returnType">返回选择行的ID</span>
+				<span class="description-method-demo">.jradioTable("option" , checked)</span>
+			</h3>
+			<div>
+				<p>返回所选择行的id</p>
+			</div>
+
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+&lt;div id="divId" class="jui-table"&gt;
+    &lt;table id="tableSorter" width="90%" height="30%"&gt;
+        &lt;thead&gt;
+            &lt;tr style="color: rgb(255, 255, 255); "&gt;
+                &lt;td&gt;&lt;input type="radio" name="radio_MyTable1" checked="checked"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px;"&gt;
+                    名称
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td&gt;名称2&lt;/td&gt;
+                &lt;td&gt;名称3&lt;/td&gt;
+                &lt;td&gt;名称4&lt;/td&gt;
+                &lt;td&gt;名称5&lt;/td&gt;
+                &lt;td&gt;操作&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="radio" name="radio_MyTable1" checked="checked"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;AAAAA(aaaaa)(1)
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaa4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaaaa5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;
+                    &lt;a href="#" onclick="ActionEdit(1,'AAAAA','aaaaa')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(1,'AAAAA','aaaaa')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(1,'AAAAA','aaaaa')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="radio" name="radio_MyTable1" checked="checked"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;BBBBBBB(bbbbb)(2)
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;&lt;a href="#" onclick="ActionEdit(2,'BBBBBBB','bbbbb')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(2,'BBBBBBB','bbbbb')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(2,'BBBBBBB','bbbbb')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+</div>
