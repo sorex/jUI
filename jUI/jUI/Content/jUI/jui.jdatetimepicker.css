@@ -41,6 +41,9 @@
         border:1px solid #DDD;
         font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
         font-size: 0.8em;
+        position:absolute;
+        float:left;
+        z-index:100000;
     }
     /*头部div样式*/    
     .jui-datetimepicker-dhcenter{

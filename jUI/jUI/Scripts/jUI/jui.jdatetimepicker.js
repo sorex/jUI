@@ -85,7 +85,8 @@
             + "<div id='" + elementId + "_yearDiv' class='jui-datetimepicker-dhcenter'><span>" + (y - 5) + "~" + (y + 4) + "</span></div>"
             + "</div>";
 	        //text占一行
-	        e.wrap("<p></p>").after(outDiv);
+	        e.wrap("<div></div>").after(outDiv);
+	        //e.wrap("<div style='float:left;'></div>");
 	        //添加头部内容
 	        $("#" + elementId + "_outDiv").append(head);
 	        //填日期
