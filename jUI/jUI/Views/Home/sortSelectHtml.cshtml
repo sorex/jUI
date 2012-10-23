@@ -32,7 +32,7 @@
 		{
 			background-color: #d4d4d4;
 		}
-		.jui-jsortSelect-ul > li.select
+		.jui-jsortSelect-ul > li.action
 		{
 		background: transparent url("@Url.Content("~/Content/jUI/images/jui-jselect-bullet-666666.png")") no-repeat 0 0;
 		background-position: 18px 8px;
@@ -66,7 +66,7 @@
 			background-color: #d4d4d4;
 		}
 		
-		.jui-jsortSelect-ul > div ul > li.select
+		.jui-jsortSelect-ul > div ul > li.action
 		{
 	
 			background: transparent url("@Url.Content("~/Content/jUI/images/jui-jselect-bullet-666666.png")") no-repeat 0 0;
@@ -95,29 +95,31 @@
 			});
 			//里面的点击事件
 			$("#testUl > li,#testUl2 > li").click(function (event) {
-				$(this).siblings().removeClass("select");
-				$(this).addClass("select");
-				if ($("#testUl > li").hasClass("select") && $("#testUl2 > li").hasClass("select")) {
+				$(this).siblings().removeClass("action");
+				$(this).addClass("action");
+				if ($("#testUl > li").hasClass("action") && $("#testUl2 > li").hasClass("action")) {
 					switch ($(this).html()) {
 						case "降序":
-							$("#content").attr("value", "desc");
+							$("#content").attr("data-sort", "desc");
 							break;
 						case "升序":
-							$("#content").attr("value", 'asc');
+							$("#content").attr("data-sort", 'asc');
 							break;
 						default:
 							if ($(this).attr("default") == "desc") {
-								$("#testUl2 > li").siblings().removeClass("select");
-								$("#testUl2 > li").eq(1).addClass("select");
-								$("#content").attr("value", "desc");
+								$("#testUl2 > li").siblings().removeClass("action");
+								$("#testUl2 > li").eq(1).addClass("action");
+								$("#content").attr("data-sort", "desc");
 							} else {
-								$("#testUl2 > li").siblings().removeClass("select");
-								$("#testUl2 > li").eq(0).addClass("select");
-								$("#content").attr("value", 'asc');
+								$("#testUl2 > li").siblings().removeClass("action");
+								$("#testUl2 > li").eq(0).addClass("action");
+								$("#content").attr("data-sort",'asc');
 							}
-							$("#content").html($(this).html());
+							$("#content").html($(this).html()).attr("data-value", $(this).attr("data-value"));
+						
 							break;
 					}
+					alert("所选择的字段为:"+$("#content").attr("data-value") +"；排序方式为:"+$("#content").attr("data-sort"));
 					$("#testUl").slideToggle("fast");
 				}
 				event.stopPropagation();
@@ -163,20 +165,20 @@
 
 
 
-<span id="tag" style="cursor: pointer; border: 1px solid red;">排序方式:<span id="content" style="cursor: pointer" value="asc">名称</span><span
+<span id="tag" style="cursor: pointer; border: 1px solid red;">排序方式:<span id="content" style="cursor: pointer" data-sort="asc" data-value="name">名称</span><span
 	class="jui-jsortSelect-downBtn">&nbsp;&nbsp;</span></span>
 
 
 
 <ul class="jui-jsortSelect-ul" id="testUl">
-	<li data-li-name="name" default="asc">名称</li>
-	<li data-li-startdate="startDate" default="desc">创建日期</li>
-	<li data-li-finishdata="finisthDate" default="desc">完成日期</li>
-	<li data-li-size="size" default="desc">大小</li>
+	<li data-value="name" default="asc" class="action">名称</li>
+	<li data-value="startDate" default="desc">创建日期</li>
+	<li data-value="finisthDate" default="desc">完成日期</li>
+	<li data-value="size" default="desc">大小</li>
 	<div>
 		<hr style="margin: 12px" />
 		<ul id="testUl2">
-			<li class="select">升序</li>
+			<li class="action">升序</li>
 			<li>降序</li>
 		</ul>
 
