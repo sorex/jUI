@@ -44,8 +44,8 @@
 		$(function ()
 		{
 		    $("#MyTable1").jtable({
-		        tableHeight: '30%', //表高
-		        tableWidth: '100%', //表宽
+		        height: '20%', //表高
+		        width: '100%', //表宽
 		        data:
                     [
                         { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
@@ -56,34 +56,25 @@
                         { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
                         { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
                     ], //数据源
-		        columns: {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-		        },//列名
-		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
-		        outColor: '#f3f3f3',//鼠标移开后行颜色
-		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
-		        onClick: true,//是否开启鼠标点击
-		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
-		    });
-
-
-		    $("#MyTable2").jtable({
-		        tableHeight: '30%', //表高
-		        tableWidth: '100%', //表宽
-		        data:
-                    [], //数据源
-		        columns: {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-		        },//列名
-		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
-		        outColor: '#f3f3f3',//鼠标移开后行颜色
-		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
-		        onClick: true,//是否开启鼠标点击
-		        noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+		        columns:
+                    [
+		                {
+		                    head: "名称1",				                                    //名称
+		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
+		                    maxLength: 5,			                                        //文本最大长度，0不限制
+		                    head_align: "left",                                             //[left], center, right
+		                    v_align: "top",		                                            //[top], middle, bottom
+		                    h_align: "left",		                                            //[left], center, right
+		                    height: "auto",			                                        //150px, 10%
+		                    width: "auto"			                                        //150px, 10%
+		                },
+		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "操作",context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
+		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
+		            ]//列名
 		    });
 		});
 	</script>
@@ -108,13 +99,12 @@
 <div id="demoTabs">
 	<ul>
 		<li><a href="#tab1">默认</a></li>
-		<li><a href="#tab2">无数据</a></li>
 	</ul>
 	<div id="tab1">
 		<div id="MyTable1"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
-<pre class="brush: js; html-script: true;">
-    &lt;div id="MyTable1"&gt;&lt;/div&gt;
-	&lt;script type="text/javascript"&gt;
+    <pre class="brush: js; html-script: true;">
+&lt;div id="MyTable1"&gt;
+&lt;script type="text/javascript"&gt;
 	    //编辑
 	    function ActionEdit(id, name, name2) {
 	        alert("id:" + id + "\n" + "name:" + name)
@@ -142,63 +132,21 @@
                         { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
                         { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
                     ], //数据源
-		        columns: {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
-
-"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
-                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
-                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
-		        },//列名
-		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
-		        outColor: '#f3f3f3',//鼠标移开后行颜色
-		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
-		        onClick: true//是否开启鼠标点击
+		        columns:
+                    [
+		                { head: "名称1", context: "#Name(#Name2)(#ID)", maxLength：5, head_align:"left", v_align: "top", h_align: "left", height: "auto", width:"auto"},
+		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "操作",context: "&lt;a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')&gt;Edit&lt;/a&gt;|&lt;a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')&gt;Detail&lt;/a&gt;|&lt;a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')&gt;Delete&lt;/a&gt;",
+		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
+		            ]//列名
 		    });
 		});
-	&lt;/script&gt;
-		</pre>
-	</div>
-	<div id="tab2">
-		<div id="MyTable2"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
-<pre class="brush: js; html-script: true;">
-            
-    &lt;div id="MyTable1"&gt;&lt;/div&gt;
-	&lt;script type="text/javascript"&gt;
-	    //编辑
-	    function ActionEdit(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name)
-	    }
-	    //删除
-	    function ActionDetail(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
-	    //详细
-	    function ActionDelete(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
-		$(function ()
-		{
-		    $("#MyTable2").jtable({
-		        tableHeight: '30%', //表高
-		        tableWidth: '100%', //表宽
-		        data:[], //数据源
-		        columns: {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["&lt;a href='#' onclick=" + 
-
-"ActionEdit(#ID,'#Name','#Name2')" + "&gt;Edit&lt;/a&gt;",
-                        "|&lt;a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + "&gt;Detail&lt;/a&gt;",
-                        "|&lt;a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + "&gt;Delete&lt;/a&gt;"]
-		        },//列名
-		        overColor: '#e2e2e2',//鼠标覆盖后行颜色
-		        outColor: '#f3f3f3',//鼠标移开后行颜色
-		        onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
-		        onClick: true,//是否开启鼠标点击
-	            noResultsText:'对不起，没有找到生成表格的数据。'//错误提示
-		    });
-		});
-	&lt;/script&gt;
-		</pre>
-	</div>
+&lt;/script&gt;
+	</pre>
+	</div>	
 </div>
 <div id="descriptionTabs">
 	<ul>
@@ -216,7 +164,7 @@
 			<h3>
 				<span class="description-option-name">[tableHeight]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">'30%'</span>
+				<span class="description-option-value">''</span>
 			</h3>
 			<div>
 				<p>获取或设置表格高度。</p>
@@ -235,7 +183,7 @@
 			<h3>
 				<span class="description-option-name">[tableWidth]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">'90%'</span>
+				<span class="description-option-value">''</span>
 			</h3>
 			<div>
 				<p>获取或设置表格宽度。</p>
@@ -276,127 +224,41 @@
 			</div>
 			<h3>
 				<span class="description-option-name">columns</span>
-				<span class="description-option-type">List<></span>
-				<span class="description-option-value">{}</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
 			</h3>
 			<div>
-				<p>获取或设置表格头部数据</p>
+				<p>获取或设置表格头部数据</p>                
+				<pre class="brush: js;">
+					items:
+						[
+                            {item,item...},
+                            {item,item...},
+                            ...
+                        ]	//使用item列表为其赋值
+
+					item:
+		                    head: "名称名称名称名称",				                        //名称
+		                    context: "#Name(#Name2)(#ID)",			                        //#Name(#Name2)(#ID)
+		                    maxLength: 5,			                                        //文本最大长度，0不限制
+		                    head_align: "left",                                             //[left], center, right
+		                    v_align: "top",		                                            //[top], middle, bottom
+		                    h_align: "left",		                                        //[left], center, right
+		                    height: "auto",			                                        //150px, 10%
+		                    width: "auto"			                                        //150px, 10%
+				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myTable").jtable({columns: {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-		        }});
+					$("#myTable").jtable({columns:[{head: "名称1", context: "#Name", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"}]});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var columns = $("#myTable").jtable( "option", "columns" );
 					//设置
-					$("#myTable").jtable("option", { "columns":  {
-		            "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-		        }});
+					$("#myTable").jtable("option", { "columns":[{head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"}]});
 				</pre>
 			</div>
-			<h3>
-				<span class="description-option-name">overColor</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">''</span>
-			</h3>
-			<div>
-				<p>鼠标覆盖后行颜色。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ 'overColor':'#e2e2e2'});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var overColor = $("#myTable").jtable( "option", "overColor" );
-					//设置
-					$("#myTable").jtable("option", { 'overColor':'#e2e2e2'});
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">outColor</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">''</span>
-			</h3>
-			<div>
-				<p>鼠标移开后行颜色。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ 'outColor':'#f3f3f3'});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var outColor = $("#myTable").jtable( "option", "outColor" );
-					//设置
-					$("#myTable").jtable("option", { 'outColor':'#f3f3f3'});
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">onClickColor</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">''</span>
-			</h3>
-			<div>
-				<p>鼠标移开后行颜色。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ 'onClickColor':'#d4d4d4'});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var onClickColor = $("#myTable").jtable( "option", "onClickColor" );
-					//设置
-					$("#myTable").jtable("option", { 'onClickColor':'#d4d4d4'});
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">onClick</span>
-				<span class="description-option-type">Boolen</span>
-				<span class="description-option-value">true</span>
-			</h3>
-			<div>
-				<p>是否开启鼠标点击。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ 'onClick':true});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var onClick = $("#myTable").jtable( "option", "onClick" );
-					//设置
-					$("#myTable").jtable("option", { 'onClick':true});
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">noResultsText</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">对不起，没有找到生成表格的数据。</span>
-			</h3>
-			<div>
-				<p>错误提示。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ 'noResultsText':'对不起，没有找到生成表格的数据。'});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var noResultsText = $("#myTable").jtable( "option", "noResultsText" );
-					//设置
-					$("#myTable").jtable("option", { 'noResultsText':'对不起，没有找到生成表格的数据。'});
-				</pre>
-			</div>
-
 		</div>
 	</div>
 	<div id="eventsTab">
@@ -406,7 +268,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">由optionName定</span>
-				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+				<span class="description-method-demo">.jtable("option" , optionName , [value])</span>
 			</h3>
 			<div>
 				<p>获取或设置option中optionName的值。</p>
@@ -414,63 +276,78 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">无特殊返回值</span>
-				<span class="description-method-demo">.jdatapager("option" , options)</span>
+				<span class="description-method-demo">.jtable("option" , options)</span>
 			</h3>
 			<div>
 				<p>设置option的值为options。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">currentData</span>
+				<span class="description-method-returnType">选中行数据</span>
+				<span class="description-method-demo">.jtable("currentData")</span>
+			</h3>
+			<div>
+				<p>获取选中行数据</p>
 			</div>
 		</div>
 	</div>
 	<div id="themingTab">
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
-&lt;div id="divId" class="jui-table"&gt;
-    &lt;table id="tableSorter" width="90%" height="30%"&gt;
+&lt;div id="MyTable1" class="jui-table"&gt;
+    &lt;table id="MyTable1_tableSorter" style="width:100%;height:30%;"&gt;
         &lt;thead&gt;
             &lt;tr style="color: rgb(255, 255, 255); "&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px;"&gt;
-                    名称
-                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px;background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span class="jui-table-columnHeadImage"&gt;&lt;/span&gt;
+                    &lt;span style="cursor:default;" title="名称1"&gt;名称1&lt;/span&gt;
                 &lt;/td&gt;
-                &lt;td&gt;名称2&lt;/td&gt;
-                &lt;td&gt;名称3&lt;/td&gt;
-                &lt;td&gt;名称4&lt;/td&gt;
-                &lt;td&gt;名称5&lt;/td&gt;
-                &lt;td&gt;操作&lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px; background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span style="cursor:default;" title="名称2"&gt;名称2&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px;background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span style="cursor:default;" title="名称3"&gt;名称3&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px;background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span style="cursor:default;" title="名称4"&gt;名称4&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px;background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span style="cursor:default;" title="名称5"&gt;名称5&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto; padding-left: 2px; padding-right: 2px; padding-top: 5px; padding-bottom: 5px;background-color: rgb(9, 74, 178);"&gt;
+                    &lt;span style="cursor:default;" title="操作"&gt;操作&lt;/span&gt;
+                &lt;/td&gt;
             &lt;/tr&gt;
         &lt;/thead&gt;
         &lt;tbody&gt;
-            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;AAAAA(aaaaa)(1)
-                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+            &lt;tr lock="false" class="jui-table-out"&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span class="jui-table-columnHeadImage"&gt;&lt;/span&gt;
+                    &lt;span style="display:none;"&gt;1&lt;/span&gt;
+                    &lt;span style="cursor:default;" title="AAAAA(aaaaa)(1)"&gt;AAAAA...&lt;/span&gt;
                 &lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaa3&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaa4&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;aaaaaaaa5&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;
-                    &lt;a href="#" onclick="ActionEdit(1,'AAAAA','aaaaa')"&gt;Edit&lt;/a&gt;
-                    |&lt;a href="#" onclick="ActionDetail(1,'AAAAA','aaaaa')"&gt;Detail&lt;/a&gt;
-                    |&lt;a href="#" onclick="ActionDelete(1,'AAAAA','aaaaa')"&gt;Delete&lt;/a&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span style="cursor:default;" title="aaaaa"&gt;aaaaa&lt;/span&gt;
                 &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
-                    &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;BBBBBBB(bbbbb)(2)
-                        &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
-                    &lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb3&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb4&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb5&lt;/td&gt;
-                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;&lt;a href="#" onclick="ActionEdit(2,'BBBBBBB','bbbbb')"&gt;Edit&lt;/a&gt;
-                    |&lt;a href="#" onclick="ActionDetail(2,'BBBBBBB','bbbbb')"&gt;Detail&lt;/a&gt;
-                    |&lt;a href="#" onclick="ActionDelete(2,'BBBBBBB','bbbbb')"&gt;Delete&lt;/a&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span style="cursor:default;" title="aaaaa3"&gt;aaaaa...&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span style="cursor:default;" title="aaaaaa4"&gt;aaaaa...&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span style="cursor:default;" title="aaaaaaaa5"&gt;aaaaa...&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align: left; vertical-align: top; height: auto; width: auto;padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;"&gt;
+                    &lt;span&gt;&lt;a href="#" onclick="ActionEdit(1,'AAAAA','aaaaa')"&gt;Edit&lt;/a&gt;|&lt;a href="#" onclick="ActionDetail(1,'AAAAA','aaaaa')"&gt;Detail&lt;/a&gt;|&lt;a href="#" onclick="ActionDelete(1,'AAAAA','aaaaa')"&gt;Delete&lt;/a&gt;&lt;/span&gt;
                 &lt;/td&gt;
             &lt;/tr&gt;
         &lt;/tbody&gt;
     &lt;/table&gt;
+    &lt;span id="dis_checkedItems" style="display:none;"&gt;&lt;/span&gt;
 &lt;/div&gt;
 		</pre>
 	</div>
 </div>
+
 

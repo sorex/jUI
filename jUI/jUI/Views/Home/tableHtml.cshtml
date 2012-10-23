@@ -3,37 +3,27 @@
 }
 
 @section head{
-	<style type="text/css">
-	    .jui-table {
-            border:1px solid #ffffff;
-	    }
-	        .jui-table a {
-                text-decoration:none;
-	        }
-	        .jui-table a:hover {
-                background-color:transparent;
-	        }
-	</style>
-	<script type="text/javascript">
-	    function SortNum(a,b) {
-	        return a.length - b.length;
-	    }
-	    //编辑
-	    function ActionEdit(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name)
-	    }
-	    //删除
-	    function ActionDetail(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
-	    //详细
-	    function ActionDelete(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
-		$(function ()
-		{
-		    //数据源
-		    var datas = [
+    <link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+    <script type="text/javascript">
+        //编辑
+        function ActionEdit(id, name, name2) {
+            alert("id:" + id + "\n" + "name:" + name)
+        }
+        //删除
+        function ActionDetail(id, name, name2) {
+            alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+        }
+        //详细
+        function ActionDelete(id, name, name2) {
+            alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+        }
+        $(function () {
+            $("#MyTable1").jtable({
+                height: '20%', //表高
+                width: '100%', //表宽
+                data:
+                    [
                         { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
                         { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
                         { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
@@ -41,103 +31,56 @@
                         { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
                         { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
                         { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
-		    ];
-		    var columns = {
-		        "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                    "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                    "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-		    };
-		    var tableHeight = "30%";
-		    var tableWidth = "90%";
-
-		    var image = "../../Images/orderedList0.png";
-		    var overColor = '#e2e2e2';//鼠标覆盖后行颜色
-		    var outColor = '#f3f3f3';//鼠标移开后行颜色
-		    var onClickColor = '#d4d4d4';//鼠标点击行后，行颜色
-		    var onClick =true//是否开启鼠标点击
-
-		    $(document).bind("selectstart", function () { return false; }); //控制文本不能被选中
-		    $("#divId").addClass("jui-table");
-		    $("#divId").empty().append("<table id='tableSorter' width='" + tableWidth + "' height='" + tableHeight + "'><thead><tr></tr></thead><tbody></tbody></table>");
-		    var dataArray = new Array();
-		    for (d in datas[0]) {
-		        dataArray.push(d);
-		    }
-		    dataArray.sort(SortNum).reverse();
-		    var g = 0;
-		    for (var c in columns) {
-		        $("#tableSorter thead tr").append("<td>" + c + "</td>");
-		        g++;
-		    }
-		    for (var i = 0; i < datas.length; i++) {
-		        var v;
-		        var str = "";
-		        $("#tableSorter tbody").append("<tr></tr>"); //行
-		        for (var c in columns) {
-		            v = columns[c];
-		            if ((typeof v == 'object') && v.constructor == Array) {
-		                for (var m = 0; m < v.length; m++) {
-		                    str += v[m];
-		                    for (var r = 0; r < dataArray.length; r++) {
-		                        var t = "#" + dataArray[r];
-		                        str = str.replace(t, datas[i][dataArray[r]]);
-		                    }
+                    ], //数据源
+                columns:
+                    [
+		                {
+		                    head: "名称名称名称名称",				                    //名称
+		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
+		                    maxLength: 5,			                                        //文本最大长度，0不限制
+		                    head_align: "left",                                             //[left], center, right
+		                    v_align: "top",		                                            //[top], middle, bottom
+		                    h_align: "left",		                                            //[left], center, right
+		                    height: "auto",			                                        //150px, 10%
+		                    width: "auto"			                                        //150px, 10%
+		                    //第一列数据
+		                },
+		                {
+		                    head: "名称1",
+		                    context: "#Name2",
+		                    maxLength: 5,
+		                    head_align: "left",
+		                    v_align: "top",
+		                    h_align: "left",
+		                    height: "auto",
+		                    width: "auto"
+		                    //第二列数据
+		                },
+		                {
+		                    head: "操作",
+		                    context: "<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>",
+		                    maxLength: 5,
+		                    head_align: "left",
+		                    v_align: "top",
+		                    h_align: "left",
+		                    height: "auto",
+		                    width: "auto"
+		                    //第三列数据
 		                }
-		            } else {
-		                for (var r = 0; r < dataArray.length; r++) {
-		                    var t = "#" + dataArray[r];
-		                    v = v.replace(t, datas[i][dataArray[r]]);
-		                }
-		                str = v;
-		            }
-		            $("#tableSorter tbody tr:eq(" + i + ")").append("<td>" + str + "</td>"); //列 
-		            str = "";
-		        }
-		    }
-		    var table = $("#tableSorter");
-		    var $tr = table.children("tbody").find('tr');
-		    table.find("td").css({ "padding-top": "5px", "padding-bottom": "5px" });
-		    table.find('tr').find('td:eq(0)').append("<img style='float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;' src='" + image + "'/>");
-		    //给tr设置LOCK、初始颜色,设置tr默认为没单击,设置背景色
-		    $tr.attr('Lock', 'false').css('background-color', outColor);
-		    //设置表格样式
-		    $tr.each(function (i) {
-		        var op = $(this); //tr对象
-		        //鼠标悬停事件
-		        op.hover(function () {
-		            if (onClick) {//如果开启点击
-		                if (op.attr('Lock') == 'false') { op.css('background-color', overColor); }
-		            }
-		            else {
-		                op.css('background-color', overColor);
-		            }
-		        },
-                function () {
-                    if (onClick) {
-                        if (op.attr('Lock') == 'false') { op.css('background-color', outColor); }
-                    }
-                    else {
-                        op.css('background-color', outColor);
-                    }
-                });
-		        //单击事件
-		        if (onClick) {
-		            op.click(function () {
-		                $tr.css('background-color', outColor); //全部tr初始化未覆盖时候的颜色
-		                $tr.attr('Lock', 'false'); //全部tr初始化为未锁定状态
-		                op.attr('Lock', 'true'); //选中tr变更为锁定状态
-		                if (op.attr('Lock') == 'true') { op.css('background-color', onClickColor); } //选中tr颜色并更为选择状态颜色
-		            });
-		        }
-		    });
+                    ]//列名
+            });
 
-		    //table.find('td').width(table.width() / g);
-		    //table.find('tr').height(table.height() / datas.length);
-            
-		    table.children("thead").find("td").css("background", "#094ab2");
-		    table.find('tr:eq(0)').css("color","#ffffff");
-		});
-	</script>
+            $("#_checkdRoll").click(function () {
+                var currentData = $("#MyTable1").jtable("currentData");
+                if (currentData == "") {
+                    alert("未选中行");
+                } else {
+                    alert(currentData["ID"]);
+                }
+            });
+
+        });
+    </script>
 }
 
 @section header{
@@ -157,4 +100,5 @@
 
 <h2>tableHtml</h2>
 
-<div id="divId"></div>
+<div id="MyTable1"></div>
+<input type="button" value="选中行ID" id="_checkdRoll"/>
