@@ -1,0 +1,30 @@
+﻿@{
+	ViewBag.Title = "table";
+}
+
+<h2>table</h2>
+<table>
+	<tr>
+		<td style="text-align: center; vertical-align: middle; height: 150px; width: 300px; padding-left: 2px; padding-right: 2px;">
+			<input type="button" value="abc" /></td>
+	</tr>
+</table>
+<span title="abcdefghijklim">abcde...</span>
+
+<script type="text/javascript">
+	columns = [
+		{
+			head: "表头",				//名称
+			head_align: "表头横向位置",//[left], center, right
+			context: "内容",			//#Name(#Name2)(#ID)
+			v_align: "纵向位置",		//[top], middle, bottom
+			h_align: "横向位置",		//[left], center, right
+			height: "高度",			//150px, 10%
+			width: "宽度",			//150px, 10%
+			maxLength: 5,			//文本最大长度，0不限制
+		}
+	];
+
+	var date = $("#Mytable").jtable("CurrentData");
+	// var date = { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" };
+</script>

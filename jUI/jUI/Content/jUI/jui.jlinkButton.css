@@ -3,7 +3,12 @@
     background:none !important;
     border:none !important;
     color:#094ab2 !important;
-    cursor:pointer;            
+    cursor:pointer;          
+    font-family:'Microsoft YaHei';  
+    font-size:14px;    
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
 }
     .jui-linkButton:hover {
         text-decoration:underline;
