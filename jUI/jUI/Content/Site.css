@@ -20,15 +20,9 @@ a
 	text-decoration: underline;
 }
 
-	a:link, a:visited,
-	a:active, a:hover
+	a:link, a:visited, a:active, a:hover
 	{
 		color: #094ab2;
-	}
-
-	a:hover
-	{
-		background-color: #094ab2;
 	}
 
 h1

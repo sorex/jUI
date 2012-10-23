@@ -34,40 +34,52 @@
 	{
 	}
 
-		.jui-jheadMenu2 > ul
+		.jui-jheadMenu2 ul
 		{
 		}
 
-			.jui-jheadMenu2 > ul li
+			.jui-jheadMenu2 ul li
 			{
-				display:inline-block;
+				float:left;
 			}
 
-			.jui-jheadMenu2 > ul ul
+			.jui-jheadMenu2 ul li ul
 			{
-				display:none;
+				visibility:hidden;
+			}
+			
+			.jui-jheadMenu2 ul li:hover ul
+			{
+				visibility:visible;
+			}
+
+			.jui-jheadMenu2 ul li:active ul
+			{
+				visibility:visible;
 			}
 
 </style>
 
-<div class="jui-jheadMenu2">
+<div class="jui-jheadMenu2 ui-helper-clearfix">
 	<ul>
-		<li>A</li>
-		<ul>
+		<li>A<ul>
 			<li>A1</li>
 			<li>A2</li>
 			<li>A3</li>
 			<li>A4</li>
 		</ul>
+		</li>
 		<li>B</li>
-		<li>C</li>
-		<ul>
+		<li>C<ul>
 			<li>C1</li>
 			<li>C2</li>
 			<li>C3</li>
 			<li>C4</li>
 		</ul>
+		</li>
 		<li>D</li>
 		<li>E</li>
 	</ul>
 </div>
+<input type="text" /><input type="text" /><input type="text" /><input type="text" />
+<div id="a" style="height:150px; width:50px; background-color:red; position:absolute;"></div>
