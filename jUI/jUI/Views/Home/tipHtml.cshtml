@@ -11,7 +11,7 @@
 
         .jui-jtip-w-arrowhead
         {
-            background-image: url(/Content/images/jui-jtip-carat-w-cccccc.png);
+            background-image: url(/Content/jUI/images/jui-jtip-carat-w-cccccc.png);
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -19,7 +19,7 @@
 
         .jui-jtip-w-arrowhead-error
         {
-            background-image: url(/Content/images/jui-jtip-carat-w-fef1ec.png);
+            background-image: url(/Content/jUI/images/jui-jtip-carat-w-fef1ec.png);
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -28,7 +28,7 @@
 
         .jui-jtip-n-arrowhead
         {
-            background-image: url(/Content/images/jui-jtip-carat-n-cccccc.png);
+            background-image: url(/Content/jUI/images/jui-jtip-carat-n-cccccc.png);
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
@@ -36,7 +36,7 @@
 
         .jui-jtip-n-arrowhead-error
         {
-            background-image: url(/Content/images/jui-jtip-carat-n-fef1ec.png);
+            background-image: url(/Content/jUI/images/jui-jtip-carat-n-fef1ec.png);
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
@@ -106,15 +106,19 @@
             
           
             $("#Name").bind('mouseover', function () {
-           
 
+            	$("#Name-tip-nomal-conetent").stop();
+            	$("#Name-tip-arrowhead").stop();
                 $("#Name-tip-nomal-conetent").animate({ opacity: '1' },1000);
                 $("#Name-tip-arrowhead").animate({ opacity: '1' }, 1000);
            
             });
 
             $("#Name").bind('mouseout', function () {
+            	
 
+            	$("#Name-tip-nomal-conetent").stop();
+            	$("#Name-tip-arrowhead").stop();
                 $("#Name-tip-nomal-conetent").animate({ opacity: '0' }, 1000);
                 $("#Name-tip-arrowhead").animate({ opacity: '0' }, 1000);
              
@@ -126,20 +130,24 @@
                 at: "right middle",
                 offset: '6 0'
             });
-            $("#Div1").position({
+            $("#Div1-arrowhead").position({
                 of: $("#scuccess"),
                 my: "left middle",
                 at: "right middle"
             });
 
             $("#scuccess").bind('mouseover', function () {
+            	$("#Name-tip-nomal-success").stop();
+            	$("#Div1-arrowhead").stop();
                 $("#Name-tip-nomal-success").animate({ opacity: '1' }, 1000);
-                $("#Div1").animate({ opacity: '1' }, 1000);
+                $("#Div1-arrowhead").animate({ opacity: '1' }, 1000);
             });
 
             $("#scuccess").bind('mouseout', function () {
+            	$("#Name-tip-nomal-success").stop();
+            	$("#Div1-arrowhead").stop();
                 $("#Name-tip-nomal-success").animate({ opacity: '0' }, 1000);
-                $("#Div1").animate({ opacity: '0' }, 1000);
+                $("#Div1-arrowhead").animate({ opacity: '0' }, 1000);
 
             });
 
@@ -150,20 +158,24 @@
                 at: "right middle",
                 offset: '6 0'
             });
-            $("#Div2").position({
+            $("#Div2-arrowhead").position({
                 of: $("#Error"),
                 my: "left middle",
                 at: "right middle"
             });
 
             $("#Error").bind('mouseover', function () {
+            	$("#Name-tip-nomal-error").stop();
+            	$("#Div2-arrowhead").stop();
                 $("#Name-tip-nomal-error").animate({ opacity: '1' }, 1000);
-                $("#Div2").animate({ opacity: '1' }, 1000);
+                $("#Div2-arrowhead").animate({ opacity: '1' }, 1000);
             });
 
             $("#Error").bind('mouseout', function () {
+            	$("#Name-tip-nomal-error").stop();
+            	$("#Div2-arrowhead").stop();
                 $("#Name-tip-nomal-error").animate({ opacity: '0' }, 1000);
-                $("#Div2").animate({ opacity: '0' }, 1000);
+                $("#Div2-arrowhead").animate({ opacity: '0' }, 1000);
 
             });
 
@@ -179,11 +191,16 @@
                 at: "center bottom"
             });
             $("#Name1").bind('mouseover', function () {
+            
+            	$("#Name1-tip-nomal-conetent").stop();
+            	$("#Name1-tip-arrowhead").stop();
                 $("#Name1-tip-nomal-conetent").animate({ opacity: '1' }, 1000);
                 $("#Name1-tip-arrowhead").animate({ opacity: '1' }, 1000);           
             });
 
             $("#Name1").bind('mouseout', function () {
+            	$("#Name1-tip-nomal-conetent").stop();
+            	$("#Name1-tip-arrowhead").stop();
                 $("#Name1-tip-nomal-conetent").animate({ opacity: '0' }, 1000);
                 $("#Name1-tip-arrowhead").animate({ opacity: '0' }, 1000);
 
@@ -198,20 +215,24 @@
                 at: "center bottom",
                 offset: '0 6'
             });
-            $("#Div11").position({
+            $("#Div11-arrowhead").position({
                 of: $("#scuccess1"),
                 my: "center top",
                 at: "center bottom"
             });
             $("#scuccess1").bind('mouseover', function () {
+            	$("#Name1-tip-nomal-success").stop();
+            	$("#Div11-arrowhead").stop();
                 $("#Name1-tip-nomal-success").animate({ opacity: '1' }, 1000);
-                $("#Div11").animate({ opacity: '1' }, 1000);
+                $("#Div11-arrowhead").animate({ opacity: '1' }, 1000);
             });
 
 
             $("#scuccess1").bind('mouseout', function () {
+            	$("#Name1-tip-nomal-success").stop();
+            	$("#Div11-arrowhead").stop();
                 $("#Name1-tip-nomal-success").animate({ opacity: '0' }, 1000);
-                $("#Div11").animate({ opacity: '0' }, 1000);
+                $("#Div11-arrowhead").animate({ opacity: '0' }, 1000);
 
             });
 
@@ -229,12 +250,16 @@
             });
 
             $("#Error1").bind('mouseover', function () {
+            	$("#Name1-tip-nomal-error").stop();
+            	$("#Div22").stop();
                 $("#Name1-tip-nomal-error").animate({ opacity: '1' }, 1000);
                 $("#Div22").animate({ opacity: '1' }, 1000);
             });
 
 
             $("#Error1").bind('mouseout', function () {
+            	$("#Name1-tip-nomal-error").stop();
+            	$("#Div22").stop();
                 $("#Name1-tip-nomal-error").animate({ opacity: '0' }, 1000);
                 $("#Div22").animate({ opacity: '0' }, 1000);
 
@@ -283,7 +308,7 @@
         <span class="ui-icon ui-icon-check" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"></span><span>输入成功</span>
     </div>
 </div>
-<div id="Div1" class="jui-jtip-w-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;">
+<div id="Div1-arrowhead" class="jui-jtip-w-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;">
 </div>
 
 
@@ -293,7 +318,7 @@
 <div id="Name-tip-nomal-error" class="ui-state-error jui-jtip-error-w-content" style="width: 200px;filter: alpha(opacity = 0); opacity:0;">
     <span class="ui-icon ui-icon-alert" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"></span><span>对不起您的输入不合法</span>
 </div>
-<div id="Div2" class="jui-jtip-w-arrowhead-error"  style="filter: alpha(opacity = 0); opacity:0;">
+<div id="Div2-arrowhead" class="jui-jtip-w-arrowhead-error"  style="filter: alpha(opacity = 0); opacity:0;">
 </div>
 
 
@@ -316,7 +341,7 @@
         <span class="ui-icon ui-icon-check" style="float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;"></span><span>输入成功</span>
     </div>
 </div>
-<div id="Div11" class="jui-jtip-n-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;">
+<div id="Div11-arrowhead" class="jui-jtip-n-arrowhead"  style="filter: alpha(opacity = 0); opacity:0;">
 </div>
 
 

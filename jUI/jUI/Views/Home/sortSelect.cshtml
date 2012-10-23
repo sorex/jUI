@@ -1,5 +1,242 @@
 ﻿@{
-    ViewBag.Title = "sortSelect";
+	ViewBag.Title = "sortSelect";
+}
+<h2>sortSelect</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function () {
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<link href="@Url.Content("~/Content/jUI/jui.jsortSelect.css")" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jsortSelect.js")"></script>
+
+	<script type="text/javascript">
+		$(function () {
+
+			$("#showSortSelect").jsortSelect({
+				item: [{ name: "Id", text: "编号" },
+					{ name: "Age", text: "年龄", sort: "desc" },
+					{ name: "finishData", text: "完成日期", sort: "asc" },
+					{ name: "size", text: "大小", sort: "desc" }
+				],
+				onItemClick: function (name, sort) {
+					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				}
+			});
+			$("#showSortSelect2").jsortSelect({
+				item: null,
+				onItemClick: function (name, sort) {
+					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				}
+			});
+
+		});
+
+	</script>
 }
 
-<h2>sortSelect</h2>
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认效果</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="showSortSelect"></div>
+		<br>
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSortSelect"&gt;&lt;/div&gt;
+			  &lt;script type="text/javascript"&gt;
+	            $(function () {
+	             	$("#showSortSelect").jsortSelect({
+				item: [{ name: "Id", text: "编号" },
+					{ name: "Age", text: "年龄", sort: "desc" },
+					{ name: "finishData", text: "完成日期", sort: "asc" },
+					{ name: "size", text: "大小", sort: "desc" }
+				],
+				onItemClick: function (name, sort) {
+					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				}
+			});
+	            });
+	        &lt;/script&gt;
+  
+		</pre>
+	</div>
+	<div id="tab2">
+		<div id="showSortSelect2"></div>
+		<br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSortSelect2"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	             $(function () {
+	             	$("#showSortSelect2").jsortSelect({
+				item: null,
+				onItemClick: function (name, sort) {
+					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				}
+			});
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>排序专用的select控件</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">item</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>排序字段的数据源</p>
+				<pre class="brush: js;">
+				
+				item：
+						name: 表示排序字段的名称  text: 字段显示的值 sort:排序方式
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#showSortSelect").jsortSelect({
+										item: [{ name: "Id", text: "编号" },
+											{ name: "Age", text: "年龄", sort: "desc" },
+											{ name: "finishData", text: "完成日期", sort: "asc" },
+											{ name: "size", text: "大小", sort: "desc" }
+										],
+										onItemClick: function (name, sort) {
+											alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+										}
+										});				
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取(返回的是一个对象)
+					var item = $("#showSortSelect").jdatapager( "option", "item" );
+					var  name =item[0]["name"];
+					//设置
+					$("#showSortSelect").jsortSelect({
+										item: [{ name: "Id", text: "编号" },
+											{ name: "Age", text: "年龄", sort: "desc" },
+											{ name: "finishData", text: "完成日期", sort: "asc" },
+											{ name: "size", text: "大小", sort: "desc" }
+										]
+										});			
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onItemClick</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>点击排序字段或者排序方式时触发</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+                    name：排序字段
+					sort：排序方式升序（asc）或者降序(desc)
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+							$("#showSortSelect").jsortSelect({
+										item: [{ name: "Id", text: "编号" },
+											{ name: "Age", text: "年龄", sort: "desc" },
+											{ name: "finishData", text: "完成日期", sort: "asc" },
+											{ name: "size", text: "大小", sort: "desc" }
+										],
+										onItemClick: function (name, sort) {
+											alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+										}
+										});		
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">暂无</span>
+				<span class="description-method-returnType">暂无</span>
+				<span class="description-method-demo">暂无</span>
+			</h3>
+			<div>
+				<p>暂无</p>
+			</div>
+			
+			
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+			
+&lt;span id="tag" style="cursor: pointer; border: 1px solid red;"&gt;排序方式:&lt;span id="content" style="cursor: pointer" data-sort="asc" data-value="name"&gt;名称/span&gt;&lt;span
+	class="jui-jsortSelect-downBtn"&gt;&nbsp;&nbsp;&lt;/span&gt;&lt;/span&gt;
+	&lt;ul class="jui-jsortSelect-ul" id="testUl"&gt;
+	&lt;li data-value="name" default="asc" class="action"&gt;名称&lt;/li&gt;
+	&lt;li data-value="startDate" default="desc"&gt;创建日期&lt;/li&gt;
+	&lt;li data-value="finisthDate" default="desc"&gt;完成日期&lt;/li&gt;
+	&lt;li data-value="size" default="desc"&gt;大小&lt;/li&gt;
+	&lt;div&gt;
+		&lt;hr style="margin: 12px" /&gt;
+		&lt;ul id="testUl2">
+			&lt;li class="action"&gt;升序&lt;/li&gt;
+			&lt;li&gt;降序&lt;/li&gt;
+		&lt;/ul&gt;
+
+	&lt;/div&gt;
+
+&lt;/ul&gt;
+		&lt;/pre&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+		</pre>
+	</div>
+</div>
