@@ -1,13 +1,13 @@
 ﻿@{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 @section head{
-	<link href="@Url.Content("~/Content/jUI/jui.jheadMenu.css")" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jheadMenu.js")"></script>
+    <link href="@Url.Content("~/Content/jUI/jui.jheadMenu.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jheadMenu.js")"></script>
 
-	<script type="text/javascript">
-	</script>
+    <script type="text/javascript">
+    </script>
 }
 
 @section header{
@@ -30,44 +30,80 @@
 <p>这里是各个控件的测试，包含了html以及ajax相关的各种测试</p>
 
 <style type="text/css">
-	.jui-jheadMenu2
-	{
-	}
+    .jui-jheadMenu2
+    {
+    }
 
-		.jui-jheadMenu2 > ul
-		{
-		}
+        .jui-jheadMenu2 ul
+        {
+            margin: 0px;
+            padding: 0px;
+        }
 
-			.jui-jheadMenu2 > ul li
-			{
-				display:inline-block;
-			}
+            .jui-jheadMenu2 ul li
+            {
+                float: left;
+                display: inline;
+                font: 0.9em Arial, Helvetica, sans-serif;
+                height: 30px;
+                width: 100px;
+                list-style: none;
+            }
 
-			.jui-jheadMenu2 > ul ul
-			{
-				display:none;
-			}
+                .jui-jheadMenu2 ul li a
+                {
+                    color: #FFF;
+                    text-decoration: none;
+                    line-height: 29px;
+                    width: 91px;
+                    margin: 0px;
+                    padding: 0px 0px 0px 8px;
+                    display: block;
+                    border-right: solid 1px #ccc;
+                    border-bottom: solid 1px #ccc;
+                    background: #808080;
+                }
 
+                .jui-jheadMenu2 ul li ul li
+                {
+                    height: 25px;
+                }
+
+                    .jui-jheadMenu2 ul li ul li a
+                    {
+                        background: #666;
+                        line-height: 24px;
+                    }
+
+                    .jui-jheadMenu2 ul li a:hover { background: #666; }
+                    .jui-jheadMenu2 ul li ul { visibility: hidden; }
+                    .jui-jheadMenu2 ul li:hover ul { visibility: visible; }
+                    .jui-jheadMenu2 ul li ul li a:hover { background: #333; }
 </style>
 
-<div class="jui-jheadMenu2">
-	<ul>
-		<li>A</li>
-		<ul>
-			<li>A1</li>
-			<li>A2</li>
-			<li>A3</li>
-			<li>A4</li>
-		</ul>
-		<li>B</li>
-		<li>C</li>
-		<ul>
-			<li>C1</li>
-			<li>C2</li>
-			<li>C3</li>
-			<li>C4</li>
-		</ul>
-		<li>D</li>
-		<li>E</li>
-	</ul>
+<p>aaa</p>
+<div class="jui-jheadMenu2 ui-helper-clearfix">
+    <ul>
+        <li><a href="#">A</a>
+            <ul>
+                <li><a href="#">A1</a></li>
+                <li><a href="#">A2</a></li>
+                <li><a href="#">A3</a></li>
+                <li><a href="#">A4</a></li>
+            </ul>
+
+        </li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a>
+            <ul>
+                <li><a href="#">C1</a></li>
+                <li><a href="#">C2</a></li>
+                <li><a href="#">C3</a></li>
+                <li><a href="#">C4</a></li>
+            </ul>
+        </li>
+        <li><a href="#">D</a></li>
+        <li><a href="#">E</a></li>
+    </ul>
 </div>
+<p>bbb</p>

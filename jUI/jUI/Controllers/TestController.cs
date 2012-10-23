@@ -25,5 +25,20 @@ namespace jUI.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult table()
+		{
+			return View();
+		}
+
+		public ActionResult tip()
+		{
+			return View();
+		}
+
+		public ActionResult datetimepicker()
+		{
+			return View();
+		}
 	}
 }

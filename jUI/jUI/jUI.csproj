@@ -295,6 +295,9 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\layout.cshtml" />
     <Content Include="Views\Test\datapager.cshtml" />
+    <Content Include="Views\Test\table.cshtml" />
+    <Content Include="Views\Test\tip.cshtml" />
+    <Content Include="Views\Test\datetimepicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
