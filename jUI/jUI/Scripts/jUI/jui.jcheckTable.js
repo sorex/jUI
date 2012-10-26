@@ -52,7 +52,7 @@
 	        if (checkedItems.length > 0) {
 	            for (var i = 0; i < checkedItems.length; i++) {
 	                for (var j = 0; j < table.find("tbody tr").length; j++) {
-	                    var rowId = table.find("tbody tr").eq(i).find("td:eq(1)").find("span").html();
+	                    var rowId = table.find("tbody tr").eq(i).find("td:eq(1)").find("span:eq(1)").html();
 	                    if (checkedItems[i] == rowId) {
 	                        table.find("tbody tr").eq(i).find("td:eq(0) input").attr("checked", 'true');
 	                    }
@@ -123,7 +123,7 @@
 	        var listChecked = [];
 	        for (var i = 0; i < table.find("tbody tr").length; i++) {
 	            if (table.find("tbody tr:eq(" + i + ")").find("input").attr("checked") == "checked") {
-	                listChecked.push(table.find("tbody tr:eq(" + i + ")").find("span").html());
+	                listChecked.push(table.find("tbody tr:eq(" + i + ")").find("span:eq(1)").html());
 	            }
 	        }
 	        return listChecked;
