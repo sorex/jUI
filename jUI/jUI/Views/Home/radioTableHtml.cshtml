@@ -22,8 +22,8 @@
 	    }
 	    $(function () {
 	        $("#MyTable1").jtable({
-	            tableHeight: '30%', //表高
-	            tableWidth: '100%', //表宽
+	            height: '20%', //表高
+	            width: '100%', //表宽
 	            data:
                     [
                         { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
@@ -34,18 +34,29 @@
                         { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
                         { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
                     ], //数据源
-	            columns: {
-	                "名称": "#Name(#Name2)(#ID)", "名称2": "#Name2", "名称3": "#Name3", "名称4": "#Name4", "名称5": "#Name5", "操作": ["<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>",
-                        "|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>",
-                        "|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>"]
-	            },//列名
-	            overColor: '#e2e2e2',//鼠标覆盖后行颜色
-	            outColor: '#f3f3f3',//鼠标移开后行颜色
-	            onClickColor: '#d4d4d4',//鼠标点击行后，行颜色
-	            onClick: true,//是否开启鼠标点击
-	            noResultsText: '对不起，没有找到生成表格的数据。'//错误提示
+	            columns:
+                    [
+		                {
+		                    head: "名称1",				                                    //名称
+		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
+		                    maxLength: 5,			                                        //文本最大长度，0不限制
+		                    head_align: "left",                                             //[left], center, right
+		                    v_align: "top",		                                            //[top], middle, bottom
+		                    h_align: "left",		                                            //[left], center, right
+		                    height: "auto",			                                        //150px, 10%
+		                    width: "auto"			                                        //150px, 10%
+		                },
+		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                {
+		                    head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
+		                    maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
+		                }
+                    ]//列名
 	        }).jradioTable({
-	            checkedItem: 1//默认选中项
+	            checkedItem: 0//默认选中项
 	        });
 	    });
 
@@ -53,7 +64,11 @@
 	<script type="text/javascript">
 	    $(function () {
 	        $("#_b").click(function () {
-	            alert($("#MyTable1").jradioTable("checked").trim());
+	            if ($("#MyTable1").jradioTable("checked") == 0) {
+	                alert("无选中项")
+	            } else {
+	                alert($("#MyTable1").jradioTable("checked").trim());
+	            }
 	        });
 	    })
 	</script>

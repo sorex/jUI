@@ -43,7 +43,7 @@
 	        $("#" + tableId + "_tableSorter tbody tr").prepend("<td><input  type='radio'  name='radio_" + tableId + "'/></td>");
 	        ////默认选中的项
 	        for (var j = 0; j < table.find("tbody tr").length; j++) {
-	            var rowId = table.find("tbody tr").eq(j).find("td:eq(1)").find("span").html();
+	            var rowId = table.find("tbody tr").eq(j).find("td:eq(1)").find("span:eq(1)").html();
 	            if (checkedItem == rowId) {
 	                table.find("tbody tr").eq(j).find("td:eq(0) input").attr("checked", 'checked');
 	            }
@@ -56,10 +56,10 @@
 	    checked: function () {
 	        var tableId = $(this.element).attr("id");
 	        var table = $("#" + tableId + "_tableSorter");
-	        var r;
+	        var r=0;
 	        for (var i = 0; i < table.find("tbody tr").length; i++) {
 	            if (table.find("tbody tr").eq(i).find("input").attr("checked") == "checked") {
-	                r = table.find("tbody tr:eq("+i+")").find("td").find("span").text();
+	                r = table.find("tbody tr:eq("+i+")").find("td").find("span:eq(1)").text();
 	            }
 	        }
 	        return r;
