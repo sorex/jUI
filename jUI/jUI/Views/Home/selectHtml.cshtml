@@ -1,5 +1,51 @@
 ﻿@{
-    ViewBag.Title = "selectHtml";
+	ViewBag.Title = "selectHtml.cshtml";
 }
 
+@section head{
+	<link href= "@Url.Content("~/Content/jUI/chosen.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$(".chzn-select").chosen();//样式调用
+			//$("#aaa").chosen();id调用
+			$("#selectHtml").change(function () {
+				alert("选择的国家中文名为:"+$(this).val() +":英文名称为:"+$(this).find("option:selected").text());
+			});
+	
+		});
+	</script>
+
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
 <h2>selectHtml</h2>
+<div>
+<select id="selectHtml" data-placeholder="选择国家" class="chzn-select" style="width: 350px;" tabindex="2">
+	<option value=""></option>
+	<option value="美国">United States</option>
+	<option value="(大不列颠)联合王国">United Kingdom</option>
+	<option value="阿富汗">Afghanistan</option>
+	<option value="阿尔巴尼亚">Albania</option>
+	<option value="阿尔及利亚">Algeria</option>
+</select>
+	</div>

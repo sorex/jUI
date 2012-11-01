@@ -1,5 +1,50 @@
 ﻿@{
-    ViewBag.Title = "select";
+	ViewBag.Title = "selectHtml.cshtml";
 }
 
-<h2>select</h2>
+@section head{
+	<link href= "@Url.Content("~/Content/jUI/chosen.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		$(function () {
+		
+			$("#showSelect").jSelect({
+				placeholder: "请国家选择(可以多选)",
+				width: "100px",
+				model: "default",
+				onSelectChange: function (selectValue, SelectText) {
+					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				}
+			});
+
+	
+		});
+	</script>
+
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
+<h2>selectHtml</h2>
+<div id="showSelect">
+</div>
+
