@@ -4,6 +4,7 @@
 
 @section head{    
 	<link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/jUI/jui.jcheckbox.css")" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTable.js")"></script>
     
@@ -60,6 +61,28 @@
                 , count:5//限制可供勾选的checkBox的个数
 	        });
 
+	        //$(":checkbox").after("<span class='jui-checkbox'></span>").click(function (event) {
+	        //    if ($(this).is(':checked')) {
+	        //        $(this).next().addClass("jui-checkbox-checked");
+	        //        $(this).checked = true;
+	        //    }
+	        //    else {
+	        //        $(this).next().removeClass('jui-checkbox-checked');
+	        //        $(this).checked = false;
+	        //    }
+	        //    event.stopPropagation();
+	        //}).hide().next().click(function (event) {
+	        //    var myObject = document.getElementById($(this).prev().attr("id"));
+	        //    if (myObject.checked == true) {
+	        //        $(this).removeClass('jui-checkbox-checked')
+	        //        myObject.checked = false;
+	        //    } else {
+
+	        //        myObject.checked = true;
+	        //        $(this).addClass('jui-checkbox-checked')
+	        //    }
+	        //    event.stopPropagation();
+	        //});
 	    });
 
 	</script>
@@ -67,10 +90,10 @@
     <script type="text/javascript">
         $(function () {
             $("#btn_checked").click(function () {
-                if ($("#MyTable1").jcheckTable("checkd").length == 0) {
+                if ($("#MyTable1").jcheckTable("isChecked").length == 0) {
                     alert("未选中任何行")
                 } else {
-                    alert($("#MyTable1").jcheckTable("checkd").join());
+                    alert($("#MyTable1").jcheckTable("isChecked").join());
                 }
             });
         });
