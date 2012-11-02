@@ -47,7 +47,7 @@
 	    },
 
 	    _jdatapagerify:function(){	        
-	        var self = this,o = this.options;
+	        var self = this, o = this.options,
 	        e = $(this.element);
 	        e.empty();
 	        var eid= $(this.element).attr("id");
@@ -58,11 +58,11 @@
 	            if (id == "" || id == null) {
 	                id = i;
 	            }
-	            var name = data[i]["name"];
-	            var image = data[i]["image"];
-	            var children = data[i]["children"];
-	            var hline = data[i]["line"];
-	            var position = data[i]["position"];
+	            var name = data[i]["name"],
+	                image = data[i]["image"],
+	                children = data[i]["children"],
+	                hline = data[i]["line"],
+	                position = data[i]["position"];
 	            if (image != null && image != "") {
                     $("#" + eid + "_ul").append("<li id='" + eid + "_" + id + "'><span style='display:none;'>"+id+"</span><a>"
                         + "<span class='jui-headMenu-las1'> <span class='jui-headMenu-lass'> <span class='jui-headMenu-lass_endicon'>" +
