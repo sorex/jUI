@@ -107,12 +107,12 @@
 	        e.find("li").has("ul").find(".jui-headMenu-lass").after("<span class='jui-headMenu-endImg'></span>");
 
 	        e.children("ul").children("li").click(function () {
-	            $("body").find("li").not(this).has("ul:visible").children("ul").slideUp("fast");
+	            e.find("li").not(this).has("ul:visible").children("ul").slideUp("fast");
 	            $(this).children("ul").slideToggle("fast");
 	        });
 	        e.children("ul").children("li").mousedown(function () {
-	            $("body").find("li").removeClass("jui-headMenu-clicked");
-	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
+	            e.find("li").removeClass("jui-headMenu-clicked");
+	            e.find("li").children("a").removeClass("jui-headMenu-clicked");
 	            $(this).addClass("jui-headMenu-clicked");
 	            $(this).children("a").addClass("jui-headMenu-clicked");
 	            $(this).mouseup(function () {
@@ -137,9 +137,9 @@
 	            }
 	        });
 	        $(document).bind("click", function () {
-	            $("body").find("li").has("ul:visible").children("ul").slideUp("fast");
-	            $("body").find("li").removeClass("jui-headMenu-clicked");
-	            $("body").find("li").children("a").removeClass("jui-headMenu-clicked");
+	            e.find("li").has("ul:visible").children("ul").slideUp("fast");
+	            e.find("li").removeClass("jui-headMenu-clicked");
+	            e.find("li").children("a").removeClass("jui-headMenu-clicked");
 	        })
 	        //当菜单项中无文字而只有下拉图标时候，调整下拉箭头样式
 	        e.find("li").has("ul").find(".jui-headMenu-lass").each(function () {

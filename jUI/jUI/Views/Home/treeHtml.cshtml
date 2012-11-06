@@ -2,4 +2,106 @@
     ViewBag.Title = "treeHtml";
 }
 
+@section head{    
+    <link href="@Url.Content("~/Content/jUI/jui.jtree.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtree.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tree").jtree({
+                nodes: [
+                    {
+                        name: "父节点1", children: [
+                            {
+                                name: "父节点1-1", children: [
+                                  { name: "子节点1-1-1" },
+                                  { name: "子节点1-1-2" },
+                                  { name: "子节点1-1-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点1-2", children: [
+                                    { name: "子节点1-2-1" },
+                                    { name: "子节点1-2-2" },
+                                    { name: "子节点1-2-3" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点2", children: [
+                            {
+                                name: "父节点2-1", children: [
+                                    { name: "子节点2-1-1" },
+                                    { name: "子节点2-1-2" },
+                                    { name: "子节点2-1-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点2-2", children: [
+                                    { name: "子节点2-2-1" },
+                                    { name: "子节点2-2-2" },
+                                    { name: "子节点2-2-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点2-3", children: [
+                                    { name: "子节点2-3-1" },
+                                    { name: "子节点2-3-2" },
+                                    { name: "子节点2-3-3" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点3", children: [
+                            { name: "父节点3-1" }
+                        ]
+                    },
+                    {
+                        name: "父节点4", children: [
+                            {
+                                name: "父节点4-1", children: [
+                                    { name: "子节点4-1-1" },
+                                    { name: "子节点4-1-2" },
+                                    { name: "子节点4-1-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点4-2", children: [
+                                    { name: "子节点4-2-1" },
+                                    { name: "子节点4-2-2" },
+                                    { name: "子节点4-2-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点4-3", children: [
+                                    { name: "子节点4-3-1" },
+                                    { name: "子节点4-3-2" },
+                                    { name: "子节点4-3-3" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+        });
+    </script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
 <h2>treeHtml</h2>
+<div id="tree"></div>
