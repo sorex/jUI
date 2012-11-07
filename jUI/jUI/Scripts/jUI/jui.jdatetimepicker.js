@@ -39,43 +39,42 @@
 	    },
 
 	    _create: function () {
-	        var self = this;
-	        var e = $(this.element);
-	        var data = this.options;
-	        var showToday = data.showToday;
-	        var datetimeType = data.datetimeType;
-	        var datetimeParse = data.datetimeParse;
-	        var display = data.display;
-	        var readonly = data.readonly;
-	        var date = new Date();
-	        var y = date.getFullYear(); //今年
-	        var m = date.getMonth();//当月
-	        var d = date.getDate();//今日
-	        var longMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-	        var shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	        var shortWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-	        var longWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	        var shortWeekCN = ['日', '一', '二', '三', '四', '五', '六'];
-	        var longWeekCN = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-	        var MonthNamesCN = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+	        var
+                self = this,
+	            e = $(this.element),
+	            data = this.options,
+	            showToday = data.showToday,
+	            datetimeType = data.datetimeType,
+	            datetimeParse = data.datetimeParse,
+	            display = data.display,
+	            readonly = data.readonly,
+	            date = new Date(),
+	            y = date.getFullYear(), //今年
+	            m = date.getMonth(),//当月
+	            d = date.getDate(),//今日
+	            longMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+	            shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+	            shortWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+	            longWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+	            shortWeekCN = ['日', '一', '二', '三', '四', '五', '六'],
+	            longWeekCN = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+	            MonthNamesCN = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
 
-	        var fullDay = [1, 3, 5, 7, 8, 10, 12];
-	        var maxDay = null;
-	        var max = false;
-	        var weekResult = null;//列
-	        var roll = null;//行               
-	        var elementId = e.attr("id");
-	        var t = 0;
-	        var _t = 1;
-	        var hideValue = null;
-	        var y_value = null;
-	        var ym_value = null;
-	        var setVal_y = null;
-	        var setVal_M = null;
-	        if (datetimeParse == "yyyy-MM-dd") {
-	            t = 1;
-	            _t = 0;
-	        }
+	            fullDay = [1, 3, 5, 7, 8, 10, 12],
+	            maxDay = null,
+	            max = false,
+	            weekResult = null,//列
+	            roll = null,//行               
+	            elementId = e.attr("id"),
+	            t = 0,
+	            _t = 1,
+	            hideValue = null,
+	            y_value = null,
+	            ym_value = null,
+	            setVal_y = null,
+	            setVal_M = null;
+	        if (datetimeParse == "yyyy-MM-dd")
+	            t = 1,_t = 0;
 	        //外层div
 	        var outDiv = "<div id='" + elementId + "_outDiv' class='jui-datetimepicker'></div>";
 	        //头部
@@ -86,7 +85,6 @@
             + "</div>";
 	        //text占一行
 	        e.wrap("<div></div>").after(outDiv);
-	        //e.wrap("<div style='float:left;'></div>");
 	        //添加头部内容
 	        $("#" + elementId + "_outDiv").append(head);
 	        //填日期

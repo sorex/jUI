@@ -25,6 +25,7 @@
 	</script>
 
 	<link href="@Url.Content("~/Content/jUI/jui.jcheckTable.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/jUI/jui.jcheckbox.css")" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTable.js")"></script>
 	<link href="@Url.Content("~/Content/jUI/jui.jtable.css")" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
@@ -79,7 +80,7 @@
                     ]//列名
 	        }).jcheckTable({
 	            checkedItems: [1, 2, 3]//默认选择项
-                , count: 5//限制可供勾选的checkBox的个数
+                , count: 8//限制可供勾选的checkBox的个数
 	        });
 
 	    });
@@ -245,9 +246,9 @@
 				<p>设置option的值为options。</p>
 			</div>
 			<h3>
-				<span class="description-method-name">checked</span>
+				<span class="description-method-name">isChecked</span>
 				<span class="description-method-returnType">返回选择行的ID</span>
-				<span class="description-method-demo">.jcheckTable("option" , checked)</span>
+				<span class="description-method-demo">.jcheckTable("option" , isChecked)</span>
 			</h3>
 			<div>
 				<p>返回所选择行的id的数组形式</p>

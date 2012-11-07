@@ -1,2 +1,102 @@
-﻿body {
+﻿.jui-jtree 
+{
+    font-size:14px;
+}
+.jui-jtree li ul
+{    
+    margin: 0;
+    padding: 0 0 0 18px;
+}
+.jui-jtree li ul.line
+{    
+    background: url(images/line_conn.gif) 0 0 repeat-y;
+}
+.jui-jtree-u1 {
+
+}
+.jui-jtree-u1-li {
+    line-height:14px !important;
+    padding: 0 0;
+    margin: 0 0;
+}
+.jui-jtree-u-a {
+    padding: 1px 3px 0 0;
+    text-decoration: none;
+    height:17px;
+    margin: 0;
+    display:inline-block;
+    vertical-align: top;
+}
+.jui-jtree-u-a:hover {
+    cursor:pointer;
+    background-color:#e2e2e2;
+}
+.jui-jtree-u-a:active {
+    background-color:#d4d4d4;
+}
+.jui-jtree-u-switch, .jui-jtree-u-icon, .jui-jtree-u-line-b,
+.jui-jtree-u-icon-file,.jui-jtree-u-switch-cross,.jui-jtree-u-switch-dircorss-close,
+.jui-jtree-u-switch-dircorss-open,.jui-jtree-u-switch-dircorss-bottom-close,
+.jui-jtree-u-switch-cross-bottom,.jui-jtree-u-switch-open {
+    width:18px;
+    height:18px;          
+    display:inline-block;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image:url(images/zTreeStandard.png);
+    vertical-align: top;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
+    /*margin-bottom:2px;*/
+}
+.jui-jtree-u-switch {
+    background-position: -74px 0;
+    padding-bottom:3px;
+    /*vertical-align: bottom;*/
+}
+.jui-jtree-u-switch-open {
+background-position: -92px 0;
+    padding-bottom:3px;
+    /*vertical-align: bottom;*/
+}
+.jui-jtree-u-switch-dircorss-close {    
+background-position: -74px -18px;
+}
+.jui-jtree-u-switch-dircorss-bottom-close {    
+background-position: -74px -36px;
+}
+.jui-jtree-u-switch-dircorss-open {
+
+}
+.jui-jtree-u-switch-cross {
+background-position: -56px -18px;  
+    cursor: default;  
+}
+.jui-jtree-u-switch-cross-bottom{
+background-position: -56px -36px;
+    cursor: default;  
+}
+.jui-jtree-u-icon {
+    background-position: -110px 0;
+    margin-right:2px;
+}
+.jui-jtree-u-icon-file {
+    background-position: -110px -30px;
+    margin-right:2px;
+}
+.jui-jtree-u-line-b {
+    background-color:green;  
+}
+.jui-jtree-u-line-v {
+    background-color:blue;  
+}
+.jui-jtree-u-line-h {
+    background-color:black;  
+}
+.jui-jtree-u-text {    
+    height:16px;
+    padding: 0 0;
+    display:inline-block;
 }

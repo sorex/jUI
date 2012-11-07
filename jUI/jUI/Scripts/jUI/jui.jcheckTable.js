@@ -46,7 +46,7 @@
 	        var table = $("#" + tableId + "_tableSorter");
 	        var checkAll = true;//判断全选
 	        $("#" + tableId + "_tableSorter tr").find("td:has(input)").remove();
-	        $("#" + tableId + "_tableSorter tr").prepend("<td><input  type='checkbox'  name='checkbox_" + tableId + "'/></td>");
+	        $("#" + tableId + "_tableSorter tr").prepend("<td><input id='checkbox_" + tableId + "'  type='checkbox'  name='checkbox_" + tableId + "' style='display:none;'/><span class='jui-checkbox'></span></td>");
 
 	        //默认选中的项
 	        if (checkedItems.length > 0) {
@@ -54,19 +54,19 @@
 	                for (var j = 0; j < table.find("tbody tr").length; j++) {
 	                    var rowId = table.find("tbody tr").eq(i).find("td:eq(1)").find("span:eq(1)").html();
 	                    if (checkedItems[i] == rowId) {
-	                        table.find("tbody tr").eq(i).find("td:eq(0) input").attr("checked", 'true');
+	                        table.find("tbody tr").eq(i).find("td:eq(0) input").attr("checked", 'true').next().addClass("jui-checkbox-checked");
 	                    }
 	                }
 	            }
 	        }
 
 	        //全选
-	        table.children("thead").find("td input").click(function () {
+	        table.find("thead .jui-checkbox").click(function () {
 	            if (checkAll) {
-	                $("input[name='checkbox_" + tableId + "']").attr("checked", 'true');
+	                $("input[name='checkbox_" + tableId + "']").attr("checked", 'true').next().addClass("jui-checkbox-checked");
 	                checkAll = false;
 	            } else if (!checkAll) {
-	                $("input[name='checkbox_" + tableId + "']").removeAttr("checked");
+	                $("input[name='checkbox_" + tableId + "']").removeAttr("checked").next().removeClass("jui-checkbox-checked");
 	                checkAll = true;
 	            }
 	        });
@@ -74,40 +74,44 @@
 	        //补齐新增列样式
 	        table.children("thead").find("td").css("background", "#094ab2");
 	        table.find("td").css({ "padding-top": "5px", "padding-bottom": "5px" });
+
 	        if (count > 0) {
 	            //可选项小于全选个数时候，全选按钮不可用
 	            if (o.count < table.children("tbody").find("tr").length) {
-	                table.children("thead").find("td input").attr("disabled", "disabled");
+	                table.find("thead .jui-checkbox").hide();
 	            }
 
 	            //若默认选择项个数等于可选项个数，则其他项不可用
 	            if (o.count == checkedItems.length) {
-	                table.find("td input:not(:checked)").attr("disabled", "disabled");
+	                table.find("td input:not(:checked)").next().hide();
 	            }
 
 	            //限定可选个数
-	            table.children("tbody").find("td input").click(function () {
+	            table.find("tbody .jui-checkbox").click(function () {
+	                if ($(this).prev().is(":checked")) {
+	                    $(this).removeClass('jui-checkbox-checked');
+	                    $(this).prev().removeAttr("checked");
+	                } else {
+	                    $(this).addClass('jui-checkbox-checked');
+	                    $(this).prev().attr("checked", 'true');
+	                }
 	                var listChecked = [];//选中项
 	                var checkCounts = table.children("tbody").find("td input:checked").length;
 	                if (checkCounts == count) {
-	                    table.find("td input:not(:checked)").attr("disabled", "disabled");
+	                    table.find("td input:not(:checked)").next().hide();
 	                }
 	                if (checkCounts < count) {
-	                    table.find("td input:not(:checked)").removeAttr("disabled");
+	                    table.find("td input:not(:checked)").next().show();
 	                }
 	                //可选项小于全选个数时候，全选按钮不可用
 	                if (o.count < table.children("tbody").find("tr").length) {
-	                    table.children("thead").find("td input").attr("disabled", "disabled");
+	                    table.find("thead .jui-checkbox").hide();
 	                }
-	                //$("#dis_checkedItems").html(this.checked);
-	                //listChecked = this.checked;
 	                for (var i = 0; i < table.find("tbody tr").length; i++) {
-	                    if (table.find("tbody tr:eq(" + i + ")").find("input").attr("checked") == "checked") {
-	                        listChecked.push(table.find("tbody tr:eq(" + i + ")").find("span").html());
+	                    if (table.find("tbody tr:eq(" + i + ")").find("input").is(':checked')) {
+	                        listChecked.push(table.find("tbody tr:eq(" + i + ")").find("td:eq(1) span:eq(1)").html());
 	                    }
 	                }
-	                //$("#dis_checkedItems").text(listChecked);
-	                //alert($("#dis_checkedItems").text().split(",").length);
 	            });
 
 	            //默认选择项个数不得大于可选项个数
@@ -117,13 +121,13 @@
 	        }
 	    },
 
-	    checkd: function () {
+	    isChecked: function () {
 	        var tableId = $(this.element).attr("id");
 	        var table = $("#" + tableId + "_tableSorter");
 	        var listChecked = [];
 	        for (var i = 0; i < table.find("tbody tr").length; i++) {
-	            if (table.find("tbody tr:eq(" + i + ")").find("input").attr("checked") == "checked") {
-	                listChecked.push(table.find("tbody tr:eq(" + i + ")").find("span:eq(1)").html());
+	            if (table.find("tbody tr:eq(" + i + ")").find("input").is(':checked')) {
+	                listChecked.push(table.find("tbody tr:eq(" + i + ")").find("td:eq(1) span:eq(1)").html());
 	            }
 	        }
 	        return listChecked;

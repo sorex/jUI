@@ -84,7 +84,7 @@ items:
 	        $(document).bind("selectstart", function () { return false; }); //控制文本不能被选中
 	        //无数据时，显示错误提示信息
 	        if (o.data.length == 0) {
-	            $(this.element).empty().append('<span class="ui-icon ui-icon-alert" style="float: left; margin: 3px 3px 0px 3px;"></span><p>' + 无数据 + '</p>');
+	            $(this.element).empty().append('<span class="ui-icon ui-icon-alert" style="float: left; margin: 3px 3px 0px 3px;"></span><p>无数据</p>');
 	        } else {
 	            $(this.element).empty().addClass("jui-table");
 	            var tableId = $(this.element).attr("id");
