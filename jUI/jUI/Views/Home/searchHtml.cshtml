@@ -1,5 +1,57 @@
 ﻿@{
-    ViewBag.Title = "searchHtml";
+	ViewBag.Title = "searchHtml.cshtml";
 }
 
+@section head{
+	<style type="text/css">
+		.jui-jSearch
+		{
+		}
+		.jui-jSearch table
+		{
+			border:1px solid #cccccc;
+			border-collapse:collapse ;
+			width:100%;
+		}
+			.jui-jSearch table td
+			{
+				
+				 text-align:center;
+				
+			}
+
+	</style>
+
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
+
 <h2>searchHtml</h2>
+<div class="jui-jSearch">
+	<table > 
+		<tr><td>普通字符<input id="txt_Name" type="text"  maxlength="2"/></td><td>整数<input id="txt_Age" type="text" maxlength="3"/></td></tr>
+		<tr><td>单个日期<input id="txt_Date" type="text" /></td>
+			<td>两个日期<input id="txt_Date_Start" type="text" /><input id="txt_Date_End" type="text" />  </td></tr>
+
+		<tr><td ></td><td ><select id="txt_select"><option value="0">正常</option><option value="1">停用</option><option value="2">全部</option></select></td></tr>
+	</table>
+
+	</div>
