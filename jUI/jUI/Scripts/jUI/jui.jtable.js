@@ -170,13 +170,13 @@ items:
 	                    }
 	                }
                     //隐藏域保存行ID
-	                $("#" + tableId + "_tableSorter tbody tr:eq(" + i + ") td:eq(0)").prepend("<span style='display:none;'>"+o.data[i]["ID"]+"</span>");
+	                $("#" + tableId + "_tableSorter tbody tr:eq(" + i + ") td:eq(0)").prepend("<span style='display:none;'>" + o.data[i]["ID"] + "</span>");
 	            }
 
 
                 //首列添加图标
 	            var table = $("#" + tableId + "_tableSorter");
-	            table.find('tr').find('td:eq(0)').find("span:eq(0)").before("<span class='jui-table-columnHeadImage'></span>");
+	            //table.find('tr').find('td:eq(0)').find("span:eq(0)").before("<span class='jui-table-columnHeadImage'></span>");
 
 	            //*********表格行样式切换
 	            var $tr = table.children("tbody").find('tr');

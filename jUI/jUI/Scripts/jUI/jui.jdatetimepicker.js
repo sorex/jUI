@@ -351,6 +351,7 @@
 	                $("#" + elementId + "_tb a").click(function () {
 	                    $("#" + elementId + "_outDiv").hide();
 	                });
+
 	            }
 	        }
 	        //年
@@ -762,6 +763,26 @@
 	            $("#" + elementId + "_outDiv").hide();
 	            e.focus(function () {
 	                $("#" + elementId + "_outDiv").show();
+	            });
+
+	            e.click(function (event) {
+	                var e = window.event || event;
+	                if (e.stopPropagation) {
+	                    e.stopPropagation();
+	                } else {
+	                    e.cancelBubble = true;
+	                }
+	            });
+	            $("#" + elementId + "_outDiv").click(function (event) {
+	                var e = window.event || event;
+	                if (e.stopPropagation) {
+	                    e.stopPropagation();
+	                } else {
+	                    e.cancelBubble = true;
+	                }
+	            });
+	            $(document).bind("click", function () {
+	                $("#" + elementId + "_outDiv").hide();
 	            });
 	        }
 	        //只读  
