@@ -4,11 +4,12 @@
 
 @section head{
     <style type="text/css">
+    
         .jui-checkbox
         {
             padding-left: 24px;
             cursor: pointer;
-            background: url(/Content/images/jui-jcheckbox.png) no-repeat 0px 0px;
+            background: url(/Content/jUI/images/jui-jcheckbox.png) no-repeat 0px 0px;
             vertical-align: middle;
             line-height: 22px;
             height: 21px;
@@ -28,33 +29,71 @@
             {
                 background-position: 0px -63px;
             }
+
+    	.jui-checkbox-laber
+    	{
+			 cursor:pointer;
+    	}
+    	.jui-checkbox-checked-hover
+    	{
+			
+		background-position: 0px -21px;
+    	}
+		.jui-checkbox-checked-checked
+    	{
+			
+		background-position: 0px -63px;
+    	}
+
     </style>
     <script type="text/javascript">
 
         $(function () {
 
-            $(":checkbox").after("<span class='jui-checkbox'></span>").click(function (event) {
-                if ($(this).is(':checked')) {
+            $(":checkbox").after("<span class='jui-checkbox'></span>").click(function (event) {//checkbox的点击事件
+            	if ($(this).is(':checked')) {
+            		
                     $(this).next().addClass("jui-checkbox-checked");
                     $(this).checked = true;
+                    $(this).next().removeClass("jui-checkbox-checked-hover");
+                    $(this).next().removeClass('jui-checkbox-checked-checked');
                 }
-                else {
-                    $(this).next().removeClass('jui-checkbox-checked');
+            	else {
+            	
+            		$(this).next().removeClass('jui-checkbox-checked-checked');
+            		$(this).next().removeClass('jui-checkbox-checked');
+            		$(this).next().addClass("jui-checkbox-checked-hover");
                     $(this).checked = false;
                 }
                 event.stopPropagation();
-            }).hide().next().click(function (event) {
+
+            }).hide().next().click(function (event) { //背景图片点击事件
                 var myObject = document.getElementById($(this).prev().attr("id"));
                 if (myObject.checked == true) {
-                    $(this).removeClass('jui-checkbox-checked')
+                	$(this).removeClass('jui-checkbox-checked');
                     myObject.checked = false;
                 } else {
-
-                    myObject.checked = true;
+                	myObject.checked = true;
                     $(this).addClass('jui-checkbox-checked')
                 }
                 event.stopPropagation();
+
+            }).next().mouseover(function (event) {//label的鼠标移入移出事件
+            	$(this).addClass('jui-checkbox-laber');
+            
+            	if ($(this).prev().attr("class") == 'jui-checkbox') {
+            		$(this).prev().addClass('jui-checkbox-checked-hover');
+            	} else {
+            		$(this).prev().addClass('jui-checkbox-checked-checked');
+            	}
+            
+            	event.stopPropagation();
+            }).mouseout(function (event) {
+            	$(this).prev().removeClass('jui-checkbox-checked-hover');
+            	$(this).prev().removeClass('jui-checkbox-checked-checked');
+            	event.stopPropagation();
             });
+
 
         });
 
@@ -83,7 +122,7 @@
 <h2>checkbox</h2>
 
 
-<input id="checkbox1" type="checkbox" value="选项一" name="cb" /><label for="checkbox1">选项一</label>
+<input id="checkbox1" type="checkbox" value="选项一" name="cb" /><label for="checkbox1" >选项一</label>
 <input id="checkbox2" type="checkbox" value="选项二" name="cb" /><label for="checkbox2">选项二</label>
 <input id="checkbox3" type="checkbox" value="选项三" name="cb" /><label for="checkbox3">选项三</label>
 <input id="checkbox4" type="checkbox" value="选项四" name="cb" /><label for="checkbox4">选项四</label>
