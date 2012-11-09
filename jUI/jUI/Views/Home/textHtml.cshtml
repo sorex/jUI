@@ -1,5 +1,215 @@
 ﻿@{
-    ViewBag.Title = "textHtml";
+	ViewBag.Title = "searchHtml.cshtml";
 }
 
-<h2>textHtml</h2>
+@section head{
+	<script type="text/javascript">
+		$(function () {
+
+			var checkLength = $("#txt_length");
+			var checkChinese = $("#txt_chinese");
+			var checkFloat = $("#txt_float");
+			var checkEmail = $("#txt_email");
+			var checkRadio = $(":radio[name='txt_radio']");
+			var checkSelect = $("#txt_select");
+		
+			
+		$("#btn_check").click(function () {
+			var count = 0;
+
+			if (!CheckLength(checkLength, 1, 10)) {
+				count += 1;
+			}
+			if (!checkReg(checkFloat, /^[0-9]+\.[0-9]{2}$/, '请输入带两位小数的数值例如(1.00)')) {
+				count += 1;
+			}
+
+			if (!checkReg(checkChinese, /^[\u4E00-\u9FA5]{2,6}$/, '请输入2-6位的汉字')) {
+				count += 1;
+			}
+
+			if (!checkReg(checkEmail, /^\w+((-\w+)|(\.\w+))*\@@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/, '请输入正确的邮件地址例如(aaa@163.com)')) {
+				count += 1;
+			}
+			if (!CheckRadio(checkRadio, '请选择一个单选按钮')) {
+				count += 1;
+
+			}
+			if (CheckSelect(checkSelect, '请选择下拉框的值')) {
+				count += 1;
+			}
+			if (count == 0) {
+				alert('全部通过');
+			}
+
+			});
+
+		});
+
+		//检查长度的验证
+		function CheckLength(o, min, max) {
+			if (o.val().length > max || o.val().length < min) {
+				o.addClass("ui-state-error"); //为当前错误添加
+				//$("#" + o.attr("id") + "_span").css("color", "red");
+				$("#" + o.attr("id") + "_span").html("请输入" + min + "到" + max + "个字符");
+				return false;
+			} else {
+				o.removeClass("ui-state-error");
+				$("#" + o.attr("id") + "_span").html("");
+				return true;
+			}
+		}
+		//检查单选按钮是否选择
+		function CheckRadio(o, err) {
+			var flag = false;
+			var tagId = o[0].name;
+			for (var i = 0; i < o.length; i++) {
+				if (o[i].checked) {
+					flag = true;
+					
+					break;
+
+				}
+			
+			}
+			if (flag) {
+				$("#" + tagId + "_span").html("");
+			} else {
+				$("#" + tagId + "_span").html(err);
+			}
+		}
+
+		//检查下拉框是否选中
+		function CheckSelect(o, err) {
+		
+			if (o.val() == null||o.val()=="") {
+
+				//o.addClass("ui-state-error");
+				//alert(o.attr("id"));
+
+				$("#" + o.attr("id") + "_span").html(err);
+				return false;
+
+			} else {
+
+				//o.removeClass("ui-state-error");
+				
+				$("#" + o.attr("id") + "_span").html("");
+
+				return true;
+			}
+		}
+
+		//正则验证合法性
+		function checkReg(o, reg, err) {
+	
+			if (!reg.test(o.val())) {
+				o.addClass("ui-state-error");
+				$("#" + o.attr("id") + "_span").html(err);
+				return false;
+			} else {
+				o.removeClass("ui-state-error");
+				$("#" + o.attr("id") + "_span").html("");
+				return true;
+			}
+		}
+
+
+	</script>
+
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
+
+<h2>searchHtml</h2>
+<div class="jui-jSearch">
+	<fieldset>
+	<legend>样式以及验证</legend>
+
+	<div class="ui-helper-clearfix">
+	<div class="display-label">长度限制:</div>
+	<div class="display-field">
+		<input id="txt_length" type="text" name="txt_length" style="width: 200px; margin-left:0px;" />
+		<br/>
+		<span id="txt_length_span"></span>
+	</div>
+	</div>
+
+<div class="ui-helper-clearfix">
+	<div class="display-label">汉字的验证</div>
+	<div class="display-field">
+		<input id="txt_chinese" type="text" name="txt_chinese" style="width: 200px; margin-left:0px;" />
+		<br/>
+		<span id="txt_chinese_span"></span>
+	</div>
+</div>
+
+<div class="ui-helper-clearfix">
+	<div class="display-label">两位小数的验证</div>
+	<div class="display-field">
+		<input id="txt_float" type="text" name="txt_float" style="width: 200px; margin-left:0px;" />
+		<br/>
+		<span id="txt_float_span"></span>
+	</div>
+</div>
+
+
+<div class="ui-helper-clearfix">
+	<div class="display-label">邮件的验证</div>
+	<div class="display-field">
+		<input id="txt_email" type="text" name="txt_email" style="width: 200px; margin-left:0px;" />
+		<br/>
+		<span id="txt_email_span"></span>
+	</div>
+</div>
+
+	<div class="ui-helper-clearfix">
+	<div class="display-label">单选按钮</div>
+	<div class="display-field">
+		<input id="Radio1" type="radio" name="txt_radio"  value="选项一"/> 选项一
+
+		<input id="Radio2" type="radio" name="txt_radio"  value="选项二"/> 选项二
+		<br/>
+		<span id="txt_radio_span"></span>
+	</div>
+</div>
+
+<div class="ui-helper-clearfix">
+
+	<div class="display-label">下拉选框</div>
+	<div class="display-field">
+		<select id="txt_select">
+			<option value="">请选择一个</option>
+			<option value="0">选项一</option>
+			<option value="1">选项二</option>
+			<option value="2">选项三</option>
+		</select>
+		<br/>
+		<span id="txt_select_span"></span>
+	</div>
+</div>
+
+<p><input type="button"  id="btn_check" value="点击查看初步效果"/></p>
+</fieldset>
+
+
+	</div>
+
