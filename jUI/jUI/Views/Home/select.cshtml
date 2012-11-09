@@ -1,5 +1,452 @@
 ﻿@{
-    ViewBag.Title = "select";
+	ViewBag.Title = "select";
+}
+<h2>select</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function () {
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<link href= "@Url.Content("~/Content/jUI/chosen.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(function () {
+
+			$("#showSelect").jSelect({
+				item: [{ value: "China", text: "中国" },
+					{ value: " Japan", text: "日本" },
+					{ value: "America", text: "美国", selected: "selected" },
+					{ value: "Korea  ", text: "朝鲜" },
+					{ value: "Corea  ", text: "韩国" }
+				],
+				placeholder: "请国家选择...",
+				width: "100px",
+				model: "default",
+				onSelectChange: function (selectValue, SelectText) {
+					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				}
+			});
+
+			$("#showSelect2").jSelect({
+				placeholder: "请国家选择...",
+				width: "100px",
+				model: "default",
+				onSelectChange: function (selectValue, SelectText) {
+					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				}
+			});
+
+			$("#showSelect3").jSelect({
+				item: [{ value: "China", text: "中国" },
+					{ value: " Japan", text: "日本" },
+					{ value: "America", text: "美国" },
+					{ value: "Korea  ", text: "朝鲜" },
+					{ value: "Corea  ", text: "韩国" }
+				],
+				placeholder: "请国家选择(可以多选)",
+				width: "200px",
+				model: "multiple",
+				onSelectChange: function (selectValue, selectText) {
+					if (selectValue != null) {
+						var textList = selectText.substring(0, selectText.length - 1).split('　');
+						var content = "";
+						for (var i = 0; i < selectValue.length ; i++) {
+							content += "英文名称为:" + selectValue[i] + "中文名称为:" + textList[i] + "；"
+						}
+						alert("选择的内容为：" + content.substring(0, content.length - 1));
+					} else {
+						alert("您清空了所有选择");
+					}
+				}
+			});
+
+		});
+
+	</script>
 }
 
-<h2>select</h2>
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+
+	<ul>
+		<li><a href="#tab1">默认效果</a></li>
+		<li><a href="#tab3">多选下拉框</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="showSelect"></div>
+		<br>
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSelect"&gt;&lt;/div&gt;
+			  &lt;script type="text/javascript"&gt;
+	            $(function () {
+
+				$("#showSelect").jSelect({
+				item: [{ value: "China", text: "中国" },
+					{ value: " Japan", text: "日本" },
+					{ value: "America", text: "美国", selected: "selected" },
+					{ value: "Korea  ", text: "朝鲜" },
+					{ value: "Corea  ", text: "韩国" }
+				],
+				placeholder: "请国家选择...",
+				width: "100px",
+				model: "default",
+				onSelectChange: function (selectValue, SelectText) {
+					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				}
+			});
+	          
+	            });
+	        &lt;/script&gt;
+  
+		</pre>
+	</div>
+
+	<div id="tab3">
+		<div id="showSelect3"></div>
+		<br>
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSelect3"&gt;&lt;/div&gt;
+			  &lt;script type="text/javascript"&gt;
+	            $(function () {
+
+					$("#showSelect3").jSelect({
+				item: [{ value: "China", text: "中国" },
+					{ value: " Japan", text: "日本" },
+					{ value: "America", text: "美国" },
+					{ value: "Korea  ", text: "朝鲜" },
+					{ value: "Corea  ", text: "韩国" }
+				],
+				placeholder: "请国家选择(可以多选)",
+				width: "200px",
+				model: "multiple",
+				onSelectChange: function (selectValue, selectText) {
+					if (selectValue != null) {
+						var textList = selectText.substring(0, selectText.length - 1).split('　');
+						var content = "";
+						for (var i = 0; i < selectValue.length ; i++) {
+							content += "英文名称为:" + selectValue[i] + "中文名称为:" + textList[i] + "；"
+						}
+						alert("选择的内容为：" + content.substring(0, content.length - 1));
+					} else {
+						alert("您清空了所有选择");
+					}
+				}
+			});
+			});
+	          
+	            });
+	        &lt;/script&gt;
+  
+		</pre>
+	</div>
+	<div id="tab2">
+		<div id="showSelect2"></div>
+		<br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSelect2"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	         $(function () {
+	           $("#showSelect2").jSelect({
+				placeholder: "请国家选择...",
+				width: "100px",
+				model: "default",
+				onSelectChange: function (selectValue, SelectText) {
+					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				}
+			});
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>单选的select控件</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">item</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>排序字段的数据源</p>
+				<pre class="brush: js;">
+				item：
+						value: 表示实际值  text: 显示值  selected:表示是否选中
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+							
+				$("#showSelect").jSelect({
+							item: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "100px",
+							model: "default",
+							onSelectChange: function (selectValue, SelectText) {
+								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取(返回的是一个对象)
+					var item = $("#showSortSelect").jdatapager( "option", "item" );
+					var  value =item[0]["value"];
+					var  text = item[0]["text"]; 
+					//设置
+					$("#showSelect").jSelect({
+										item: [{ value: "China", text: "中国" },
+												{ value: " Japan", text: "日本" },
+												{ value: "America", text: "美国", selected: "selected" },
+												{ value: "Korea  ", text: "朝鲜" },
+												{ value: "Corea  ", text: "韩国" }
+											]
+										});			
+				</pre>
+			</div>
+
+			<h3>
+				<span class="description-option-name">placeholder</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">请选择...</span>
+			</h3>
+			<div>
+				<p>在没有默认选择情况下 文本的提示内容</p>
+				<pre class="brush: js;">
+					placeholder: "请国家选择...",
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							item: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "100px",
+							model: "default",
+							onSelectChange: function (selectValue, SelectText) {
+								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var placeholder = $("#showSortSelect").jdatapager( "option", "placeholder" );
+				
+					//设置
+					$("#showSelect").jSelect({
+									placeholder:"请选择..."
+										});			
+				</pre>
+			</div>
+
+			
+			<h3>
+				<span class="description-option-name">width</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">150px</span>
+			</h3>
+			<div>
+				<p>选择框的宽度</p>
+				<pre class="brush: js;">
+					width: "150px",
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							item: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "default",
+							onSelectChange: function (selectValue, SelectText) {
+								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var width = $("#showSortSelect").jdatapager( "option", "width" );
+				
+					//设置
+					$("#showSelect").jSelect({
+									width:"150px"
+										});			
+				</pre>
+			</div>
+
+				
+			<h3>
+				<span class="description-option-name">model</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">default</span>
+			</h3>
+			<div>
+				<p>单选与多选的切换</p>
+				<pre class="brush: js;">
+					model：default(单选) multiple(多选)[二选一]
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							item: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "default",
+							onSelectChange: function (selectValue, SelectText) {
+								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var model = $("#showSortSelect").jdatapager( "option", "model" );	
+					//设置
+					$("#showSelect").jSelect({
+									model:"default"
+										});			
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onSelectChange</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>选择下拉框的值发生改变时触发</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+                    selectValue：选择的值
+					SelectText：显示的文本
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					//单选下拉框
+							$("#showSelect").jSelect({
+							item: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "default",
+							onSelectChange: function (selectValue, SelectText) {
+								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">暂无</span>
+				<span class="description-method-returnType">暂无</span>
+				<span class="description-method-demo">暂无</span>
+			</h3>
+			<div>
+				<p>暂无</p>
+			</div>
+
+
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>普通下拉样式如下：</p>
+		<pre class="brush: html;">
+			
+			   &lt;select id="selectHtml" data-placeholder="选择国家" class="chzn-select" style="width: 350px;" tabindex="2"&gt;
+					   &lt;option value=""&gt;  &lt;/option&gt;
+					   &lt;option value="美国"&gt;United States   &lt;/option&gt;
+					   &lt;option value="(大不列颠)联合王国"&gt;United Kingdom   &lt;/option&gt;
+					   &lt;option value="阿富汗"&gt;Afghanistan   &lt;/option&gt;
+					   &lt;option value="阿尔巴尼亚"&gt;Albania   &lt;/option&gt;
+					   &lt;option value="阿尔及利亚"&gt;Algeria   &lt;/option&gt;
+			   &lt;/select&gt;
+		</pre>
+		<p>多选下拉样式如下：</p>
+			<pre class="brush: html;">
+		 &lt;select id="multiSelectHtml" data-placeholder="选择国家" class="chzn-select" multiple style="width: 350px;" tabindex="2"&gt;
+			 &lt;option value=""&gt;  &lt;/option&gt;
+			 &lt;option value="美国"&gt; United States　 &lt;/option&gt;
+			 &lt;option value="(大不列颠)联合王国"&gt; United Kingdom　  &lt;/option&gt;
+			 &lt;option value="阿富汗"&gt;Afghanistan　  &lt;/option&gt;
+			 &lt;option value="阿尔巴尼亚"&gt; Albania　  &lt;/option&gt;
+			 &lt;option value="阿尔及利亚"&gt;Algeria　  &lt;/option&gt;
+		 &lt;/select&gt;
+				</pre>
+	</div>
+</div>

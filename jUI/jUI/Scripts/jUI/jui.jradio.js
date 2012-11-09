@@ -15,6 +15,12 @@
 			$(this).prev()[0].checked = true;
 			$(this).addClass("jui-radio-checked");
 		}
+	}).next().mouseover(function (event) {
+		$(this).addClass('jui-radio-label');
+		event.stopPropagation();
+	}).mouseout(function (event) {
+
+		event.stopPropagation();
 	});
 
 });

@@ -13,3 +13,8 @@
 {
 	background-position: 0px -21px;
 }
+
+.jui-radio-label
+{
+	cursor: pointer;
+}

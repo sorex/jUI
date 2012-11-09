@@ -1,5 +1,64 @@
 ﻿@{
-    ViewBag.Title = "multiSelectHtml";
+	ViewBag.Title = "multiSelectHtml.cshtml";
 }
 
+@section head{
+	<link href= "@Url.Content("~/Content/jUI/chosen.css")" rel="stylesheet" />
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$(".chzn-select").chosen();//样式调用
+			$("#multiSelectHtml").change(function () {
+
+				//alert("选择的国家中文名为:" + $(this).val() + ":英文名称为:" + $(this).find("option:selected").text());
+
+				var selectValue = $(this).val();
+				var selectText = $(this).find("option:selected").text();
+				if (selectValue != null) {
+					var textList = selectText.substring(0, selectText.length - 1).split('　');
+					var content = "";
+					for (var i = 0; i < selectValue.length ; i++) {
+						content += "英文名称为:" + selectValue[i] + "中文名称为:" + textList[i] + "；"
+					}
+					alert("选择的内容为："+content.substring(0, content.length - 1));
+				} else {
+					alert("您清空了所有选择");
+				}
+			});
+	
+		});
+	</script>
+
+}
+
+@section header{
+
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+
+@section scripts{
+
+}
+
+
 <h2>multiSelectHtml</h2>
+<div>
+<select id="multiSelectHtml" data-placeholder="选择国家" class="chzn-select" multiple style="width: 350px;" tabindex="2">
+	<option value=""> </option>
+	<option value="美国"> United States　</option>
+	<option value="(大不列颠)联合王国"> United Kingdom　 </option>
+	<option value="阿富汗">Afghanistan　 </option>
+	<option value="阿尔巴尼亚"> Albania　 </option>
+	<option value="阿尔及利亚">Algeria　 </option>
+</select>
+	</div>
