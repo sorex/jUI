@@ -21,7 +21,7 @@
 * items:
 *		datetimeType:日期控件类型
 *       datetimeParse:日期显示格式
-*       display:日期呈现类型
+*       display:日期呈现类型false/true
 *       readonly:文本框只读
 *       showToday:显示今天
 */
@@ -33,9 +33,10 @@
 	    options: {
 	        datetimeType: ""
             , datetimeParse: ""
-            , display: ""
+            , display: false
             , readonly: null
-	        ,showToday:false
+	        , showToday: false
+            ,value:""//xxxx-xx-xx
 	    },
 
 	    _create: function () {
@@ -48,6 +49,7 @@
 	            datetimeParse = data.datetimeParse,
 	            display = data.display,
 	            readonly = data.readonly,
+                default_value = data.value,
 	            date = new Date(),
 	            y = date.getFullYear(), //今年
 	            m = date.getMonth(),//当月
@@ -59,7 +61,6 @@
 	            shortWeekCN = ['日', '一', '二', '三', '四', '五', '六'],
 	            longWeekCN = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
 	            MonthNamesCN = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-
 	            fullDay = [1, 3, 5, 7, 8, 10, 12],
 	            maxDay = null,
 	            max = false,
@@ -73,6 +74,7 @@
 	            ym_value = null,
 	            setVal_y = null,
 	            setVal_M = null;
+	       
 	        if (datetimeParse == "yyyy-MM-dd")
 	            t = 1,_t = 0;
 	        //外层div
@@ -83,10 +85,58 @@
             + "<a id='" + elementId + "_next' title='下一页' class='jui-datetimepicker-ar jui-datetimepicker-corner-all'><span class='ui-icon ui-icon-circle-triangle-e'>&nbsp;</span></a>"
             + "<div id='" + elementId + "_yearDiv' class='jui-datetimepicker-dhcenter'><span>" + (y - 5) + "~" + (y + 4) + "</span></div>"
             + "</div>";
-	        //text占一行
-	        e.wrap("<div></div>").after(outDiv);
+	        if (display == false) {
+	            //text占一行
+	            e.wrap("<div></div>").after(outDiv);
+	        } else{
+	            e.append(outDiv);
+	            e.after("<span id='show_date' style='display:block;'></span>");
+	            $("#" + elementId + "_outDiv").css("float", "none").css("position", "relative");
+	            e.css("display","block");
+	        }
 	        //添加头部内容
 	        $("#" + elementId + "_outDiv").append(head);
+	        //字符串转日期
+	        var strToDate = function (str) {
+	            var val = Date.parse(str);
+	            var newDate = new Date(val);
+	            return newDate;
+	        }
+	        if (default_value) {
+	            y = strToDate(default_value).getFullYear(),
+                m = strToDate(default_value).getMonth(),
+                d = strToDate(default_value).getDate();
+
+	            if ((parseInt(m) + 1) < 10) {
+	                if (parseInt(d) < 10) {
+	                    e.val(y + "年0" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
+	                } else {
+	                    e.val(y + "年0" + (parseInt(m) + 1) + "月" + d + "日"); //赋值 
+	                }
+	            } else {
+	                if (parseInt(hideValue) < 10) {
+	                    e.val(y + "年" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
+	                } else {
+	                    e.val(y + "年" + (parseInt(m) + 1) + "月" + d + "日"); //赋值                         
+	                }
+	            }
+	            if (display) {
+	                if ((parseInt(m) + 1) < 10) {
+	                    if (parseInt(d) < 10) {
+	                        $("#show_date").text(y + "年0" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
+	                    } else {
+	                        $("#show_date").text(y + "年0" + (parseInt(m) + 1) + "月" + d + "日"); //赋值 
+	                    }
+	                } else {
+	                    if (parseInt(hideValue) < 10) {
+	                        $("#show_date").text(y + "年" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
+	                    } else {
+	                        $("#show_date").text(y + "年" + (parseInt(m) + 1) + "月" + d + "日"); //赋值                         
+	                    }
+	                }
+
+	            }
+	        }
 	        //填日期
 	        var writeDate = function () {
 	            var write_y = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val());//当前选择的年份
@@ -173,6 +223,8 @@
 	            $("#" + elementId + "_tb a").each(function () {
 	                if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
 	                    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
+	                //if ($(this).text() == d&& act_y == y && (act_m == m))
+	                //    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
 	            });
 	        }
 	        var activeCss_y = function () {
@@ -216,33 +268,67 @@
 	                activeCss();
 	                setVal_y = $("#" + elementId + "_yearDiv").children("select:eq("+t+")").val();
 	                setVal_M = $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val();
-	                var international_val = function (setVal_y, setVal_M) {
-	                    if ((parseInt(setVal_M) + 1) < 10) {
-	                        if (parseInt(hideValue) < 10) {
-	                            e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+	                var international_val, china_val;
+	                if (display) {
+	                    international_val = function (setVal_y, setVal_M) {
+	                        if ((parseInt(setVal_M) + 1) < 10) {
+	                            if (parseInt(hideValue) < 10) {
+	                                $("#show_date").text(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值 
+	                            }
 	                        } else {
-	                            e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值 
-	                        }
-	                    } else {
-	                        if (parseInt(hideValue) < 10) {
-	                            e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
-	                        } else {
-	                            e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值                         
+	                            if (parseInt(hideValue) < 10) {
+	                                $("#show_date").text(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值                         
+	                            }
 	                        }
 	                    }
-	                }
-	                var china_val = function (setVal_y, setVal_M) {
-	                    if ((parseInt(setVal_M) + 1) < 10) {
-	                        if (parseInt(hideValue) < 10) {
-	                            e.val(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月0" + hideValue+"日"); //赋值                                            
+	                    china_val = function (setVal_y, setVal_M) {
+	                        if ((parseInt(setVal_M) + 1) < 10) {
+	                            if (parseInt(hideValue) < 10) {
+	                                $("#show_date").text(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月0" + hideValue + "日"); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月" + hideValue + "日"); //赋值 
+	                            }
 	                        } else {
-	                            e.val(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月" + hideValue+"日"); //赋值 
+	                            if (parseInt(hideValue) < 10) {
+	                                $("#show_date").text(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月0" + hideValue + "日"); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月" + hideValue + "日"); //赋值                         
+	                            }
 	                        }
-	                    } else {
-	                        if (parseInt(hideValue) < 10) {
-	                            e.val(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月0" + hideValue+"日"); //赋值                                            
+	                    }
+	                } else {
+	                    international_val = function (setVal_y, setVal_M) {
+	                        if ((parseInt(setVal_M) + 1) < 10) {
+	                            if (parseInt(hideValue) < 10) {
+	                                e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+	                            } else {
+	                                e.val(setVal_y + "-0" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值 
+	                            }
 	                        } else {
-	                            e.val(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月" + hideValue+"日"); //赋值                         
+	                            if (parseInt(hideValue) < 10) {
+	                                e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-0" + hideValue); //赋值                                            
+	                            } else {
+	                                e.val(setVal_y + "-" + (parseInt(setVal_M) + 1) + "-" + hideValue); //赋值                         
+	                            }
+	                        }
+	                    }
+	                    china_val = function (setVal_y, setVal_M) {
+	                        if ((parseInt(setVal_M) + 1) < 10) {
+	                            if (parseInt(hideValue) < 10) {
+	                                e.val(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月0" + hideValue + "日"); //赋值                                            
+	                            } else {
+	                                e.val(setVal_y + "年0" + (parseInt(setVal_M) + 1) + "月" + hideValue + "日"); //赋值 
+	                            }
+	                        } else {
+	                            if (parseInt(hideValue) < 10) {
+	                                e.val(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月0" + hideValue + "日"); //赋值                                            
+	                            } else {
+	                                e.val(setVal_y + "年" + (parseInt(setVal_M) + 1) + "月" + hideValue + "日"); //赋值                         
+	                            }
 	                        }
 	                    }
 	                }
@@ -260,7 +346,6 @@
 	                noCss();
 	            });
 	        }
-            
 	        //添加年份
 	        var addOptions = function () {
 	            for (var i = y - 10; i < y; i++) {
@@ -347,12 +432,11 @@
 	        }
 	        //点击消失
 	        var clickToHide = function () {
-	            if (display == "click" || display == "") {
+	            if (display == false) {
 	                $("#" + elementId + "_tb a").click(function () {
 	                    $("#" + elementId + "_outDiv").hide();
 	                });
-
-	            }
+	            } 
 	        }
 	        //年
 	        var whenYYYY = function () {
@@ -548,33 +632,67 @@
 	            if (showToday) {
 	                $("#" + elementId + "_tb").after("<input id='btn_" + elementId + "' type='button' value='今天' />");
 	                $("#btn_" + elementId).click(function () {
-	                    var international_val = function (date) {
-	                        if ((date.getMonth() + 1) < 10) {
-	                            if (d< 10) {
-	                                e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + d); //赋值                                            
+	                    var international_val, china_val;
+	                    if (display) {
+	                        international_val = function (setVal_y, setVal_M) {
+	                            if ((date.getMonth() + 1) < 10) {
+	                                if (date.getDate() < 10) {
+	                                    $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                                } else {
+	                                    $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
+	                                }
 	                            } else {
-	                                e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + d); //赋值 
-	                            }
-	                        } else {
-	                            if (d < 10) {
-	                                e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + d); //赋值                                            
-	                            } else {
-	                                e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + d); //赋值                         
+	                                if (date.getDate() < 10) {
+	                                    $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                                } else {
+	                                    $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
+	                                }
 	                            }
 	                        }
-	                    }
-	                    var china_val = function (date) {
-	                        if ((date.getMonth() + 1) < 10) {
-	                            if (d < 10) {
-	                                e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + d + "日"); //赋值                                            
+	                        china_val = function (setVal_y, setVal_M) {
+	                            if ((date.getMonth() + 1) < 10) {
+	                                if (date.getDate() < 10) {
+	                                    $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                                } else {
+	                                    $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
+	                                }
 	                            } else {
-	                                e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + d + "日"); //赋值 
+	                                if (date.getDate() < 10) {
+	                                    $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                                } else {
+	                                    $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
+	                                }
 	                            }
-	                        } else {
-	                            if (d < 10) {
-	                                e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + d + "日"); //赋值                                            
+	                        }
+	                    } else {
+	                        international_val = function (date) {
+	                            if ((date.getMonth() + 1) < 10) {
+	                                if (date.getDate() < 10) {
+	                                    e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                                } else {
+	                                    e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
+	                                }
 	                            } else {
-	                                e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + d + "日"); //赋值                         
+	                                if (date.getDate() < 10) {
+	                                    e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                                } else {
+	                                    e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
+	                                }
+	                            }
+	                        }
+	                        china_val = function (date) {
+	                            if ((date.getMonth() + 1) < 10) {
+	                                if (date.getDate() < 10) {
+	                                    e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                                } else {
+	                                    e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
+	                                }
+	                            } else {
+	                                if (date.getDate() < 10) {
+	                                    e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                                } else {
+	                                    e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
+	                                }
 	                            }
 	                        }
 	                    }
@@ -589,7 +707,25 @@
 	                            china_val(date);
 	                            break;
 	                    }
-	                    if (display == "click" || display == "") {
+	                    $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").find("option").each(function () {
+	                        if ($(this).val() == date.getMonth())
+	                            $(this).attr("selected", "selected");
+	                    });//默认当前月
+	                    var list_y = $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")");
+	                    list_y.empty();
+	                    y = date.getFullYear();
+	                    addOptions();
+	                    list_y.children("option").removeAttr("selected");
+	                    list_y.find("option").each(function () {
+	                        if ($(this).val() == date.getFullYear())
+	                            $(this).attr("selected", "selected");
+	                    });
+
+	                    $("#" + elementId + "_tb a").text("");//清空
+	                    writeDate();
+	                    choseDate();
+	                    activeCss();
+	                    if (display == false) {
 	                        $("#" + elementId + "_outDiv").hide();
 	                    }
 	                });
@@ -613,7 +749,7 @@
 	            $("#tab_" + elementId).after("<div style='height:30px;'><div style='float:left;'><input type='button' value='现在' id='slider_now' /></div><div style='float:right;'><input type='button' value='完成' id='slider_ok' /></div></div>");
 	            $("#slider_ok").click(function () {
 	                e.val($("#tab_" + elementId).find("tr:eq(0)").find("td:eq(1)").text());
-	                if (display == "click" || display == "") {
+	                if (display == false) {
 	                    $("#" + elementId + "_outDiv").hide();
 	                }
 	            });
@@ -647,7 +783,7 @@
 	            $("#tab_" + elementId).after("<div style='height:30px;'><div style='float:left;'><input type='button' value='现在' id='" + elementId + "slider_now' /></div><div style='float:right;'><input type='button' value='完成' id='" + elementId + "slider_ok' /></div></div>");
 	            $("#" + elementId + "slider_ok").click(function () {
 	                e.val($("#tab_" + elementId).find("tr:eq(0)").find("td:eq(1)").text());
-	                if (display == "click" || display == "") {
+	                if (display == false) {
 	                    $("#" + elementId + "_outDiv").hide();
 	                }
 	            });
@@ -676,7 +812,7 @@
 	            $("#tab_" + elementId).after("<div style='height:30px;'><div style='float:left;'><input type='button' value='现在' id='" + elementId + "slider_now' /></div><div style='float:right;'><input type='button' value='完成' id='" + elementId + "slider_ok' /></div></div>");
 	            $("#" + elementId + "slider_ok").click(function () {
 	                e.val($("#tab_" + elementId).find("tr:eq(0)").find("td:eq(1)").text());
-	                if (display == "click" || display == "") {
+	                if (display == false) {
 	                    $("#" + elementId + "_outDiv").hide();
 	                }
 	            });
@@ -759,7 +895,7 @@
 	        }
 
 	        //判断点击显示或总是显示
-	        if (display == "click" || display == "") {
+	        if (display == false) {
 	            $("#" + elementId + "_outDiv").hide();
 	            e.focus(function () {
 	                $("#" + elementId + "_outDiv").show();
@@ -785,7 +921,6 @@
 	                $("#" + elementId + "_outDiv").hide();
 	            });
 	        }
-	        //只读  
 	        if (readonly == true) {
 	            e.attr("readonly", "readonly");
 	        }
@@ -797,11 +932,13 @@
 	            this.options[key] = value;
 	        else
 	            return this.options[key];
+	        this._create();
 	    },
 
 	    _setOptions: function (options) {
+	        var self = this;
 	        $.each(options, function (key, value) {
-	            this._setOption(key, value);
+	            self._setOption(key, value);
 	        });
 	    },
 

@@ -4,11 +4,17 @@
 
 @section head{
     <link href="@Url.Content("~/Content/jUI/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/jUI/jui.jbutton.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
     <script type="text/javascript">
         $(function () {
             //默认显示年月日
-            $("#txt_datapicker").jdatetimepicker();
+            $("#txt_datapicker").jdatetimepicker({
+                value: "1999-10-10",
+                showToday: true,
+                display:true
+            });
+
         })
     </script>
 }
@@ -29,5 +35,6 @@
 }
 
 <h2>datetimepickerHtml</h2>
-<input type="text" id="txt_datapicker" />
-<div style="width:40%;height:20%;border:4px solid silver;background-color:yellowgreen;"></div>
+<div id="txt_datapicker" > </div>
+@*<input type="text" id="txt_datapicker" />*@
+@*<div style="width:40%;height:20%;border:4px solid silver;background-color:yellowgreen;"></div>*@
