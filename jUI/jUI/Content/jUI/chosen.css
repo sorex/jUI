@@ -134,9 +134,9 @@
 
 .chzn-container-single .chzn-drop
 {
-	-webkit-border-radius: 0 0 4px 4px;
+	/*-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;*/
 	-moz-background-clip: padding;
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
@@ -404,12 +404,12 @@
 	background-image: -moz-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
 	background-image: -o-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
 	background-image: linear-gradient(#eeeeee 20%, #ffffff 80%);
-	-webkit-border-bottom-left-radius: 0;
+	/*-webkit-border-bottom-left-radius: 0;
 	-webkit-border-bottom-right-radius: 0;
 	-moz-border-radius-bottomleft: 0;
 	-moz-border-radius-bottomright: 0;
 	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;*/
 }
 
 	.chzn-container-active .chzn-single-with-drop div
