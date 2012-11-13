@@ -25,7 +25,8 @@
 	{
 	    // default options
 	    options: {
-	        checkedItem:0//默认选中项
+	        //field: "名称3"//默认选择项(列名)
+            //, checkedItem: "c3"//默认选择项(单元格内的值)
 	    },
 
 	    _create: function () {
@@ -35,18 +36,25 @@
 	    _jcheckTable: function () {
 	        var self = this,
             o = this.options;
+	        var field = o.field;
 	        var checkedItem = o.checkedItem;
 	        var tableId = $(this.element).attr("id");
 	        var table = $("#" + tableId + "_tableSorter");
 	        $("#" + tableId + "_tableSorter").find("td:has(input)").remove();
 	        $("#" + tableId + "_tableSorter thead tr").prepend("<td></td>");
 	        $("#" + tableId + "_tableSorter tbody tr").prepend("<td><input  type='radio'  name='radio_" + tableId + "' style='display:none;'/><span class='jui-radio'></span></td>");
-	        ////默认选中的项
-	        for (var j = 0; j < table.find("tbody tr").length; j++) {
-	            var rowId = table.find("tbody tr").eq(j).find("td:eq(1)").find("span:eq(1)").html();
-	            if (checkedItem == rowId) {
-	                table.find("tbody tr").eq(j).find(":radio").next().addClass("jui-radio-checked");
-	                table.find("tbody tr").eq(j).find("td:eq(0) input").attr("checked",true);
+	        
+	        //默认选中的项
+	        for (var i = 0; i < table.find("thead").find("td").length; i++) {
+	            var column_value = table.find("thead").find("td:eq(" + i + ")").children("span").html();//列名
+	            if (field == column_value) {
+	                table.find("tbody").find("tr").each(function () {
+	                        if ($(this).find("td:eq(" + i + ")").children("span").html() == checkedItem) {
+	                            $(this).find(":radio").next().addClass("jui-radio-checked");
+	                            $(this).find("td:eq(0) input").attr("checked", true);
+	                        }
+	                });
+	                break;
 	            }
 	        }
 
@@ -61,13 +69,22 @@
 	        table.find("td").css({ "padding-top": "5px", "padding-bottom": "5px" });	     
 	    },
 
-	    checked: function () {
+	    checkedValue: function () {
+	        var self = this,
+            o = this.options;
 	        var tableId = $(this.element).attr("id");
 	        var table = $("#" + tableId + "_tableSorter");
-	        var r=0;
-	        for (var i = 0; i < table.find("tbody tr").length; i++) {
-	            if (table.find("tbody tr").eq(i).find("input").is(":checked")) {
-	                r = table.find("tbody tr:eq("+i+")").find("td:eq(1)").find("span:eq(1)").text();
+	        var field = o.field;//列名
+	        var r="";
+	        for (var j = 0; j < table.find("thead").find("td").length; j++) {
+	            var column_value = table.find("thead").find("td:eq(" + j + ")").children("span").html();//列名
+	            if (field == column_value) {
+	                for (var i = 0; i < table.find("tbody tr").length; i++) {
+	                    if (table.find("tbody tr:eq(" + i + ")").find("input").is(':checked')) {
+	                        r = table.find("tbody tr:eq(" + i + ")").find("td:eq(" + j + ")").children("span").html();
+	                    }
+	                }
+	                break;
 	            }
 	        }
 	        return r;

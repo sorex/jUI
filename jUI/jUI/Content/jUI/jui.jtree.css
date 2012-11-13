@@ -1,6 +1,7 @@
 ﻿.jui-jtree 
 {
     font-size:14px;
+line-height: 16px !important;
 }
 .jui-jtree li ul
 {    
@@ -37,7 +38,8 @@
 .jui-jtree-u-switch, .jui-jtree-u-icon, .jui-jtree-u-line-b,
 .jui-jtree-u-icon-file,.jui-jtree-u-switch-cross,.jui-jtree-u-switch-dircorss-close,
 .jui-jtree-u-switch-dircorss-open,.jui-jtree-u-switch-dircorss-bottom-close,
-.jui-jtree-u-switch-cross-bottom,.jui-jtree-u-switch-open {
+.jui-jtree-u-switch-cross-bottom,.jui-jtree-u-switch-open,.jui-jtree-u-switch-dircorss-open,
+.jui-jtree-u-switch-dircorss-bottom-open,.jui-jtree-u-icon-open {
     width:18px;
     height:18px;          
     display:inline-block;
@@ -61,11 +63,17 @@ background-position: -92px 0;
     padding-bottom:3px;
     /*vertical-align: bottom;*/
 }
+.jui-jtree-u-switch-dircorss-open {
+background-position: -92px -18px;
+}
 .jui-jtree-u-switch-dircorss-close {    
 background-position: -74px -18px;
 }
 .jui-jtree-u-switch-dircorss-bottom-close {    
 background-position: -74px -36px;
+}
+.jui-jtree-u-switch-dircorss-bottom-open {
+background-position: -92px -36px;
 }
 .jui-jtree-u-switch-dircorss-open {
 
@@ -80,6 +88,10 @@ background-position: -56px -36px;
 }
 .jui-jtree-u-icon {
     background-position: -110px 0;
+    margin-right:2px;
+}
+.jui-jtree-u-icon-open {
+background-position: -110px -15px;
     margin-right:2px;
 }
 .jui-jtree-u-icon-file {

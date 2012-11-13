@@ -42,41 +42,7 @@
                             ]
                         }
                     ]
-                }
-                //,
-                //{
-                //    name: "父节点2",children: [
-                //        {
-                //            name: "父节点2-1", children: [
-                //                { name: "子节点2-1-1" },
-                //                { name: "子节点2-1-2" },
-                //                { name: "子节点2-1-3" }
-                //            ]
-                //        },
-                //        {
-                //            name: "父节点2-2", children: [
-                //                { name: "子节点2-2-1" },
-                //                { name: "子节点2-2-2" },
-                //                { name: "子节点2-2-3" }
-                //            ]
-                //        },
-                //        {
-                //            name: "父节点2-3", children: [
-                //                { name: "子节点2-2-1" },
-                //                { name: "子节点2-2-2" },
-                //                { name: "子节点2-2-3" }
-                //            ]
-                //        }
-                //    ]
-                //},
-                //{
-                //    name: "父节点3",children: [
-                //        { name: "父节点3-1" }
-                //    ]
-                //},
-                //{
-                //    name: "父节点4"
-                //}
+                }                
 	        ]
 	    },
 
@@ -143,7 +109,9 @@
             }
             makeTree();
             var
+                dir_All = e.children("ul").find("li").children("a"),//所有含ul的li中的a
                 sw1 = e.children("ul").find("li").children("span"),//所有switch
+
                 sw_1 = e.children("ul").children("li").children("span"),//一级switch
                 //a1 = e.children("ul").children("li").children("a"),//一级a
                 //dir1 = a1.find("span:eq(0)"),//一级目录图标
@@ -164,27 +132,30 @@
 
             ul3.css("display", "none");
             ul2.css("display", "none");
-            //sw1.each(function(){
-            //    $(this).click(function () {
-            //        var sw_1 = $(this);
-            //        $(this).siblings("ul").slideToggle("fast", function () {
-            //            if (sw_1.attr("class") == "jui-jtree-u-switch") {
-            //                sw_1.removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-open");
-            //            } else {
-            //                sw_1.removeClass("jui-jtree-u-switch-open").addClass("jui-jtree-u-switch");
-            //            }
-            //        });
-            //    });
-            //});
-
+            
             sw1.click(function () {
                 if ($(this).attr("class") == "jui-jtree-u-switch") {
                     $(this).removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-open");
-                    $(this).siblings("ul").slideToggle("fast");
-                } else {
+                } else if ($(this).attr("class") == "jui-jtree-u-switch-open") {
                     $(this).removeClass("jui-jtree-u-switch-open").addClass("jui-jtree-u-switch");
-                    $(this).siblings("ul").slideToggle("fast");
                 }
+                if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-close") {
+                    $(this).removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-open");
+                } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-open") {
+                    $(this).removeClass("jui-jtree-u-switch-dircorss-open").addClass("jui-jtree-u-switch-dircorss-close");
+                }
+                if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+                    $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-close").addClass("jui-jtree-u-switch-dircorss-bottom-open");
+                } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+                    $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-open").addClass("jui-jtree-u-switch-dircorss-bottom-close");
+                }
+
+                if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon") {
+                    $(this).siblings("a").find("span:eq(0)").removeClass("jui-jtree-u-icon").addClass("jui-jtree-u-icon-open");
+                } else if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon-open") {
+                    $(this).siblings("a").find("span:eq(0)").removeClass("jui-jtree-u-icon-open").addClass("jui-jtree-u-icon");
+                }
+                $(this).siblings("ul").slideToggle("fast");
             });
 	    },
 

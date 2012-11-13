@@ -25,12 +25,15 @@
 	</script>
 
 	<link href="@Url.Content("~/Content/jUI/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/jUI/jui.jbutton.css")" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
     
 	<script type="text/javascript">
 	    $(function () {
 	        //默认显示年月日
-	        $("#MyDatetimepicker1").jdatetimepicker();
+	        $("#MyDatetimepicker1").jdatetimepicker({
+                value:"1999-10-03"
+	        });
             //仅显示年份
 	        $("#MyDatetimepicker2").jdatetimepicker({
 	            datetimeType: "yyyy"
@@ -44,8 +47,8 @@
                 datetimeParse: "yyyy-MM-dd"
 	        });
             //日历总是显示
-	        $("#MyDatetimepicker8").jdatetimepicker({
-               display: "display"//click为点击显示
+	        $("#div8").jdatetimepicker({
+	            display: true//click为点击显示
 	        });
 	        //显示时分秒
 	        $("#MyDatetimepicker9").jdatetimepicker({
@@ -61,7 +64,8 @@
 	        });
 	        //显示当天
 	        $("#MyDatetimepicker12").jdatetimepicker({
-	            showToday:true
+	            showToday: true,
+	            value: "1999-10-03"
 	        });
 	    });
 	</script>
@@ -100,7 +104,9 @@
 <pre class="brush: js; html-script: true;">
         &ltinput type="text"  id="MyDatetimepicker1"/&gt
         &ltscript type="text/javascript"&gt
-	            $("#MyDatetimepicker1").jdatetimepicker();
+	            $("#MyDatetimepicker1").jdatetimepicker({
+                    value:"1999-10-03"
+                });
         &lt/script&gt
 		</pre>
 	</div>
@@ -138,7 +144,9 @@
 		</pre>
 	</div>
 	<div id="tab8">
-        <input type="text"  id="MyDatetimepicker8"/><a class="viewSource" onclick="viewSource(this);">View Source</a>
+        @*<input type="text"  id="MyDatetimepicker8"/>*@
+        <div id="div8"></div>
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
 <pre class="brush: js; html-script: true;">
 		&ltinput type="text"  id="MyDatetimepicker8"/&gt
 	    &ltscript type="text/javascript"&gt
@@ -149,7 +157,8 @@
 		</pre>
 	</div>
 	<div id="tab9">
-        <input type="text"  id="MyDatetimepicker9"/><a class="viewSource" onclick="viewSource(this);">View Source</a>
+        <input type="text"  id="MyDatetimepicker9"/>
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
 <pre class="brush: js; html-script: true;">
 		&ltinput type="text"  id="MyDatetimepicker9"/&gt
 	    &ltscript type="text/javascript"&gt
@@ -222,7 +231,7 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeType" );
 					//设置
-					$("#myDatetimepicker").jdatapager("option","datetimeType", "yyyy-MM-dd");
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeType: "yyyy-MM-dd"});
 				</pre>
 			</div>
 			<h3>
@@ -241,7 +250,7 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeParse" );
 					//设置
-					$("#myDatetimepicker").jdatapager("option","datetimeParse", "yyyy年MM月dd日");
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeParse: "yyyy年MM月dd日"});
 				</pre>
 			</div>
 			<h3>
@@ -260,7 +269,7 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "display" );
 					//设置
-					$("#myDatetimepicker").jdatapager("option","display", "click");
+					$("#myDatetimepicker").jdatetimepicker("option",{display:"display"});
 				</pre>
 			</div>
 			<h3>
@@ -279,7 +288,7 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "readonly" );
 					//设置
-					$("#myDatetimepicker").jdatapager("option","readonly",true);
+					$("#myDatetimepicker").jdatetimepicker("option",{readonly:true});
 				</pre>
 			</div>
 			<h3>
@@ -298,7 +307,26 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "showToday" );
 					//设置
-					$("#myDatetimepicker").jdatapager("option","showToday",true);
+					$("#myDatetimepicker").jdatetimepicker("option",{showToday:true});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[value]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy-MM-dd"</span>
+			</h3>
+			<div>
+				<p>设定默认显示日期</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({value:"1999-10-03"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "value" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{value:"1999-10-03"});
 				</pre>
 			</div>
 		</div>
@@ -310,7 +338,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">由optionName定</span>
-				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+				<span class="description-method-demo">.jdatetimepicker("option" , optionName , [value])</span>
 			</h3>
 			<div>
 				<p>获取或设置option中optionName的值。</p>
@@ -318,7 +346,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">无特殊返回值</span>
-				<span class="description-method-demo">.jdatapager("option" , options)</span>
+				<span class="description-method-demo">.jdatetimepicker("option" , options)</span>
 			</h3>
 			<div>
 				<p>设置option的值为options。</p>

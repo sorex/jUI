@@ -27,13 +27,13 @@
 	            width: '100%', //表宽
 	            data:
                     [
-                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
-                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
-                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
-                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
-                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
-                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                        { "ID": 1, "Name": "a1", "Name2": "a2", "Name3": "a3", "Name4": "a4", "Name5": "a5" },
+                        { "ID": 2, "Name": "b1", "Name2": "b2", "Name3": "b3", "Name4": "b4", "Name5": "b5" },
+                        { "ID": 3, "Name": "c1", "Name2": "c2", "Name3": "c3", "Name4": "c4", "Name5": "c5" },
+                        { "ID": 4, "Name": "d1", "Name2": "d2", "Name3": "d3", "Name4": "d4", "Name5": "d5" },
+                        { "ID": 5, "Name": "e1", "Name2": "e2", "Name3": "e3", "Name4": "e4", "Name5": "e5" },
+                        { "ID": 6, "Name": "f1", "Name2": "f2", "Name3": "f3", "Name4": "f4", "Name5": "f5" },
+                        { "ID": 7, "Name": "g1", "Name2": "g2", "Name3": "g3", "Name4": "g4", "Name5": "g5" }
                     ], //数据源
 	            columns:
                     [
@@ -57,32 +57,10 @@
 		                }
                     ]//列名
 	        }).jcheckTable({
-	            checkedItems: [1,2,3]//默认选择项
-                , count:5//限制可供勾选的checkBox的个数
+	            field: "名称3"//默认选择项(列名)
+                , checkedItems: ["a3","b3","c3"]//默认选择项(单元格内的值)
+                , count: 0//限制可勾选的个数(0为无限制)
 	        });
-
-	        //$(":checkbox").after("<span class='jui-checkbox'></span>").click(function (event) {
-	        //    if ($(this).is(':checked')) {
-	        //        $(this).next().addClass("jui-checkbox-checked");
-	        //        $(this).checked = true;
-	        //    }
-	        //    else {
-	        //        $(this).next().removeClass('jui-checkbox-checked');
-	        //        $(this).checked = false;
-	        //    }
-	        //    event.stopPropagation();
-	        //}).hide().next().click(function (event) {
-	        //    var myObject = document.getElementById($(this).prev().attr("id"));
-	        //    if (myObject.checked == true) {
-	        //        $(this).removeClass('jui-checkbox-checked')
-	        //        myObject.checked = false;
-	        //    } else {
-
-	        //        myObject.checked = true;
-	        //        $(this).addClass('jui-checkbox-checked')
-	        //    }
-	        //    event.stopPropagation();
-	        //});
 	    });
 
 	</script>
@@ -90,10 +68,10 @@
     <script type="text/javascript">
         $(function () {
             $("#btn_checked").click(function () {
-                if ($("#MyTable1").jcheckTable("isChecked").length == 0) {
+                if ($("#MyTable1").jcheckTable("checkedValue").length == 0) {
                     alert("未选中任何行")
                 } else {
-                    alert($("#MyTable1").jcheckTable("isChecked").join());
+                    alert($("#MyTable1").jcheckTable("checkedValue").join());
                 }
             });
         });
