@@ -38,7 +38,7 @@
 	         /*左边普通提示初始化*/
 	        $("#n_w").jtip({
 	            type: "nomal",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "您好这里有详细介绍",
 	            autoshow: false
@@ -46,7 +46,7 @@
 	        /*底部普通提示初始化*/
 	        $("#n_n").jtip({
 	            type: "nomal",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "您好这里有详细介绍",
 	            autoshow: false
@@ -74,7 +74,7 @@
 	        /*左边成功提示初始化*/
 	        $("#s_w").jtip({
 	            type: "success",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "恭喜您成功了",
 	            autoshow: false
@@ -82,7 +82,7 @@
 	        /*底部成功提示初始化*/
 	        $("#s_n").jtip({
 	            type: "success",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "底部成功",
 	            autoshow: false
@@ -111,7 +111,7 @@
 	        /*左边错误提示初始化*/
 	        $("#e_w").jtip({
 	            type: "error",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "sorry有错请检查",
 	            autoshow: false
@@ -119,7 +119,7 @@
 	        /*底部错误提示初始化*/
 	        $("#e_n").jtip({
 	            type: "error",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "错误报告在底部",
 	            autoshow: false
@@ -185,7 +185,7 @@
 		     /*左边普通提示初始化*/
 	        $("#n_w").jtip({
 	            type: "nomal",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "您好这里有详细介绍",
 	            autoshow: false
@@ -193,7 +193,7 @@
 	        /*底部普通提示初始化*/
 	        $("#n_n").jtip({
 	            type: "nomal",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "您好这里有详细介绍",
 	            autoshow: false
@@ -227,7 +227,8 @@
 
 		</div>
 		<span id="action2"></span>
-		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
 			鼠标移入文本框 左边出现成功提示:&lt;input id="s_w" type="text"/ &gt;
             鼠标移入文本框 底部出现成功提示:&lt;input id="s_n" type="text"/ &gt;
 			&lt;script type="text/javascript"&gt;
@@ -235,7 +236,7 @@
 		     /*左边成功提示初始化*/
 	        $("#s_w").jtip({
 	            type: "success",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "恭喜您成功了",
 	            autoshow: false
@@ -243,7 +244,7 @@
 	        /*底部成功提示初始化*/
 	        $("#s_n").jtip({
 	            type: "success",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "底部成功",
 	            autoshow: false
@@ -275,7 +276,8 @@
             <br />
            鼠标移入文本框 底部出现错误提示:<input id="e_n" type="text"/>
 		</div>
-		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+	<a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
 			鼠标移入文本框 左边出现成功提示:&lt;input id="e_w" type="text"/ &gt;
             鼠标移入文本框 底部出现成功提示:&lt;input id="e_n" type="text"/ &gt;
 			&lt;script type="text/javascript"&gt;
@@ -283,7 +285,7 @@
 		     /*左边错误提示初始化*/
 	        $("#e_w").jtip({
 	            type: "error",
-	            positon: "w",
+	            positon: "left",
 	            width: "150px",
 	            content: "sorry有错请检查",
 	            autoshow: false
@@ -291,7 +293,7 @@
 	        /*底部错误提示初始化*/
 	        $("#e_n").jtip({
 	            type: "error",
-	            positon: "n",
+	            positon: "bottom",
 	            width: "100px",
 	            content: "错误报告在底部",
 	            autoshow: false
@@ -331,7 +333,7 @@
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">[type]</span>
+				<span class="description-option-name">type</span>
 				<span class="description-option-type">string</span>
 				<span class="description-option-value">nomal</span>
 			</h3>
@@ -352,7 +354,7 @@
 					//设置
                        $("#tagId").jtip({
 	                           type: "nomal",/*类别修改在此处*/
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "您好这里有详细介绍",
 	                           autoshow: false
@@ -360,16 +362,16 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">[position]</span>
+				<span class="description-option-name">position</span>
 				<span class="description-option-type">string</span>
-				<span class="description-option-value">w</span>
+				<span class="description-option-value">left</span>
 			</h3>
 			<div>
 				<p>设置提示的位置(必选参数)</p>
 				<pre class="brush: js;">
 					position：//只能是以下两个参数(二选一)
-                                w       //箭头朝西指向（出现在目标右边边线的中间位置）
-                                n       //箭头朝北指向 (出现在目标底部边线的中间位置)
+                                left       //箭头朝西指向（出现在目标右边边线的中间位置）
+                                bottom       //箭头朝北指向 (出现在目标底部边线的中间位置)
 				</pre>
 
                   <p>获取和设置</p>
@@ -379,7 +381,7 @@
 					//设置
                        $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",/*位置修改在此处*/
+	                           positon: "left",/*位置修改在此处*/
 	                           width: "150px",
 	                           content: "您好这里有详细介绍",
 	                           autoshow: false
@@ -387,15 +389,14 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">[width]</span>
+				<span class="description-option-name">width</span>
 				<span class="description-option-type">string</span>
 				<span class="description-option-value">150px</span>
 			</h3>
 			<div>
 				<p>设置消息提示的长度(必须使用)</p>
 				<pre class="brush: js;">
-					例如:width：150px //表示提示内容的长度为150px
-
+					width//表示提示内容的长度
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
@@ -404,7 +405,7 @@
 					//设置
                        $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",/*长度修改在此处*/
 	                           content: "您好这里有详细介绍",
 	                           autoshow: false
@@ -412,7 +413,7 @@
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">[content]</span>
+				<span class="description-option-name">content</span>
 				<span class="description-option-type">string</span>
 				<span class="description-option-value">""</span>
 			</h3>
@@ -420,7 +421,7 @@
 				<p>设置提示的内容（必选参数）</p>
 
 				<pre class="brush: js;">
-				例如:content:"请输入1-6位字符"
+				content//表示提示的内容
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
@@ -429,7 +430,7 @@
 					//设置
 					 $("#content").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "请输入1-6位字符",/*内容修改在此处*/
 	                           autoshow: false
@@ -458,7 +459,7 @@
 					//设置
 					 $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "请输入1-6位字符*/
 	                           autoshow: false /*是否直接显示修改在此处*/
@@ -471,6 +472,16 @@
 	<div id="eventsTab">
 		<div id="eventsAccordion">
 			<h3>
+				<span class="description-event-name">暂无</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+
+
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
 				<span class="description-event-name">show</span>
 				<span class="description-event-returnType">Null</span>
 			</h3>
@@ -481,7 +492,7 @@
                     //初始化
                         $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "请输入1-6位字符",
 	                           autoshow: false 
@@ -503,7 +514,7 @@
                     //初始化
                          $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "请输入1-6位字符",
 	                           autoshow: true 
@@ -524,7 +535,7 @@
                     //初始化
                         $("#tagId").jtip({
 	                           type: "nomal",
-	                           positon: "w",
+	                           positon: "left",
 	                           width: "150px",
 	                           content: "请输入1-6位字符",
 	                           autoshow: true 
@@ -532,40 +543,6 @@
                     //显示
 				        $("#tagId").jtip("refreshPositon"); /*消息提示框隐藏 注意：之前必须先初始化控件*/
 				</pre>
-			</div>
-
-		</div>
-	</div>
-	<div id="methodsTab">
-		<div id="methodsAccordion">
-			<h3>
-				<span class="description-method-name">option</span>
-				<span class="description-method-returnType">由optionName定</span>
-				<span class="description-method-demo">.jtip("option" , optionName , [value])</span>
-			</h3>
-			<div>
-				<p>调用方法</p>
-                	
-				<pre class="brush: js;">
-                    //调用直接显示
-                        $("#tagId").jtip({
-	                           type: "nomal",
-	                           positon: "w",
-	                           width: "150px",
-	                           content: "请输入1-6位字符",
-	                           autoshow: true 
-	                         });
-               
-				</pre>
-
-			</div>
-			<h3>
-				<span class="description-method-name">option</span>
-				<span class="description-method-returnType">无特殊返回值</span>
-				<span class="description-method-demo">.jtip("option" , options)</span>
-			</h3>
-			<div>
-				<p>设置option的值为options。</p>
 			</div>
 		</div>
 	</div>
