@@ -35,7 +35,7 @@
     }*/
     /*外层div*/    
     .jui-datetimepicker {
-        width:220px;
+        width:240px;
         background-color:#f3f3f3;
         padding: .2em .2em ;
         border:1px solid #DDD;
@@ -46,7 +46,8 @@
         z-index:100000;
     }     
     .jui-datetimepicker-dis {
-        width:220px;
+        /*display:inline-block;*/
+        width:240px;
         background-color:#f3f3f3;
         padding: .2em .2em ;
         border:1px solid #DDD;
@@ -112,7 +113,7 @@
         color:#ffffff; 
         outline:none;
     }
-    .jui-datetimepicker-table{ width:220px; margin-top:5px;}/*内容表格样式*/
+    .jui-datetimepicker-table{ width:240px; margin-top:5px;}/*内容表格样式*/
     .jui-datetimepicker-table tr{ text-align:center;}/*表格内容居中*/
     .jui-datetimepicker-week{font-weight: bold;color: Black;outline: none;display: block;padding: .2em;font-weight:bolder;}/*星期样式*/
     .jui-datetimepicker-al-span_text_toggle{width:20px;}/*点击年份后生成的输入框样式*/

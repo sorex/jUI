@@ -67,23 +67,24 @@
 	            weekResult = null,//列
 	            roll = null,//行               
 	            elementId = e.attr("id"),
-	            t = 0,
-	            _t = 1,
+	            //t = 0,
+	            //_t = 1,
 	            hideValue = null,
 	            y_value = null,
 	            ym_value = null,
 	            setVal_y = null,
 	            setVal_M = null;
+	        var m_items = []; 
 	       
-	        if (datetimeParse == "yyyy-MM-dd")
-	            t = 1,_t = 0;
+	        //if (datetimeParse == "yyyy-MM-dd")
+	        //    t = 1,_t = 0;
 	        //外层div
 	        var outDiv = "<div id='" + elementId + "_outDiv' class='jui-datetimepicker'></div>";
 	        //头部
-	        var head = "<div id='" + elementId + "_headDiv' class='jui-datetimepicker-dhead jui-datetimepicker-corner-all'>"
-            + "<a id='" + elementId + "_prev' title='上一页' class='jui-datetimepicker-al jui-datetimepicker-corner-all'><span class='ui-icon ui-icon-circle-triangle-w'>&nbsp;</span></a>"
-            + "<a id='" + elementId + "_next' title='下一页' class='jui-datetimepicker-ar jui-datetimepicker-corner-all'><span class='ui-icon ui-icon-circle-triangle-e'>&nbsp;</span></a>"
-            + "<div id='" + elementId + "_yearDiv' class='jui-datetimepicker-dhcenter'><span>" + (y - 5) + "~" + (y + 4) + "</span></div>"
+	        var head = "<div id='" + elementId + "_headDiv' style='margin-left:2px;padding-bottom:5px;padding-top:5px;background-color:#094AB2;'>"
+            + "<a id='" + elementId + "_prev' title='上一页' style='cursor:pointer;display:inline-block;margin-right:6px;margin-left:6px;'><span class='ui-icon ui-icon-circle-triangle-w'>&nbsp;</span></a>"
+            + "<div id='" + elementId + "_yearDiv' style='display:inline-block;'><span>" + (y - 5) + "~" + (y + 4) + "</span></div>"
+            + "<a id='" + elementId + "_next' title='下一页' style='cursor:pointer;display:inline-block;margin-left:6px;margin-left:6px;'><span class='ui-icon ui-icon-circle-triangle-e'>&nbsp;</span></a>"
             + "</div>";
 	        if (display == false) {
 	            //text占一行
@@ -106,14 +107,15 @@
 	            y = strToDate(default_value).getFullYear(),
                 m = strToDate(default_value).getMonth(),
                 d = strToDate(default_value).getDate();
-
 	            if ((parseInt(m) + 1) < 10) {
 	                if (parseInt(d) < 10) {
 	                    e.val(y + "年0" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
 	                } else {
 	                    e.val(y + "年0" + (parseInt(m) + 1) + "月" + d + "日"); //赋值 
 	                }
-	            } else {
+	            }
+	            else
+	            {
 	                if (parseInt(hideValue) < 10) {
 	                    e.val(y + "年" + (parseInt(m) + 1) + "月0" + d + "日"); //赋值                                            
 	                } else {
@@ -139,8 +141,8 @@
 	        }
 	        //填日期
 	        var writeDate = function () {
-	            var write_y = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val());//当前选择的年份
-	            var write_m = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val()) + 1;//当前选择的月份
+	            var write_y = parseInt($("#_year option:selected").attr("value"));
+	            var write_m = parseInt($("#_month option:selected").attr("value"))+1;
 	            var fullDay = [1, 3, 5, 7, 8, 10, 12];
 	            var maxDay = null;
 	            var max = false;
@@ -218,13 +220,13 @@
 	        }
 	        //默认选中当天日期的样式
 	        var activeCss = function () {
-	            var act_y = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val());//当前选择的年份
-	            var act_m = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val());//当前选择的月份
+	            var act_y = parseInt($("#_year option:selected").attr("value"));//当前选择的年份
+	            var act_m = parseInt($("#_month option:selected").attr("value"));//当前选择的月份
 	            $("#" + elementId + "_tb a").each(function () {
-	                if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
-	                    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
-	                //if ($(this).text() == d&& act_y == y && (act_m == m))
+	                //if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
 	                //    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
+	                if ($(this).text() == d&& act_y == y && (act_m == m))
+	                    $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
 	            });
 	        }
 	        var activeCss_y = function () {
@@ -241,8 +243,8 @@
 	        }
 	        //标记选择日期
 	        var choseDate = function () {
-	            var chose_y = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val());//当前选择的年份
-	            var chose_m = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val());//当前选择的月份
+	            var chose_y = $("#_year option:selected").attr("value");
+	            var chose_m = $("#_month option:selected").attr("value");
 	            $("#" + elementId + "_tb td").each(function () {
 	                if ($(this).text() == hideValue && chose_y == setVal_y && chose_m == setVal_M) {
 	                    $(this).children("a").addClass("jui-datetimepicker-active");
@@ -266,8 +268,8 @@
 	                $("#" + elementId + "_tb td a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
 	                $(this).addClass("jui-datetimepicker-active"); //高亮	
 	                activeCss();
-	                setVal_y = $("#" + elementId + "_yearDiv").children("select:eq("+t+")").val();
-	                setVal_M = $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val();
+	                setVal_y = $("#_year option:selected").attr("value");
+	                setVal_M = $("#_month option:selected").attr("value");
 	                var international_val, china_val;
 	                if (display) {
 	                    international_val = function (setVal_y, setVal_M) {
@@ -347,70 +349,52 @@
 	            });
 	        }
 	        //添加年份
-	        var addOptions = function () {
-	            for (var i = y - 10; i < y; i++) {
-	                var op = "";
-	                if (datetimeParse == "yyyy-MM-dd") {
-	                    op = "<option value='" + i + "'>" + i + "</option>";
-	                    $("#" + elementId + "_yearDiv").children("select:eq(1)").append(op);
-	                } else {
-	                    op = "<option value='" + i + "'>" + i + "年</option>";
-	                    $("#" + elementId + "_yearDiv").children("select:eq(0)").append(op);
+	        var addYears = function () {
+	            var y_items = [], j = 0, default_year="";
+	            for (var i = y - 10; i <= y + 10; i++) {
+	                j++;
+	                datetimeParse == "yyyy-MM-dd" ? y_items.push({ value: i, text: i, selected: "" }) : y_items.push({ value: i, text: i + "年", selected: "" });
+	                if (i == y) {
+	                    y_items[j - 1]["selected"] = "selected";
+	                    default_year = y_items[j - 1]["text"];
 	                }
 	            }
-	            for (var i = y; i <= y + 10; i++) {
-	                var op = "";
-	                if (datetimeParse == "yyyy-MM-dd") {
-	                    op = "<option value='" + i + "'>" + i + "</option>";
-	                    $("#" + elementId + "_yearDiv").children("select:eq(1)").append(op);
-	                } else {
-	                    op = "<option value='" + i + "'>" + i + "年</option>";
-	                    $("#" + elementId + "_yearDiv").children("select:eq(0)").append(op);
+	            $("#_year").jSelect({
+	                item: y_items,
+	                placeholder: default_year,
+	                width: "90px",
+	                model: "default",
+	                onSelectChange: function (selectValue, SelectText) {
+	                    $("#" + elementId + "_tb a").text("");//清空
+	                    writeDate();
+	                    choseDate();
+	                    setVal();
 	                }
-	            }
-	        }
-	        //添加年份下拉列表
-	        var addYear = function () {
-	            addOptions();
-	            $("#" + elementId + "_yearDiv").children("select:eq("+t+")").find("option").each(function () {
-	                if ($(this).val() == y)
-	                    $(this).attr("selected", "selected");
-	            });//默认今年                
-	            $("#" + elementId + "_yearDiv").children("select:eq("+t+")").bind("change", function () {
-	                $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
-	                y = parseInt($(this).val());
-	                $(this).empty();
-	                addOptions();
-	                $(this).children("option").removeAttr("selected");
-	                $("#" + elementId + "_yearDiv").children("select:eq("+t+")").find("option").each(function () {
-	                    if ($(this).val() == y)
-	                        $(this).attr("selected", "selected");
-	                });
-	                $("#" + elementId + "_tb a").text("");//清空
-	                writeDate();
-	                choseDate();
-	            });//年份动态添加          
-	            $("#" + elementId + "_yearDiv").children("select:eq("+_t+")").bind("change", function () {
-	                $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
-	                $("#" + elementId + "_tb a").text("");//清空
-	                writeDate();
-	                choseDate();
-	            });//日期随月份动态添加
+	            });
+	            $("#_year").css("color", "black");
 	        }
 	        //添加月份下拉列表
-	        var addMonth = function () {
+	        var addMonths = function () {
+	            m_items.length = 0;
 	            //添加月下拉列表
 	            for (var i = 0; i < shortMonthNames.length; i++) {
-	                var op = "<option value='" + i + "'>" + MonthNamesCN[i] + "</option>";
-	                if (datetimeParse == "yyyy-MM-dd") {
-	                     op = "<option value='" + i + "'>" + shortMonthNames[i] + "</option>";
-	                }
-	                $("#" + elementId + "_yearDiv").children("select:eq("+_t+")").append(op);
+	                datetimeParse == "yyyy-MM-dd" ? m_items.push({ value: i, text: shortMonthNames[i], selected: "" }) : m_items.push({ value: i, text: MonthNamesCN[i], selected: "" });
 	            }
-	            $("#" + elementId + "_yearDiv").children("select:eq("+_t+")").find("option").each(function () {
-	                if ($(this).val() == m)
-	                    $(this).attr("selected", "selected");
-	            });//默认当前月
+	            m_items[m]["selected"] = "selected";
+	            $("#_month").jSelect({
+	                item: m_items,
+	                placeholder: m_items[m]["text"],
+	                width: "90px",
+	                model: "default",
+	                onSelectChange: function (selectValue, SelectText) {
+	                    $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
+	                    $("#" + elementId + "_tb a").text("");//清空
+	                    writeDate();
+	                    choseDate();
+	                    setVal();
+	                }
+	            });
+	            $("#_month").css("color","black");
 	        }
 	        //高亮并赋值
 	        var lightAndSetValue = function () {
@@ -537,10 +521,10 @@
 	            $("#" + elementId + "_tb td a").addClass("jui-datetimepicker-table-tr-a");
 	            activeCss_ym();
 	        }
-	        //年月日
+            //年月日
 	        var yMd = function () {
 	            $("#" + elementId + "_yearDiv").children("span").remove("span");
-	            $("#" + elementId + "_yearDiv").append("<select class='jui-datetimepicker-select'></select><select class='jui-datetimepicker-select'></select>");//年月的下拉列表
+	            $("#" + elementId + "_yearDiv").append("<div id='_year' style='display:inline-block;'></div><div id='_month' style='display:inline-block;'></div>");//年月的下拉列表
 
 	            if (datetimeParse == "yyyy-MM-dd") {
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "next");
@@ -549,8 +533,8 @@
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "下一页");
 	                $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "上一页");
 	            }
-	            addMonth();
-	            addYear();
+	            addMonths();
+	            addYears();
 	            //显示日期的表格结构
 	            var table = "<table id='" + elementId + "_tb' class='jui-datetimepicker-table'></table>";
 	            $("#" + elementId + "_outDiv").append(table);
@@ -578,55 +562,39 @@
 	            }
 	            writeDate();
 	            setVal();
-	            $("#" + elementId + "_prev").click(function () {
+	            $("#" + elementId + "_prev").click(function () {                    
 	                $("#" + elementId + "_tb a").removeClass("jui-datetimepicker-active");
-	                m = $("#" + elementId + "_yearDiv").children("select:eq("+_t+")").val() - 1;
+	                m = parseInt($("#_month option:selected").attr("value"))-1;
 	                if (m == -1) {
 	                    m = 11;
-	                    y = $("#" + elementId + "_yearDiv").children("select:eq("+t+")").val() - 1;
-	                    $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").find("option").each(function () {
-	                        $(this).removeAttr("selected"); //清空选择项                        
-	                        if ($(this).val() == y)
-	                            $(this).attr("selected", "selected");
-	                    });
-	                    $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val(y);
+	                    y = parseInt($("#_year option:selected").attr("value")) - 1;
+	                    $("#_year").empty();
+	                    addYears();
 	                }
-	                $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").find("option").each(function () {
-	                    $(this).removeAttr("selected"); //清空选择项
-	                    if ($(this).val() == m)
-	                        $(this).attr("selected", "selected");
-	                });
-	                $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val(m);
+	                addMonths();
 	                $("#" + elementId + "_tb a").text("");//清空
 	                writeDate();
 	                choseDate();
+	                setVal();
 	            }); //前翻
 	            $("#" + elementId + "_next").bind("click", function () {
 	                $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
-	                m = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val()) + 1;
+	                m = parseInt($("#_month option:selected").attr("value")) + 1;
 	                if (m == 12) {
 	                    m = 0;
-	                    y = parseInt($("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val()) + 1;
-	                    $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").find("option").each(function () {
-	                        $(this).removeAttr("selected"); //清空选择项                        
-	                        if ($(this).val() == y)
-	                            $(this).attr("selected", "selected");
-	                    });
-	                    $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")").val(y);
+	                    y = parseInt($("#_year option:selected").attr("value")) + 1;
+	                    $("#_year").empty();
+	                    addYears();
 	                }
-	                $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").find("option").each(function () {
-	                    $(this).removeAttr("selected"); //清空选择项
-	                    if ($(this).val() == m)
-	                        $(this).attr("selected", "selected");
-	                });
-	                $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").val(m);
+	                addMonths();
 	                $("#" + elementId + "_tb a").text("");//清空
 	                writeDate();
 	                choseDate();
+	                setVal();
 	            });//后翻
 	            Today();
-	        }
-	        
+	            activeCss();
+	        }	        
             //显示今日
 	        var Today = function () {
 	            if (showToday) {
@@ -707,31 +675,20 @@
 	                            china_val(date);
 	                            break;
 	                    }
-	                    $("#" + elementId + "_yearDiv").children("select:eq(" + _t + ")").find("option").each(function () {
-	                        if ($(this).val() == date.getMonth())
-	                            $(this).attr("selected", "selected");
-	                    });//默认当前月
-	                    var list_y = $("#" + elementId + "_yearDiv").children("select:eq(" + t + ")");
-	                    list_y.empty();
 	                    y = date.getFullYear();
-	                    addOptions();
-	                    list_y.children("option").removeAttr("selected");
-	                    list_y.find("option").each(function () {
-	                        if ($(this).val() == date.getFullYear())
-	                            $(this).attr("selected", "selected");
-	                    });
+	                    m = date.getMonth();
+	                    $("#_year").empty();
+	                    $("#_month").empty();
+	                    addMonths();
+	                    addYears();
 
 	                    $("#" + elementId + "_tb a").text("");//清空
 	                    writeDate();
 	                    choseDate();
-	                    activeCss();
-	                    if (display == false) {
-	                        $("#" + elementId + "_outDiv").hide();
-	                    }
+	                    setVal();
 	                });
 	            }
 	        }
-
             //时分秒
 	        var hms = function () {
 	            $("#" + elementId + "_outDiv").empty().css({"padding":"0 15px 0 15px"});

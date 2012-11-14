@@ -95,12 +95,14 @@
 			if (value !== undefined || value != null)
 				this.options[key] = value;
 			else
-				return this.options[key];
+			    return this.options[key];
+			this._create();
 		},
 
 		_setOptions: function (options) {
+		    var self = this;
 			$.each(options, function (key, value) {
-				this._setOption(key, value);
+			    self._setOption(key, value);
 			});
 		},
 
