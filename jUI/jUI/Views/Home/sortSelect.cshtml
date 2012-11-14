@@ -30,22 +30,36 @@
 		$(function () {
 
 			$("#showSortSelect").jsortSelect({
-				item: [{ name: "Id", text: "编号" },
-					{ name: "Age", text: "年龄", sort: "desc" },
-					{ name: "finishData", text: "完成日期", sort: "asc" },
-					{ name: "size", text: "大小", sort: "desc" }
+				items: [{ value: "Id", text: "编号" },
+					{ value: "Age", text: "年龄",selected: true, sort: "desc" },
+					{ value: "finishData", text: "完成日期", sort: "asc" },
+					{ value: "size", text: "大小", sort: "desc" }
 				],
-				onItemClick: function (name, sort) {
-					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				onItemClick: function (value,text, sort) {
+					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
 				}
+				
 			});
+
+
 			$("#showSortSelect2").jsortSelect({
 				item: null,
-				onItemClick: function (name, sort) {
-					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				onItemClick: function (value, text, sort) {
+					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
 				}
 			});
 
+			$("#btnSelect").click(function () {
+				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
+				
+				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+
+	
+			});
+
+			$("#aDelete").click(function () {
+				alert('a');
+			});
 		});
 
 	</script>
@@ -73,22 +87,34 @@
 	</ul>
 	<div id="tab1">
 		<div id="showSortSelect"></div>
+		<input id="btnSelect" type="button" value="获取选择的值" />
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
 			&lt;div id="showSortSelect"&gt;&lt;/div&gt;
+			&lt;input id="btnSelect" type="button" value="获取选择的值" /&gt;
 			  &lt;script type="text/javascript"&gt;
 	            $(function () {
-	             	$("#showSortSelect").jsortSelect({
-				item: [{ name: "Id", text: "编号" },
-					{ name: "Age", text: "年龄", sort: "desc" },
-					{ name: "finishData", text: "完成日期", sort: "asc" },
-					{ name: "size", text: "大小", sort: "desc" }
+	        
+			$("#showSortSelect").jsortSelect({
+				items: [{ value: "Id", text: "编号" },
+					{ value: "Age", text: "年龄",selected: true, sort: "desc" },
+					{ value: "finishData", text: "完成日期", sort: "asc" },
+					{ value: "size", text: "大小", sort: "desc" }
 				],
-				onItemClick: function (name, sort) {
-					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
+				onItemClick: function (value,text, sort) {
+					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
 				}
+				
 			});
+			$("#btnSelect").click(function () {
+				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
+				
+				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+
+	
+			});
+
 	            });
 	        &lt;/script&gt;
   
@@ -101,13 +127,13 @@
 		<pre class="brush: js; html-script: true;">
 			&lt;div id="showSortSelect2"&gt;&lt;/div&gt;
 	        &lt;script type="text/javascript"&gt;
-	             $(function () {
-	             	$("#showSortSelect2").jsortSelect({
-				item: null,
-				onItemClick: function (name, sort) {
-					alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
-				}
-			});
+	       $(function () {
+	        	$("#showSortSelect2").jsortSelect({
+						items: null,
+						onItemClick: function (value, text, sort) {
+							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						}
+						});
 	            });
 	        &lt;/script&gt;
 		</pre>
@@ -128,43 +154,41 @@
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">item</span>
+				<span class="description-option-name">items</span>
 				<span class="description-option-type">Array</span>
-				<span class="description-option-value">[]</span>
+				<span class="description-option-value">[{ name: "finishData", text: "完成日期", sort: "asc" }]</span>
 			</h3>
 			<div>
 				<p>排序字段的数据源</p>
 				<pre class="brush: js;">
 				
-				item：
-						name: 表示排序字段的名称  text: 字段显示的值 sort:排序方式
+				items：[{item},{item}];//使用item列表为其赋值
+						item:
+							value       //下拉框实际值
+							text        //下拉框显示的值
+							[selected]	//是否被选中 可选参数 设置选中为:(selected:true)
+							[sort]		//排序方式 可选参数 默认是升序(asc)， 设置降序(sort:"desc") 
+										//asc和desc区分大小写 使用时请用小写
+						
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#showSortSelect").jsortSelect({
-										item: [{ name: "Id", text: "编号" },
-											{ name: "Age", text: "年龄", sort: "desc" },
-											{ name: "finishData", text: "完成日期", sort: "asc" },
-											{ name: "size", text: "大小", sort: "desc" }
-										],
-										onItemClick: function (name, sort) {
-											alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
-										}
-										});				
+				$("#showSortSelect").jsortSelect({
+						items: [{ value: "Id", text: "编号" },
+							{ value: "Age", text: "年龄",selected: true, sort: "desc" },
+							{ value: "finishData", text: "完成日期", sort: "asc" },
+							{ value: "size", text: "大小", sort: "desc" }
+						],
+						onItemClick: function (value,text, sort) {
+							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						}
+				
+						});		
 				</pre>
-				<p>获取和设置</p>
+				<p>获取</p>
 				<pre class="brush: js;">
 					//获取(返回的是一个对象)
-					var item = $("#showSortSelect").jdatapager( "option", "item" );
-					var  name =item[0]["name"];
-					//设置
-					$("#showSortSelect").jsortSelect({
-										item: [{ name: "Id", text: "编号" },
-											{ name: "Age", text: "年龄", sort: "desc" },
-											{ name: "finishData", text: "完成日期", sort: "asc" },
-											{ name: "size", text: "大小", sort: "desc" }
-										]
-										});			
+					var items = $("#showSortSelect").jdatapager( "option", "items" );	
 				</pre>
 			</div>
 		</div>
@@ -179,21 +203,23 @@
 				<p>点击排序字段或者排序方式时触发</p>
 				<p>参数列表：</p>
 				<pre class="brush: js;">
-                    name：排序字段
-					sort：排序方式升序（asc）或者降序(desc)
+                    value   //选择实际值
+					text    //选择显示的值
+					sort    //选择排序方式
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-							$("#showSortSelect").jsortSelect({
-										item: [{ name: "Id", text: "编号" },
-											{ name: "Age", text: "年龄", sort: "desc" },
-											{ name: "finishData", text: "完成日期", sort: "asc" },
-											{ name: "size", text: "大小", sort: "desc" }
-										],
-										onItemClick: function (name, sort) {
-											alert("选择的字段名称为:" + name + ";排序方式为:" + sort);
-										}
-										});		
+					$("#showSortSelect").jsortSelect({
+						items: [{ value: "Id", text: "编号" },
+							{ value: "Age", text: "年龄",selected: true, sort: "desc" },
+							{ value: "finishData", text: "完成日期", sort: "asc" },
+							{ value: "size", text: "大小", sort: "desc" }
+						],
+						onItemClick: function (value,text, sort) {
+							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						}
+				
+						});		
 				</pre>
 			</div>
 		</div>
@@ -201,12 +227,20 @@
 	<div id="methodsTab">
 		<div id="methodsAccordion">
 			<h3>
-				<span class="description-method-name">暂无</span>
-				<span class="description-method-returnType">暂无</span>
-				<span class="description-method-demo">暂无</span>
+				<span class="description-method-name">getSelectValueText</span>
+				<span class="description-method-returnType">object</span>
+			
 			</h3>
 			<div>
-				<p>暂无</p>
+				<p>获取值</p>
+				<pre class="brush: js;">
+               var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText"); 
+				//该对象有三个属性 value(选中值) text(显示值) sort(排序方式)
+				$("#btnSelect").click(function () {
+				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
+				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+			});
+				</pre>
 			</div>
 			
 			

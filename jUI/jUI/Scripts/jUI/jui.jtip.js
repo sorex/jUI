@@ -36,7 +36,7 @@
 	{
 		options: {
 			type: "nomal",
-			positon: "w",
+			positon: "left",
 			width: "150px",
 			content: "",
 			autoshow: false
@@ -56,14 +56,14 @@
 			switch (o.type) {
 				case "nomal": /*正常情况*/
 					switch (o.positon) {
-						case "w":/*箭头朝西*/
+						case "left":/*箭头朝西*/
 
-							$("body").append("<div id=" + contentId + " class='jui-jitp-nomal-w-content' style='width:" + o.width + "'><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='jui-jitp-nomal-w-content' style='width:" + o.width + "'><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead'></div>");
 							break;
-						case "n":/*箭头朝北*/
+						case "bottom":/*箭头朝北*/
 
-							$("body").append("<div id=" + contentId + " class='jui-jitp-nomal-n-content' style='width:" + o.width + "'><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='jui-jitp-nomal-n-content' style='width:" + o.width + "'><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead'></div>");
 							break;
 					}
@@ -72,28 +72,28 @@
 
 				case "success": /*成功情况*/
 					switch (o.positon) {
-						case "w":/*箭头朝西*/
+						case "left":/*箭头朝西*/
 
-							$("body").append("<div id=" + contentId + " class='jui-jtip-success-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='jui-jtip-success-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead'></div>");
 							break;
-						case "n":/*箭头朝北*/
+						case "bottom":/*箭头朝北*/
 
-							$("body").append("<div id=" + contentId + " class='jui-jtip-success-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='jui-jtip-success-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead'></div>");
 							break;
 					}
 					break;
 				case "error": /*错误情况*/
 					switch (o.positon) {
-						case "w":/*箭头朝西*/
+						case "left":/*箭头朝西*/
 
-							$("body").append("<div id=" + contentId + " class='ui-state-error jui-jtip-error-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='ui-state-error jui-jtip-error-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead-error'></div>");
 							break;
-						case "n":/*箭头朝北*/
+						case "bottom":/*箭头朝北*/
 
-							$("body").append("<div id=" + contentId + " class='ui-state-error  jui-jtip-error-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span>" + o.content + "</span></div>");
+							$("body").append("<div id=" + contentId + " class='ui-state-error  jui-jtip-error-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-alert' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
 							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead-error'></div>");
 							break;
 					}
@@ -154,18 +154,20 @@
 
 		},
 		_positon: function (positon, contentId, arrowheadId) {
-			if (positon == "w") { //朝西定位
+			if (positon == "left") { //朝西定位
+
+				$("#" + arrowheadId).position({
+					of: this.element,
+					my: "left middle",
+					at: "right middle"
+				});
 				$("#" + contentId).position({
 					of: this.element,
 					my: "left middle",
 					at: "right middle",
 					offset: '6 0'
 				});
-				$("#" + arrowheadId).position({
-					of: this.element,
-					my: "left middle",
-					at: "right middle"
-				});
+			
 
 
 			} else { //朝北定位

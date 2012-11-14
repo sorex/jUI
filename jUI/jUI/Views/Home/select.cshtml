@@ -31,31 +31,38 @@
 		$(function () {
 
 			$("#showSelect").jSelect({
-				item: [{ value: "China", text: "中国" },
+				items: [{ value: "China", text: "中国" },
 					{ value: " Japan", text: "日本" },
-					{ value: "America", text: "美国", selected: "selected" },
+					{ value: "America", text: "美国", selected: true },
 					{ value: "Korea  ", text: "朝鲜" },
 					{ value: "Corea  ", text: "韩国" }
 				],
 				placeholder: "请国家选择...",
 				width: "100px",
-				model: "default",
-				onSelectChange: function (selectValue, SelectText) {
-					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				model: "single",
+				onSelectChange: function (selectValue, selectText) {
+					alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 				}
 			});
 
+
+
+			$("#singleBtn").click(function () {
+				var selectObj = $("#showSelect").jSelect("getSelectValueText");
+				alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
+
+			});
 			$("#showSelect2").jSelect({
 				placeholder: "请国家选择...",
 				width: "100px",
-				model: "default",
-				onSelectChange: function (selectValue, SelectText) {
-					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				model: "single",
+				onSelectChange: function (selectValue, selectText) {
+					alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 				}
 			});
 
 			$("#showSelect3").jSelect({
-				item: [{ value: "China", text: "中国" },
+				items: [{ value: "China", text: "中国" },
 					{ value: " Japan", text: "日本" },
 					{ value: "America", text: "美国" },
 					{ value: "Korea  ", text: "朝鲜" },
@@ -64,18 +71,33 @@
 				placeholder: "请国家选择(可以多选)",
 				width: "200px",
 				model: "multiple",
-				onSelectChange: function (selectValue, selectText) {
-					if (selectValue != null) {
-						var textList = selectText.substring(0, selectText.length - 1).split('　');
-						var content = "";
-						for (var i = 0; i < selectValue.length ; i++) {
-							content += "英文名称为:" + selectValue[i] + "中文名称为:" + textList[i] + "；"
+				onSelectChange: function (selectList) {
+					var content = "";
+					if (selectList != null) {
+						for (var i = 0; i < selectList.length; i++) {
+							content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
 						}
 						alert("选择的内容为：" + content.substring(0, content.length - 1));
 					} else {
-						alert("您清空了所有选择");
+						alert("无数据");
 					}
 				}
+			});
+
+			$("#multipleBtn").click(function () {
+				var selectList = $("#showSelect3").jSelect("getSelectValueText");
+				var content = "";
+				if(selectList!=null){
+					for (var i = 0; i < selectList.length; i++) {
+						content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+					}
+					alert("选择的内容为：" + content.substring(0, content.length - 1));
+				}else{
+					alert("无数据");
+				}
+			
+			
+
 			});
 
 		});
@@ -107,26 +129,35 @@
 	</ul>
 	<div id="tab1">
 		<div id="showSelect"></div>
+		<input type="button" id="singleBtn" value="获取值" />
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
 			&lt;div id="showSelect"&gt;&lt;/div&gt;
+				&lt;input type="button" id="singleBtn" value="获取值" /&gt;
 			  &lt;script type="text/javascript"&gt;
 	            $(function () {
+					$("#showSelect").jSelect({
+						items: [{ value: "China", text: "中国" },
+							{ value: " Japan", text: "日本" },
+							{ value: "America", text: "美国", selected: true },
+							{ value: "Korea  ", text: "朝鲜" },
+							{ value: "Corea  ", text: "韩国" }
+						],
+						placeholder: "请国家选择...",
+						width: "100px",
+						model: "single",
+						onSelectChange: function (selectValue, selectText) {
+							alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+						}
+					});
 
-				$("#showSelect").jSelect({
-				item: [{ value: "China", text: "中国" },
-					{ value: " Japan", text: "日本" },
-					{ value: "America", text: "美国", selected: "selected" },
-					{ value: "Korea  ", text: "朝鲜" },
-					{ value: "Corea  ", text: "韩国" }
-				],
-				placeholder: "请国家选择...",
-				width: "100px",
-				model: "default",
-				onSelectChange: function (selectValue, SelectText) {
-					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
-				}
+				$("#singleBtn").click(function () {
+					var selectObj = $("#showSelect").jSelect("getSelectValueText");
+					alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
+
+				});
+
 			});
 	          
 	            });
@@ -137,6 +168,7 @@
 
 	<div id="tab3">
 		<div id="showSelect3"></div>
+		<input id="multipleBtn" type="button" value="获取值"/>
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
@@ -144,31 +176,42 @@
 			  &lt;script type="text/javascript"&gt;
 	            $(function () {
 
-					$("#showSelect3").jSelect({
-				item: [{ value: "China", text: "中国" },
-					{ value: " Japan", text: "日本" },
-					{ value: "America", text: "美国" },
-					{ value: "Korea  ", text: "朝鲜" },
-					{ value: "Corea  ", text: "韩国" }
-				],
-				placeholder: "请国家选择(可以多选)",
-				width: "200px",
-				model: "multiple",
-				onSelectChange: function (selectValue, selectText) {
-					if (selectValue != null) {
-						var textList = selectText.substring(0, selectText.length - 1).split('　');
+		$("#showSelect3").jSelect({
+					items: [{ value: "China", text: "中国" },
+						{ value: " Japan", text: "日本" },
+						{ value: "America", text: "美国" },
+						{ value: "Korea  ", text: "朝鲜" },
+						{ value: "Corea  ", text: "韩国" }
+					],
+					placeholder: "请国家选择(可以多选)",
+					width: "200px",
+					model: "multiple",
+					onSelectChange: function (selectList) {
 						var content = "";
-						for (var i = 0; i < selectValue.length ; i++) {
-							content += "英文名称为:" + selectValue[i] + "中文名称为:" + textList[i] + "；"
+						if (selectList != null) {
+							for (var i = 0; i < selectList.length; i++) {
+								content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+							}
+							alert("选择的内容为：" + content.substring(0, content.length - 1));
+						} else {
+							alert("无数据");
 						}
-						alert("选择的内容为：" + content.substring(0, content.length - 1));
-					} else {
-						alert("您清空了所有选择");
 					}
-				}
-			});
-			});
+				});
 	          
+			
+			$("#multipleBtn").click(function () {
+						var selectList = $("#showSelect3").jSelect("getSelectValueText");
+						var content = "";
+						if(selectList!=null){
+							for (var i = 0; i < selectList.length; i++) {
+								content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+							}
+							alert("选择的内容为：" + content.substring(0, content.length - 1));
+						}else{
+							alert("无数据");
+						}
+					});
 	            });
 	        &lt;/script&gt;
   
@@ -185,9 +228,9 @@
 	           $("#showSelect2").jSelect({
 				placeholder: "请国家选择...",
 				width: "100px",
-				model: "default",
-				onSelectChange: function (selectValue, SelectText) {
-					alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+				model: "single",
+				onSelectChange: function (selectValue, selectText) {
+					alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 				}
 			});
 	            });
@@ -205,54 +248,46 @@
 		<li><a href="#themingTab">主题</a></li>
 	</ul>
 	<div id="overviewTab">
-		<p>单选的select控件</p>
+		<p>单选和多选的复合select控件</p>
 	</div>
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">item</span>
+				<span class="description-option-name">items</span>
 				<span class="description-option-type">Array</span>
-				<span class="description-option-value">[]</span>
+				<span class="description-option-value">[{ value: "America", text: "美国", selected: true }]</span>
 			</h3>
 			<div>
 				<p>排序字段的数据源</p>
 				<pre class="brush: js;">
-				item：
-						value: 表示实际值  text: 显示值  selected:表示是否选中
+				items：[{item},{item},{item}] //使用item列表为其赋值
+						item:
+							value        //下拉框实际值
+							text        //下拉框显示值
+							[selected]   //是否被选中 选中为(selected:true)
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
 							
 				$("#showSelect").jSelect({
-							item: [{ value: "China", text: "中国" },
+							items: [{ value: "China", text: "中国" },
 								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "America", text: "美国", selected: true },
 								{ value: "Korea  ", text: "朝鲜" },
 								{ value: "Corea  ", text: "韩国" }
 							],
 							placeholder: "请国家选择...",
 							width: "100px",
-							model: "default",
-							onSelectChange: function (selectValue, SelectText) {
-								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 							}
 						});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取(返回的是一个对象)
-					var item = $("#showSortSelect").jdatapager( "option", "item" );
-					var  value =item[0]["value"];
-					var  text = item[0]["text"]; 
-					//设置
-					$("#showSelect").jSelect({
-										item: [{ value: "China", text: "中国" },
-												{ value: " Japan", text: "日本" },
-												{ value: "America", text: "美国", selected: "selected" },
-												{ value: "Korea  ", text: "朝鲜" },
-												{ value: "Corea  ", text: "韩国" }
-											]
-										});			
+					var items = $("#showSortSelect").jdatapager( "option", "items" );
 				</pre>
 			</div>
 
@@ -264,34 +299,29 @@
 			<div>
 				<p>在没有默认选择情况下 文本的提示内容</p>
 				<pre class="brush: js;">
-					placeholder: "请国家选择...",
+					[placeholder] //没有选中之前的提示语 默认为 请选择...
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">		
 				$("#showSelect").jSelect({
-							item: [{ value: "China", text: "中国" },
+							items: [{ value: "China", text: "中国" },
 								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "America", text: "美国", selected: true },
 								{ value: "Korea  ", text: "朝鲜" },
 								{ value: "Corea  ", text: "韩国" }
 							],
 							placeholder: "请国家选择...",
 							width: "100px",
-							model: "default",
-							onSelectChange: function (selectValue, SelectText) {
-								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 							}
 						});
 				</pre>
-				<p>获取和设置</p>
+				<p>获取</p>
 				<pre class="brush: js;">
 					//获取
-					var placeholder = $("#showSortSelect").jdatapager( "option", "placeholder" );
-				
-					//设置
-					$("#showSelect").jSelect({
-									placeholder:"请选择..."
-										});			
+					var placeholder = $("#showSortSelect").jdatapager( "option", "placeholder" );	
 				</pre>
 			</div>
 
@@ -304,34 +334,31 @@
 			<div>
 				<p>选择框的宽度</p>
 				<pre class="brush: js;">
-					width: "150px",
+					[width]  //select的宽度 默认为 150px
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">		
 				$("#showSelect").jSelect({
-							item: [{ value: "China", text: "中国" },
+							items: [{ value: "China", text: "中国" },
 								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "America", text: "美国", selected: true },
 								{ value: "Korea  ", text: "朝鲜" },
 								{ value: "Corea  ", text: "韩国" }
 							],
 							placeholder: "请国家选择...",
 							width: "150px",
-							model: "default",
-							onSelectChange: function (selectValue, SelectText) {
-								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 							}
 						});
 				</pre>
-				<p>获取和设置</p>
+				<p>获取</p>
 				<pre class="brush: js;">
 					//获取
 					var width = $("#showSortSelect").jdatapager( "option", "width" );
 				
-					//设置
-					$("#showSelect").jSelect({
-									width:"150px"
-										});			
+					
 				</pre>
 			</div>
 
@@ -339,38 +366,36 @@
 			<h3>
 				<span class="description-option-name">model</span>
 				<span class="description-option-type">string</span>
-				<span class="description-option-value">default</span>
+				<span class="description-option-value">single</span>
 			</h3>
 			<div>
 				<p>单选与多选的切换</p>
 				<pre class="brush: js;">
-					model：default(单选) multiple(多选)[二选一]
+					[model]：  //单选和多选的切换 默认的为单选
+							 single(单选)
+							 multiple(多选)[二选一]
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">		
 				$("#showSelect").jSelect({
-							item: [{ value: "China", text: "中国" },
+							items: [{ value: "China", text: "中国" },
 								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "America", text: "美国", selected: true },
 								{ value: "Korea  ", text: "朝鲜" },
 								{ value: "Corea  ", text: "韩国" }
 							],
 							placeholder: "请国家选择...",
 							width: "150px",
-							model: "default",
-							onSelectChange: function (selectValue, SelectText) {
-								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
 							}
 						});
 				</pre>
-				<p>获取和设置</p>
+				<p>获取</p>
 				<pre class="brush: js;">
 					//获取
-					var model = $("#showSortSelect").jdatapager( "option", "model" );	
-					//设置
-					$("#showSelect").jSelect({
-									model:"default"
-										});			
+					var model = $("#showSortSelect").jdatapager( "option", "model" );			
 				</pre>
 			</div>
 
@@ -380,30 +405,59 @@
 		<div id="eventsAccordion">
 			<h3>
 				<span class="description-event-name">onSelectChange</span>
-				<span class="description-event-returnType">Null</span>
+				<span class="description-event-returnType">[string string]or json</span>
 			</h3>
 			<div>
 				<p>选择下拉框的值发生改变时触发</p>
-				<p>参数列表：</p>
+				<p>单选参数列表</p>
 				<pre class="brush: js;">
                     selectValue：选择的值
-					SelectText：显示的文本
+					selectText：显示的文本
+				</pre>
+				<p>多选参数列表</p>
+				<pre class="brush: js;">
+                   selectList: //多选的json对象
+							   selectList[i]["value"] //下拉框选中值
+							   selectList[i]["text"] //下拉框显示值
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
 					//单选下拉框
-							$("#showSelect").jSelect({
-							item: [{ value: "China", text: "中国" },
+					$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
 								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: "selected" },
+								{ value: "America", text: "美国", selected: true },
 								{ value: "Korea  ", text: "朝鲜" },
 								{ value: "Corea  ", text: "韩国" }
 							],
 							placeholder: "请国家选择...",
 							width: "150px",
-							model: "default",
-							onSelectChange: function (selectValue, SelectText) {
-								alert("选择的国家中文名为:" + SelectText + ":英文名称为:" + selectValue);
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+					//多选下拉框
+					$("#showSelect3").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择(可以多选)",
+							width: "200px",
+							model: "multiple",
+							onSelectChange: function (selectList) {
+								var content = "";
+								if (selectList != null) {
+									for (var i = 0; i < selectList.length; i++) {
+										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+									}
+									alert("选择的内容为：" + content.substring(0, content.length - 1));
+								} else {
+									alert("无数据");
+								}
 							}
 						});
 				</pre>
@@ -413,12 +467,30 @@
 	<div id="methodsTab">
 		<div id="methodsAccordion">
 			<h3>
-				<span class="description-method-name">暂无</span>
-				<span class="description-method-returnType">暂无</span>
-				<span class="description-method-demo">暂无</span>
+				<span class="description-method-name">getSelectValueText</span>
+				<span class="description-method-returnType">[string,string]or json</span>
 			</h3>
 			<div>
-				<p>暂无</p>
+		<p>获取下拉框所选中的值</p>
+				<p>单选框的获取值</p>
+						<pre class="brush: js;">
+								var selectObj = $("#showSelect").jSelect("getSelectValueText");
+								alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
+							</pre>
+				<p>多选选框的获取值</p>
+						<pre class="brush: js;">
+								var selectList = $("#showSelect3").jSelect("getSelectValueText");
+								var content = "";
+								if(selectList!=null){
+									for (var i = 0; i < selectList.length; i++) {
+										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+									}
+									alert("选择的内容为：" + content.substring(0, content.length - 1));
+								}else{
+									alert("无数据");
+								}
+							</pre>
+
 			</div>
 
 
