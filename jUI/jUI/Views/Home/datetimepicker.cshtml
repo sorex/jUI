@@ -34,9 +34,7 @@
 	<script type="text/javascript">
 	    $(function () {
 	        //默认显示年月日
-	        $("#MyDatetimepicker1").jdatetimepicker({
-                value:"1999-10-03"
-	        });
+	        $("#MyDatetimepicker1").jdatetimepicker();
             //仅显示年份
 	        $("#MyDatetimepicker2").jdatetimepicker({
 	            datetimeType: "yyyy"
@@ -67,8 +65,7 @@
 	        });
 	        //显示当天
 	        $("#MyDatetimepicker12").jdatetimepicker({
-	            showToday: true,
-	            value: "1999-10-03"
+	            showToday: true
 	        });
 	    });
 	</script>
@@ -107,9 +104,7 @@
 <pre class="brush: js; html-script: true;">
         &ltinput type="text"  id="MyDatetimepicker1"/&gt
         &ltscript type="text/javascript"&gt
-	            $("#MyDatetimepicker1").jdatetimepicker({
-                    value:"1999-10-03"
-                });
+	            $("#MyDatetimepicker1").jdatetimepicker();
         &lt/script&gt
 		</pre>
 	</div>
@@ -151,10 +146,10 @@
         <div id="div8"></div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
 <pre class="brush: js; html-script: true;">
-		&ltinput type="text"  id="MyDatetimepicker8"/&gt
-	    &ltscript type="text/javascript"&gt
-	            $("#MyDatetimepicker8").jdatetimepicker({
-                    display: "display"
+        &lt div id="div8"&gt&lt/div&gt
+	    &lt script type="text/javascript"&gt
+	            $("#div8").jdatetimepicker({
+                    display: true
 	            });
 	    &lt/script&gt
 		</pre>
@@ -173,7 +168,8 @@
 	</div>
 	<div id="tab10">
         <input type="text"  id="MyDatetimepicker10"/>
-		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
 		&ltinput type="text"  id="MyDatetimepicker10"/&gt
 	    &ltscript type="text/javascript"&gt
 	            $("#MyDatetimepicker10").jdatetimepicker({
@@ -234,7 +230,7 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeType" );
 					//设置
-					$("#myDatetimepicker").jdatetimepicker("option",{datetimeType: "yyyy-MM-dd"});
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeType: "yyyy-MM"});
 				</pre>
 			</div>
 			<h3>
@@ -253,38 +249,38 @@
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeParse" );
 					//设置
-					$("#myDatetimepicker").jdatetimepicker("option",{datetimeParse: "yyyy年MM月dd日"});
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeParse: "yyyy-MM-dd"});
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">[display]</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">"display"</span>
+				<span class="description-option-type">Boolean</span>
+				<span class="description-option-value">false</span>
 			</h3>
 			<div>
 				<p>始终显示日期选择器</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatetimepicker").jdatetimepicker({display:"display"});
+					$("#myDatetimepicker").jdatetimepicker({display:false});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "display" );
 					//设置
-					$("#myDatetimepicker").jdatetimepicker("option",{display:"display"});
+					$("#myDatetimepicker").jdatetimepicker("option",{display:true});
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">[readonly]</span>
-				<span class="description-option-type">Boolen</span>
+				<span class="description-option-type">Boolean</span>
 				<span class="description-option-value">false</span>
 			</h3>
 			<div>
 				<p>设置文本框只读</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatetimepicker").jdatetimepicker({readonly:true});
+					$("#myDatetimepicker").jdatetimepicker({readonly:false});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
@@ -296,14 +292,14 @@
 			</div>
 			<h3>
 				<span class="description-option-name">[showToday]</span>
-				<span class="description-option-type">Boolen</span>
-				<span class="description-option-value">true</span>
+				<span class="description-option-type">Boolean</span>
+				<span class="description-option-value">false</span>
 			</h3>
 			<div>
-				<p>是否有显示当天按钮</p>
+				<p>是否显示当天按钮</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatetimepicker").jdatetimepicker({showToday:true});
+					$("#myDatetimepicker").jdatetimepicker({showToday:false});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
@@ -320,9 +316,10 @@
 			</h3>
 			<div>
 				<p>设定默认显示日期</p>
+				<p>格式:yyyy-MM-dd</p>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myDatetimepicker").jdatetimepicker({value:"1999-10-03"});
+					$("#myDatetimepicker").jdatetimepicker({value:""});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
@@ -362,24 +359,68 @@
             
     &lt;input type="text" id="txt_datapicker" readonly="readonly"&gt;
     &lt;div id="txt_datapicker_outDiv" class="jui-datetimepicker" style="display: block; "&gt;
-        &lt;div id="txt_datapicker_headDiv" class="jui-datetimepicker-dhead jui-datetimepicker-corner-all"&gt;
-            &lt;a id="txt_datapicker_prev" title="上一页" class="jui-datetimepicker-al jui-datetimepicker-corner-all"&gt;
-                &lt;span class="ui-icon ui-icon-circle-triangle-w"&gt;&nbsp;&lt;/span&gt;
-            &lt;/a&gt;
-            &lt;a id="txt_datapicker_next" title="下一页" class="jui-datetimepicker-ar jui-datetimepicker-corner-all"&gt;
-                &lt;span class="ui-icon ui-icon-circle-triangle-e"&gt;&nbsp;&lt;/span&gt;
-            &lt;/a&gt;
-            &lt;div id="txt_datapicker_yearDiv" class="jui-datetimepicker-dhcenter"&gt;
-                &lt;select class="jui-datetimepicker-select"&gt;
-                    &lt;option value="2002"&gt;2002年&lt;/option&gt;
-                    &lt;option value="2012" selected="selected"&gt;2012年&lt;/option&gt;
-                &lt;/select&gt;
-                &lt;select class="jui-datetimepicker-select"&gt;
-                    &lt;option value="0"&gt;一月&lt;/option&gt;
-                    &lt;option value="9" selected="selected"&gt;十月&lt;/option&gt;
-                &lt;/select&gt;
+            &lt;div id="txt_datapicker_headDiv" class="jui-datetimepicker-dhead"&gt;
+    &lt;a id="txt_datapicker_prev" title="previous" class="jui-datetimepicker-prev"&gt;
+        &lt;span class="ui-icon ui-icon-circle-triangle-w"&gt;&nbsp;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;div id="txt_datapicker_yearDiv" class="jui-datetimepicker-headcenter"&gt;
+        &lt;div id="_monthtxt_datapicker" style="display: inline-block; color: black;"&gt;
+            &lt;select id="_monthtxt_datapicker_select" data-placeholder="Nov" class="chzn-select chzn-done" style="width: 90px; display: none;" tabindex="-1"&gt;
+                &lt;option&gt;&lt;/option&gt;
+                &lt;option value="0"&gt;Jan　&lt;/option&gt;
+                &lt;option value="1"&gt;Feb　&lt;/option&gt;
+                ...
+                &lt;option value="11"&gt;Dec　&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div id="_monthtxt_datapicker_select_chzn" class="chzn-container chzn-container-single" style="width: 90px;"&gt;
+                &lt;a href="javascript:void(0)" class="chzn-single" tabindex="-1"&gt;
+                    &lt;span&gt;Nov　&lt;/span&gt;
+                    &lt;div&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;
+                &lt;/a&gt;
+                &lt;div class="chzn-drop" style="left: -9000px; width: 88px; top: 0px;"&gt;
+                    &lt;div class="chzn-search"&gt;
+                        &lt;input type="text" autocomplete="off" style="width: 53px;" tabindex="2"&gt;
+                    &lt;/div&gt;
+                    &lt;ul class="chzn-results"&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_1" class="active-result" style=""&gt;Jan　&lt;/li&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_2" class="active-result" style=""&gt;Feb　&lt;/li&gt;
+                        ...
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_11" class="active-result result-selected" style=""&gt;Nov　&lt;/li&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_12" class="active-result" style=""&gt;Dec　&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
+        &lt;div id="_yeartxt_datapicker" style="display: inline-block; color: black;"&gt;
+            &lt;select id="_yeartxt_datapicker_select" data-placeholder="2012" class="chzn-select chzn-done" style="width: 90px; display: none;" tabindex="-1"&gt;
+                &lt;option&gt;&lt;/option&gt;
+                &lt;option value="2002"&gt;2002　&lt;/option&gt;
+                &lt;option value="2003"&gt;2003　&lt;/option&gt;
+                ...
+                &lt;option value="2022"&gt;2022　&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div id="_yeartxt_datapicker_select_chzn" class="chzn-container chzn-container-single" style="width: 90px;"&gt;
+                &lt;a href="javascript:void(0)" class="chzn-single" tabindex="-1"&gt;
+                    &lt;span&gt;2012　&lt;/span&gt;
+                    &lt;div&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;
+                &lt;/a&gt;
+                &lt;div class="chzn-drop" style="left: -9000px; width: 88px; top: 0px;"&gt;
+                    &lt;div class="chzn-search"&gt;
+                        &lt;input type="text" autocomplete="off" style="width: 53px;" tabindex="2"&gt;&lt;/div&gt;
+                    &lt;ul class="chzn-results"&gt;
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_1" class="active-result" style=""&gt;2002　&lt;/li&gt;
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_11" class="active-result result-selected" style=""&gt;2012　&lt;/li&gt;
+                        ...
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_21" class="active-result" style=""&gt;2022　&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+        &lt;a id="txt_datapicker_next" title="next" class="jui-datetimepicker-next"&gt;
+            &lt;span class="ui-icon ui-icon-circle-triangle-e"&gt;&nbsp;&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
         &lt;table id="txt_datapicker_tb" class="jui-datetimepicker-table"&gt;
             &lt;tbody&gt;
                 &lt;tr&gt;
@@ -400,42 +441,11 @@
                     &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;5&lt;/a&gt;&lt;/td&gt;
                     &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;6&lt;/a&gt;&lt;/td&gt;
                 &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;7&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;8&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;9&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;10&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;11&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;12&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;13&lt;/a&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;14&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;15&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;16&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;17&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;18&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;19&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;20&lt;/a&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;21&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-now"&gt;22&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;23&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;24&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;25&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;26&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;27&lt;/a&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;&lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;28&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;29&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;30&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;31&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class=""&gt;&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class=""&gt;&lt;/a&gt;&lt;/td&gt;
-                    &lt;td&gt;&lt;a href="#" class=""&gt;&lt;/a&gt;&lt;/td&gt;
-                &lt;/tr&gt;
+                ...
             &lt;/tbody&gt;
         &lt;/table&gt;
     &lt;/div&gt;
 		</pre>
 	</div>
 </div>
+
