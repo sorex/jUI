@@ -53,6 +53,7 @@
 .jui-datetimepicker-headcenter {
     display:inline-block;
     width:180px;
+    height:23px;
     color:white;
     text-align:center;
 }
