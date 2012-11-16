@@ -67,7 +67,7 @@
 	            max = false,
 	            weekResult = null,//列
 	            roll = null,//行               
-	            elementId = e.attr("id"),
+	            elementId = "_"+e.attr("id"),
 	            hideValue = null,
 	            y_value = null,
 	            ym_value = null,
@@ -319,20 +319,21 @@
 	                width: "90px",
 	                model: "single",
 	                onSelectChange: function (selectValue, SelectText) {
-	                    //var selectObj = $("#_year" + elementId).jSelect("getSelectValueText");
-	                    //var select_Value = selectObj.value;
-	                    //var j=0;
-	                    //for (var i = select_Value; i < select_Value + 10; i++) {
-                        //    alert(i)
-	                        //$(".chzn-results").find("li:eq(" + j + ")").empty();
-	                        //$(".chzn-results").find("li:eq(" + j + ")").html(i + "年   ");
-	                        //j++;
-	                        //if (i == y) {
-	                        //    alert(i)
-	                        //    $(".chzn-results").find("li:eq(" + (j - 1) + ")").html(i+"年   ");
-	                        //}
-	                    //}
-                        
+	                    var _options = "", _select = $("#_year" + elementId + "_select");
+	                    var select_Value = parseInt($("#_year" + elementId + " option:selected").attr("value"));
+	                    $("#_year" + elementId + "_select_chzn").remove();//删除所有li
+	                    _select.attr("class", "");
+	                    _select.attr("data-placeholder", "");
+	                    _select.find("option").remove();//删除所有option
+	                    for (var i = select_Value - 10; i <= select_Value + 10; i++) {
+	                        _options += "<option></option><option value='"+i+"'>"+i+"年　</option>";
+	                        if (i == select_Value) {
+	                            _options += "<option selected value='" + i + "'>" + i + "年　</option>";
+	                        }
+	                    }
+	                    _select.append(_options);
+	                    _select.chosen();
+
 	                    $("#" + elementId + "_tb a").text("");//清空
 	                    writeDate();
 	                    choseDate();
