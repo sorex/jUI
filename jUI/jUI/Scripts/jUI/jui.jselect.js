@@ -69,7 +69,7 @@
 					if (o.items[i].selected) {
 						selectHtml += "<option selected value=" + o.items[i].value + ">" + o.items[i].text + '　' + "</option>";
 					} else {
-						selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text + '　' + "</option>";
+						selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text +"</option>";
 					}
 
 				}
@@ -98,7 +98,7 @@
 
 
 					}else{
-						self.options.onSelectChange($(this).val(), $(this).find("option:selected").text().substring(0, $(this).find("option:selected").text().length - 1));
+						self.options.onSelectChange($(this).val(), $(this).find("option:selected").text());
 
 					}
 				});

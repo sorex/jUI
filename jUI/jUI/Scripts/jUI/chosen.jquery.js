@@ -1,4 +1,4 @@
-// Chosen, a Select Box Enhancer for jQuery and Protoype
+﻿// Chosen, a Select Box Enhancer for jQuery and Protoype
 // by Patrick Filler for Harvest, http://getharvest.com
 // 
 // Version 0.9.8
@@ -144,7 +144,7 @@ Copyright (c) 2011 by Harvest
 			} else {
 				this.default_text = this.options.placeholder_text_single || this.options.placeholder_text || "Select an Option";
 			}
-			return this.results_none_found = this.form_field.getAttribute("data-no_results_text") || this.options.no_results_text || "No results match";
+			return this.results_none_found = this.form_field.getAttribute("data-no_results_text") || this.options.no_results_text || "没有找到相关的";
 		};
 
 		AbstractChosen.prototype.mouse_enter = function () {
