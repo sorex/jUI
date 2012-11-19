@@ -10,7 +10,7 @@ line-height: 16px !important;
 }
 .jui-jtree li ul.line
 {    
-    background: url(images/line_conn.gif) 0 0 repeat-y;
+    background: url(../images/line_conn.gif) 0 0 repeat-y;
 }
 .jui-jtree-u1 {
 
@@ -46,7 +46,7 @@ line-height: 16px !important;
     background-color: transparent;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-image:url(images/zTreeStandard.png);
+    background-image:url(../images/zTreeStandard.png);
     vertical-align: top;
     border: 0 none;
     cursor: pointer;

@@ -70,7 +70,7 @@ body
 #TopLogoDiv
 {
 	float: left; 
-	background-image:url(images/jui-logo.png);
+	background-image:url(../images/jui-logo.png);
 	height:40px; 
 	width:150px;
 }

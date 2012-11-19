@@ -134,22 +134,25 @@
             ul2.css("display", "none");
             
             sw1.click(function () {
+                //切换各级中顶端"+","-"按钮
                 if ($(this).attr("class") == "jui-jtree-u-switch") {
                     $(this).removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-open");
                 } else if ($(this).attr("class") == "jui-jtree-u-switch-open") {
                     $(this).removeClass("jui-jtree-u-switch-open").addClass("jui-jtree-u-switch");
                 }
+                //切换各级中中间"+","-"按钮
                 if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-close") {
                     $(this).removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-open");
                 } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-open") {
                     $(this).removeClass("jui-jtree-u-switch-dircorss-open").addClass("jui-jtree-u-switch-dircorss-close");
                 }
+                //切换各级中底部"+","-"按钮
                 if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
                     $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-close").addClass("jui-jtree-u-switch-dircorss-bottom-open");
                 } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
                     $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-open").addClass("jui-jtree-u-switch-dircorss-bottom-close");
                 }
-
+                //切换各级图标开与关按钮 
                 if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon") {
                     $(this).siblings("a").find("span:eq(0)").removeClass("jui-jtree-u-icon").addClass("jui-jtree-u-icon-open");
                 } else if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon-open") {
