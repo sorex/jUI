@@ -521,7 +521,11 @@
 	                for (var i = 0; i < 5; i++) {
 	                    $("#" + elementId + "_tb").append("<tr><td><a href='#'>" + (parseInt(save_y) - 5 + i) + "</a></td><td><a href='#'>" + (parseInt(save_y) + i) + "</a></td></tr>");
 	                }
-	                $("#" + elementId + "_yearDiv").find("span").html((parseInt(save_y)-5)+"~"+(parseInt(save_y)+4));
+	                if (datetimeParse == "yyyy-MM-dd") {
+	                    $("#" + elementId + "_yearDiv").find("span").html((parseInt(save_y) - 5) + " ~ " + (parseInt(save_y) + 4));
+	                } else {
+	                    $("#" + elementId + "_yearDiv").find("span").html((parseInt(save_y) - 5) + " 年 ~ " + (parseInt(save_y) + 4 + " 年"));
+	                }
 	                $("#" + elementId + "_tb a").addClass("jui-datetimepicker-table-tr-a");
 	            }
 	            //前翻页
@@ -575,12 +579,21 @@
 	                $("#" + elementId + "_tb").remove();
 	                yMd();
 	            });
+	            $("#" + elementId + "_btn_y").click(function () {
+	                $("#" + elementId + "_yearDiv").empty();
+	                if (datetimeParse == "yyyy-MM-dd") {
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;font-size:13px;'>" + (parseInt(save_y) - 5) + " ~ " + (parseInt(save_y) + 4) + "</span>");
+	                } else {
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;font-size:13px;'>" + (parseInt(save_y) - 5) + " 年 ~ " + (parseInt(save_y) + 4) + " 年</span>");
+	                }
+	                $("#" + elementId + "_tb").remove();
+	                $("#" + elementId + "_prev").unbind("click");
+	                $("#" + elementId + "_next").unbind("click");
+	                whenYYYY();
+	            });
 	            $("#" + elementId + "_tb td a").addClass("jui-datetimepicker-table-tr-a");
 	            $("#btn_" + elementId).remove();
 	            activeCss_ym();
-	            //$("#" + elementId + "_yearDiv").children("input").click(function () {
-	            //    $("#" + elementId + "_outDiv").hide();
-	            //});
 	        }
             //年月日
 	        var yMd = function () {
@@ -666,9 +679,9 @@
 	            $("#" + elementId + "_btn_y").click(function () {
 	                $("#" + elementId + "_yearDiv").empty();
 	                if (datetimeParse == "yyyy-MM-dd") {
-	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + (parseInt(save_y) - 5) + "~" + (parseInt(save_y) + 4) + "</span>");
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;font-size:13px;'>" + (parseInt(save_y) - 5) + " ~ " + (parseInt(save_y) + 4) + "</span>");
 	                } else {
-	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + (parseInt(save_y) - 5) + "年~" + (parseInt(save_y) + 4) + "年</span>");
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;font-size:13px;'>" + (parseInt(save_y) - 5) + " 年 ~ " + (parseInt(save_y) + 4) + " 年</span>");
 	                }
 	                $("#" + elementId + "_tb").remove();
 	                $("#" + elementId + "_prev").unbind("click");
@@ -680,7 +693,7 @@
 	                if (datetimeParse == "yyyy-MM-dd") {
 	                    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/></div>");
 	                } else {
-	                    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/><span style='display:inline-block;height:18px;margin-top:2px;'>年</span></div>");
+	                    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/>年</div>");
 	                }
 	                $("#" + elementId + "_tb").remove();
 	                $("#" + elementId + "_prev").unbind("click");
