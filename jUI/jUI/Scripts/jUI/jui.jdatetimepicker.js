@@ -92,8 +92,8 @@
 
 	        //填日期
 	        var writeDate = function () {
-	            var write_y = parseInt($("#btn_y").attr("value"));
-	            var write_m = parseInt($("#btn_m").attr("value"));
+	            var write_y = parseInt($("#" + elementId + "_btn_y").attr("value"));
+	            var write_m = parseInt($("#" + elementId + "_btn_m").attr("value"));
 	            var fullDay = [1, 3, 5, 7, 8, 10, 12];
 	            var maxDay = null;
 	            var max = false;
@@ -154,7 +154,7 @@
 	                }
 	                $("#" + elementId + "_tb").find("tr:eq(" + roll + ")").find("td:eq(" + weekResult + ")").find("a").html(i);
 	                $("#" + elementId + "_tb").find("a").addClass("jui-datetimepicker-table-tr-a");
-	                activeCss();//默认高亮当日
+	                //activeCss();//默认高亮当日
 	                clickToHide();
 	                noCss();
 	            }
@@ -172,14 +172,14 @@
 	        }
 	        //默认选中当天日期的样式
 	        var activeCss = function () {
-	            var act_y = parseInt($("#_year" + elementId + " option:selected").attr("value"));//当前选择的年份
-	            var act_m = parseInt($("#_month" + elementId + " option:selected").attr("value"));//当前选择的月份
+	            var act_y = parseInt($("#" + elementId + "_btn_y").attr("value"));//当前选择的年份
+	            var act_m = parseInt($("#" + elementId + "_btn_m").attr("value"));//当前选择的月份
 	            $("#" + elementId + "_tb a").each(function () {
 	                if (default_value) {
 	                    y = strToDate(default_value).getFullYear(),
                         m = strToDate(default_value).getMonth(),
                         d = strToDate(default_value).getDate();
-	                    if ($(this).text() == strToDate(default_value).getDate() && act_y == y && (act_m == m))
+	                    if ($(this).text() == d && act_y == y && (act_m == m))
 	                        $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
                         if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
                             $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
@@ -203,8 +203,8 @@
 	        }
 	        //标记选择日期
 	        var choseDate = function () {
-	            var chose_y = $("#_year" + elementId + " option:selected").attr("value");
-	            var chose_m = $("#_month" + elementId + " option:selected").attr("value");
+	            var chose_y = parseInt($("#" + elementId + "_btn_y").attr("value"));
+	            var chose_m = parseInt($("#" + elementId + "_btn_m").attr("value"));
 	            $("#" + elementId + "_tb td").each(function () {
 	                if ($(this).text() == hideValue && chose_y == setVal_y && chose_m == setVal_M) {
 	                    $(this).children("a").addClass("jui-datetimepicker-active");
@@ -221,7 +221,114 @@
 	                $(this).children("a").addClass("jui-datetimepicker-active");
 	            }
 	        }
-
+            //今天按钮的点击事件
+	        var today_click = function () {
+	            $("#btn_" + elementId).click(function () {
+	                $("#" + elementId + "_tb").remove();
+	                save_y = date.getFullYear();
+	                save_m = date.getMonth();
+	                yMd();
+	                var international_val, china_val;
+	                if (display) {
+	                    international_val = function () {
+	                        if ((date.getMonth() + 1) < 10) {
+	                            if (date.getDate() < 10) {
+	                                $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
+	                            }
+	                        } else {
+	                            if (date.getDate() < 10) {
+	                                $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
+	                            }
+	                        }
+	                    }
+	                    china_val = function () {
+	                        if ((date.getMonth() + 1) < 10) {
+	                            if (date.getDate() < 10) {
+	                                $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
+	                            }
+	                        } else {
+	                            if (date.getDate() < 10) {
+	                                $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                            } else {
+	                                $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
+	                            }
+	                        }
+	                    }
+	                } else {
+	                    international_val = function () {
+	                        if ((date.getMonth() + 1) < 10) {
+	                            if (date.getDate() < 10) {
+	                                e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                            } else {
+	                                e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
+	                            }
+	                        } else {
+	                            if (date.getDate() < 10) {
+	                                e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
+	                            } else {
+	                                e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
+	                            }
+	                        }
+	                    }
+	                    china_val = function () {
+	                        if ((date.getMonth() + 1) < 10) {
+	                            if (date.getDate() < 10) {
+	                                e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                            } else {
+	                                e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
+	                            }
+	                        } else {
+	                            if (date.getDate() < 10) {
+	                                e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
+	                            } else {
+	                                e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
+	                            }
+	                        }
+	                    }
+	                }
+	                switch (datetimeParse) {
+	                    case 'yyyy年MM月dd日':
+	                        china_val(date);
+	                        break;
+	                    case 'yyyy-MM-dd':
+	                        international_val(date);
+	                        break;
+	                    default:
+	                        china_val(date);
+	                        break;
+	                }
+	                //y = date.getFullYear();
+	                //m = date.getMonth();
+	                //d = date.getDate();
+	                //$("#_year" + elementId).empty();
+	                //$("#_month" + elementId).empty();
+	                //if (datetimeParse == "yyyy-MM-dd") {
+	                //    $("#" + elementId + "_yearDiv").append("<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>-</span></div>" +
+	                //        "<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/></div>");//年月
+	                //    $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "next");
+	                //    $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "previous");
+	                //} else {
+	                //    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/><span style='display: inline-block;'>年</span></div>" +
+	                //        "<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>月</span></div>");//月年
+	                //    $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "下一页");
+	                //    $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "上一页");
+	                //}
+	                //$("#" + elementId + "_tb a").text("");//清空
+	                //writeDate();
+	                //choseDate();
+	                //setVal();
+	                //$("#" + elementId + "_tb a").each(function () {
+	                //    if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
+	                //        $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
+	                //});
+	            });
+	        }
 
 	        //高亮并赋值
 	        var setVal = function () {
@@ -230,8 +337,8 @@
 	                $("#" + elementId + "_tb td a").removeClass("jui-datetimepicker-active").addClass("jui-datetimepicker-table-tr-a");
 	                $(this).addClass("jui-datetimepicker-active"); //高亮	
 	                activeCss();
-	                setVal_y = $("#btn_y").attr("value");
-	                setVal_M = $("#btn_m").attr("value");
+	                setVal_y = $("#" + elementId + "_btn_y").attr("value");
+	                setVal_M = $("#" + elementId + "_btn_m").attr("value");
 	                var international_val, china_val;
 	                if (display) {
 	                    international_val = function () {
@@ -419,30 +526,22 @@
 	            }
 	            //前翻页
 	            $("#" + elementId + "_prev").bind("click", function () {
-	                //y = y - 10;
 	                save_y = parseInt(save_y) -10;
 	                makeCells();
 	                lightAndSetValue();
-	                //defaultheightLight();
-	                //clickToHide();
-	                //activeCss_y();
-	                //choseDate_y();
+	                activeCss_y();
 	            });
 	            //后翻页
 	            $("#" + elementId + "_next").bind("click", function () {
-	                //y = y + 10;
 	                save_y = parseInt(save_y) + 10;
 	                makeCells();
 	                lightAndSetValue();
-	                //defaultheightLight();
-	                //clickToHide();
-	                //activeCss_y();
-	                //choseDate_y();
+	                activeCss_y();
 	            });
 	            makeCells();
+	            $("#btn_" + elementId).remove();                
 	            lightAndSetValue();
-	            //clickToHide();
-	            //activeCss_y();
+	            activeCss_y();
 	        }
 	        //年月
 	        var yM = function () {
@@ -477,22 +576,24 @@
 	                yMd();
 	            });
 	            $("#" + elementId + "_tb td a").addClass("jui-datetimepicker-table-tr-a");
-	            //activeCss_ym();
+	            $("#btn_" + elementId).remove();
+	            activeCss_ym();
 	            //$("#" + elementId + "_yearDiv").children("input").click(function () {
 	            //    $("#" + elementId + "_outDiv").hide();
 	            //});
 	        }
             //年月日
 	        var yMd = function () {
+	            $("#btn_" + elementId).remove();
 	            $("#" + elementId + "_yearDiv").empty();
 	            if (datetimeParse == "yyyy-MM-dd") {
-	                $("#" + elementId + "_yearDiv").append("<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='btn_m'/><span style='display: inline-block;'>-</span></div>" +
-                        "<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y+ "' id='btn_y'/></div>");//年月
+	                $("#" + elementId + "_yearDiv").append("<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>-</span></div>" +
+                        "<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/></div>");//年月
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "next");
 	                $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "previous");
 	            } else {
-	                $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='btn_y'/><span style='display: inline-block;'>年</span></div>" +
-                        "<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='btn_m'/><span style='display: inline-block;'>月</span></div>");//月年
+	                $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/><span style='display: inline-block;'>年</span></div>" +
+                        "<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>月</span></div>");//月年
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "下一页");
 	                $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "上一页");
 	            }
@@ -525,158 +626,70 @@
 	            setVal();
 	            $("#" + elementId + "_prev").bind("click",function () {                    
 	                $("#" + elementId + "_tb a").removeClass("jui-datetimepicker-active");
-	                var btn_m_val = parseInt($("#btn_m").attr("value"));
-	                var btn_y_val = parseInt($("#btn_y").attr("value"));
+	                var btn_m_val = parseInt($("#" + elementId + "_btn_m").attr("value"));
+	                var btn_y_val = parseInt($("#" + elementId + "_btn_y").attr("value"));
 	                if (btn_m_val <= 10) {
-	                    $("#btn_m").attr("value", "0"+(btn_m_val - 1))
+	                    $("#" + elementId + "_btn_m").attr("value", "0" + (btn_m_val - 1))
 	                    if (btn_m_val == "01") {
-	                        $("#btn_m").attr("value", 12);
-	                        $("#btn_y").attr("value", btn_y_val - 1);
+	                        $("#" + elementId + "_btn_m").attr("value", 12);
+	                        $("#" + elementId + "_btn_y").attr("value", btn_y_val - 1);
 	                    }
 	                } else {
-	                    $("#btn_m").attr("value", btn_m_val - 1)
+	                    $("#" + elementId + "_btn_m").attr("value", btn_m_val - 1)
 	                }
 	                $("#" + elementId + "_tb a").text("");//清空
 	                writeDate();
 	                choseDate();
 	                setVal();
+	                activeCss();
 	            }); //前翻
 	            $("#" + elementId + "_next").bind("click", function () {
 	                $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
-	                var btn_m_val = parseInt($("#btn_m").attr("value"));
-	                var btn_y_val = parseInt($("#btn_y").attr("value"));
+	                var btn_m_val = parseInt($("#" + elementId + "_btn_m").attr("value"));
+	                var btn_y_val = parseInt($("#" + elementId + "_btn_y").attr("value"));
 	                if (btn_m_val <9) {
-	                    $("#btn_m").attr("value", "0" + (btn_m_val + 1))
+	                    $("#" + elementId + "_btn_m").attr("value", "0" + (btn_m_val + 1))
 	                } else {
-	                    $("#btn_m").attr("value", btn_m_val + 1)
+	                    $("#" + elementId + "_btn_m").attr("value", btn_m_val + 1)
 	                }
 	                if (btn_m_val == 12) {
-	                    $("#btn_m").attr("value", "01");
-	                    $("#btn_y").attr("value", btn_y_val + 1);
+	                    $("#" + elementId + "_btn_m").attr("value", "01");
+	                    $("#" + elementId + "_btn_y").attr("value", btn_y_val + 1);
 	                }
 	                $("#" + elementId + "_tb a").text("");//清空
 	                writeDate();
 	                choseDate();
 	                setVal();
+	                activeCss();
 	            });//后翻
-	            Today();
 	            activeCss();
-	            $("#btn_y").click(function () {
+	            $("#" + elementId + "_btn_y").click(function () {
 	                $("#" + elementId + "_yearDiv").empty();
-	                $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + (parseInt(save_y) - 5) + "~" + (parseInt(save_y) + 4) + "</span>");
+	                if (datetimeParse == "yyyy-MM-dd") {
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + (parseInt(save_y) - 5) + "~" + (parseInt(save_y) + 4) + "</span>");
+	                } else {
+	                    $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + (parseInt(save_y) - 5) + "年~" + (parseInt(save_y) + 4) + "年</span>");
+	                }
 	                $("#" + elementId + "_tb").remove();
 	                $("#" + elementId + "_prev").unbind("click");
 	                $("#" + elementId + "_next").unbind("click");
 	                whenYYYY();
 	            });
-	            $("#btn_m").click(function () {
+	            $("#" + elementId + "_btn_m").click(function () {
 	                $("#" + elementId + "_yearDiv").empty();
-	                $("#" + elementId + "_yearDiv").append("<span style='display:inline-block;'>" + parseInt(save_y) + "</span>");
+	                if (datetimeParse == "yyyy-MM-dd") {
+	                    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/></div>");
+	                } else {
+	                    $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/><span style='display:inline-block;height:18px;margin-top:2px;'>年</span></div>");
+	                }
 	                $("#" + elementId + "_tb").remove();
 	                $("#" + elementId + "_prev").unbind("click");
 	                $("#" + elementId + "_next").unbind("click");
 	                yM();
 	            });
-	        }	        
-            //显示今日
-	        var Today = function () {
 	            if (showToday) {
 	                $("#" + elementId + "_tb").after("<input id='btn_" + elementId + "' type='button' value='今天' />");
-	                $("#btn_" + elementId).click(function () {
-	                    var international_val, china_val;
-	                    if (display) {
-	                        international_val = function (setVal_y, setVal_M) {
-	                            if ((date.getMonth() + 1) < 10) {
-	                                if (date.getDate() < 10) {
-	                                    $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
-	                                } else {
-	                                    $("#show_date").text(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
-	                                }
-	                            } else {
-	                                if (date.getDate() < 10) {
-	                                    $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
-	                                } else {
-	                                    $("#show_date").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
-	                                }
-	                            }
-	                        }
-	                        china_val = function (setVal_y, setVal_M) {
-	                            if ((date.getMonth() + 1) < 10) {
-	                                if (date.getDate() < 10) {
-	                                    $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
-	                                } else {
-	                                    $("#show_date").text(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
-	                                }
-	                            } else {
-	                                if (date.getDate() < 10) {
-	                                    $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
-	                                } else {
-	                                    $("#show_date").text(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
-	                                }
-	                            }
-	                        }
-	                    } else {
-	                        international_val = function (date) {
-	                            if ((date.getMonth() + 1) < 10) {
-	                                if (date.getDate() < 10) {
-	                                    e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
-	                                } else {
-	                                    e.val(date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值 
-	                                }
-	                            } else {
-	                                if (date.getDate() < 10) {
-	                                    e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-0" + date.getDate()); //赋值                                            
-	                                } else {
-	                                    e.val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()); //赋值                         
-	                                }
-	                            }
-	                        }
-	                        china_val = function (date) {
-	                            if ((date.getMonth() + 1) < 10) {
-	                                if (date.getDate() < 10) {
-	                                    e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
-	                                } else {
-	                                    e.val(date.getFullYear() + "年0" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值 
-	                                }
-	                            } else {
-	                                if (date.getDate() < 10) {
-	                                    e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月0" + date.getDate() + "日"); //赋值                                            
-	                                } else {
-	                                    e.val(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日"); //赋值                         
-	                                }
-	                            }
-	                        }
-	                    }
-	                    switch (datetimeParse) {
-	                        case 'yyyy年MM月dd日':
-	                            china_val(date);
-	                            break;
-	                        case 'yyyy-MM-dd':
-	                            international_val(date);
-	                            break;
-	                        default:
-	                            china_val(date);
-	                            break;
-	                    }
-	                    y = date.getFullYear();
-	                    m = date.getMonth();
-	                    d = date.getDate();
-	                    $("#_year" + elementId).empty();
-	                    $("#_month" + elementId).empty();
-	                    addMonths();
-	                    addYears();
-
-	                    $("#" + elementId + "_tb a").text("");//清空
-	                    writeDate();
-	                    choseDate();
-	                    setVal();
-	                    var act_y = parseInt($("#_year" + elementId + " option:selected").attr("value"));//当前选择的年份
-	                    var act_m = parseInt($("#_month" + elementId + " option:selected").attr("value"));//当前选择的月份
-	                    $("#" + elementId + "_tb a").each(function () {
-	                        if ($(this).text() == date.getDate() && act_y == date.getFullYear() && (act_m == date.getMonth()))
-	                            $(this).removeClass("jui-datetimepicker-table-tr-a").addClass("jui-datetimepicker-now ");
-	                    });
-	                });
+	                today_click();
 	            }
 	        }
             //时分秒
