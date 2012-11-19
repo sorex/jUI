@@ -5,7 +5,7 @@
 
         .jui-jtip-w-arrowhead
         {
-            background-image: url(images/jui-jtip-carat-w-cccccc.png);
+            background-image: url(../images/jui-jtip-carat-w-cccccc.png);
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -13,7 +13,7 @@
 
         .jui-jtip-w-arrowhead-error
         {
-            background-image: url(images/jui-jtip-carat-w-fef1ec.png);
+            background-image: url(../images/jui-jtip-carat-w-fef1ec.png);
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -22,7 +22,7 @@
 
         .jui-jtip-n-arrowhead
         {
-            background-image: url(images/jui-jtip-carat-n-cccccc.png);
+            background-image: url(../images/jui-jtip-carat-n-cccccc.png);
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
@@ -30,7 +30,7 @@
 
         .jui-jtip-n-arrowhead-error
         {
-            background-image: url(images/jui-jtip-carat-n-fef1ec.png);
+            background-image: url(../images/jui-jtip-carat-n-fef1ec.png);
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;

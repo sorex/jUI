@@ -21,14 +21,3 @@
     .jui-table .jui-table-click{    
         background-color:#d4d4d4;
     }
-    /*首列小图标*/
-    .jui-table .jui-table-columnHeadImage{
-        float:left;
-        width:30px;
-        height:30px;
-        margin-left:5px;
-        margin-right:5px;   
-        background-image:url(../../Images/orderedList0.png);
-        background-repeat:no-repeat;
-        background-position:0px 0px;
-    }

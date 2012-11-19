@@ -18,8 +18,11 @@ namespace jUI
 
 			bundles.Add(new StyleBundle("~/Content/basic").Include(
 				"~/Content/reset.css",
-				"~/Content/site.css",
-				"~/Content/jquery-ui.css"
+				"~/Content/site.css"
+				));
+
+			bundles.Add(new StyleBundle("~/Content/jquery-ui/css/base").Include(
+				"~/Content/jquery-ui/css/jquery-ui.css"
 				));
 
 			//添加syntaxhighlighter相关的包
@@ -44,10 +47,10 @@ namespace jUI
 				"~/Scripts/jUI/jui.jleftMenu.js"
 				));
 
-			bundles.Add(new StyleBundle("~/Content/jUI/files").Include(
-				"~/Content/jUI/jui.jlayout.css",
-				"~/Content/jUI/jui.jheadMenu.css",
-				"~/Content/jUI/jui.jleftMenu.css"
+			bundles.Add(new StyleBundle("~/Content/jUI/css/files").Include(
+				"~/Content/jUI/css/jui.jlayout.css",
+				"~/Content/jUI/css/jui.jheadMenu.css",
+				"~/Content/jUI/css/jui.jleftMenu.css"
 				));
 		}
 	}
