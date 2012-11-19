@@ -1,8 +1,10 @@
 ﻿@{
 	ViewBag.Title = "searchHtml.cshtml";
+  
 }
 
 @section head{
+
 	<style type="text/css">
 		.jui-jSearch
 		{
@@ -13,14 +15,13 @@
 			border-collapse:collapse ;
 			width:100%;
 		}
-			.jui-jSearch table td
-			{
-				
-				 text-align:center;
-				
-			}
+			
 
 	</style>
+<script type="text/javascript">
+
+
+</script>
 
 }
 
@@ -47,11 +48,29 @@
 <h2>searchHtml</h2>
 <div class="jui-jSearch">
 	<table > 
-		<tr><td>普通字符<input id="txt_Name" type="text"  maxlength="2"/></td><td>整数<input id="txt_Age" type="text" maxlength="3"/></td></tr>
-		<tr><td>单个日期<input id="txt_Date" type="text" /></td>
-			<td>两个日期<input id="txt_Date_Start" type="text" /><input id="txt_Date_End" type="text" />  </td></tr>
+		<tr>
+			<td  style="text-align:right;width:25%">普通字符</td><td style=" width:25%"><input id="txt_Name" type="text"  maxlength="2"/></td>
+			<td style=" text-align:right;width:25%;">整数</td><td  style=" width:25%"><input id="txt_Age" type="text" maxlength="3"/></td>
 
-		<tr><td ></td><td ><select id="txt_select"><option value="0">正常</option><option value="1">停用</option><option value="2">全部</option></select></td></tr>
+		</tr>
+		<tr>
+			<td style="text-align:right;">单个日期</td><td><input id="txt_Date" type="text" /></td>
+			<td style="text-align:right;">两个日期</td><td><input id="txt_Date_Start" type="text" style=" width:30%;" />至<input id="txt_Date_End" type="text" style=" width:30%;" /></td>
+
+		</tr>
+
+		<tr>
+			<td style="text-align:right;" >小数</td><td ><input  id="txt_double" type="text"/></td>
+			<td style="text-align:right;">状态</td><td ><select id="txt_select" style=" width:50%;"><option value="0">正常</option><option value="1">停用</option><option value="2">全部</option></select></td>
+		</tr>
+	
+		<tr>
+			<td style="text-align:right;">自定义</td><td ><input  id="txt_defined" type="text"/></td>
+			<td style="text-align:right;"></td><td></td>
+		</tr>
+		
+		
 	</table>
+	<p  style='margin-top:5px; margin-left:55%;'><input id='btn_Search' type='button' value='搜索' /></p>
 
 	</div>
