@@ -844,7 +844,7 @@
 	        }
             
 	        if (display == false) {	            
-	            e.wrap("<div></div>").after(outDiv);//text占一行
+	            e.wrap("<div style='display:inline-block;'></div>").after(outDiv);//text占一行
 	        } else {
 	            e.append(outDiv);
 	            e.after("<span id='show_date' style='display:block;'></span>");

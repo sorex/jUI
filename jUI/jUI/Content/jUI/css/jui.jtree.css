@@ -6,14 +6,11 @@ line-height: 16px !important;
 .jui-jtree li ul
 {    
     margin: 0;
-    padding: 0 0 0 18px;
+    padding: 0 0 0 16px;
 }
 .jui-jtree li ul.line
 {    
     background: url(../images/line_conn.gif) 0 0 repeat-y;
-}
-.jui-jtree-u1 {
-
 }
 .jui-jtree-u1-li {
     line-height:14px !important;
@@ -74,9 +71,6 @@ background-position: -74px -36px;
 }
 .jui-jtree-u-switch-dircorss-bottom-open {
 background-position: -92px -36px;
-}
-.jui-jtree-u-switch-dircorss-open {
-
 }
 .jui-jtree-u-switch-cross {
 background-position: -56px -18px;  

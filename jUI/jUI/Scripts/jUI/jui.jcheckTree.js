@@ -50,9 +50,7 @@
 	            obj.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);
 	        }
 	        var controlParent = function (obj, str) {
-	            var obj1 = obj.parent("li").parent("ul").parent("li").children("span:eq(1)");
-	            //obj1.removeClass().addClass(str);
-	            //obj1.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);                
+	            var obj1 = obj.parent("li").parent("ul").parent("li").children("span:eq(1)");               
 	            if (obj.siblings("ul").find(".jui-jtree-u-cbox-checked").length == 0) {
                     alert(0)
 	                obj1.removeClass().addClass(str_unChecked);
@@ -67,13 +65,19 @@
 	                } else if ($(this).attr("class") == str_unChecked) {
 	                    controlChildrenClass($(this), str_checked);
 	                }
-
 	            });
 	        }
+
+	        var partChecked = function (obj) {
+	            var count_all = obj.siblings().length + 1;
+	            var count_checked = obj.parent("ul").children("li .jui-jtree-u-cbox-checked").length;
+	            alert(count_all)
+	            alert(count_checked)
+	        }
+
+
 	        parent_li.each(function () {
 	            controlChildrenClass_click($(this));
-	            var single_children = $(this).find("li").has("ul");
-
 	        });
 	        children_li.each(function () {
 	            controlChildrenClass_click($(this));
@@ -81,6 +85,18 @@
 	                controlChildrenClass_click($(this));
 	            });
 	        });
+
+	        e.children("ul").find("li").each(function () {
+	            var _li = $(this);
+	            $(this).children("span:eq(1)").click(function () {
+	                var _li_count = _li.siblings().length + 1;//同级个数
+	                var checked_span = $(this).parents("ul").children("li").children("span.jui-jtree-u-cbox-checked").length;//同级选中个数
+	                alert(_li_count);
+	                alert(checked_span)
+	            });
+	        });
+
+
 	    },
 
 	    _setOption: function (key, value) {
