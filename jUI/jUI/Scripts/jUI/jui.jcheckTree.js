@@ -70,6 +70,15 @@
 	                if (checked_span == 0) {
 	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");//未选中样式
 	                }
+	                if (obj.children("ul").length == 0) {
+	                    var _parent_li = obj.parent().parent().parent().parent();
+	                    if (_parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-partChecked2").length == 0 && _parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-checked").length == 0) {
+	                        _parent_li.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");
+	                    }
+	                    if (_parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-partChecked2").length == 0 && _parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-unChecked").length == 0) {
+	                        _parent_li.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");
+	                    }
+	                }
 
 	                e.children("ul").find("li").has("ul").each(function () {
 	                    if ($(this).find(".jui-jtree-u-cbox-partChecked2").length > 0) {
@@ -77,6 +86,7 @@
 	                    }
 	                });
 	            });
+
 	        }
 
 	        e.children("ul").find("li").each(function () {
