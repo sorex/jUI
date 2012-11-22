@@ -160,6 +160,17 @@
                 }
                 $(this).siblings("ul").slideToggle("fast");
             });
+
+            e.children("ul").find("li").each(function () {
+                if ($(this).children("ul").length == 0) {
+                    $(this).children("a").children("span:eq(0)").removeClass().addClass("jui-jtree-u-icon-file");
+                    if (($(this).prevAll().length == 0 && $(this).nextAll().length == 0) || $(this).nextAll().length == 0) {
+                        $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross-bottom");
+                    } else {
+                        $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross");
+                    }
+                }
+            });
 	    },
 
 	    _setOption: function (key, value) {

@@ -39,7 +39,7 @@
                 e_id = e.attr("id"),
 	            str_checked = "jui-jtree-u-cbox-checked",//选中
 	            str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
-                str_checkedPart = "jui-jtree-u-cbox-partChecked2";
+                str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
 	        e.find("a").before("<span class='jui-jtree-u-cbox-unChecked'></span>");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
@@ -49,53 +49,50 @@
 	            obj.removeClass().addClass(str);
 	            obj.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);
 	        }
-	        var controlParent = function (obj, str) {
-	            var obj1 = obj.parent("li").parent("ul").parent("li").children("span:eq(1)");               
-	            if (obj.siblings("ul").find(".jui-jtree-u-cbox-checked").length == 0) {
-                    alert(0)
-	                obj1.removeClass().addClass(str_unChecked);
-	            }
-	        }
-            //点击调节全选控制
-	        var controlChildrenClass_click = function (obj) {
-	            obj.children("span:eq(1)").bind('click', function () {
-	                if ($(this).attr("class") == str_checked) {
+
+            //子项选中，影响父项选中
+	        var controllChecked = function (obj) {
+	            obj.children("span:eq(1)").click(function () {
+	                if ($(this).attr("class") == str_checked || $(this).attr("class") == str_checkedPart) {
 	                    controlChildrenClass($(this), str_unChecked);
-	                    //controlParent($(this), str_unChecked);
 	                } else if ($(this).attr("class") == str_unChecked) {
 	                    controlChildrenClass($(this), str_checked);
 	                }
+
+	                var _count = obj.siblings().length + 1;//同级个数
+	                var checked_span = $(this).parent().parent().children("li").children("span.jui-jtree-u-cbox-checked").length;//同级选中个数
+	                if (_count == checked_span) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");//全部选中样式
+	                }
+	                if (_count > checked_span) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");//部分选中样式
+	                }
+	                if (checked_span == 0) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");//未选中样式
+	                }
+	                if (obj.children("ul").length == 0) {
+	                    var _parent_li = obj.parent().parent().parent().parent();
+	                    if (_parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-partChecked2").length == 0 && _parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-checked").length == 0) {
+	                        _parent_li.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");
+	                    }
+	                    if (_parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-partChecked2").length == 0 && _parent_li.children("ul").children("li").children(".jui-jtree-u-cbox-unChecked").length == 0) {
+	                        _parent_li.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");
+	                    }
+	                }
+
+	                e.children("ul").find("li").has("ul").each(function () {
+	                    if ($(this).find(".jui-jtree-u-cbox-partChecked2").length > 0) {
+	                        $(this).children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
+	                    }
+	                });
 	            });
+
 	        }
-
-	        var partChecked = function (obj) {
-	            var count_all = obj.siblings().length + 1;
-	            var count_checked = obj.parent("ul").children("li .jui-jtree-u-cbox-checked").length;
-	            alert(count_all)
-	            alert(count_checked)
-	        }
-
-
-	        parent_li.each(function () {
-	            controlChildrenClass_click($(this));
-	        });
-	        children_li.each(function () {
-	            controlChildrenClass_click($(this));
-	            $(this).last().find("li").each(function () {
-	                controlChildrenClass_click($(this));
-	            });
-	        });
 
 	        e.children("ul").find("li").each(function () {
-	            var _li = $(this);
-	            $(this).children("span:eq(1)").click(function () {
-	                var _li_count = _li.siblings().length + 1;//同级个数
-	                var checked_span = $(this).parents("ul").children("li").children("span.jui-jtree-u-cbox-checked").length;//同级选中个数
-	                alert(_li_count);
-	                alert(checked_span)
-	            });
+	            var _t = $(this);
+	            controllChecked(_t);
 	        });
-
 
 	    },
 
