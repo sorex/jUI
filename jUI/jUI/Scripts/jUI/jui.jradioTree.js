@@ -43,6 +43,7 @@
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
             
+            //控制单选按钮父级与子级菜单间关系
 	        e.children("ul").find("li").each(function () {
 	            var _t = $(this);
 	            _t.children("span:eq(1)").click(function () {
