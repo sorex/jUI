@@ -1,0 +1,323 @@
+﻿
+        .jui-headMenu {
+            height: 40px;
+            background-color: #094ab2;
+            white-space: nowrap; /*禁止文字自动换行*/
+            position: relative;
+            display: block;
+        }
+
+            .jui-headMenu .jui-headMenu-solid {
+                display: block;
+                height:10px;
+                width:auto;
+                border-left: 0 none;
+                border-right: 0 none;
+                /*border-bottom: 1px solid #666;*/
+                /*margin: 10px 15px;*/
+                padding:10px 15px 0px 15px;
+                cursor: default;
+            }
+
+            .jui-headMenu a {
+                text-decoration: none;
+            }
+
+                .jui-headMenu a:hover {
+                    background-color: #073d92;
+                }
+
+            .jui-headMenu .jui-headMenu-ju {
+                float: left;
+                height: 40px;
+            }
+            .jui-headMenu .jui-headMenu-clicked {
+                background-color:#062f72 !important;
+            }
+                .jui-headMenu .jui-headMenu-ju > li {
+                    height: 40px;
+                    /*padding-right: 15px;*/
+                    position:relative;
+                    float: left;
+                }
+                .jui-headMenu .jui-headMenu-ju_li {
+                    padding-right: 15px;
+                }
+
+                    .jui-headMenu .jui-headMenu-ju > li > a {
+                        margin-right: 5px;
+                    }
+
+                    .jui-headMenu .jui-headMenu-ju > li:hover {
+                        background-color: #073d92 ;
+                    }
+
+                .jui-headMenu .jui-headMenu-ju>li {
+                    list-style: none;
+                    cursor: pointer;
+                }
+
+            .jui-headMenu .jui-headMenu-lass {
+                vertical-align: middle;
+                color: #fff;
+                font-size: 14px;
+                position: relative;
+                padding-left: 4px;
+            }
+
+            .jui-headMenu .jui-headMenu-lass_endicon {
+                display: inline-block;
+                position: relative;
+                top: 3px;
+            }
+
+            .jui-headMenu .jui-headMenu-u1 {
+                width:auto;
+                padding-top: 4px;
+                padding-bottom: 4px;
+                position: relative;
+                top: 8px;
+                border-style: solid;
+                border-width: 0 2px 2px 2px;
+                border-color: #094AB2;
+                z-index: 40000;
+                cursor: default;
+                display: none;
+                background-color: #ffffff;
+            }
+                .jui-headMenu .jui-headMenu-u1 li a {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    text-align: left;
+                    color: black;
+                    display: block;
+                cursor: pointer;
+                }
+                jui-headMenu .jui-headMenu-u1 li:hover {
+                    cursor:default;
+                }
+                    .jui-headMenu .jui-headMenu-u1 li a:hover {
+                        background-color: #f0f0f0;
+                    }
+
+
+            .jui-headMenu .jui-headMenu-vsolid {
+                display: block;
+                height: 20px;
+                border-left: 1px solid #ffffff;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                float: left;
+            }
+
+            .jui-headMenu .jui-headMenu-showul {
+                visibility: visible;
+            }
+
+            .jui-headMenu .jui-headMenu-hideul {
+                visibility: hidden;
+            }           
+
+        .jui-headMenu .jui-headMenu-endImg {
+            background-image:url(../images/jui-jheadMenu-carat-s-ffffff.png);
+            background-repeat:no-repeat;
+            display:inline-block;
+            width:12px;
+            height:10px;
+            position:relative;
+            left:5px;
+            top:2px;
+        }
+
+.description-option-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-option-type
+{
+	display: inline-block;
+	text-decoration: underline;
+	width: 200px;
+}
+
+.description-option-value
+{
+	display: inline-block;
+	font-weight: bold;
+}
+
+	.description-option-value:before
+	{
+		content: "Default:";
+		color: #bababa;
+	}
+
+.description-event-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-event-returnType
+{
+	display: inline-block;
+}
+
+	.description-event-returnType:before
+	{
+		content: "Type:";
+		color: #bababa;
+	}
+
+.description-method-name
+{
+	display: inline-block;
+	margin-left: 22px;
+	width: 200px;
+}
+
+.description-method-returnType
+{
+	display: inline-block;
+	width: 200px;
+}
+
+	.description-method-returnType:before
+	{
+		content: "Type:";
+		color: #bababa;
+	}
+
+.description-method-demo
+{
+	display: inline-block;
+}
+
+a.viewSource
+{
+	color: #bb6f04;
+	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: inherit;
+	cursor:pointer;
+}
+
+	a.viewSource:hover
+	{
+		color: #000000;
+		background-color:transparent;
+	}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.5; /* 中文网站设置为1.5 英文网站设置为1 */
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html
+{
+	height: 100%;
+}
+
+body
+{
+	background-color: #f0f0f0;
+	color: #333;
+	font-size: 14px;
+	font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
+}
+
+a
+{
+	color: #094ab2;
+	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: underline;
+}
+
+	a:link, a:visited, a:active, a:hover
+	{
+		color: #094ab2;
+	}
+
+h1
+{
+	font-size: 28px;
+}
+
+h2
+{
+	font-size: 24px;
+}
+
+h3
+{
+	font-size: 20px;
+}
+
+h4
+{
+	font-size: 18px;
+}
+
+h5
+{
+	font-size: 16px;
+}
+
+h6
+{
+	font-size: 14px;
+}
+

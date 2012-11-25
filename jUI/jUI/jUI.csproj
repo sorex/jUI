@@ -184,12 +184,49 @@
     <Content Include="Content\jUI\css\jui.jtext.css" />
     <Content Include="Content\jUI\css\jui.jtip.css" />
     <Content Include="Content\jUI\css\jui.jtree.css" />
+    <None Include="Content\jUI\less\chosen.less" />
+    <None Include="Content\jUI\less\jui.jbutton.less" />
+    <None Include="Content\jUI\less\jui.jcheckbox.less" />
+    <None Include="Content\jUI\less\jui.jcheckTable.less" />
+    <None Include="Content\jUI\less\jui.jcheckTree.less" />
+    <None Include="Content\jUI\less\jui.jdatapager.less" />
+    <None Include="Content\jUI\less\jui.jdatetimepicker.less" />
+    <None Include="Content\jUI\less\jui.jheadMenu.less" />
+    <None Include="Content\jUI\less\jui.jlayout.less" />
+    <None Include="Content\jUI\less\jui.jleftMenu.less" />
+    <None Include="Content\jUI\less\jui.jlink.less" />
+    <None Include="Content\jUI\less\jui.jlinkButton.less" />
+    <None Include="Content\jUI\less\jui.jmultiSelect.less" />
+    <None Include="Content\jUI\less\jui.jradio.less" />
+    <None Include="Content\jUI\less\jui.jradioTable.less" />
+    <None Include="Content\jUI\less\jui.jradioTree.less" />
+    <None Include="Content\jUI\less\jui.jsearch.less" />
+    <None Include="Content\jUI\less\jui.jselect.less" />
+    <None Include="Content\jUI\less\jui.jsortSelect.less" />
+    <None Include="Content\jUI\less\jui.jtable.less" />
+    <None Include="Content\jUI\less\jui.jtext.less" />
+    <None Include="Content\jUI\less\jui.jtip.less" />
+    <None Include="Content\jUI\less\jui.jtree.less" />
+    <Content Include="Content\jUI\less\jui.jlayout.css">
+      <DependentUpon>jui.jlayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jlayout.min.css">
+      <DependentUpon>jui.jlayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.min.css">
+      <DependentUpon>jui.less</DependentUpon>
+    </Content>
     <Content Include="Content\reset.css" />
     <Content Include="Content\syntaxhighlighter\shCoreDefault.css" />
     <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
+    <Content Include="Content\variables.min.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\jquery-ui\less\jquery-ui.less" />
+    <Content Include="Content\variables.less" />
+    <Content Include="Content\jUI\less\jui.less" />
     <None Include="Properties\PublishProfiles\桌面.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
