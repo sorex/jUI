@@ -285,6 +285,9 @@
     <Content Include="Content\jUI\less\jui.jlayout.min.css">
       <DependentUpon>jui.jlayout.less</DependentUpon>
     </Content>
+    <Content Include="Content\jUI\less\jui.jradioTree.min.css">
+      <DependentUpon>jui.jradioTree.less</DependentUpon>
+    </Content>
     <Content Include="Content\jUI\less\jui.min.css">
       <DependentUpon>jui.less</DependentUpon>
     </Content>

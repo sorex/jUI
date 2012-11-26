@@ -24,16 +24,13 @@
 			});
 		});
 	</script>
-
-	<link href="@Url.Content("~/Content/jUI/css/jui.jtree.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/jUI/css/jui.jcheckTree.css")" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtree.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTree.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jradioTree.js")"></script>
 
 	<script type="text/javascript">
 	    $(function () {
-	        $("#tree").jtree({
+	        $("#tree1").jtree({
 	            nodes: [
                     {
                         name: "父节点1", children: [
@@ -79,6 +76,102 @@
                     }
 	            ]
 	        });
+
+	        $("#tree2").jtree({
+	            nodes: [
+                    {
+                        name: "父节点1", children: [
+                            {
+                                name: "父节点1-1", children: [
+                                  { name: "子节点1-1-1" },
+                                  { name: "子节点1-1-2" },
+                                  { name: "子节点1-1-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点1-2", children: [
+                                    { name: "子节点1-2-1" },
+                                    { name: "子节点1-2-2" },
+                                    {
+                                        name: "子节点1-2-3", children: [
+                                            { name: "子节点1-2-3-1" },
+                                            { name: "子节点1-2-3-2" },
+                                            { name: "子节点1-2-3-3" }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点2", children: [
+                            {
+                                name: "父节点2-1", children: [
+                                    { name: "子节点2-1-1" },
+                                    { name: "子节点2-1-2" },
+                                    { name: "子节点2-1-3" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点3", children: [
+                            { name: "父节点3-1" },
+                            { name: "父节点3-2" },
+                            { name: "父节点3-3" }
+                        ]
+                    }
+	            ]
+	        }).jcheckTree();
+
+
+	        $("#tree3").jtree({
+	            nodes: [
+                    {
+                        name: "父节点1", children: [
+                            {
+                                name: "父节点1-1", children: [
+                                  { name: "子节点1-1-1" },
+                                  { name: "子节点1-1-2" },
+                                  { name: "子节点1-1-3" }
+                                ]
+                            },
+                            {
+                                name: "父节点1-2", children: [
+                                    { name: "子节点1-2-1" },
+                                    { name: "子节点1-2-2" },
+                                    {
+                                        name: "子节点1-2-3", children: [
+                                            { name: "子节点1-2-3-1" },
+                                            { name: "子节点1-2-3-2" },
+                                            { name: "子节点1-2-3-3" }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点2", children: [
+                            {
+                                name: "父节点2-1", children: [
+                                    { name: "子节点2-1-1" },
+                                    { name: "子节点2-1-2" },
+                                    { name: "子节点2-1-3" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点3", children: [
+                            { name: "父节点3-1" },
+                            { name: "父节点3-2" },
+                            { name: "父节点3-3" }
+                        ]
+                    }
+	            ]
+	        }).jradioTree({});
+
 	    });
 	</script>
 }
@@ -102,6 +195,8 @@
 <div id="demoTabs">
 	<ul>
 		<li><a href="#tab1">基本树形结构</a></li>
+		<li><a href="#tab2">带checkbox的树形结构</a></li>
+		<li><a href="#tab3">带radiobox的树形结构</a></li>
 	</ul>
 	<div id="tab1">
 		<div id="tree1"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
@@ -159,9 +254,6 @@
 &lt;/script&gt;
 	</pre>
 	</div>	
-	<ul>
-		<li><a href="#tab2">带checkbox的树形结构</a></li>
-	</ul>
 	<div id="tab2">
 		<div id="tree2"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
@@ -220,9 +312,6 @@
 &lt;/script&gt;
 	</pre>
 	</div>	
-	<ul>
-		<li><a href="#tab3">带radiobox的树形结构</a></li>
-	</ul>
 	<div id="tab3">
 		<div id="tree3"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
@@ -274,7 +363,7 @@
                         ]
                     }
 	            ]
-	        }).jui.jradioTree({});
+	        }).jradioTree({});
 	    });
 &lt;/script&gt;
 	</pre>

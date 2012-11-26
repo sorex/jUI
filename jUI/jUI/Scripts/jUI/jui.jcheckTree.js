@@ -85,6 +85,7 @@
 	                        $(this).children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
 	                    }
 	                });
+
 	            });
 
 	        }
@@ -94,6 +95,17 @@
 	            controllChecked(_t);
 	        });
 
+	    },
+
+	    getCheckValue: function () {
+	        var self = this,
+			    o = this.options,
+	            e = $(this.element),
+                e_id = e.attr("id"),
+	            str_checked = "jui-jtree-u-cbox-checked",//选中
+	            str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
+                str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
+	        var list = [];
 	    },
 
 	    _setOption: function (key, value) {
