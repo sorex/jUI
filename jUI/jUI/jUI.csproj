@@ -135,6 +135,51 @@
     <Content Include="Content\jquery-ui\less\jquery-ui.min.css">
       <DependentUpon>jquery-ui.less</DependentUpon>
     </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.accordion.min.css">
+      <DependentUpon>jquery.ui.accordion.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.autocomplete.min.css">
+      <DependentUpon>jquery.ui.autocomplete.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.button.min.css">
+      <DependentUpon>jquery.ui.button.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.core.min.css">
+      <DependentUpon>jquery.ui.core.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.datepicker.min.css">
+      <DependentUpon>jquery.ui.datepicker.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.dialog.min.css">
+      <DependentUpon>jquery.ui.dialog.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.menu.min.css">
+      <DependentUpon>jquery.ui.menu.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.progressbar.min.css">
+      <DependentUpon>jquery.ui.progressbar.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.resizable.min.css">
+      <DependentUpon>jquery.ui.resizable.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.selectable.min.css">
+      <DependentUpon>jquery.ui.selectable.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.slider.min.css">
+      <DependentUpon>jquery.ui.slider.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.spinner.min.css">
+      <DependentUpon>jquery.ui.spinner.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.tabs.min.css">
+      <DependentUpon>jquery.ui.tabs.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.theme.min.css">
+      <DependentUpon>jquery.ui.theme.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui\less\jquery.ui.tooltip.min.css">
+      <DependentUpon>jquery.ui.tooltip.less</DependentUpon>
+    </Content>
     <Content Include="Content\jUI\css\chosen.css" />
     <Content Include="Content\jUI\images\chosen-sprite.png" />
     <Content Include="Content\jUI\images\jui-jcheckbox.png" />
@@ -184,12 +229,76 @@
     <Content Include="Content\jUI\css\jui.jtext.css" />
     <Content Include="Content\jUI\css\jui.jtip.css" />
     <Content Include="Content\jUI\css\jui.jtree.css" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.core.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.resizable.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.selectable.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.accordion.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.autocomplete.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.button.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.datepicker.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.dialog.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.menu.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.progressbar.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.slider.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.spinner.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.tabs.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.tooltip.less" />
+    <Content Include="Content\jquery-ui\less\jquery.ui.theme.less" />
+    <None Include="Content\jUI\less\chosen.less" />
+    <None Include="Content\jUI\less\jui.jbutton.less" />
+    <None Include="Content\jUI\less\jui.jcheckbox.less" />
+    <None Include="Content\jUI\less\jui.jcheckTable.less" />
+    <None Include="Content\jUI\less\jui.jcheckTree.less" />
+    <None Include="Content\jUI\less\jui.jdatapager.less" />
+    <None Include="Content\jUI\less\jui.jdatetimepicker.less" />
+    <None Include="Content\jUI\less\jui.jheadMenu.less" />
+    <None Include="Content\jUI\less\jui.jlayout.less" />
+    <None Include="Content\jUI\less\jui.jleftMenu.less" />
+    <None Include="Content\jUI\less\jui.jlink.less" />
+    <None Include="Content\jUI\less\jui.jlinkButton.less" />
+    <None Include="Content\jUI\less\jui.jmultiSelect.less" />
+    <None Include="Content\jUI\less\jui.jradio.less" />
+    <None Include="Content\jUI\less\jui.jradioTable.less" />
+    <None Include="Content\jUI\less\jui.jradioTree.less" />
+    <None Include="Content\jUI\less\jui.jsearch.less" />
+    <None Include="Content\jUI\less\jui.jselect.less" />
+    <None Include="Content\jUI\less\jui.jsortSelect.less" />
+    <None Include="Content\jUI\less\jui.jtable.less" />
+    <None Include="Content\jUI\less\jui.jtext.less" />
+    <None Include="Content\jUI\less\jui.jtip.less" />
+    <None Include="Content\jUI\less\jui.jtree.less" />
+    <Content Include="Content\jUI\less\chosen.css">
+      <DependentUpon>chosen.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\chosen.min.css">
+      <DependentUpon>chosen.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jbutton.css">
+      <DependentUpon>jui.jbutton.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jbutton.min.css">
+      <DependentUpon>jui.jbutton.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jlayout.css">
+      <DependentUpon>jui.jlayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jlayout.min.css">
+      <DependentUpon>jui.jlayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.min.css">
+      <DependentUpon>jui.less</DependentUpon>
+    </Content>
     <Content Include="Content\reset.css" />
     <Content Include="Content\syntaxhighlighter\shCoreDefault.css" />
     <Content Include="Content\syntaxhighlighter\shThemeDefault.css" />
+    <Content Include="Content\variables.min.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\jquery-ui\less\jquery-ui.less" />
+    <Content Include="Content\variables.less" />
+    <Content Include="Content\jUI\less\jui.less" />
     <None Include="Properties\PublishProfiles\桌面.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
