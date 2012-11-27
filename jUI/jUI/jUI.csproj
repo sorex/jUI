@@ -279,6 +279,9 @@
     <Content Include="Content\jUI\less\jui.jbutton.min.css">
       <DependentUpon>jui.jbutton.less</DependentUpon>
     </Content>
+    <Content Include="Content\jUI\less\jui.jcheckTable.min.css">
+      <DependentUpon>jui.jcheckTable.less</DependentUpon>
+    </Content>
     <Content Include="Content\jUI\less\jui.jlayout.css">
       <DependentUpon>jui.jlayout.less</DependentUpon>
     </Content>
