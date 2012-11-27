@@ -1,10 +1,9 @@
-﻿.jui-datapager
-{
-	color: #094ab2;
+﻿.jui-datapager {
+	/*color: #094ab2;*/
+	color: @DefaultColor;
 }
 
-	.jui-datapager span
-	{
+	.jui-datapager span {
 		display: block;
 		overflow: hidden;
 		float: left;
@@ -16,30 +15,33 @@
 		padding-right: 2px;
 	}
 
-	.jui-datapager .jui-datapager-item
-	{
-		border: 1px solid #cccccc;
+	.jui-datapager .jui-datapager-item {
+		border: 1px solid @DefaultBorder;
+		background-color:@DefaultBackground;
+		color:@DefaultColor;
 		cursor: pointer;
 	}
 
-		.jui-datapager .jui-datapager-item:hover
-		{
-			background-color: #f3f3f3;
+		.jui-datapager .jui-datapager-item:hover {
+			border: 1px solid @HoverBorder;
+			background-color:@HoverBackground;
+			color:@HoverColor;
 		}
 
 
-	.jui-datapager .jui-datapager-item-active
-	{
+	.jui-datapager .jui-datapager-item-active {
 		border: 1px solid transparent;
 		font-weight: bold;
 		cursor: default;
-		color: #000000;
+		color: @ContentColor;
 	}
 
-	.jui-datapager .jui-datapager-item-disabled
-	{
-		border: 1px solid #cccccc;
+	.jui-datapager .jui-datapager-item-disabled {
+		border: 1px solid @DefaultBorder;
+		background-color:@DefaultBackground;
+		color:@DefaultColor;
 		cursor: default;
-		opacity: .35;
-		filter: Alpha(Opacity=35);
+		-moz-opacity: @DisabledOpacity;
+		opacity: @DisabledOpacity;
+		filter: Alpha(Opacity=@DisabledOpacityPercent);
 	}

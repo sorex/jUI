@@ -1,7 +1,7 @@
 ﻿
         .jui-headMenu {
             height: 40px;
-            background-color: #094ab2;
+            background-color: @DefaultBackground;
             white-space: nowrap; /*禁止文字自动换行*/
             position: relative;
             display: block;
@@ -24,7 +24,7 @@
             }
 
                 .jui-headMenu a:hover {
-                    background-color: #073d92;
+                    background-color: @HoverBackground;
                 }
 
             .jui-headMenu .jui-headMenu-ju {
@@ -32,7 +32,7 @@
                 height: 40px;
             }
             .jui-headMenu .jui-headMenu-clicked {
-                background-color:#062f72 !important;
+                background-color:@ActiveBackground !important;
             }
                 .jui-headMenu .jui-headMenu-ju > li {
                     height: 40px;
@@ -49,7 +49,7 @@
                     }
 
                     .jui-headMenu .jui-headMenu-ju > li:hover {
-                        background-color: #073d92 ;
+                        background-color: @HoverBackground ;
                     }
 
                 .jui-headMenu .jui-headMenu-ju>li {

@@ -1,63 +1,70 @@
 ﻿@BaseUrl: ~`"http://localhost:5642/"`;
-@JQuery_UI_Images:~`"@{BaseUrl}"+"Content/jquery-ui/images/"`;
+@JQuery_UI_Images: ~`"@{BaseUrl}" + "Content/jquery-ui/images/"`;
 /*编译后使用css则使用下面的路径
 	@JQuery_UI_Images: ~`"../images/"`;
 	使用实例：
 	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
 */
 
-@jUI_Images:~`"@{BaseUrl}"+"Content/jUI/images/"`;
+@jUI_Images: ~`"@{BaseUrl}" + "Content/jUI/images/"`;
 /*编译后使用css则使用下面的路径
 	@jUI_Images: ~`"../images/"`;
 	使用实例：
-	background-image: ~`'url(@{jUI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
+	background-image: ~`'url(@{jUI_Images}ui-icons_256x240.png)'`;
 */
 
+//#region 核心样式
 @Family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
 @FontWeight: normal;
 @FontSize: 1.1em;
+@LineHeight: 22px;
+@DisabledOpacity:.35;
+@DisabledOpacityPercent: @DisabledOpacity * 100;
+//#endregion
+
+//#region JQuery UI 样式
 @Corners: 0px;
 
-@HeaderColor: #094ab2;
+@HeaderBackground: #094ab2;
 @HeaderBorder: #094ab2;
-@HeaderText: #ffffff;
+@HeaderColor: #ffffff;
 @HeaderIcon: #ffffff;
 
-@ContentColor: #ffffff;
+@ContentBackground: #ffffff;
 @ContentBorder: #f0f0f0;
-@ContentText: #000000;
+@ContentColor: #000000;
 @ContentIcon: #666666;
 
-@DefaultColor: #094ab2;
+@DefaultBackground: #094ab2;
 @DefaultBorder: #094ab2;
-@DefaultText: #ffffff;
+@DefaultColor: #ffffff;
 @DefaultIcon: #ffffff;
 
-@HoverColor: #073d92;
+@HoverBackground: #073d92;
 @HoverBorder: #073d92;
-@HoverText: #ffffff;
+@HoverColor: #ffffff;
 @HoverIcon: #ffffff;
 
-@ActiveColor: #062f72;
+@ActiveBackground: #062f72;
 @ActiveBorder: #062f72;
-@ActiveText: #ffffff;
+@ActiveColor: #ffffff;
 @ActiveIcon: #ffffff;
 
-@HighlightColor: #e2e2e2;
+@HighlightBackground: #e2e2e2;
 @HighlightBorder: #e2e2e2;
-@HighlightText: #666666;
+@HighlightColor: #666666;
 @HighlightIcon: #094ab2;
 
-@ErrorColor: #fef1ec;
+@ErrorBackground: #fef1ec;
 @ErrorBorder: #cd0a0a;
-@ErrorText: #cd0a0a;
+@ErrorColor: #cd0a0a;
 @ErrorIcon: #cd0a0a;
 
-@OverlayColor: #cccccc;
+@OverlayBackground: #cccccc;
 @OverlayOpacity: .3;
 @OverlayOpacityPercent: @OverlayOpacity * 100;
 
-@ShadowColor: #ffffff;
+@ShadowBackground: #ffffff;
 @ShadowOpacity: 0;
 @ShadowOpacityPercent: @ShadowOpacity * 100;
 @ShadowThickness: 0px;
@@ -65,3 +72,58 @@
 @LeftOffset: 0px;
 @ShadowCorners: 0px;
 
+//#endregion
+
+//#region jUI 样式
+/*@PrimaryBackground: #094ab2;
+@PrimaryBorder: #094ab2;
+@PrimaryColor: #ffffff;
+@PrimaryIcon: #ffffff;
+
+@InfoBackground: #094ab2;
+@InfoBorder: #094ab2;
+@InfoColor: #ffffff;
+@InfoIcon: #ffffff;
+
+@SuccessBackground: #094ab2;
+@SuccessBorder: #094ab2;
+@SuccessColor: #ffffff;
+@SuccessIcon: #ffffff;
+
+@WarningBackground: #094ab2;
+@WarningBorder: #094ab2;
+@WarningColor: #ffffff;
+@WarningIcon: #ffffff;
+
+@DangerBackground: #094ab2;
+@DangerBorder: #094ab2;
+@DangerColor: #ffffff;
+@DangerIcon: #ffffff;
+
+@InverseBackground: #094ab2;
+@InverseBorder: #094ab2;
+@InverseColor: #ffffff;
+@InverseIcon: #ffffff;*/
+
+@layoutTopBackground:#094ab2;
+@layoutTopColor:#ffffff;
+@layoutContentBackground:#f0f0f0;
+@layoutLeftBackground:#f3f3f3;
+@layoutRightBackground:#ffffff;
+@layoutMainBackground:#ffffff;
+@layoutBottomBackground:#ffffff;
+
+@leftMenuItemBackground:transparent;
+@leftMenuItemColor:#094ab2;
+@leftMenuItemHoverBackground:#e2e2e2;
+@leftMenuItemHoverColor:#094ab2;
+@leftMenuItemActiveBackground:#d4d4d4;
+@leftMenuItemActiveColor:#094ab2;
+
+//当前日期 高亮
+@datetimepickerNowBackground:#bababa;
+@datetimepickerNowBorder:#bababa;
+@datetimepickerNowColor:#094ab2;
+
+
+//#endregion
