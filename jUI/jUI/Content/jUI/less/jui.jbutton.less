@@ -1,12 +1,13 @@
 ﻿input[type="button"], input[type="submit"], input[type="reset"]
 {
-	border-width: 0px;
-	background-color: #094ab2;
+	border-width: 1px;
+	border-color:@DefaultBorder;
+	background-color: @DefaultBackground;
 	cursor: pointer;
-	color: #ffffff;
+	color: @DefaultColor;
 }
 
 	input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
 	{
-		background-color: #073d92;
+		background-color: @HoverBackground;
 	}

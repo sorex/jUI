@@ -20,7 +20,7 @@
 .ui-widget-content
 {
 	border: 1px solid @ContentBorder;
-	background: @ContentColor;
+	background: @ContentBackground;
 	color: @DefaultBorder;
 }
 
@@ -32,14 +32,14 @@
 .ui-widget-header
 {
 	border: 1px solid @HeaderBorder;
-	background: @HeaderColor;
-	color: @HeaderText;
+	background: @HeaderBackground;
+	color: @HeaderColor;
 	font-weight: bold;
 }
 
 	.ui-widget-header a
 	{
-		color: @HeaderText;
+		color: @HeaderColor;
 	}
 
 	/* Interaction states
@@ -47,42 +47,42 @@
 	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
 	{
 		border: 1px solid @DefaultBorder;
-		background: @DefaultColor;
+		background: @DefaultBackground;
 		font-weight: @FontWeight;
-		color: @DefaultText;
+		color: @DefaultColor;
 	}
 
 		.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited
 		{
-			color: @DefaultText;
+			color: @DefaultColor;
 			text-decoration: none;
 		}
 
 	.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
 	{
 		border: 1px solid @HoverBorder;
-		background: @HoverColor;
+		background: @HoverBackground;
 		font-weight: @FontWeight;
-		color: @HoverText;
+		color: @HoverColor;
 	}
 
 		.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited
 		{
-			color: @HoverText;
+			color: @HoverColor;
 			text-decoration: none;
 		}
 
 	.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
 	{
 		border: 1px solid @ActiveBorder;
-		background: @ActiveColor;
+		background: @ActiveBackground;
 		font-weight: @FontWeight;
-		color: @ActiveText;
+		color: @ActiveColor;
 	}
 
 		.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 		{
-			color: @ActiveText;
+			color: @ActiveColor;
 			text-decoration: none;
 		}
 
@@ -91,30 +91,30 @@
 	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
 	{
 		border: 1px solid @HighlightBorder;
-		background: @HighlightColor;
-		color: @HighlightText;
+		background: @HighlightBackground;
+		color: @HighlightColor;
 	}
 
 		.ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a
 		{
-			color: @HighlightText;
+			color: @HighlightColor;
 		}
 
 	.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error
 	{
 		border: 1px solid @ErrorBorder;
-		background: @ErrorColor;
-		color: @ErrorText;
+		background: @ErrorBackground;
+		color: @ErrorColor;
 	}
 
 		.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a
 		{
-			color: @ErrorText;
+			color: @ErrorColor;
 		}
 
 	.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text
 	{
-		color: @ErrorText;
+		color: @ErrorColor;
 	}
 
 	.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary
@@ -1099,7 +1099,7 @@
 /* Overlays */
 .ui-widget-overlay
 {
-	background: @OverlayColor;
+	background: @OverlayBackground;
 	-moz-opacity: @OverlayOpacity;
 	opacity: @OverlayOpacity;
 	filter: Alpha(Opacity=@OverlayOpacityPercent);
@@ -1109,7 +1109,7 @@
 {
 	margin: @TopOffset 0 0 @LeftOffset;
 	padding: @ShadowThickness;
-	background: @ShadowColor;
+	background: @ShadowBackground;
 	-moz-opacity: @ShadowOpacity;
 	opacity: @ShadowOpacity;
 	filter: Alpha(Opacity=@ShadowOpacityPercent);

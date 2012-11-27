@@ -1,8 +1,7 @@
-﻿.jui-leftMenu
-{
+﻿.jui-leftMenu {
 }
-	.jui-leftMenu div
-	{
+
+	.jui-leftMenu div {
 		font-size: 150%;
 		height: 32px;
 		line-height: 32px;
@@ -10,16 +9,17 @@
 		cursor: pointer;
 	}
 
-	.jui-leftMenu .jui-leftMenu-item
-	{
+	.jui-leftMenu .jui-leftMenu-item {
+		background-color: @leftMenuItemBackground;
+		color: @leftMenuItemColor;
 	}
 
-		.jui-leftMenu .jui-leftMenu-item:hover
-		{
-			background-color: #e2e2e2;
+		.jui-leftMenu .jui-leftMenu-item:hover {
+			background-color: @leftMenuItemHoverBackground;
+			color: @leftMenuItemHoverColor;
 		}
 
-	.jui-leftMenu .jui-leftMenu-item-active
-	{
-		background-color: #d4d4d4;
+	.jui-leftMenu .jui-leftMenu-item-active {
+		background-color: @leftMenuItemActiveBackground;
+		color: @leftMenuItemActiveColor;
 	}
