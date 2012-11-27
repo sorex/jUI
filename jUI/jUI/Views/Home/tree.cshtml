@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "table";
+    ViewBag.Title = "tree";
 }
 
-<h2>table</h2>
+<h2>tree</h2>
 
 @section head{
 	<script type="text/javascript">
@@ -25,155 +25,46 @@
 		});
 	</script>
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtree.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTree.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jradioTree.js")"></script>
 
-	<script type="text/javascript">
-	    $(function () {
-	        $("#tree1").jtree({
-	            nodes: [
+    <script type="text/javascript">
+        $(function () {
+            $("#tree").jtree({
+                nodes: [
                     {
-                        name: "父节点1", children: [
+                        name: "父节点1", id: "1", children: [
                             {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
+                                name: "父节点1-1", id: "1-1", children: [
+                                  { name: "子节点1-1-1", id: "1-1-1" },
+                                  { name: "子节点1-1-2", id: "1-1-2" },
+                                  { name: "子节点1-1-3", id: "1-1-3" }
                                 ]
                             },
+                            { name: "父节点1-2", id: "1-2" }
+                        ]
+                    },
+                    {
+                        name: "父节点2", id: "2", children: [
                             {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
+                                name: "父节点2-1", id: "2-1", children: [
+                                    { name: "子节点2-1-1", id: "2-1-1" },
+                                    { name: "子节点2-1-2", id: "2-1-2" },
+                                    { name: "子节点2-1-3", id: "2-1-3" }
                                 ]
                             }
                         ]
                     },
                     {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
+                        name: "父节点3", id: "3", children: [
+                            { name: "父节点3-1", id: "3-1" },
+                            { name: "父节点3-2", id: "3-2" },
+                            { name: "父节点3-3", id: "3-3" }
                         ]
                     }
-	            ]
-	        });
-
-	        $("#tree2").jtree({
-	            nodes: [
-                    {
-                        name: "父节点1", children: [
-                            {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
-                                ]
-                            },
-                            {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
-                        ]
-                    }
-	            ]
-	        }).jcheckTree();
-
-
-	        $("#tree3").jtree({
-	            nodes: [
-                    {
-                        name: "父节点1", children: [
-                            {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
-                                ]
-                            },
-                            {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
-                        ]
-                    }
-	            ]
-	        }).jradioTree({});
-
-	    });
-	</script>
+                ]
+            })
+            ;
+        });
+    </script>
 }
 
 @section header{
@@ -195,175 +86,47 @@
 <div id="demoTabs">
 	<ul>
 		<li><a href="#tab1">基本树形结构</a></li>
-		<li><a href="#tab2">带checkbox的树形结构</a></li>
-		<li><a href="#tab3">带radiobox的树形结构</a></li>
 	</ul>
 	<div id="tab1">
-		<div id="tree1"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<div id="tree"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
-&lt;div id="tree1"&gt;
+&lt;div id="tree"&gt;
 &lt;script type="text/javascript"&gt;	    
 	    $(function () {
-	        $("#tree1").jtree({
+	        $("#tree").jtree({
 	            nodes: [
                     {
-                        name: "父节点1", children: [
+                        name: "父节点1", id: "1", children: [
                             {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
+                                name: "父节点1-1", id: "1-1", children: [
+                                  { name: "子节点1-1-1", id: "1-1-1" },
+                                  { name: "子节点1-1-2", id: "1-1-2" },
+                                  { name: "子节点1-1-3", id: "1-1-3" }
                                 ]
                             },
+                            { name: "父节点1-2", id: "1-2" }
+                        ]
+                    },
+                    {
+                        name: "父节点2", id: "2", children: [
                             {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
+                                name: "父节点2-1", id: "2-1", children: [
+                                    { name: "子节点2-1-1", id: "2-1-1" },
+                                    { name: "子节点2-1-2", id: "2-1-2" },
+                                    { name: "子节点2-1-3", id: "2-1-3" }
                                 ]
                             }
                         ]
                     },
                     {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
+                        name: "父节点3", id: "3", children: [
+                            { name: "父节点3-1", id: "3-1" },
+                            { name: "父节点3-2", id: "3-2" },
+                            { name: "父节点3-3", id: "3-3" }
                         ]
                     }
 	            ]
 	        });
-	    });
-&lt;/script&gt;
-	</pre>
-	</div>	
-	<div id="tab2">
-		<div id="tree2"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
-    <pre class="brush: js; html-script: true;">
-&lt;div id="tree2"&gt;
-&lt;script type="text/javascript"&gt;	    
-	    $(function () {
-	        $("#tree2").jtree({
-	            nodes: [
-                    {
-                        name: "父节点1", children: [
-                            {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
-                                ]
-                            },
-                            {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
-                        ]
-                    }
-	            ]
-	        })
-            .jcheckTree({})
-            ;
-	    });
-&lt;/script&gt;
-	</pre>
-	</div>	
-	<div id="tab3">
-		<div id="tree3"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
-    <pre class="brush: js; html-script: true;">
-&lt;div id="tree3"&gt;
-&lt;script type="text/javascript"&gt;	    
-	    $(function () {
-	        $("#tree3").jtree({
-	            nodes: [
-                    {
-                        name: "父节点1", children: [
-                            {
-                                name: "父节点1-1", children: [
-                                  { name: "子节点1-1-1" },
-                                  { name: "子节点1-1-2" },
-                                  { name: "子节点1-1-3" }
-                                ]
-                            },
-                            {
-                                name: "父节点1-2", children: [
-                                    { name: "子节点1-2-1" },
-                                    { name: "子节点1-2-2" },
-                                    {
-                                        name: "子节点1-2-3", children: [
-                                            { name: "子节点1-2-3-1" },
-                                            { name: "子节点1-2-3-2" },
-                                            { name: "子节点1-2-3-3" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点2", children: [
-                            {
-                                name: "父节点2-1", children: [
-                                    { name: "子节点2-1-1" },
-                                    { name: "子节点2-1-2" },
-                                    { name: "子节点2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", children: [
-                            { name: "父节点3-1" },
-                            { name: "父节点3-2" },
-                            { name: "父节点3-3" }
-                        ]
-                    }
-	            ]
-	        }).jradioTree({});
 	    });
 &lt;/script&gt;
 	</pre>
@@ -383,12 +146,12 @@
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">columns</span>
+				<span class="description-option-name">nodes</span>
 				<span class="description-option-type">Array</span>
 				<span class="description-option-value">[]</span>
 			</h3>
 			<div>
-				<p>获取或设置表格头部数据</p>                
+				<p>生成树需要的数据</p>                
 				<pre class="brush: js;">
 					items:
 						[
@@ -397,86 +160,20 @@
                         ]	//使用item列表为其赋值
 
 					item:
-		                    head: "名称名称名称名称",				                        //名称
-		                    context: "#Name(#Name2)(#ID)",			                        //#Name(#Name2)(#ID)
-		                    maxLength: 5,			                                        //文本最大长度，0不限制
-		                    head_align: "left",                                             //[left], center, right
-		                    v_align: "top",		                                            //[top], middle, bottom
-		                    h_align: "left",		                                        //[left], center, right
-		                    height: "auto",			                                        //150px, 10%
-		                    width: "auto"			                                        //150px, 10%
+		                    name: 节点文本,
+		                    id:节点id,
+		                    children: 节点的子节点
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#myTable").jtable({columns:[{head: "名称1", context: "#Name", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"}]});
+					$("#tree").jtree({nodes: [{ name: "父节点1-1", id: "1-1" },{ name: "父节点1-2", id: "1-2" }]});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var columns = $("#myTable").jtable( "option", "columns" );
+					var nodes = $("#tree").jtree( "option", "nodes" );
 					//设置
-					$("#myTable").jtable("option", { "columns":[{head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"}]});
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">data</span>
-				<span class="description-option-type">Array</span>
-				<span class="description-option-value">[]</span>
-			</h3>
-			<div>
-				<p>获取或设置每页显示数据。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ data:[
-                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" }]});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var data = $("#myTable").jtable( "option", "data" );
-					//设置
-					$("#myTable").jtable("option", { data: [
-                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" }] });
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">[tableHeight]</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">''</span>
-			</h3>
-			<div>
-				<p>获取或设置表格高度。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#myTable").jtable({ tableHeight: '30%' });
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var tableHeight = $("#myTable").jtable( "option", "tableHeight" );
-					//设置
-					$("#myTable").jtable("option", { tableHeight: '30%' });
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">[tableWidth]</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">''</span>
-			</h3>
-			<div>
-				<p>获取或设置表格宽度。</p>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#tableWidth").jtable({ tableWidth: '90%'});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var tableWidth = $("#myTable").jtable( "option", "tableWidth" );
-					//设置
-					$("#myTable").jtable("option", { tableWidth: '90%' });
+					$("#tree").jtree("option", { "nodes":[{ name: "父节点1-1", id: "1-1" },{ name: "父节点1-2", id: "1-2" }]});
 				</pre>
 			</div>
 		</div>
@@ -489,7 +186,7 @@
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">由optionName定</span>
-				<span class="description-method-demo">.jtable("option" , optionName , [value])</span>
+				<span class="description-method-demo">.jtree("option" , optionName , [value])</span>
 			</h3>
 			<div>
 				<p>获取或设置option中optionName的值。</p>
@@ -499,7 +196,50 @@
 	<div id="themingTab">
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
-
+&lt;div id="tree" class="jui-jtree"&gt;
+    &lt;ul id="tree_u1"&gt;
+        &lt;li class="jui-jtree-u-li" id="tree_li1_1"&gt;
+            &lt;span class="jui-jtree-u-switch" id="tree_switch_1"&gt;&lt;/span&gt;
+            &lt;a title="父节点1" class="jui-jtree-u-a" id="tree_a_1"&gt;
+                &lt;span class="jui-jtree-u-icon" id="tree_icon_1"&gt;&lt;/span&gt;
+                &lt;span class="jui-jtree-u-text" id="tree_text_1"&gt;父节点1&lt;/span&gt;
+            &lt;/a&gt;
+            &lt;ul id="tree_u2_1" class="line" style="display: none;"&gt;
+                &lt;li class="jui-jtree-u-li" id="tree_li2_1"&gt;
+                    &lt;span class="jui-jtree-u-switch-dircorss-close" id="tree_switch2_1"&gt;&lt;/span&gt;
+                    &lt;a title="父节点1-1" class="jui-jtree-u-a" id="tree_a2_1_1"&gt;
+                        &lt;span class="jui-jtree-u-icon" id="tree_icon2_1"&gt;&lt;/span&gt;
+                        &lt;span class="jui-jtree-u-text" id="tree_text2_1"&gt;父节点1-1&lt;/span&gt;
+                    &lt;/a&gt;
+                    &lt;ul id="tree_u3_1_1" class="line" style="display: none;"&gt;
+                        &lt;li class="jui-jtree-u-li" id="tree_li3_1"&gt;
+                            &lt;span class="jui-jtree-u-switch-cross" id="tree_switch3_1"&gt;&lt;/span&gt;
+                            &lt;a title="子节点1-1-1" class="jui-jtree-u-a" id="tree_a3_1_1_1"&gt;
+                                &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                                &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-1&lt;/span&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="jui-jtree-u-li" id="tree_li3_2"&gt;
+                            &lt;span class="jui-jtree-u-switch-cross" id="tree_switch3_2"&gt;&lt;/span&gt;
+                            &lt;a title="子节点1-1-2" class="jui-jtree-u-a" id="tree_a3_1_1_2"&gt;
+                                &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                                &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-2&lt;/span&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="jui-jtree-u-li" id="tree_li3_3"&gt;
+                            &lt;span class="jui-jtree-u-switch-cross-bottom" id="tree_switch3_3"&gt;&lt;/span&gt;
+                            &lt;a title="子节点1-1-3" class="jui-jtree-u-a" id="tree_a3_1_1_3"&gt;
+                                &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                                &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-3&lt;/span&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                ...
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
 		</pre>
 	</div>
 </div>
