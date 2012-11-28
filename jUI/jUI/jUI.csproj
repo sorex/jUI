@@ -418,6 +418,7 @@
     <Content Include="Views\Test\table.cshtml" />
     <Content Include="Views\Test\tip.cshtml" />
     <Content Include="Views\Test\datetimepicker.cshtml" />
+    <Content Include="Views\Standards\ThemeRoller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
