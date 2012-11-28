@@ -24,7 +24,7 @@
 	{
 	    // default options
 	    options: {
-
+	        getCheckValue:null
 	    },
 
 	    _create: function () {
@@ -39,11 +39,12 @@
                 e_id = e.attr("id"),
 	            str_checked = "jui-jtree-u-cbox-checked",//选中
 	            str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
-                str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
+                str_checkedPart = "jui-jtree-u-cbox-partChecked2",//部分选中
+                getCheckValue = o.getCheckValue;
 	        e.find("a").before("<span class='jui-jtree-u-cbox-unChecked'></span>");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
-
+	        var list = [];
             //全选控制
 	        var controlChildrenClass = function (obj, str) {
 	            obj.removeClass().addClass(str);
@@ -85,15 +86,24 @@
 	                        $(this).children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
 	                    }
 	                });
+
+	                //if ($(this).attr("class") == str_checked) {
+	                //    list.push(list)
+	                //}
+
 	            });
 
 	        }
+
+	        //getCheckValue = function (list) {
+	        //    return
+	        //    list;
+	        //}
 
 	        e.children("ul").find("li").each(function () {
 	            var _t = $(this);
 	            controllChecked(_t);
 	        });
-
 	    },
 
 	    _setOption: function (key, value) {

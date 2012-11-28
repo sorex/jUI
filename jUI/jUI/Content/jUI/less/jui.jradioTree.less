@@ -1,2 +1,44 @@
-﻿body {
+﻿.jui-jtree-u-rbox-unChecked,.jui-jtree-u-rbox-checked,.jui-jtree-u-rbox-partChecked,
+ .jui-jtree-u-cbox-partChecked2{
+    display:inline-block;
+    background-color: @treeURboxBackground;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+	background-image: ~`'url(@{jUI_Images}zTreeStandard.png)'`;
+    vertical-align: middle;
+    border: 0 none;
+    outline: none;
+    width: 13px;
+    height: 13px;
+    margin: 0 3px 1px 0px;
+    cursor: auto;
+
 }
+
+.jui-jtree-u-rbox-unChecked {    
+background-position: -28px 0;
+}
+.jui-jtree-u-rbox-unChecked:hover {    
+background-position: -28px -14px;
+}
+
+.jui-jtree-u-rbox-checked { 
+background-position:-42px  0;
+}
+.jui-jtree-u-rbox-checked:hover { 
+background-position:-42px  -14px;
+}
+
+.jui-jtree-u-rbox-partChecked {
+background-position: -28px -28px;
+}
+.jui-jtree-u-rbox-partChecked:hover {
+background-position: -28px -42px;
+}
+
+/*.jui-jtree-u-cbox-partChecked2 {
+background-position: -14px -28px;
+}
+.jui-jtree-u-cbox-partChecked2:hover {
+background-position: -14px -42px;
+}*/

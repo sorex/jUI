@@ -279,11 +279,17 @@
     <Content Include="Content\jUI\less\jui.jbutton.min.css">
       <DependentUpon>jui.jbutton.less</DependentUpon>
     </Content>
+    <Content Include="Content\jUI\less\jui.jcheckTable.min.css">
+      <DependentUpon>jui.jcheckTable.less</DependentUpon>
+    </Content>
     <Content Include="Content\jUI\less\jui.jlayout.css">
       <DependentUpon>jui.jlayout.less</DependentUpon>
     </Content>
     <Content Include="Content\jUI\less\jui.jlayout.min.css">
       <DependentUpon>jui.jlayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jradioTree.min.css">
+      <DependentUpon>jui.jradioTree.less</DependentUpon>
     </Content>
     <Content Include="Content\jUI\less\jui.min.css">
       <DependentUpon>jui.less</DependentUpon>
@@ -304,6 +310,7 @@
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
     <Content Include="Images\headMenuTestImage.png" />
     <Content Include="Images\MenuIcon27.png" />
+    <Content Include="Images\zTreeStandard.png" />
     <Content Include="Scripts\extendjs.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />

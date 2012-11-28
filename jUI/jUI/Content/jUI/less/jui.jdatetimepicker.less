@@ -23,11 +23,11 @@
 .jui-datetimepicker
 {
 	width: 240px;
-	background-color: #f3f3f3;
+	background-color: @datetimepickerBackground;
 	padding: .2em .2em;
-	border: 1px solid #DDD;
-	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
-	font-size: 0.8em;
+	border: 1px solid @datetimepickerBorderColor;
+	font-family: @Family;
+	font-size: @FontSize;
 	position: absolute;
 	float: left;
 	z-index: 100000;
@@ -38,7 +38,7 @@
 	margin-left: 2px;
 	padding-bottom: 5px;
 	padding-top: 5px;
-	background-color: #094AB2;
+	background-color: @datetimepickerHeadBackground;
 }
 /*左按钮*/
 .jui-datetimepicker-prev
@@ -61,16 +61,16 @@
 {
 	display: inline-block;
 	width: 180px;
-	color: white;
+	color: @datetimepickerHeadcenterFontColor;
 	text-align: center;
 }
 /*点击选中项 */
 .jui-datetimepicker .jui-datetimepicker-active
 {
-	border: 1px solid #062f72;
-	background-color: #062f72;
+	border: 1px solid @datetimepickerActiveBorderColor;
+	background-color: @datetimepickerActiveBackground;
 	font-weight: bold;
-	color: #ffffff;
+	color:@datetimepickerActiveFontColor;
 	outline: none;
 	display: block;
 	text-decoration: none;
@@ -78,10 +78,10 @@
 /*表格内容样式*/
 .jui-datetimepicker-table-tr-a
 {
-	border: 1px solid #bababa;
-	background-color: #ffffff;
+	border: 1px solid @datetimepickerTableTrABorderColor;
+	background-color:@datetimepickerTableTrABackground;
 	font-weight: bold;
-	color: #094ab2;
+	color:@datetimepickerTableTrAFontColor;
 	outline: none;
 	display: block;
 	margin: .2em;
@@ -90,10 +90,10 @@
 /*鼠标移动到单元格上*/
 .jui-datetimepicker-table tr a:hover
 {
-	border: 1px solid #062f72;
-	background-color: #073d92;
+	border: 1px solid @datetimepickerTableTrAHoverBorderColor;
+	background-color: @datetimepickerTableTrAHoverBackground;
 	font-weight: bold;
-	color: #ffffff;
+	color: @datetimepickerTableTrAHoverFontColor;
 	outline: none;
 }
 /*内容表格样式*/
@@ -111,7 +111,7 @@
 .jui-datetimepicker-week
 {
 	font-weight: bold;
-	color: Black;
+	color:@datetimepickerWeek;
 	outline: none;
 	display: block;
 	padding: .2em;
@@ -120,12 +120,13 @@
 /*时分秒样式*/
 .jui-datetimepicker-hms
 {
-	font-size: 80%;
+	/*font-size: 80%;*/
+	font-size: @FontSize;
 }
 
 	.jui-datetimepicker-hms dl dt
 	{
-		height: 25px;
+		height: @LineHeight*1.136;
 		margin-bottom: -25px;
 	}
 
@@ -145,30 +146,30 @@
 	text-align: left;
 	height: .8em;
 	font-size: 1em;
-	border: 1px solid #DDD;
-	background: #FFF 50% top repeat-x;
-	color: #333;
+	border: 1px solid @datetimepickerSliderBorderColor;
+	background: @datetimepickerSliderBackground 50% top repeat-x;
+	color: @datetimepickerSliderFontColor;
 }
 
 .jui-datetimepicker-handle
 {
 	top: -.3em;
 	margin-left: -.6em;
-	border: 1px solid #CCC;
-	background: #F6F6F6 50% 50% repeat-x;
+	border: 1px solid @datetimepickerHandleBorderColor;
+	background: @datetimepickerHandleBackground 50% 50% repeat-x;
 	font-weight: bold;
-	color: #1C94C4;
+	color: @datetimepickerHandleFontColor;
 	position: absolute;
 	z-index: 2;
 	width: 1.2em;
 	height: 1.2em;
-	cursor: default;
+	cursor:default;
 }
 
 	.jui-datetimepicker-focus, .jui-datetimepicker-handle:hover, .jui-datetimepicker-butNow:hover, .jui-datetimepicker-butDone:hover
 	{
-		border: 1px solid #FBCB09;
-		background: #FDF5CE;
+		border: 1px solid @datetimepickerOtherBorderColor;
+		background:@datetimepickerOtherBackground;
 		font-weight: bold;
-		color: #C77405;
+		color: @datetimepickerOtherFontColor;
 	}

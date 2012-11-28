@@ -1,7 +1,7 @@
 ﻿.jui-jtree 
 {
-    font-size:14px;
-line-height: 16px !important;
+    font-size:@FontSize;
+	line-height: 0.727*@LineHeight !important;
 }
 .jui-jtree li ul
 {    
@@ -10,27 +10,27 @@ line-height: 16px !important;
 }
 .jui-jtree li ul.line
 {    
-    background: url(../images/line_conn.gif) 0 0 repeat-y;
+    background: ~`'url(@{jUI_Images}line_conn.gif)'` 0 0 repeat-y;
 }
 .jui-jtree-u1-li {
-    line-height:14px !important;
+    line-height:0.636*@LineHeight !important;
     padding: 0 0;
     margin: 0 0;
 }
 .jui-jtree-u-a {
     padding: 1px 3px 0 0;
     text-decoration: none;
-    height:17px;
+    height:@LineHeight*0.773;
     margin: 0;
     display:inline-block;
     vertical-align: top;
 }
 .jui-jtree-u-a:hover {
     cursor:pointer;
-    background-color:#e2e2e2;
+    background-color:@treeUAHoverBackground;
 }
 .jui-jtree-u-a:active {
-    background-color:#d4d4d4;
+    background-color:@treeUAActiveBackground;
 }
 .jui-jtree-u-switch, .jui-jtree-u-icon, .jui-jtree-u-line-b,
 .jui-jtree-u-icon-file,.jui-jtree-u-switch-cross,.jui-jtree-u-switch-dircorss-close,
@@ -40,10 +40,10 @@ line-height: 16px !important;
     width:18px;
     height:18px;          
     display:inline-block;
-    background-color: transparent;
+    background-color: @treeBackground;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-image:url(../images/zTreeStandard.png);
+    background-image: ~`'url(@{jUI_Images}zTreeStandard.png)'`;
     vertical-align: top;
     border: 0 none;
     cursor: pointer;
@@ -81,25 +81,52 @@ background-position: -56px -36px;
     cursor: default;  
 }
 .jui-jtree-u-icon {
-    background-position: -110px 0;
+    width:18px;
+    height:18px;          
+    display:inline-block;
+    background-color: @treeBackground;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    vertical-align: top;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
     margin-right:2px;
 }
 .jui-jtree-u-icon-open {
-background-position: -110px -15px;
+    width:18px;
+    height:18px;          
+    display:inline-block;
+    background-color: @treeBackground;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    vertical-align: top;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
     margin-right:2px;
 }
 .jui-jtree-u-icon-file {
-    background-position: -110px -30px;
+    width:18px;
+    height:18px;          
+    display:inline-block;
+    background-color: @treeBackground;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    vertical-align: top;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
     margin-right:2px;
 }
 .jui-jtree-u-line-b {
-    background-color:green;  
+    background-color:@treeULineBBackground;  
 }
 .jui-jtree-u-line-v {
-    background-color:blue;  
+    background-color:@treeULineVBackground;  
 }
 .jui-jtree-u-line-h {
-    background-color:black;  
+    background-color:@treeULineHBackground;  
 }
 .jui-jtree-u-text {    
     height:16px;
