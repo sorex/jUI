@@ -310,6 +310,7 @@
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
     <Content Include="Images\headMenuTestImage.png" />
     <Content Include="Images\MenuIcon27.png" />
+    <Content Include="Images\zTreeStandard.png" />
     <Content Include="Scripts\extendjs.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />

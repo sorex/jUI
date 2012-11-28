@@ -24,38 +24,6 @@
 	{
 	    // default options
 	    options: {
-	        nodes: [
-                    {
-                        name: "父节点1", id: "1",image:"",position:"", children: [
-                            {
-                                name: "父节点1-1", id: "1-1", children: [
-                                  { name: "子节点1-1-1", id: "1-1-1" },
-                                  { name: "子节点1-1-2", id: "1-1-2" },
-                                  { name: "子节点1-1-3", id: "1-1-3" }
-                                ]
-                            },
-                            { name: "父节点1-2", id: "1-2" }
-                        ]
-                    },
-                    {
-                        name: "父节点2", id: "2", children: [
-                            {
-                                name: "父节点2-1", id: "2-1", children: [
-                                    { name: "子节点2-1-1", id: "2-1-1" },
-                                    { name: "子节点2-1-2", id: "2-1-2" },
-                                    { name: "子节点2-1-3", id: "2-1-3" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", id: "3", children: [
-                            { name: "父节点3-1", id: "3-1" },
-                            { name: "父节点3-2", id: "3-2" },
-                            { name: "父节点3-3", id: "3-3" }
-                        ]
-                    }
-	        ]
 	    },
 
 	    _create: function () {
@@ -81,7 +49,7 @@
                         "<li class='jui-jtree-u-li' id='" + e_id + "_li1_" + i + "'>" +
                         "<span class='jui-jtree-u-switch' id='" + e_id + "_switch_" + i + "'></span>" +
                         "<a title='" + n[i - 1]["name"] + "' class='jui-jtree-u-a' id='" + e_id + "_a_" + i + "'>" +
-                        "<span class='jui-jtree-u-icon' id='" + e_id + "_icon_" + i + "'></span>" +
+                        "<span class='jui-jtree-u-icon' style='background-image:url(" + n[i - 1]["image"] + ");background-position:" + n[i - 1]["position"] + ";' id='" + e_id + "_icon_" + i + "'></span>" +
                         "<span class='jui-jtree-u-text' id='" + e_id + "_text_" + i + "'>" + n[i - 1]["name"] +
                         "</span></a></li>");
                     if (n[i - 1]["children"]) {
@@ -94,7 +62,7 @@
                                 "<li class='jui-jtree-u-li' id='" + e_id + "_li2_" + j + "'>" +
                                 "<span class='jui-jtree-u-switch-dircorss-close' id='" + e_id + "_switch2_" + j + "'></span>" +
                                 "<a title='" + n[i - 1]["children"][j - 1]["name"] + "' class='jui-jtree-u-a' id='" + e_id + "_a2_" + i + "_" + j + "'>" +
-                                "<span class='jui-jtree-u-icon' id='" + e_id + "_icon2_" + j + "'></span>" +
+                                "<span class='jui-jtree-u-icon' style='margin-right:2px;background-image:url(" + n[i - 1]["children"][j - 1]["image"] + ");background-position:" + n[i - 1]["children"][j - 1]["position"] + ";' id='" + e_id + "_icon2_" + j + "'></span>" +
                                 "<span class='jui-jtree-u-text' id='" + e_id + "_text2_" + j + "'>" + n[i - 1]["children"][j - 1]["name"] +
                                 "</span></a></li>");
                             if (n[i - 1]["children"][j - 1]["children"]) {
@@ -107,7 +75,7 @@
                                         "<li class='jui-jtree-u-li' id='" + e_id + "_li3_" + k + "'>" +
                                         "<span class='jui-jtree-u-switch-cross' id='" + e_id + "_switch3_" + k + "'></span>" +
                                         "<a title='" + n[i - 1]["children"][j - 1]["children"][k - 1]["name"] + "' class='jui-jtree-u-a' id='" + e_id + "_a3_" + i + "_" + j + "_" + k + "'>" +
-                                        "<span class='jui-jtree-u-icon-file' id='" + e_id + "_icon3_" + j + "'></span>" +
+                                        "<span class='jui-jtree-u-icon' style='margin-right:2px;background-image:url(" + n[i - 1]["children"][j - 1]["children"][k - 1]["image"] + ");background-position:" + n[i - 1]["children"][j - 1]["children"][k - 1]["position"] + ";'  id='" + e_id + "_icon3_" + j + "'></span>" +
                                         "<span class='jui-jtree-u-text' id='" + e_id + "_text3_" + j + "'>" + n[i - 1]["children"][j - 1]["children"][k - 1]["name"] +
                                         "</span></a></li>");
                                 }
@@ -165,17 +133,18 @@
                     $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-open").addClass("jui-jtree-u-switch-dircorss-bottom-close");
                 }
                 //切换各级图标开与关按钮 
-                if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon") {
-                    $(this).siblings("a").find("span:eq(0)").removeClass("jui-jtree-u-icon").addClass("jui-jtree-u-icon-open");
-                } else if ($(this).siblings("a").find("span:eq(0)").attr("class") == "jui-jtree-u-icon-open") {
-                    $(this).siblings("a").find("span:eq(0)").removeClass("jui-jtree-u-icon-open").addClass("jui-jtree-u-icon");
+                if ($(this).siblings("a").find("span:eq(0)").css("background-position") == "-110px 0px") {
+                    $(this).siblings("a").find("span:eq(0)").css("background-position", "-110px -15px");
+                } else if ($(this).siblings("a").find("span:eq(0)").css("background-position") == "-110px -15px") {
+                    $(this).siblings("a").find("span:eq(0)").css("background-position", "-110px 0px");
                 }
                 $(this).siblings("ul").slideToggle("fast");
             });
 
             e.children("ul").find("li").each(function () {
                 if ($(this).children("ul").length == 0) {
-                    $(this).children("a").children("span:eq(0)").removeClass().addClass("jui-jtree-u-icon-file");
+                    //$(this).children("a").children("span:eq(0)").removeClass().addClass("jui-jtree-u-icon-file");
+                    $(this).children("a").children("span:eq(0)").css("background-position", "-110px -30px");
                     if (($(this).prevAll().length == 0 && $(this).nextAll().length == 0) || $(this).nextAll().length == 0) {
                         $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross-bottom");
                     } else {
