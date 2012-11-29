@@ -68,10 +68,10 @@
     <script type="text/javascript">
         $(function () {
             $("#btn_checked").click(function () {
-                if ($("#MyTable1").jcheckTable("checkedValue").length == 0) {
+                if ($("#MyTable1").jcheckTable("checkedValues").length == 0) {
                     alert("未选中任何行")
                 } else {
-                    alert($("#MyTable1").jcheckTable("checkedValue").join());
+                    alert($("#MyTable1").jcheckTable("checkedValues").join());
                 }
             });
         });
