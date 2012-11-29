@@ -67,26 +67,26 @@
 				}
 				for (var i = 0; i < o.items.length; i++) {
 					if (o.items[i].selected) {
-						selectHtml += "<option selected value=" + o.items[i].value + ">" + o.items[i].text + '　' + "</option>";
+						selectHtml += "<option selected value=" + o.items[i].value + ">" + o.items[i].text +'　'+"</option>";
 					} else {
-						selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text +"</option>";
+					    selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text + '　' + "</option>";
 					}
 
 				}
 				selectHtml += "</select>";
 				$("#" + tagId).append(selectHtml);
 				$(".chzn-select").chosen();
-				//alert(selectHtml);
+			
 				
 				$("#" + selectId).change(function () {
 					if (flag) {
-					
 						var selectList = [];
 						var textList = $(this).find("option:selected").text().substring(0, $(this).find("option:selected").text().length).split('　');
 						var valueList = $(this).val();
+
 						if (valueList != null) {
 							for (var i = 0; i < valueList.length ; i++) {
-								var tempObject = Object;
+							    var tempObject = new Object();
 								tempObject.value = valueList[i];
 								tempObject.text = textList[i];
 								selectList.push(tempObject);
@@ -94,12 +94,19 @@
 						} else {
 							selectList = null;
 						}
-						self.options.onSelectChange(selectList);
+
+						if (self.options.onSelectChange != null) {
+						    self.options.onSelectChange(selectList);
+						}
+					
 
 
-					}else{
-						self.options.onSelectChange($(this).val(), $(this).find("option:selected").text());
-
+					} else {
+					    //alert($(this).val());
+					    if(self.options.onSelectChange!=null){
+					        self.options.onSelectChange($(this).val(), $(this).find("option:selected").text());
+					    }
+					
 					}
 				});
 
@@ -124,7 +131,7 @@
 				var valueList = $("#" + selectId).val();
 				if (valueList != null) {
 					for (var i = 0; i < valueList.length ; i++) {
-						var tempObject = Object;
+					    var tempObject = {};
 						tempObject.value = valueList[i];
 						tempObject.text = textList[i];
 						list.push(tempObject);
@@ -138,7 +145,7 @@
 				
 			} else {
 				
-				var selectObject = Object;
+			    var selectObject = {};
 				selectObject.value = $("#"+selectId).val();
 				selectObject.text = $("#"+selectId).find("option:selected").text().substring(0, $("#" + selectId).find("option:selected").text().length-1);
 				return selectObject;

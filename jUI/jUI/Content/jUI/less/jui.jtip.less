@@ -5,7 +5,7 @@
 
         .jui-jtip-w-arrowhead
         {
-            background-image: url(../images/jui-jtip-carat-w-cccccc.png);
+			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-w-cccccc.png)'`;
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -13,7 +13,7 @@
 
         .jui-jtip-w-arrowhead-error
         {
-            background-image: url(../images/jui-jtip-carat-w-fef1ec.png);
+            background-image:  ~`'url(@{jUI_Images}jui-jtip-carat-w-fef1ec.png)'`;
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -22,7 +22,7 @@
 
         .jui-jtip-n-arrowhead
         {
-            background-image: url(../images/jui-jtip-carat-n-cccccc.png);
+            background-image:  ~`'url(@{jUI_Images}jui-jtip-carat-n-cccccc.png)'`;
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
@@ -30,51 +30,51 @@
 
         .jui-jtip-n-arrowhead-error
         {
-            background-image: url(../images/jui-jtip-carat-n-fef1ec.png);
+            background-image: ~`'url(@{jUI_Images}jui-jtip-carat-n-fef1ec.png)'`;
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
         }
 
 
-        .jui-jitp-nomal-w-content
-        {
-            background-color: #cccccc;
-            color: #ffffff;
-        }
+    .jui-jitp-nomal-w-content
+{
+    background-color: @tipNomalBackground;
+    color: @tipNomalColor;
+}
 
 
 
-        .jui-jtip-success-w-content
-        {
-            background-color: #cccccc;
-            color: #ffffff;
-        }
+.jui-jtip-success-w-content
+{
+    background-color: @tipSuccessBackground;
+    color: @tipSuccessColor;
+}
 
-        .jui-jtip-error-w-content
-        {
-            background-color: #cccccc;
-            color: #cd0a0a;
-        }
-
-
-
-        .jui-jitp-nomal-n-content
-        {
-            background-color: #cccccc;
-            color: #ffffff;
-        }
+.jui-jtip-error-w-content
+{
+    background-color: @tipErrorBackground;
+    color: @tipErrorColor;
+}
 
 
 
-        .jui-jtip-success-n-content
-        {
-            background-color: #cccccc;
-            color: #ffffff;
-        }
+.jui-jitp-nomal-n-content
+{
+    background-color: @tipNomalBackground;
+    color: @tipNomalColor;
+}
 
-        .jui-jtip-error-n-content
-        {
-            background-color: #cccccc;
-            color: #cd0a0a;
-        }
+
+
+.jui-jtip-success-n-content
+{
+    background-color: @tipSuccessBackground;
+    color: @tipSuccessColor;
+}
+
+.jui-jtip-error-n-content
+{
+    background-color: @tipErrorBackground;
+    color: @tipErrorColor;
+}
