@@ -127,4 +127,37 @@
             position:relative;
             left:5px;
             top:2px;
+                    cursor:default;
+                }
+                    .jui-headMenu .jui-headMenu-u1 li a:hover {
+                        background-color: #f0f0f0;
+                    }
+
+
+            .jui-headMenu .jui-headMenu-vsolid {
+                display: block;
+                height: 20px;
+                border-left: 1px solid #ffffff;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                float: left;
+            }
+
+            .jui-headMenu .jui-headMenu-showul {
+                visibility: visible;
+            }
+
+            .jui-headMenu .jui-headMenu-hideul {
+                visibility: hidden;
+            }           
+
+        .jui-headMenu .jui-headMenu-endImg {
+            background-image:url(../images/jui-jheadMenu-carat-s-ffffff.png);
+            background-repeat:no-repeat;
+            display:inline-block;
+            width:12px;
+            height:10px;
+            position:relative;
+            left:5px;
+            top:2px;
         }
