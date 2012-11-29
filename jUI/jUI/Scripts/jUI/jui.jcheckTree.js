@@ -24,7 +24,7 @@
 	{
 	    // default options
 	    options: {
-	        getCheckValue:null
+
 	    },
 
 	    _create: function () {
@@ -39,19 +39,18 @@
                 e_id = e.attr("id"),
 	            str_checked = "jui-jtree-u-cbox-checked",//选中
 	            str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
-                str_checkedPart = "jui-jtree-u-cbox-partChecked2",//部分选中
-                getCheckValue = o.getCheckValue;
+                str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
 	        e.find("a").before("<span class='jui-jtree-u-cbox-unChecked'></span>");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
-	        var list = [];
-            //全选控制
+
+	        //#region  对样式的调控
+	        //全选控制
 	        var controlChildrenClass = function (obj, str) {
 	            obj.removeClass().addClass(str);
 	            obj.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);
 	        }
-
-            //子项选中，影响父项选中
+	        //子项选中，影响父项选中
 	        var controllChecked = function (obj) {
 	            obj.children("span:eq(1)").click(function () {
 	                if ($(this).attr("class") == str_checked || $(this).attr("class") == str_checkedPart) {
@@ -86,25 +85,34 @@
 	                        $(this).children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
 	                    }
 	                });
-
-	                //if ($(this).attr("class") == str_checked) {
-	                //    list.push(list)
-	                //}
-
 	            });
 
 	        }
-
-	        //getCheckValue = function (list) {
-	        //    return
-	        //    list;
-	        //}
-
 	        e.children("ul").find("li").each(function () {
 	            var _t = $(this);
 	            controllChecked(_t);
 	        });
+	        //#endregion
+
 	    },
+	    //每次选中操作返回选中节点数据的集合
+	    getCheckValue: function () {
+	        var
+	            list = [],
+                self = this,
+                o = this.options,
+	            e = $(this.element),
+	            str_checked = "jui-jtree-u-cbox-checked";//选中
+	        e.children("ul").find("li").each(function () {
+	            var _t = $(this);
+	            if ($(this).children("span:eq(1)").attr("class") == str_checked) {
+	                list.push($(this).children("a").children("span:eq(1)").html());
+	            }
+	        });
+
+	        return list;
+	    },
+
 
 	    _setOption: function (key, value) {
 	        if (value !== undefined || value != null)
