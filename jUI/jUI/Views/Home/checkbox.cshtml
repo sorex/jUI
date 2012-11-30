@@ -5,6 +5,11 @@
 @section head{
 
 	<script src="@Url.Content("~/Scripts/jUI/jui.jcheckbox.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#checkboxContent").jcheckbox();
+        });
+    </script>
 }
 
 @section header{
@@ -27,12 +32,12 @@
 
 
 <h2>checkbox</h2>
+<div id="checkboxContent">
 <input id="checkbox1" type="checkbox" value="选项一" name="cb" /><label for="checkbox1">选项一</label>
 <input id="checkbox2" type="checkbox" value="选项二" name="cb" /><label for="checkbox2">选项二</label>
-<input id="checkbox3" type="checkbox" value="选项三" name="cb" /><label for="checkbox3">选项三</label>
+<input id="checkbox3" type="checkbox" value="选项三" name="cb" checked /><label for="checkbox3">选项三</label>
 <input id="checkbox4" type="checkbox" value="选项四" name="cb" /><label for="checkbox4">选项四</label>
 <input id="checkbox5" type="checkbox" value="选项五" name="cb" /><label for="checkbox5">选项五</label>
 <input id="checkbox6" type="checkbox" value="选项六" name="cb" /><label for="checkbox6">选项六</label>
-
-
+</div>
 
