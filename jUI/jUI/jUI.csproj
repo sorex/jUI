@@ -182,6 +182,7 @@
     </Content>
     <Content Include="Content\jUI\css\chosen.css" />
     <Content Include="Content\jUI\images\chosen-sprite.png" />
+    <Content Include="Content\jUI\images\jui-icons-1-094ab2.png" />
     <Content Include="Content\jUI\images\jui-jcheckbox.png" />
     <Content Include="Content\jUI\images\jui-jselect-bullet-666666.png" />
     <Content Include="Content\jUI\images\jui-jselect-carat-s-666666.png" />
