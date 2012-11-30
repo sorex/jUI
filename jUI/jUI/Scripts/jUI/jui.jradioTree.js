@@ -36,9 +36,7 @@
                 self = this,
                 o = this.options,
 	            e = $(this.element),
-                e_id = e.attr("id"),
-	            str_checked = "jui-jtree-u-cbox-checked",//选中
-	            str_unChecked = "jui-jtree-u-cbox-unChecked";//未选中
+                e_id = e.attr("id");
 	        e.find("a").before("<span class='jui-jtree-u-rbox-unChecked'></span>");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
@@ -60,6 +58,23 @@
 	            });
 	        });
             
+	    },
+
+	    //每次选中操作返回选中节点数据的集合
+	    getCheckValue: function () {
+	        var
+	            item = null,
+                self = this,
+                o = this.options,
+	            e = $(this.element);
+	        e.children("ul").find("li").each(function () {
+	            var _t = $(this);
+	            if ($(this).children("span:eq(1)").attr("class") == "jui-jtree-u-rbox-checked") {
+	                item = $(this).children("a").children("span:eq(1)").html();
+	            }
+	        });
+
+	        return item;
 	    },
 
 	    _setOption: function (key, value) {

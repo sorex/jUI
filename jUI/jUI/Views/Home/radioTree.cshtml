@@ -63,6 +63,14 @@
                     }
                 ]
             }).jradioTree({});
+            $("#btn_value").click(function () {
+                var v = $("#tree").jradioTree("getCheckValue");
+                if (v == null) {
+                    alert("无选中节点！");
+                } else {
+                    alert(v);
+                }
+            });
         });
 
     </script>
@@ -89,7 +97,9 @@
 		<li><a href="#tab1">节点前带radio的树形结构</a></li>
 	</ul>
 	<div id="tab1">
-		<div id="tree"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<div id="tree"></div>
+        <input id="btn_value" value="获得选中文本" type="button" />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
 &lt;div id="tree"&gt;
 &lt;script type="text/javascript"&gt;	    

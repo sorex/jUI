@@ -39,17 +39,21 @@
 	{
 	    options: {
 	        items: [
-					{ Name: "小数和整数", Id: "txt_Age", Type: "double" },
-					{ Name: "范围小数和整数", Id: "txt_AgeStart", Type: "doubleRange", Brother: [{ Id: "txt_AgeEnd" }] },
-					{ Name: "两位整数", Id: "txt_Age", Type: "int", MaxLength: 2 },
-					{ Name: "范围整数", Id: "txt_AgeStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_AgeEnd", MaxLength: 4 }] },
+					{ Name: "小数和整数", Id: "txt_double", Type:"double" },
+					{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] },
+					{ Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 },
+					{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] },
 					{ Name: "单个日期", Id: "txt_Time", Type: "date" },
-					{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime", Type: "date" }] },
-					{ Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
-					{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] },
-					{ Name: "自定义", Type: "user-defined", Content: "<input style='width: 223px;'  id='txt_contetent' name='text' type='text' >" },
+					{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
+
+                    { Name: "单选按钮", Id: "btn-radio",name:"radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球",selected:true }, {value:"篮球",text:"篮球"},{value:"乒乓球",text:"乒乓球"}]},
+
+                     { Name: "单选按钮", Id: "btn-checkbox",name:"checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球" }, { value: "乒乓球", text: "乒乓球" }] },
+                    { Name: "自定义", Type: "user-defined", Content: "<input  id='txt_contetent' name='text' type='text' >" },
 					{ Name: "自定义2", Type: "user-defined", Content: "<input style='width: 223px;'  id='txt_contetent2' name='text' type='text' >" },
-					{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 }
+					{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
+                    { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
+					{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
 
 	        ],
 	    },
@@ -57,6 +61,7 @@
 	    _create: function () {
 
 	        this._showTable();
+	        this._setLimit();
 
 	    },
 	    _showTable: function () {
@@ -71,12 +76,13 @@
 	        var trId = tagId + "_tr_";
 
 	        e.append("<table id=" + tableId + " width='100%' class='ui-jsearch-table' cellpadding='0' cellspacing='0'></table>");
-	        $("#" + tableId).after("<p align='center' style='margin-top: 5px; margin-left: 55%;'><input id=" + buttonId + " type='button' value='搜索' /></p><p align='right'>");
+
+	        $("#" + tableId).after("<p style='margin-top: 5px; margin-left: 55%;'><input id=" + buttonId + " type='button' value='搜索' /></p>");
 
 	        if (count % 2 == 0) { //创建偶数行 
 	            for (var i = 0; i < count / 2; i++) {
 	                $("#" + tableId).append("<tr id='" + trId +""+ i + "'></tr>");
-	                //alert($("tr:eq("+i+")").attr("id"));
+	            
 	            
 	                this._appendEven(i);
 	            }
@@ -84,14 +90,14 @@
 	        if (count % 2 != 0) {  //创建奇数行
 	            for (var i = 0; i < parseInt(count / 2) ; i++) {
 	                $("#" + tableId).append("<tr  id='" + trId +""+ i + "'></tr>");
-	                alert($("table").find("tr:eq("+i+")").attr("id"));
+	           
 	                this._appendEven(i);
 	            }
 	            $("#" + tableId).append("<tr id='" + trId + parseInt(count / 2) + "'></tr>");
 	            var last = parseInt(count / 2);
 	       
-	            //this._appendLast(last);
-	            alert($("table").find("tr").length);
+	            this._appendLast(last);
+	          
 	        }
 	    },
 
@@ -105,34 +111,43 @@
 	   
 	        switch (o.items[last * 2]["Type"]) {
 	            case "string":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%; padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 
 	            case "int":
 	               
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td><td></td><td></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 	            case "dateRange":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;'padding-left:5px;><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td><td></td><td></td>");
 	                break;
 
+	            case "date":
+
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' /></td><td></td><td></td>");
+	                break;
+	            case "dateRange":
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' style='width:90px;'/></td><td></td><td></td>");
+	                break;
+
+
 	            case "selectSingle":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;' id=" + trId + last * 2 + "_td" + ">单选</td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
 	                break;
 
 	            case "selectMultiple":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;' id=" + trId + last * 2 + "_td" + ">多选</td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
 	                break;
 
 	            case "user-defined":
-	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;' > " + o.items[last * 2]["Content"] + "</td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[last * 2]["Content"] + "</td><td></td><td></td>");
 	                break;
 
 	        }
@@ -147,71 +162,204 @@
 	        var trId = tagId + "_tr_";
 	        switch (o.items[range * 2]["Type"]) {
 	            case "string":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
-
 	            case "int":
-	                alert(trId + "" + range);
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
-	                
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
 	            case "doubleRange":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                break;
+
+
+	            case "date":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' /></td>");
+	                break;
+	            case "dateRange":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text'  style='width:90px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text'  style='width:90px;'/></td>");
 	                break;
 
 	            case "selectSingle":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;' id=" + trId + range * 2 + "_td" + ">单选</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "selectMultiple":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;' id=" + trId + range * 2 + "_td" + ">多选</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "user-defined":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;' > " + o.items[range * 2]["Content"] + "</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2]["Content"] + "</td>");
 	                break;
 
 	        }
 	        switch (o.items[range * 2 + 1]["Type"]) {
 	            case "string":
-	                $("#" + trId+"" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "int":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "doubleRange":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                break;
+
+	            case "date":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' /></td>");
+	                break;
+	            case "dateRange":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text'  style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
 	                break;
 
 	            case "selectSingle":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;' id=" + trId + (range * 2 + 1) + "_td" + ">单选</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "selectMultiple":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;' id=" + trId + (range * 2 + 1) + "_td" + ">多选</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "user-defined":
-	                $("#" + trId +""+ range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;' > " + o.items[range * 2 + 1]["Content"] + "</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2 + 1]["Content"] + "</td>");
 	                break;
 	        }
 
 	    },
 
+
+	    _setLimit: function () { //数据条件的限制
+	        var e = $(this.element);
+	        o = this.options;
+	        var count = o.items.length;
+
+	        var tagId = this.element.attr("id");/*目标的id*/
+	        var trId = tagId + "_tr_";
+
+	        for (var n = 0; n < count; n++) {
+
+	            switch (o.items[n]["Type"]) {
+	                case "int":
+	                    $("#"+o.items[n]["Id"]).bind("keyup", function () {//限制文本框中只能输入数字
+	                        $(this).val($(this).val().replace(/[\D]/g, ""));
+	                    });
+	                    break;
+	                case "intRange":
+	                    $("#" + o.items[n]["Id"]).bind("keyup", function () {//限制文本框中只能输入数字
+	                        $(this).val($(this).val().replace(/[\D]/g, ""));
+	                    });
+
+	                    $("#" + o.items[n]["Brother"][0]["Id"]).bind("keyup", function () {//限制文本框中只能输入数字
+	                        $(this).val($(this).val().replace(/[\D]/g, ""));
+	                    });
+	                    break;
+	                case "double":
+	                    $("#" + o.items[n]["Id"]).bind("keyup", function () {	//限制文本框只能输入小数
+	                      
+	                        len = $(this).val().length;
+	                        var dotNum = 0;
+	                        for (var i = 0; i < len; i++) {
+	                            oneNum = $(this).val().substring(i, i + 1);
+	                            if (oneNum == ".") {
+	                                dotNum++;
+	                            }
+	                            if (((oneNum < "0" || oneNum > "9") && oneNum != ".") || dotNum > 1) {
+	                                $(this).val($(this).val().substring(0, i));
+	                                break;
+	                            } else {
+	                            }
+	                        }
+	                    });
+	                    break;
+	                case "doubleRange":
+	                    $("#" + o.items[n]["Id"]).bind("keyup", function () {	//限制文本框只能输入小数
+	                        len = $(this).val().length;
+	                        var dotNum = 0;
+	                        for (var i = 0; i < len; i++) {
+	                            oneNum = $(this).val().substring(i, i + 1);
+	                            if (oneNum == ".") {
+	                                dotNum++;
+	                            }
+	                            if (((oneNum < "0" || oneNum > "9") && oneNum != ".") || dotNum > 1) {
+	                                $(this).val($(this).val().substring(0, i));
+	                                break;
+	                            } else {
+	                            }
+	                        }
+	                    });
+
+
+	                    $("#" + o.items[n]["Brother"][0]["Id"]).bind("keyup", function () {	//限制文本框只能输入小数
+	                        len = $(this).val().length;
+	                        var dotNum = 0;
+	                        for (var i = 0; i < len; i++) {
+	                            oneNum = $(this).val().substring(i, i + 1);
+	                            if (oneNum == ".") {
+	                                dotNum++;
+	                            }
+	                            if (((oneNum < "0" || oneNum > "9") && oneNum != ".") || dotNum > 1) {
+	                                $(this).val($(this).val().substring(0, i));
+	                                break;
+	                            } else {
+	                            }
+	                        }
+	                    });
+	                    break;
+	                case "date":
+	                    $("#"+o.items[n]["Id"]).jdatetimepicker({
+	                        datetimeParse: "yyyy-MM-dd"
+	                    });
+	                    break;
+	                case "dateRange":
+	                    $("#" + o.items[n]["Id"]).jdatetimepicker({
+	                        datetimeParse: "yyyy-MM-dd"
+	                    });
+	                    $("#" + o.items[n]["Brother"][0]["Id"]).jdatetimepicker({
+	                        datetimeParse: "yyyy-MM-dd"
+	                    });
+	                    break
+	                case "selectSingle":
+	                   
+	                    $("#"+trId+n+"_td").jSelect({ //单选
+	                        items: o.items[n]["Value"],
+	                        placeholder: "请选择状态....",
+	                        width: "100px",
+	                        model: "single"
+	                    });
+	                    break;
+
+	                case "selectMultiple":
+	                   
+	                    $("#" + trId + n + "_td").jSelect({ //单选
+	                        items: o.items[n]["Value"],
+	                        placeholder: "请选择状态....",
+	                        width: "200px",
+	                        model: "multiple"
+	                      
+	                    });
+
+	                    break;
+
+
+	            }
+	        }
+
+	    },
+	    _checkInt:function(){
+
+	    },
 
 	    _setOption: function (key, value) {
 	        if (value !== undefined || value != null)
