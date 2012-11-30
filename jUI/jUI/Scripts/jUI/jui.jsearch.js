@@ -1,4 +1,5 @@
-﻿/// <reference path="../jquery-1.8.1-vsdoc.js" />
+﻿/// <reference path="../../Views/Home/linkHtml.cshtml" />
+/// <reference path="../jquery-1.8.1-vsdoc.js" />
 /// <reference path="../jquery-ui-1.8.23.js" />
 
 //JQuery UI tip Plugin
@@ -46,23 +47,91 @@
 					{ Name: "单个日期", Id: "txt_Time", Type: "date" },
 					{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
 
-                    { Name: "单选按钮", Id: "btn-radio",name:"radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球",selected:true }, {value:"篮球",text:"篮球"},{value:"乒乓球",text:"乒乓球"}]},
+                    { Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                     { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球",selected:true }, { value: "乒乓球", text: "乒乓球" }] },
 
-                     { Name: "单选按钮", Id: "btn-checkbox",name:"checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球" }, { value: "乒乓球", text: "乒乓球" }] },
                     { Name: "自定义", Type: "user-defined", Content: "<input  id='txt_contetent' name='text' type='text' >" },
-					{ Name: "自定义2", Type: "user-defined", Content: "<input style='width: 223px;'  id='txt_contetent2' name='text' type='text' >" },
+					{ Name: "自定义2", Type: "user-defined", Content: "<input  id='txt_contetent2' name='text' type='text' >" },
 					{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
                     { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
 					{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
 
 	        ],
+            onButtonClick:null
 	    },
 
 	    _create: function () {
 
 	        this._showTable();
 	        this._setLimit();
+	        this._onButtonClick();
+            
+	    },
+	    _onButtonClick:function(){
+	     
+	        var e = $(this.element);
+	        o = this.options;
+	        var count = o.items.length;
+	        var tagId = this.element.attr("id");/*目标的id*/
+	        var tableId = tagId + "_table";
+	        var buttonId = tagId + "_btn";
 
+
+	        $("#" + buttonId).click(function () {
+	            var returnList = {};
+	            for (var i = 0; i < count ; i++) {
+	                switch (o.items[i]["Type"]) {
+
+	                    case "int":
+	                        returnList[o.items[i]["Id"]] = parseInt($("#" + o.items[i]["Id"]).val());
+	                        break;
+	                    case "intRange":
+	                        returnList[o.items[i]["Id"]] = parseInt($("#" + o.items[i]["Id"]).val());
+	                        returnList[o.items[i]["Brother"][0]["Id"]] = parseInt($("#" + o.items[i]["Brother"][0]["Id"]).val());
+	                        break;
+	                    case "double":
+	                        returnList[o.items[i]["Id"]] = $("#" + o.items[i]["Id"]).val();
+	                        break;
+	                    case "doubleRange":
+	                        returnList[o.items[i]["Id"]] = $("#" + o.items[i]["Id"]).val();
+	                        returnList[o.items[i]["Brother"][0]["Id"]] = $("#" + o.items[i]["Brother"][0]["Id"]).val();
+	                        break;
+	                    case "date":
+	                        returnList[o.items[i]["Id"]] = $("#" + o.items[i]["Id"]).val();
+	                        break;
+	                    case "dataRange":
+	                        returnList[o.items[i]["Id"]] = $("#" + o.items[i]["Id"]).val();
+	                        returnList[o.items[i]["Brother"][0]["Id"]] = $("#" + o.items[i]["Brother"][0]["Id"]).val();
+	                        break;
+
+	                    case "radio":
+	                        returnList[o.items[i]["name"]] = $(":radio[name=" + o.items[i]["name"] + "[checked]]").val();
+	                        break;
+	                    case "checkbox":
+	                        var checkboxValue = "";
+	                        var item = document.getElementsByName(o.items[i]["name"]);
+	                        for (var i = 0; i < item.length; i++) {
+	                            if (item[i].checked == true) {
+	                                checkboxValue += item[i].value + "_";
+	                            }
+	                        }
+	                        returnList[o.items[i]["name"]] = checkboxValue;
+	                       // returnList[o.items[i]["name"]] = $(":checkbox[name=" + o.items[i]["name"] + "[checked]]").val();
+	                        break;
+	                    case "":
+	                        break;
+	                    case "":
+	                        break;
+
+	                }
+
+	            }
+
+	            if (o.onButtonClick != null) {
+
+                    o.onButtonClick();
+	            }
+	        });
 	    },
 	    _showTable: function () {
 	       
@@ -113,7 +182,6 @@
 	            case "string":
 	                $("#" + trId +""+ last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%; padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
-
 	            case "int":
 	               
 	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
@@ -137,6 +205,12 @@
 	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' style='width:90px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' style='width:90px;'/></td><td></td><td></td>");
 	                break;
 
+	            case "radio":
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                break;
+	            case "checkbox":
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                break;
 
 	            case "selectSingle":
 	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
@@ -179,6 +253,14 @@
 	                break;
 
 
+	            case "radio":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
+	                break;
+
+	            case "checkbox":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
+	                break;
+
 	            case "date":
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' /></td>");
 	                break;
@@ -215,6 +297,14 @@
 	                break;
 	            case "doubleRange":
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:90px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:90px;'/></td>");
+	                break;
+
+	            case "radio":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
+	                break;
+
+	            case "checkbox":
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "date":
@@ -317,6 +407,36 @@
 	                        }
 	                    });
 	                    break;
+	                case "radio":
+	              
+	                    var dataSource = o.items[n].Value;
+	                    var radioHtml = "";
+	                    for (var i = 0; i < dataSource.length; i++) {
+	                        if (dataSource[i]["selected"]) {
+	                            radioHtml += "<input id=" + o.items[n]["Id"] + '_' + i + "  type='radio' value=" + dataSource[i]["value"] + "  name=" + o.items[n]["name"] + " checked ><label for=" + o.items[n]["Id"] + '_' + i + ">" + dataSource[i]["text"] + "</label>";
+	                        } else {
+	                            radioHtml += "<input id=" + o.items[n]["Id"] + '_' + i + " type='radio' value=" + dataSource[i]["value"] + "  name=" + o.items[n]["name"]+"><label for=" + o.items[n]["Id"] + '_' + i + ">" + dataSource[i]["text"] + "</label>";
+	                        }
+                            
+	                    }
+	                    $("#" + trId + n + "_td").append(radioHtml);
+	                    $("#" + trId + n + "_td").jradio();
+	                    break;
+	                case "checkbox":
+	                    var dataSource = o.items[n].Value;
+	                    var checkboxHtml = "";
+	                    for (var i = 0;i<dataSource.length ;i++){
+	                        if (dataSource[i]["selected"]) {
+	                            checkboxHtml += "<input id=" + o.items[n]["Id"] + '_' + i + "  type='checkbox' value=" + dataSource[i]["value"] + "  name=" + o.items[n]["name"] + " checked ><label for=" + o.items[n]["Id"] + '_' + i + ">" + dataSource[i]["text"] + "</label>";
+	                        } else {
+	                            checkboxHtml += "<input id=" + o.items[n]["Id"] + '_' + i + "  type='checkbox' value=" + dataSource[i]["value"] + "  name=" + o.items[n]["name"] + " ><label for=" + o.items[n]["Id"] + '_' + i + ">" + dataSource[i]["text"] + "</label>";
+
+	                        }
+	                    }
+	                    $("#" + trId + n + "_td").append(checkboxHtml);
+	                    $("#" + trId + n + "_td").jcheckbox();
+	                    break;
+
 	                case "date":
 	                    $("#"+o.items[n]["Id"]).jdatetimepicker({
 	                        datetimeParse: "yyyy-MM-dd"
@@ -347,19 +467,15 @@
 	                        placeholder: "请选择状态....",
 	                        width: "200px",
 	                        model: "multiple"
-	                      
 	                    });
 
 	                    break;
-
-
 	            }
 	        }
 
 	    },
-	    _checkInt:function(){
-
-	    },
+	  
+	 
 
 	    _setOption: function (key, value) {
 	        if (value !== undefined || value != null)

@@ -17,6 +17,10 @@
     padding: 0 0;
     margin: 0 0;
 }
+.jui-jtree-a-clicked {
+	border:1px solid @HighlightColor;
+	background-color:@treeUAHoverBackground;
+}
 .jui-jtree-u-a {
     padding: 1px 3px 0 0;
     text-decoration: none;
@@ -48,17 +52,12 @@
     border: 0 none;
     cursor: pointer;
     outline: none;
-    /*margin-bottom:2px;*/
 }
 .jui-jtree-u-switch {
     background-position: -74px 0;
-    padding-bottom:3px;
-    /*vertical-align: bottom;*/
 }
 .jui-jtree-u-switch-open {
 background-position: -92px 0;
-    padding-bottom:3px;
-    /*vertical-align: bottom;*/
 }
 .jui-jtree-u-switch-dircorss-open {
 background-position: -92px -18px;
@@ -87,7 +86,6 @@ background-position: -56px -36px;
     background-color: @treeBackground;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    vertical-align: top;
     border: 0 none;
     cursor: pointer;
     outline: none;
@@ -105,5 +103,6 @@ background-position: -56px -36px;
 .jui-jtree-u-text {    
     height:16px;
     padding: 0 0;
+	vertical-align:bottom;
     display:inline-block;
 }

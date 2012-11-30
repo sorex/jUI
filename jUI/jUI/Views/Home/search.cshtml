@@ -1,49 +1,49 @@
 ﻿@{
-	ViewBag.Title = "search.cshtml";
+    ViewBag.Title = "search.cshtml";
   
 }
 
 @section head{
 
 
-	<link href= "@Url.Content("~/Content/jUI/css/chosen.css")" rel="stylesheet" />
-	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
-	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
-	<link href="@Url.Content("~/Content/jUI/css/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
+    <link href= "@Url.Content("~/Content/jUI/css/chosen.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+    <script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+
+    <link href="@Url.Content("~/Content/jUI/css/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/jUI/jui.jcheckbox.js")" type="text/javascript"></script>
+    <script src="~/Scripts/jUI/jui.jradio.js" type="text/javascript"></script>
 
     <script src="@Url.Content("~/Scripts/jUI/jui.jsearch.js")" type="text/javascript"></script>
 
-	<style type="text/css">
-		.jui-jSearch
-		{
-		}
+    <style type="text/css">
+        .jui-jSearch
+        {
+        }
 
-			.jui-jSearch table
-			{
-				border: 1px solid #cccccc;
-				border-collapse: collapse;
-				width: 100%;
-
-			}
-
-	           
-	            .jui-jSearch table tr
-	            {
-                  
-                    line-height:30px;
-	            }
+            .jui-jSearch table
+            {
+                border: 1px solid #cccccc;
+                border-collapse: collapse;
+                width: 100%;
+            }
 
 
-	</style>
-	<script type="text/javascript">
-		$(function () {
-		
-		    $("#searchContent").jsearch();
-		});
+                .jui-jSearch table tr
+                {
+                    line-height: 30px;
+                }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            $("#searchContent").jsearch();
+        });
 
 
-	</script>
+    </script>
 
 }
 
@@ -69,6 +69,4 @@
 
 <h2>search</h2>
 <div class="jui-jSearch" id="searchContent">
-
 </div>
-

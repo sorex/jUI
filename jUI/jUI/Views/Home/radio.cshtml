@@ -4,6 +4,12 @@
 
 @section head{
 	<script src="@Url.Content("~/Scripts/jUI/jui.jradio.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#radioContent").jradio();
+            $("#radioContent2").jradio();
+        });
+    </script>
 }
 
 @section header{
@@ -28,8 +34,19 @@
 <h2>radio</h2>
 
 <h3>选择你喜欢的运动</h3>
+<div id="radioContent">
+
 <input id="radio1" type="radio" value="篮球" name="radio" /><label for="radio1">篮球</label>
 <input id="radio2" type="radio" value="足球" name="radio" /><label for="radio2">足球</label>
 <input id="radio3" type="radio" value="排球" name="radio" /><label for="radio3">排球</label>
 <input id="radio4" type="radio" value="羽毛球" name="radio" /><label for="radio4">羽毛球</label>
+</div>
 
+<br />
+带默认选中
+<div id="radioContent2">
+<input id="radio5" type="radio" value="篮球" name="radio" /><label for="radio1">篮球</label>
+<input id="radio6" type="radio" value="足球" name="radio" /><label for="radio2">足球</label>
+<input id="radio7" type="radio" value="排球" name="radio" checked/><label for="radio3">排球</label>
+<input id="radio8" type="radio" value="羽毛球" name="radio" /><label for="radio4">羽毛球</label>
+</div>
