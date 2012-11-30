@@ -182,6 +182,7 @@
     </Content>
     <Content Include="Content\jUI\css\chosen.css" />
     <Content Include="Content\jUI\images\chosen-sprite.png" />
+    <Content Include="Content\jUI\images\jui-icons-1-094ab2.png" />
     <Content Include="Content\jUI\images\jui-jcheckbox.png" />
     <Content Include="Content\jUI\images\jui-jselect-bullet-666666.png" />
     <Content Include="Content\jUI\images\jui-jselect-carat-s-666666.png" />
@@ -290,6 +291,12 @@
     </Content>
     <Content Include="Content\jUI\less\jui.jradioTree.min.css">
       <DependentUpon>jui.jradioTree.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jtext.css">
+      <DependentUpon>jui.jtext.less</DependentUpon>
+    </Content>
+    <Content Include="Content\jUI\less\jui.jtext.min.css">
+      <DependentUpon>jui.jtext.less</DependentUpon>
     </Content>
     <Content Include="Content\jUI\less\jui.min.css">
       <DependentUpon>jui.less</DependentUpon>
