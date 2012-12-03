@@ -42,7 +42,7 @@
                 e_id = e.attr("id");
 	        e.addClass("jui-jtree");
             e.empty();
-            e.append("</span><ul id='" + e_id + "_u1'></ul>");//u1
+            e.append("<span id='clickIdSave' style='display:none;'></span><ul id='" + e_id + "_u1'></ul>");//u1
             e.bind("selectstart", function () { return false; });//界面无法选中
             //#region生成节点
             //生成一层
@@ -56,7 +56,11 @@
                     "</span></a></li>");
                 if (onClick != null) {
                     $("#" + e_id + "_li_" + n[i - 1]["id"]).children("a").click(function () {
-                        onClick(n[i - 1]);
+                        var n_name = $("#" + e_id + "_a_" + i).children("span:eq(1)").text();
+                        var n_id = e_id + "_li_" + n[i - 1]["id"];
+                        var n_image = $("#"+e_id + "_icon_" + i ).css("background-image");
+                        var n_position = $("#" + e_id + "_icon_" + i).css("background-position");
+                        onClick({ name: n_name, id: n_id, image: n_image, position: n_position });
                     });
                 }
             }
@@ -71,7 +75,11 @@
                     "</span></a></li>");
                 if (onClick != null) {
                     $("#" + e_id + "_li_" + n[i - 1]["children"][j - 1]["id"]).children("a").click(function () {
-                        onClick(n[i - 1]["children"][j - 1]);
+                        var n_name = $("#" + e_id + "_a2_" + i + "_" + j).children("span:eq(1)").text();
+                        var n_id = e_id + "_li_" + n[i - 1]["children"][j - 1]["id"];
+                        var n_image = $("#" + e_id + "_icon2_" + j).css("background-image");
+                        var n_position = $("#" + e_id + "_icon2_" + j).css("background-position");
+                        onClick({ name: n_name, id: n_id, image: n_image, position: n_position });
                     });
                 }
             }
@@ -86,7 +94,11 @@
                     "</span></a></li>");
                 if (onClick != null) {
                     $("#" + e_id + "_li_" + n[i - 1]["children"][j - 1]["children"][k - 1]["id"]).children("a").click(function () {
-                        onClick(n[i - 1]["children"][j - 1]["children"][k - 1]);
+                        var n_name = $("#" + e_id + "_a3_" + i + "_" + j + "_" + k).children("span:eq(1)").text();
+                        var n_id = e_id + "_li_" + n[i - 1]["children"][j - 1]["children"][k - 1]["id"];
+                        var n_image = $("#" + e_id + "_icon3_" + j).css("background-image");
+                        var n_position = $("#" + e_id + "_icon3_" + j).css("background-position");
+                        onClick({ name: n_name, id: n_id, image: n_image, position: n_position });
                     });
                 }
 
@@ -182,52 +194,78 @@
 	    },
 	    //增
 	    addSiblingNode: function (str) {
+	        var o = this.options;
+	        var onClick = o.onClick;
+	        var e = $(this.element),
+                e_id = e.attr("id");
 	        var id = str;
-	        if ($("#id").children("ul").length == 0) {
+	        if ($("#" + e_id + "_li_" + id).children("ul").length == 0) {
+	            var l = "-" + ($("#" + e_id + "_li_" + id).children("ul").children("li").length + 1);
 	            //增同级节点
-                //换虚线图案为加减按钮图标
-	            $("#id").children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	            //换虚线图案为加减按钮图标
+	            if ($("#" + e_id + "_li_" + id).children("span").attr("class") == "jui-jtree-u-switch-cross-bottom") {
+	                $("#" + e_id + "_li_" + id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	                $("#" + e_id + "_li_" + id).children("a").after("<ul id='ul_" + id + "'></ul>");
+	            } else {
+	                $("#" + e_id + "_li_" + id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	                $("#" + e_id + "_li_" + id).children("a").after("<ul id='ul_" + id + "' class='line'></ul>");
+	            }
                 //将文件图标换成打开的文件夹图标
-	            $("#id").children("a").children("span:eq(0)").css("background-position", "-110px -15px").after("<ul id='ul_" + id + "'></ul>");
+	            $("#" + e_id + "_li_" + id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
 	            $("#ul_"+id).append(
-                    "<li class='jui-jtree-u-li' id='newLi_" + id + "'>" +
-                    "<span class='jui-jtree-u-switch-cross-bottom' id='spanDashLine_" + id + "'></span>" +
-                    "<a title='newNode" + id + "' class='jui-jtree-u-a' id='a_" + id + "'>" +
-                        "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' id='icon_" + id + "'></span>" +
-                        "<span class='jui-jtree-u-text' id='text_" + id + "'>" + newNode + id +
+                    "<li class='jui-jtree-u-li' id='"+ e_id + "_li_" + id + l+"'>" +
+                    "<span class='jui-jtree-u-switch-cross-bottom' id='spanDashLine_" + e_id + id + l + "'></span>" +
+                    "<a title='newNode" + id + "' class='jui-jtree-u-a' id='a_" + e_id + id + l + "'>" +
+                        "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' id='icon_" + e_id + id + l + "'></span>" +
+                        "<span class='jui-jtree-u-text' id='text_" + e_id + id + l + "'>newNode" + id + l +
                     "</span></a></li>");
-	            var n_name = $("#ul_" + id).children("li").children("a").children("span:eq(1)").text();
-	            var n_id = "newLi_" + id;
-	            var n_image = "../../Images/zTreeStandard.png";
-	            var n_position = "-110px -30px";
+	            var n_name = $("#a_" + e_id + id + l).children("span:eq(1)").text();
+                var n_id = e_id + "_li_" + id + l;
+                var n_image = $("#icon_" + e_id + id + l).css("background-image");
+                var n_position = $("#icon_" + e_id + id + l).css("background-position");
 	            if (onClick != null) {
-	                $("#newLi_" + id).children("a").click(function () {
+	                $("#" + e_id + "_li_" + id + l).children("a").click(function () {
 	                    onClick({ name: n_name, id: n_id, image: n_image, position: n_position });
+	                    e.children("ul").find("a").removeClass("jui-jtree-a-clicked");
+	                    $(this).addClass("jui-jtree-a-clicked");
 	                });
 	            }
 
-	        }else {
+	        } else {
+                var l = "-"+($("#" + e_id + "_li_" + id).children("ul").children("li").length+1);
                 //增子节点
-	            //换虚线图案
-	            $("#id").children("ul").children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-cross");
-	            $("#id").children("ul").children("li").last().after(
-                        "<li class='jui-jtree-u-li' id='newLi_"+id+"'>" +
-                        "<span class='jui-jtree-u-switch-cross-bottom' id='spanDashLine_"+id+"'></span>" +
-                        "<a title='newNode"+id+"' class='jui-jtree-u-a' id='a_"+id+"'>" +
-                        "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' id='icon_" + id + "'></span>" +
-                        "<span class='jui-jtree-u-text' id='text_"+id+"'>" + newNode+id +
+                //换虚线图案           
+                if ($("#" + e_id + "_li_" + id).children("ul").children("li").last().children("ul").length == 1) {
+                    $("#" + e_id + "_li_" + id).children("ul").children("li").children("ul").addClass("line");
+                    if ($("#" + e_id + "_li_" + id).children("ul").children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+                        $("#" + e_id + "_li_" + id).children("ul").children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-close");
+                    } else if ($("#" + e_id + "_li_" + id).children("ul").children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+                        $("#" + e_id + "_li_" + id).children("ul").children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+                    }
+                } else {
+                    $("#" + e_id + "_li_" + id).children("ul").children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-cross");
+
+                }
+                $("#" + e_id + "_li_" + id).children("ul").children("li").last().after(
+                        "<li class='jui-jtree-u-li' id='"+e_id + "_li_"+id+l+"'>" +
+                        "<span class='jui-jtree-u-switch-cross-bottom' id='spanDashLine_" + e_id + id + l + "'></span>" +
+                        "<a title='newNode" + id + l + "' class='jui-jtree-u-a' id='a_" + e_id + id + l + "'>" +
+                        "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' id='icon_" + e_id + id + l + "'></span>" +
+                        "<span class='jui-jtree-u-text' id='text_" + e_id + id + l + "'>newNode" + id + l +
                         "</span></a></li>");
-                var n_name = $("#ul_" + id).children("li").children("a").children("span:eq(1)").text();
-                var n_id = "newLi_" + id;
-                var n_image = "../../Images/zTreeStandard.png";
-                var n_position = "-110px -30px";
+                var n_name = $("#a_" + e_id + id + l).children("span:eq(1)").text();
+                var n_id = e_id + "_li_" + id + l;
+                var n_image = $("#icon_" + e_id + id + l).css("background-image");
+                var n_position = $("#icon_" + e_id + id + l).css("background-position");
                 if (onClick != null) {
-                    $("#newLi_" + id).children("a").click(function () {
+                    $("#" + e_id + "_li_" + id + l).children("a").click(function () {
                         onClick({ name: n_name, id: n_id, image: n_image, position: n_position });
+                        e.children("ul").find("a").removeClass("jui-jtree-a-clicked");
+                        $(this).addClass("jui-jtree-a-clicked");
                     });
                 }
+            }
 
-	        }
 	    },
 
 	    _setOption: function (key, value) {
