@@ -1,17 +1,15 @@
 ﻿@BaseUrl: ~`"http://localhost:5642/"`;
 @JQuery_UI_Images: ~`"@{BaseUrl}" + "Content/jquery-ui/images/"`;
-/*编译后使用css则使用下面的路径
-	@JQuery_UI_Images: ~`"../images/"`;
-	使用实例：
-	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
-*/
+//编译后使用css则使用下面的路径
+//	@JQuery_UI_Images: ~`"../images/"`;
+//	使用实例：
+//	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
 
 @jUI_Images: ~`"@{BaseUrl}" + "Content/jUI/images/"`;
-/*编译后使用css则使用下面的路径
-	@jUI_Images: ~`"../images/"`;
-	使用实例：
-	background-image: ~`'url(@{jUI_Images}ui-icons_256x240.png)'`;
-*/
+//编译后使用css则使用下面的路径
+//	@jUI_Images: ~`"../images/"`;
+//	使用实例：
+//	background-image: ~`'url(@{jUI_Images}ui-icons_256x240.png)'`;
 
 //#region 核心样式
 @Family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
@@ -20,6 +18,7 @@
 @LineHeight: 22px;
 @DisabledOpacity: .35;
 @DisabledOpacityPercent: @DisabledOpacity * 100;
+@Transparent: transparent;
 //#endregion
 
 //#region JQuery UI 样式
@@ -30,41 +29,41 @@
 @HeaderColor: #ffffff;
 @HeaderIcon: #ffffff;
 
-@ContentBackground: #ffffff;
-@ContentBorder: #f0f0f0;
-@ContentColor: #000000;
-@ContentIcon: #666666;
+@ContentBackground: #f2f2f2;
+@ContentBorder: #a6a6a6;
+@ContentColor: #0d0d0d;
+@ContentIcon: #0d0d0d;
 
 @DefaultBackground: #094ab2;
 @DefaultBorder: #094ab2;
 @DefaultColor: #ffffff;
 @DefaultIcon: #ffffff;
 
-@HoverBackground: #073d92;
-@HoverBorder: #073d92;
+@HoverBackground: #145bcc;
+@HoverBorder: #145bcc;
 @HoverColor: #ffffff;
 @HoverIcon: #ffffff;
 
-@ActiveBackground: #062f72;
-@ActiveBorder: #062f72;
-@ActiveColor: #ffffff;
-@ActiveIcon: #ffffff;
+@ActiveBackground: #fff0d9;
+@ActiveBorder: #e5920b;
+@ActiveColor: #000000;
+@ActiveIcon: #e5920b;
 
-@HighlightBackground: #e2e2e2;
-@HighlightBorder: #e2e2e2;
-@HighlightColor: #666666;
-@HighlightIcon: #094ab2;
+@HighlightBackground: #226de5;
+@HighlightBorder: #226de5;
+@HighlightColor: #ffffff;
+@HighlightIcon: #e5920b;
 
-@ErrorBackground: #fef1ec;
-@ErrorBorder: #cd0a0a;
-@ErrorColor: #cd0a0a;
-@ErrorIcon: #cd0a0a;
+@ErrorBackground: #ffd9d9;
+@ErrorBorder: #da0000;
+@ErrorColor: #da0000;
+@ErrorIcon: #da0000;
 
-@OverlayBackground: #cccccc;
+@OverlayBackground: #262626;
 @OverlayOpacity: .3;
 @OverlayOpacityPercent: @OverlayOpacity * 100;
 
-@ShadowBackground: #ffffff;
+@ShadowBackground: #262626;
 @ShadowOpacity: 0;
 @ShadowOpacityPercent: @ShadowOpacity * 100;
 @ShadowThickness: 0px;
@@ -104,7 +103,9 @@
 @InverseBorder: #094ab2;
 @InverseColor: #ffffff;
 @InverseIcon: #ffffff;*/
+//#endregion
 
+//#region Layout
 @layoutTopBackground: #094ab2;
 @layoutTopColor: #ffffff;
 @layoutContentBackground: #f0f0f0;
@@ -112,8 +113,8 @@
 @layoutRightBackground: #ffffff;
 @layoutMainBackground: #ffffff;
 @layoutBottomBackground: #ffffff;
+//#endregion
 
-@leftMenuItemBackground: transparent;
 @leftMenuItemColor: #094ab2;
 @leftMenuItemHoverBackground: #e2e2e2;
 @leftMenuItemHoverColor: #094ab2;
@@ -126,7 +127,6 @@
 @datetimepickerNowColor: #094ab2;
 
 
-//#endregion
 
 //#region headMenu样式
 @headMenuBackground: #094ab2;
@@ -136,18 +136,6 @@
 @headMenuU1LiAColor: #000000;
 @headMenuU1LiAHoverBackground: #f0f0f0;
 @headMenuVsolidBorderLeft: #ffffff;
-//#endregion
-
-//#region checkTree样式
-@checkTreeCboxBackground: transparent;
-//#endregion
-
-//#region radioTree样式
-@treeURboxBackground: transparent;
-//#endregion
-
-//#region Link样式
-@linkHoverBackground: transparent;
 //#endregion
 
 //#region LinkButton样式
@@ -190,14 +178,12 @@
 
 //#region table样式
 @tableBorder: #ffffff;
-@tableAHoverBackground: transparent;
 @tableOverBackground: #e2e2e2;
 @tableOutBackground: #f3f3f3;
 @tableClickBackground: #d4d4d4;
 //#endregion
 
 //#region tree样式
-@treeBackground: transparent;
 @treeUAHoverBackground: #e2e2e2;
 @treeUAActiveBackground: #d4d4d4;
 
@@ -216,51 +202,51 @@
 //#endregion
 
 //#region text样式
-@textBorder:#666666;
+@textBorder: #666666;
 //#endregion
 
 
 //#region jsort样式
 @sortUlBackground: #f3f3f3;
-@sortUlColor:#000000;
+@sortUlColor: #000000;
 @sortUlBorder: #666666;
-@sortUlHoverBackground:#d4d4d4;
+@sortUlHoverBackground: #d4d4d4;
 //#endregion
 
 
 //#region selectChzn 样式
-@selectChznContainerBackground:#ffffff;
-@selectChznContainerBorder:#666666;
+@selectChznContainerBackground: #ffffff;
+@selectChznContainerBorder: #666666;
 
-@selectChznSingleColor:#444444;
-@selectChznSingleDefaultColor:#999999;
-@selectChzeSingleDrop:#eeeeee;
+@selectChznSingleColor: #444444;
+@selectChznSingleDefaultColor: #999999;
+@selectChzeSingleDrop: #eeeeee;
 
-@selectChznMultiInputColor:#666666;
-@selectChznMulitDefaultColor:#999999;
+@selectChznMultiInputColor: #666666;
+@selectChznMulitDefaultColor: #999999;
 
-@selectChznMultiBackgroud:#e4e4e4;
-@selectChznMultiChoiceFocusBackground:#d4d4d4;
+@selectChznMultiBackgroud: #e4e4e4;
+@selectChznMultiChoiceFocusBackground: #d4d4d4;
 
-@selectChznResultColor:#999999;
-@selectChznResultBackground:#3875d7;
-@selectChznNoResultBackground:#f4f4f4;
+@selectChznResultColor: #999999;
+@selectChznResultBackground: #3875d7;
+@selectChznNoResultBackground: #f4f4f4;
 
-@selectChznSingleLinearGradientTop:#ffffff;
-@selectChznSingleLinearGradientRight:#f6f6f6;
-@selectChznSingleLinearGradientBottom:#eeeeee;
-@selectChznSingleLinearGradientLeft:#f4f4f4;
+@selectChznSingleLinearGradientTop: #ffffff;
+@selectChznSingleLinearGradientRight: #f6f6f6;
+@selectChznSingleLinearGradientBottom: #eeeeee;
+@selectChznSingleLinearGradientLeft: #f4f4f4;
 
-@selectChznChoiceLinearGradientTop:#f4f4f4;
-@selectChznChoiceLinearGradientRight:#f0f0f0;
-@selectChznChoiceLinearGradientBottom:#e8e8e8;
-@selectChznChoiceLinearGradientLeft:#eeeeee;
+@selectChznChoiceLinearGradientTop: #f4f4f4;
+@selectChznChoiceLinearGradientRight: #f0f0f0;
+@selectChznChoiceLinearGradientBottom: #e8e8e8;
+@selectChznChoiceLinearGradientLeft: #eeeeee;
 
-@selectChznResultLinearGradientTop:#3875d7;
-@selectChznResultLinearGradientBottom:#2a62bc;
+@selectChznResultLinearGradientTop: #3875d7;
+@selectChznResultLinearGradientBottom: #2a62bc;
 
-@selectChznSingelDropLinearGradientTop:#eeeeee;
-@selectChznSingelDropLinearGradientBottom:#ffffff;
+@selectChznSingelDropLinearGradientTop: #eeeeee;
+@selectChznSingelDropLinearGradientBottom: #ffffff;
 
 
 

@@ -132,6 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery-ui\images\ui-icons_0d0d0d_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_da0000_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_e5920b_256x240.png" />
     <Content Include="Content\jquery-ui\less\jquery-ui.min.css">
       <DependentUpon>jquery-ui.less</DependentUpon>
     </Content>
@@ -193,16 +196,7 @@
     <Content Include="Content\jUI\images\jui-jtip-carat-n-cccccc.png" />
     <Content Include="Content\jUI\images\jui-jtip-carat-n-fef1ec.png" />
     <Content Include="Content\jUI\images\jui-logo.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_062f72_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_073d92_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_094ab2_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_cccccc_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_e2e2e2_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_fef1ec_40x100.png" />
-    <Content Include="Content\jquery-ui\images\ui-bg_flat_0_ffffff_40x100.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_094ab2_256x240.png" />
-    <Content Include="Content\jquery-ui\images\ui-icons_666666_256x240.png" />
-    <Content Include="Content\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui\css\jquery-ui.css" />
     <Content Include="Content\jui.description.css" />
