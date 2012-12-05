@@ -62,15 +62,16 @@
                     }
                 ],
                 onClick: function (obj) {
-                    $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display'>"+obj["children"]+"</span>");
+                    $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>"+obj["children"]+"</span>");
                 }
             });
-
-            $("#addSilibingNode").click(function () {
-                $("#tree").jtree("addSiblingNode");
-            });
+            //添加子节点
             $("#addChildNode").click(function () {
-
+                $("#tree").jtree("addChildNode");
+            });
+            //添加同级节点
+            $("#addSiblingNode").click(function () {
+                $("#tree").jtree("addSiblingNode", $("#obj_id").text());
             });
 
         });
@@ -100,8 +101,8 @@
 	<div id="tab1">
 		<div id="tree"></div>
         <div>
-            <input id="addSilibingNode" type="button"  value="添加同级节点"/>
-            <input id="addChildNode" type="button"  value="添加子级节点"/>
+            <input id="addChildNode" type="button"  value="添加子节点"/>
+            <input id="addSiblingNode" type="button"  value="添加同级节点"/>
         </div>
         <div id="showDetail" style="background-color:silver;border:1px solid white;">
         </div>
