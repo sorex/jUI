@@ -132,7 +132,8 @@
 
             e.children("ul").children("li:eq(0)").children("span").removeClass().addClass("jui-jtree-u-switch");
 	    },
-        //#region 增
+
+        //#region增加节点
 	    //添加子节点
 	    addChildNode: function () {
 	        var
@@ -143,12 +144,13 @@
                 onClick = o.onClick,
                 e_id = e.attr("id");
 	        var node_id = $("#saveId").text();
-	        //父节点增加子节点
+	        //#region选中节点为父节点时
 	        if ($("#" + node_id).children("ul").length > 0) {
 	            var newLi_id , newLi_name;
 	            var lastNodeIcon = $("#" + node_id).children("ul").children("li").last().children("span");
+	            //#region如果最后的节点为父节点
 	            if ($("#" + node_id).children("ul").children("li").last().children("ul").length > 0) {
-	                //如果最后的节点为父节点
+	                
 	                if (lastNodeIcon.attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
 	                    //闭合时
 	                    lastNodeIcon.removeClass().addClass("jui-jtree-u-switch-dircorss-close");
@@ -157,11 +159,28 @@
 	                    lastNodeIcon.removeClass().addClass("jui-jtree-u-switch-dircorss-open");
 	                }
 	                lastNodeIcon.siblings("ul").addClass("line");//ul添加虚线
-	            } else {
-	                //如果最后的节点为子节点
+	            }
+                //#endregion
+	            else
+	            //#region 如果最后的节点为子节点
+	            {
 	                lastNodeIcon.removeClass().addClass("jui-jtree-u-switch-cross");
 	            }
-	        } else {
+                //#endregion
+                //#region 父节点闭合时，添加子节点后，父节点展开
+	            if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch") {
+	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-open");
+	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-close") {
+	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	            }
+	            $("#" + node_id).children("span").siblings("ul").slideDown("fast");
+                //#endregion
+	        }//#endregion
+	        else
+            //#region 选中节点为子节点时
+	        {
 	            var newUl_id = node_id + "_newUl";//ul的id
 	            if ($("#" + node_id).children("ul").length == 0) {
 	                $("#" + node_id).append("<ul class='line' id='" + newUl_id + "'></ul>")
@@ -178,8 +197,13 @@
 	            //文件夹图标变更
 	            $("#" + node_id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
 	        }
+	        //#endregion
+            //#region 具体添加节点的操作
 	        newLi_id = $("#" + node_id).children("ul").attr("id") + "_newLi_" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的id
 	        newLi_name = "NewNode" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的文本内容
+	        if ($("#" + node_id).children("ul").children("li").length == 0) {
+	            this.toggleLiCss($("#" + node_id).children("span"));
+	        }
 	        //添加新节点
 	        $("#" + node_id).children("ul").append(
                 "<li class='jui-jtree-u-li' id='" + newLi_id + "'>" +
@@ -189,9 +213,7 @@
                 "<span class='jui-jtree-u-text'>" + newLi_name +
                 "</span></a></li>");
 	        this.clickNode(newLi_id);// 添加节点点击事件
-	        if ($("#" + node_id).children("ul").children("li").length == 1) {
-	            this.toggleLiCss($("#" + node_id).children("span"));
-	        }
+            //#endregion
 	    },
 	    //添加同级节点
 	    addSiblingNode: function () {
@@ -203,35 +225,48 @@
                 onClick = o.onClick,
                 e_id = e.attr("id");
 	        var node_id = $("#saveId").text();
-	        //父节点添加同级节点
-	        if ($("#" + node_id).children("ul").length > 0) {
-	            var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
-	            var newUlId = $("#" + node_id).parent("ul").atrr("id") + "-" + $("#" + node_id).parent("ul").children("li").length;
-	            //var newLi_id = 
-                //如果末节点为文件夹(父节点)
-	            if (ul_father.children("li").last().children("ul").length > 0) {
-	                ul_father.children("li").last().children("ul").addClass("line");//ul添加虚线
-	                ul_father.append(
-                    "<li class='jui-jtree-u-li' id='" + newLi_id + "'>" +
-                    "<span class='jui-jtree-u-switch-dircorss-bottom-close'></span>" +
-                    "<a title='" + newLi_name + "' class='jui-jtree-u-a'>" +
-                    "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px 0px;' ></span>" +
-                    "<span class='jui-jtree-u-text'>" + newLi_name +
-                    "</span></a>" +
-                    "<ul id='"+newUlId+"'></ul>" +
-                    "</li>");
-
-	            } else {
-	                //如果末节点为文件(子节点)
-
-	            }
-
+	        var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
+	        var newUlId = $("#" + node_id).parent("ul").attr("id") + "_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的ulid
+	        var newLi_name = "NewNode" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增节点的文本
+	        if ($("#" + node_id).parent("ul").parent("li").attr("id") != null) {
+	            var newLi_id = $("#" + node_id).parent("ul").parent("li").attr("id") + "-" + ($("#" + node_id).parent("ul").children("li").length + 1);
 	        } else {
-                //子节点添加同级节点
+	            var newLi_id = e_id + "_li_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的id
 	        }
-            
+	        //#region如果末节点为文件夹(父节点)
+	        if (ul_father.children("li").last().children("ul").length > 0) {
+	            if (ul_father.children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-close");
+	            } else if (ul_father.children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	            }
+	            ul_father.children("li").last().children("ul").addClass("line");//ul添加虚线
+	        }
+	        //#endregion
+	        else
+	        //#region如果末节点为文件(子节点)
+	        {
+	            ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-cross");
+	        }
+	        //#endregion
+	        //#region具体添加操作 
+	        ul_father.append(
+            "<li class='jui-jtree-u-li' id='" + newLi_id + "'>" +
+            "<span class='jui-jtree-u-switch-cross-bottom'></span>" +
+            "<a title='" + newLi_name + "' class='jui-jtree-u-a'>" +
+            "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' ></span>" +
+            "<span class='jui-jtree-u-text'>" + newLi_name +
+            "</span></a>" +
+            "</li>");
+	        if ($("#" + node_id).children("ul").length > 0) {
+	            $("#" + newLi_id).append("<ul id='" + newUlId + "'></ul>");
+	            $("#" + newLi_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	            $("#" + newLi_id).children("a").children("span:eq(0)").css("background-position", "-110px 0px");
+	        }
+	        this.clickNode(newLi_id);// 添加节点点击事件
+	        //#endregion
 	    },
-        //给节点添加点击事件 
+        //给节点添加点击事件 str:选中li标签id
 	    clickNode: function (str) {
 	        var
                 o = this.options,
@@ -290,8 +325,8 @@
 	            $(this).siblings("ul").slideToggle("fast");
 	        });
 	    },
+	    //#endregion
 
-        //#endregion
 	    _setOption: function (key, value) {
 	        if (value !== undefined || value != null)
 	            this.options[key] = value;
