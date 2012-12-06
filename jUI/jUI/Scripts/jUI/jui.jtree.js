@@ -144,6 +144,10 @@
                 onClick = o.onClick,
                 e_id = e.attr("id");
 	        var node_id = $("#saveId").text();
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return;
+	        }
 	        //#region选中节点为父节点时
 	        if ($("#" + node_id).children("ul").length > 0) {
 	            var newLi_id , newLi_name;
@@ -175,6 +179,7 @@
 	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
 	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
 	            }
+	            $("#" + node_id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
 	            $("#" + node_id).children("span").siblings("ul").slideDown("fast");
                 //#endregion
 	        }//#endregion
@@ -225,6 +230,10 @@
                 onClick = o.onClick,
                 e_id = e.attr("id");
 	        var node_id = $("#saveId").text();
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return;
+	        }
 	        var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
 	        var newUlId = $("#" + node_id).parent("ul").attr("id") + "_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的ulid
 	        var newLi_name = "NewNode" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增节点的文本
@@ -324,6 +333,42 @@
 	            }
 	            $(this).siblings("ul").slideToggle("fast");
 	        });
+	    },
+	    //#endregion
+
+        //#region删除节点
+	    deleteNode: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id");
+	        var node_id = $("#saveId").text();
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return;
+	        }
+	        if (node_id == e.children("ul").children("li:eq(0)").attr("id") && e.children("ul").children("li").length > 2) {
+	            e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch");
+	        }
+	        if (e.children("ul").children("li").length == 2) {
+	            if (e.children("ul").children("li:eq(1)").children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch-single-close");
+	            } else if (e.children("ul").children("li:eq(1)").children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch-single-open");                    
+	            }
+	            e.children("ul").children("li:eq(1)").children("span").click(function () {
+	                if ($(this).attr("class") == "jui-jtree-u-switch-single-close") {
+	                    $(this).removeClass().addClass("jui-jtree-u-switch-single-open");
+	                } else if ($(this).attr("class") == "jui-jtree-u-switch-single-open") {
+	                    $(this).removeClass().addClass("jui-jtree-u-switch-single-close");
+	                }
+	            });
+	        }
+	        $("#" + node_id).remove();
+	        $("#saveId").text("");
 	    },
 	    //#endregion
 

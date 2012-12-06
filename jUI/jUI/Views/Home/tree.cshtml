@@ -73,6 +73,10 @@
             $("#addSiblingNode").click(function () {
                 $("#tree").jtree("addSiblingNode");
             });
+            //删除节点
+            $("#deleteNode").click(function () {
+                $("#tree").jtree("deleteNode");
+            });
 
         });
     </script>
@@ -103,6 +107,7 @@
         <div>
             <input id="addChildNode" type="button"  value="添加子节点"/>
             <input id="addSiblingNode" type="button"  value="添加同级节点"/>
+            <input id="deleteNode" type="button"  value="删除节点"/>
         </div>
         <div id="showDetail" style="background-color:silver;border:1px solid white;">
         </div>
