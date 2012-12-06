@@ -70,46 +70,25 @@
 @TopOffset: 0px;
 @LeftOffset: 0px;
 @ShadowCorners: 0px;
-
 //#endregion
 
-//#region jUI 样式
-/*@PrimaryBackground: #094ab2;
-@PrimaryBorder: #094ab2;
-@PrimaryColor: #ffffff;
-@PrimaryIcon: #ffffff;
+//#region 这是一组不明显的颜色
+@OtherDefaultBackground: @ContentBackground;
+@OtherDefaultBorder: @ContentBorder;
+@OtherDefaultColor: @DefaultBackground;
 
-@InfoBackground: #094ab2;
-@InfoBorder: #094ab2;
-@InfoColor: #ffffff;
-@InfoIcon: #ffffff;
+@OtherHoverBackground: @ActiveBackground;
+@OtherHoverBorder: @ActiveBorder;
+@OtherHoverColor: @ActiveColor;
 
-@SuccessBackground: #094ab2;
-@SuccessBorder: #094ab2;
-@SuccessColor: #ffffff;
-@SuccessIcon: #ffffff;
+@OtherActiveBackground: @ActiveBackground;
+@OtherActiveBorder: @ActiveBorder;
+@OtherActiveColor: @ActiveColor;
 
-@WarningBackground: #094ab2;
-@WarningBorder: #094ab2;
-@WarningColor: #ffffff;
-@WarningIcon: #ffffff;
-
-@DangerBackground: #094ab2;
-@DangerBorder: #094ab2;
-@DangerColor: #ffffff;
-@DangerIcon: #ffffff;
-
-@InverseBackground: #094ab2;
-@InverseBorder: #094ab2;
-@InverseColor: #ffffff;
-@InverseIcon: #ffffff;*/
+@OtherHighlightBackground: @ContentBorder;
+@OtherHighlightBorder: @ContentBorder;
+@OtherHighlightColor: @ContentColor;
 //#endregion
-
-@InverseBackground: @Transparent;
-@InverseBorder: @ContentBorder;
-@InverseColor: @DefaultBackground;
-@InverseIcon: @DefaultBackground;
-
 
 //#region Layout
 @layoutTopBackground: #094ab2;
@@ -121,18 +100,18 @@
 @layoutBottomBackground: #ffffff;
 //#endregion
 
+//#region leftMenu
 @leftMenuItemColor: #0d0d0d;
 @leftMenuItemHoverBackground: #cccccc;
 @leftMenuItemHoverColor: #0d0d0d;
 @leftMenuItemActiveBackground: #a6a6a6;
 @leftMenuItemActiveColor: #0d0d0d;
-
-
+//#endregion
 
 //#region headMenu样式
-@headMenuBackground: #094ab2;
-@headMenuLinkHoverBackground: #073d92;
-@headMenuLass: #ffffff;
+@headMenuBackground: @HeaderBackground;
+@headMenuLinkHoverBackground: @HoverBackground;
+@headMenuLass: @HeaderColor;
 @headMenuU1Background: #ffffff;
 @headMenuU1LiAColor: #000000;
 @headMenuU1LiAHoverBackground: #f0f0f0;
@@ -149,8 +128,8 @@
 @datetimepickerNowBorder: @ContentBorder;
 @datetimepickerNowColor: @ContentColor;
 
-@datetimepickerBackground: @InverseBackground;
-@datetimepickerBorder: @InverseBorder;
+@datetimepickerBackground: @OtherDefaultBackground;
+@datetimepickerBorder: @OtherDefaultBorder;
 
 @datetimepickerHeadBackground: @HeaderBackground;//可去掉
 @datetimepickerHeadBorder: #000000;
