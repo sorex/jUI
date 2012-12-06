@@ -44,14 +44,14 @@
 @HoverColor: #ffffff;
 @HoverIcon: #ffffff;
 
-@ActiveBackground: #fff0d9;
-@ActiveBorder: #e5920b;
-@ActiveColor: #000000;
-@ActiveIcon: #e5920b;
+@ActiveBackground: #226de5;
+@ActiveBorder: #226de5;
+@ActiveColor: #ffffff;
+@ActiveIcon: #ffffff;
 
-@HighlightBackground: #226de5;
-@HighlightBorder: #226de5;
-@HighlightColor: #ffffff;
+@HighlightBackground: #fff0d9;
+@HighlightBorder: #e5920b;
+@HighlightColor: #000000;
 @HighlightIcon: #e5920b;
 
 @ErrorBackground: #ffd9d9;
@@ -105,6 +105,12 @@
 @InverseIcon: #ffffff;*/
 //#endregion
 
+@InverseBackground: @Transparent;
+@InverseBorder: @ContentBorder;
+@InverseColor: @DefaultBackground;
+@InverseIcon: @DefaultBackground;
+
+
 //#region Layout
 @layoutTopBackground: #094ab2;
 @layoutTopColor: #ffffff;
@@ -115,16 +121,11 @@
 @layoutBottomBackground: #ffffff;
 //#endregion
 
-@leftMenuItemColor: #094ab2;
-@leftMenuItemHoverBackground: #e2e2e2;
-@leftMenuItemHoverColor: #094ab2;
-@leftMenuItemActiveBackground: #d4d4d4;
-@leftMenuItemActiveColor: #094ab2;
-
-//当前日期 高亮
-@datetimepickerNowBackground: #bababa;
-@datetimepickerNowBorder: #bababa;
-@datetimepickerNowColor: #094ab2;
+@leftMenuItemColor: #0d0d0d;
+@leftMenuItemHoverBackground: #cccccc;
+@leftMenuItemHoverColor: #0d0d0d;
+@leftMenuItemActiveBackground: #a6a6a6;
+@leftMenuItemActiveColor: #0d0d0d;
 
 
 
@@ -143,15 +144,21 @@
 //#endregion
 
 //#region datetimepicker样式
-@datetimepickerBackground: #f3f3f3;
-@datetimepickerBorder: #DDD;
+//当前日期 高亮
+@datetimepickerNowBackground: @ContentBorder;
+@datetimepickerNowBorder: @ContentBorder;
+@datetimepickerNowColor: @ContentColor;
 
-@datetimepickerHeadBackground: #094AB2;
-@datetimepickerHeadcenterColor: #ffffff;
+@datetimepickerBackground: @InverseBackground;
+@datetimepickerBorder: @InverseBorder;
 
-@datetimepickerActiveBorder: #062f72;
-@datetimepickerActiveBackground: #062f72;
-@datetimepickerActiveColor: #ffffff;
+@datetimepickerHeadBackground: @HeaderBackground;//可去掉
+
+@datetimepickerHeadcenterColor: @HeaderColor;//可去掉
+
+@datetimepickerActiveBackground: @ActiveBackground;//可去掉
+@datetimepickerActiveBorder: @ActiveBorder;//可去掉
+@datetimepickerActiveColor: @ActiveColor;//可去掉
 
 @datetimepickerTableTrABorder: #bababa;
 @datetimepickerTableTrABackground: #ffffff;

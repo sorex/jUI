@@ -1,6 +1,6 @@
 ﻿.jui-datapager {
 	/*color: #094ab2;*/
-	color: @DefaultColor;
+	color: @InverseColor;
 }
 
 	.jui-datapager span {
@@ -16,9 +16,9 @@
 	}
 
 	.jui-datapager .jui-datapager-item {
-		border: 1px solid @DefaultBorder;
-		background-color:@DefaultBackground;
-		color:@DefaultColor;
+		border: 1px solid @InverseBorder;
+		background-color:@InverseBackground;
+		color:@InverseColor;
 		cursor: pointer;
 	}
 
@@ -30,16 +30,17 @@
 
 
 	.jui-datapager .jui-datapager-item-active {
-		border: 1px solid transparent;
+		border: 1px solid @Transparent;
+		background:@ContentBackground;
 		font-weight: bold;
 		cursor: default;
 		color: @ContentColor;
 	}
 
 	.jui-datapager .jui-datapager-item-disabled {
-		border: 1px solid @DefaultBorder;
-		background-color:@DefaultBackground;
-		color:@DefaultColor;
+		border: 1px solid @InverseBorder;
+		background-color:@InverseBackground;
+		color:@InverseColor;
 		cursor: default;
 		-moz-opacity: @DisabledOpacity;
 		opacity: @DisabledOpacity;
