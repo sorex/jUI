@@ -1,54 +1,97 @@
 ﻿@{
-    ViewBag.Title = "search.cshtml";
+	ViewBag.Title = "search";
+}
+<h2>search</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function () {
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jUI/jui.jradio.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jUI/jui.jcheckbox.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jUI/jui.jsearch.js")" type="text/javascript"></script>
+
+
+
+	<script type="text/javascript">
+	    $(function () {
+
+	        $("#searchContent").jsearch({
+	            items: [
+					{ Name: "小数和整数", Id: "txt_double", Type: "double" },
+					{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] },
+					{ Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 },
+					{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] },
+					{ Name: "单个日期", Id: "txt_Time", Type: "date" },
+					{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
+                    { Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                     { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                    { Name: "自定义", Type: "user-defined", Content: "<input  id='txt_content1' name='text' type='text' >" },
+					{ Name: "自定义2", Type: "user-defined", Content: "<input  id='txt_content2' name='text' type='text' >" },
+					{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
+                    { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
+					{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
+
+	            ],
+	            onSearchButtonClick: function (data) {
+	                var selectContent = "";
+	                for (var i in data) {
+	                    selectContent += "Id为:" + i + "文本的值为:" + data[i] + ";</br>"
+	                }
+	                selectContent += "Id为:txt_content1文本的值为:" + $("#txt_content1").val() + ";</br>";
+	                selectContent += "Id为:txt_content2文本的值为:" + $("#txt_content2").val() + ";</br>";
+	                $("#showTableSelectContent").html(selectContent);
+	            }
+	        });
+
+	        $("#searchContent2").jsearch({
+                items:null
+	        });
+	        //接受返回的string字符串
+	        $("#returnString").click(function () {
+	            var conditionString = $("#searchContent").jsearch("getSearchConditionReturnString");
+	            conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	            $("#showTableSelectContent").html(conditionString);
+	        });
+            //接受返回的obj对象
+	        $("#returnList").click(function () {
+	            var conditionList = $("#searchContent").jsearch("getSearchCondionReturnList");
+	            var conditionString = "";
+	            for (var i in conditionList) {
+	                conditionString += i + "=" + conditionList[i] + "&";
+	            }
+	            conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	            $("#showTableSelectContent").html(conditionString);
+	        });
+
+		});
+
+
+	</script>
+
   
 }
 
-@section head{
-
-
-    <link href= "@Url.Content("~/Content/jUI/css/chosen.css")" rel="stylesheet" />
-    <script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
-    <script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
-
-    <link href="@Url.Content("~/Content/jUI/css/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
-
-    <script src="@Url.Content("~/Scripts/jUI/jui.jcheckbox.js")" type="text/javascript"></script>
-    <script src="~/Scripts/jUI/jui.jradio.js" type="text/javascript"></script>
-
-    <script src="@Url.Content("~/Scripts/jUI/jui.jsearch.js")" type="text/javascript"></script>
-
-    <style type="text/css">
-        .jui-jSearch
-        {
-        }
-
-            .jui-jSearch table
-            {
-                border: 1px solid #cccccc;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-
-                .jui-jSearch table tr
-                {
-                    line-height: 30px;
-                }
-    </style>
-    <script type="text/javascript">
-        $(function () {
-
-            $("#searchContent").jsearch();
-        });
-
-
-    </script>
-
-}
-
 @section header{
-
 }
 
 @section left{
@@ -60,13 +103,352 @@
 @section footer{
 }
 
-
 @section scripts{
-
 }
 
+<input  type="button" id="returnString" value="返回字符串"/>
+<input type="button" id="returnList" value="返回集合"/>
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认效果</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+	<div  id="searchContent">
+    </div>
+    <div id="showTableSelectContent"></div>
+		
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="searchContent"&gt;&lt;/div&gt;
+			&lt;div id="showTableSelectContent"&gt;&lt;/div&gt;
+			  &lt;script type="text/javascript"&gt;
+	            $(function () {
+                      $("#searchContent").jsearch({
+	                           items: [
+			                		{ Name: "小数和整数", Id: "txt_double", Type: "double" },
+			                		{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] },
+			                		{ Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 },
+			                		{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] },
+			                		{ Name: "单个日期", Id: "txt_Time", Type: "date" },
+			                		{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
+                                   { Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                    { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                   { Name: "自定义", Type: "user-defined", Content: "&lt;input  id='txt_content1' name='text' type='text' &gt;" },
+			                		{ Name: "自定义2", Type: "user-defined", Content: "&lt;input  id='txt_content2' name='text' type='text' &gt;" },
+			                		{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
+                                   { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
+			                		{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
+
+	                           ],
+	                              onSearchButtonClick: function (data) {
+	                                  var selectContent = "";
+	                                  for (var i in data) {
+	                                      selectContent += "Id为:" + i + "文本的值为:" + data[i] + ";&lt;/br&gt;"
+	                                  }
+	                                  $("#showTableSelectContent").html(selectContent);
+	                              }
+	                         });
+
+                                //接受返回的string字符串
+	                    $("#returnString").click(function () {
+	                        var conditionString = $("#searchContent").jsearch("getSearchConditionReturnString");
+	                        conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	                        $("#showTableSelectContent").html(conditionString);
+	                    });
+                        //接受返回的obj对象
+	                    $("#returnList").click(function () {
+	                        var conditionList = $("#searchContent").jsearch("getSearchCondionReturnList");
+	                        var conditionString = "";
+	                        for (var i in conditionList) {
+	                            conditionString += i + "=" + conditionList[i] + "&";
+	                        }
+	                        conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	                        $("#showTableSelectContent").html(conditionString);
+	                    });
+	                      
+	                        });
+	        &lt;/script&gt;
+  
+		</pre>
+	</div>
 
 
-<h2>search</h2>
-<div class="jui-jSearch" id="searchContent">
+	<div id="tab2">
+		<div id="searchContent2"></div>
+		<br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			&lt;div id="showSelect2"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	         $(function () {
+	                     $("#searchContent2").jsearch({
+                             items:null
+	                        });     
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>search控件 用来做查询头</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">items</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value"> [{Name:"名称",Id:"名称",Type:"类型",,name:'',MaxLength:最大长度,Brother:[同级集合],content:"内容",Value:[部分控件的数据源]}]</span>
+			</h3>
+			<div>
+				<p>排序字段的数据源</p>
+				<pre class="brush: js;">
+		       items：[{item},{item}]
+		               item:{Name:"名称",Id:"名称",Type:"类型",,name:'',MaxLength:最大长度,Brother:[同级集合],content:"内容",Value:[部分控件的数据源]}
+		   
+                                  Type:
+                                          string :字符串  { Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 }
+                                         int：单个整数   { Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 }
+		                                  intRange:范围整数 	{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] }
+                                          double：单个小数和整数  { Name: "小数和整数", Id: "txt_double", Type: "double" }
+		                                  doubleRange:整数和小数范围{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] }
+                                          date:单个日期 { Name: "单个日期", Id: "txt_Time", Type: "date" }
+                                          dateRange:日期范围 { Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] }
+                                          radio:单选按钮{ Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] }
+                                          checkbox:多选按钮  { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] }
+                                          selectSingle:单选select { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] }
+                                         selectMultiple:多选select { Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
+                                          user-defined:用户自定义 { Name: "自定义", Type: "user-defined", Content: "&lt;input  id='txt_content1' name='text' type='text' &gt;" }
+                                    Id:
+                                        单个item生成之后的ID名称
+
+                                    Name:
+                                        名称(都必填)
+
+                                    name:
+                                        在Type为 radio或者checkbox是必须出现的
+
+                                    Maxlength：
+                                            在Type为string、int 、intRange、intRange中Brother属性值设置
+                                    
+                                    Brother：
+                                            {} Type为intRange设置为 Brother:{Id: "编号", MaxLength: 长度 };
+                                               Type为doubleRange和dateRange设置为Brother:{Id: "编号"};
+                                    content:
+                                            在Type为 user-defined时 才能设置对自定义内容
+
+		                        		</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+			              $("#searchContent").jsearch({
+	                           items: [
+			                		{ Name: "小数和整数", Id: "txt_double", Type: "double" },
+			                		{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] },
+			                		{ Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 },
+			                		{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] },
+			                		{ Name: "单个日期", Id: "txt_Time", Type: "date" },
+			                		{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
+                                   { Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                    { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                   { Name: "自定义", Type: "user-defined", Content: "&lt;input  id='txt_content1' name='text' type='text' &gt;" },
+			                		{ Name: "自定义2", Type: "user-defined", Content: "&lt;input  id='txt_content2' name='text' type='text' &gt;" },
+			                		{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
+                                   { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
+			                		{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
+
+	                           ],
+	                              onSearchButtonClick: function (data) {
+	                                  var selectContent = "";
+	                                  for (var i in data) {
+	                                      selectContent += "Id为:" + i + "文本的值为:" + data[i] + ";&lt;/br&gt;"
+	                                  }
+                                        selectContent += "Id为:txt_content1文本的值为:" + $("#txt_content1").val() + ";&lt;/br&gt;";
+	                                 selectContent += "Id为:txt_content2文本的值为:" + $("#txt_content2").val() + ";&lt;/br&gt;";
+	                                  $("#showTableSelectContent").html(selectContent);
+	                              }
+	                         });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取(返回的是一个对象)
+					var items = $("#searchContent").jsearch( "option", "items" );
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onSearchButtonClick</span>
+				<span class="description-event-returnType">[object]</span>
+			</h3>
+			<div>
+				<p>点击搜索按钮时触发</p>
+				<p>返回一个object</p>
+				<pre class="brush: js;">
+              $("#searchContent").jsearch({
+                            items：[{item},{item}],
+                            onSearchButtonClick:function(data){
+                            }
+                    });
+				</pre>
+				
+				<p>初始化</p>
+				<pre class="brush: js;">
+			       $("#searchContent").jsearch({
+	                           items: [
+			                		{ Name: "小数和整数", Id: "txt_double", Type: "double" },
+			                		{ Name: "范围小数和整数", Id: "txt_doubleStart", Type: "doubleRange", Brother: [{ Id: "txt_doubleEnd" }] },
+			                		{ Name: "两位整数", Id: "txt_int", Type: "int", MaxLength: 2 },
+			                		{ Name: "范围整数", Id: "txt_intStart", Type: "intRange", MaxLength: 3, Brother: [{ Id: "txt_intEnd", MaxLength: 4 }] },
+			                		{ Name: "单个日期", Id: "txt_Time", Type: "date" },
+			                		{ Name: "两个日期", Id: "date_StartTime", Type: "dateRange", Brother: [{ Id: "date_EndTime" }] },
+                                   { Name: "单选按钮", Id: "btn-radio", name: "radio-hobby", Type: "radio", Value: [{ value: "羽毛球", text: "羽毛球" }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                    { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] },
+                                   { Name: "自定义", Type: "user-defined", Content: "&lt;input  id='txt_content1' name='text' type='text' &gt;" },
+			                		{ Name: "自定义2", Type: "user-defined", Content: "&lt;input  id='txt_content2' name='text' type='text' &gt;" },
+			                		{ Name: "字符串", Id: "txt_Name", Type: "string", MaxLength: 5 },
+                                   { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] },
+			                		{ Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
+
+	                           ],
+	                              onSearchButtonClick: function (data) { //data表示一个对象 取值后还需要对自定义的对方进行
+	                                  var selectContent = "";
+	                                  for (var i in data) {
+	                                      selectContent += "Id为:" + i + "文本的值为:" + data[i] + ";&lt;/br&gt;"
+	                                  }
+                                     selectContent += "Id为:txt_content1文本的值为:" + $("#txt_content1").val() + ";&lt;/br&gt;";
+	                                 selectContent += "Id为:txt_content2文本的值为:" + $("#txt_content2").val() + ";&lt;/br&gt;";
+	                                  $("#showTableSelectContent").html(selectContent);
+	                              }
+	                         });
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">getSearchConditionReturnString</span>
+				<span class="description-method-returnType">[string]</span>
+			</h3>
+			<div>
+	
+				<p>获取search中输入的值 返回值为string</p>
+						<pre class="brush: js;">
+								
+                     $("#returnString").click(function () {
+	                        var conditionString = $("#searchContent").jsearch("getSearchConditionReturnString");//除Type为user-defined类型的所有search部分的取值
+	                        conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	                        $("#showTableSelectContent").html(conditionString);
+	                    });
+							</pre>
+			</div>
+
+            	<h3>
+				<span class="description-method-name">getSearchCondionReturnList</span>
+				<span class="description-method-returnType">[object]</span>
+			</h3>
+			<div>
+	
+				<p>获取search中输入的值 返回值为object</p>
+						<pre class="brush: js;">
+						//接受返回的obj对象
+	                    $("#returnList").click(function () {
+	                         var conditionList = $("#searchContent").jsearch("getSearchCondionReturnList");
+	                         var conditionString = "";
+	                         for (var i in conditionList) {
+	                             conditionString += i + "=" + conditionList[i] + "&";
+	                         }
+	                         conditionString += "txt_content1=" + $("#txt_content1").val() + "&txt_content2=" + $("#txt_content2").val();//自定义部分的取值
+	                         $("#showTableSelectContent").html(conditionString);
+	                    });
+                   
+							</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式</p>
+		<pre class="brush: html;">
+
+&lt;div class="jui-jSearch"&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: right; width: 25%"&gt;普通字符&lt;/td&gt;
+			&lt;td style="width: 25%"&gt;
+				&lt;input id="txt_Name" type="text" maxlength="2" /&gt;&lt;/td&gt;
+			&lt;td style="text-align: right; width: 25%;"&gt;整数&lt;/td&gt;
+			&lt;td style="width: 25%"&gt;
+				&lt;input id="txt_Age" type="text" maxlength="3" /&gt;&lt;/td&gt;
+
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: right;"&gt;单个日期&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="txt_Date" type="text" /&gt;&lt;/td&gt;
+			&lt;td style="text-align: right;"&gt;两个日期&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="txt_Date_Start" type="text" style="width:90px;" /&gt;至&lt;input id="txt_Date_End" type="text" style="width:90px;" /&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align: right;"&gt;小数&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="txt_double" type="text" /&gt;&lt;/td&gt;
+			&lt;td style="text-align: right;"&gt;状态&lt;/td&gt;
+			&lt;td&gt;
+				&lt;select id="txt_select" style="width: 50%;"&gt;
+					&lt;option value="0"&gt;正常&lt;/option&gt;
+					&lt;option value="1"&gt;停用&lt;/option&gt;
+					&lt;option value="2"&gt;全部&lt;/option&gt;
+				&lt;/select&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align: right;"&gt;整数范围&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="txt_IntStart" type="text" style="width:90px;" /&gt;至&lt;input id="txt_IntEnd" type="text" style="width:90px;" /&gt;&lt;/td&gt;
+			&lt;td style="text-align: right;"&gt;单选&lt;/td&gt;
+			&lt;td id="test_select"&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style="text-align: right;"&gt;整数与小数范围&lt;/td&gt;
+			&lt;td&gt;&lt;input id="txt_FloatStart" type="text" style="width:90px;" /&gt;至&lt;input id="txt_FloatEnd" type="text" style="width:90px;"  /&gt;&lt;/td&gt;
+			&lt;td style="text-align: right;"&gt;多选&lt;/td&gt;
+			&lt;td id="test_Multiple"&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+
+			&lt;tr&gt;
+			&lt;td style="text-align: right;"&gt;自定义&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="txt_defined3" type="text" /&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;/td&gt;
+			
+		&lt;/tr&gt;
+
+	&lt;/table&gt;
+	&lt;p style='margin-top: 5px; margin-left: 55%;'&gt;
+	&lt;input id='btn_Search' type='button' value='搜索' /&gt;&lt;/p&gt;
+
+
+
+&lt;/div&gt;
+
+		</pre>
+
+	</div>
 </div>
