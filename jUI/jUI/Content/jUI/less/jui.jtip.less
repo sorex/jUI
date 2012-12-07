@@ -5,7 +5,7 @@
 
         .jui-jtip-w-arrowhead
         {
-			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-w-cccccc.png)'`;
+			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-w-' + "@{tipNomalIcon}".substr(1) + '.png)'`;
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -13,7 +13,7 @@
 
         .jui-jtip-w-arrowhead-error
         {
-            background-image:  ~`'url(@{jUI_Images}jui-jtip-carat-w-fef1ec.png)'`;
+ 			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-w-' + "@{tipErrorIcon}".substr(1) + '.png)'`;
             background-repeat: no-repeat;
             height: 13px;
             width: 7px;
@@ -22,7 +22,7 @@
 
         .jui-jtip-n-arrowhead
         {
-            background-image:  ~`'url(@{jUI_Images}jui-jtip-carat-n-cccccc.png)'`;
+  			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-n-' + "@{tipNomalIcon}".substr(1) + '.png)'`;
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;
@@ -30,7 +30,7 @@
 
         .jui-jtip-n-arrowhead-error
         {
-            background-image: ~`'url(@{jUI_Images}jui-jtip-carat-n-fef1ec.png)'`;
+   			background-image: ~`'url(@{jUI_Images}jui-jtip-carat-n-' + "@{tipErrorIcon}".substr(1) + '.png)'`;
             background-repeat: no-repeat;
             height: 7px;
             width: 13px;

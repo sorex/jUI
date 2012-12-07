@@ -109,22 +109,22 @@
 //#endregion
 
 //#regionTable样式
-@tableBorder:#000000;
+@tableBorder: #000000;
 
-@tableOddBackground:@ContentBackground;
-@tableOddColor:@ContentColor;
+@tableOddBackground: @ContentBackground;
+@tableOddColor: @ContentColor;
 
-@tableEvenBackground:#e5e5e5; //@HeaderBackground 调整 S:10%,L:100%
-@tableEvenColor:@ContentColor;
+@tableEvenBackground: #e5e5e5;
+@tableEvenColor: @ContentColor;
 
-@tableHoverBackground:#cccccc;
-@tableHoverColor:@ContentColor;
+@tableHoverBackground: #cccccc;
+@tableHoverColor: @ContentColor;
 
-@tableActiveBackground:@ActiveBackground;
-@tableActiveColor:@ActiveColor;
+@tableActiveBackground: @ActiveBackground;
+@tableActiveColor: @ActiveColor;
 
-@tableHeadBackground:@HeaderBackground;
-@tableHeadColor:@HeaderColor;
+@tableHeadBackground: @HeaderBackground;
+@tableHeadColor: @HeaderColor;
 //#endregion
 
 //#region LinkButton样式
@@ -138,16 +138,20 @@
 //#endregion
 
 //#region jtip样式
-@tipNomalBackground: #cccccc;
-@tipNomalColor: @DefaultColor;
-@tipNomalBorder:#cccccc;
+@tipNomalBackground: @ContentBackground;
+@tipNomalColor: @ContentColor;
+@tipNomalBorder: @ContentBorder;
+@tipNomalIcon: @ContentBorder;
 
-@tipSuccessBackground: @HighlightBorder;
-@tipSuccessColor: @DefaultColor;
-@tipSuccessBorder:@HighlightBorder;
+@tipSuccessBackground: @HighlightBackground;
+@tipSuccessColor: @HighlightColor;
+@tipSuccessBorder: @HighlightBorder;
+@tipSuccessIcon: @HighlightBorder;
 
-@tipErrorBackground: #cccccc;
+@tipErrorBackground: @ErrorBackground;
+@tipErrorBorder: @ErrorBorder;
 @tipErrorColor: @ErrorColor;
+@tipErrorIcon: @ErrorBorder;
 //#endregion
 
 //#region text样式
@@ -157,7 +161,7 @@
 //#region jsort样式
 @sortUlBackground: #f3f3f3;
 @sortUlColor: #000000;
-@sortUlBorder:@ContentBorder;
+@sortUlBorder: @ContentBorder;
 @sortUlHoverBackground: #d4d4d4;
 //#endregion
 
