@@ -139,11 +139,15 @@
 
 //#region jtip样式
 @tipNomalBackground: #cccccc;
-@tipNomalColor: #ffffff;
-@tipSuccessBackground: #cccccc;
-@tipSuccessColor: #ffffff;
+@tipNomalColor: @DefaultColor;
+@tipNomalBorder:#cccccc;
+
+@tipSuccessBackground: @HighlightBorder;
+@tipSuccessColor: @DefaultColor;
+@tipSuccessBorder:@HighlightBorder;
+
 @tipErrorBackground: #cccccc;
-@tipErrorColor: #cd0a0a;
+@tipErrorColor: @ErrorColor;
 //#endregion
 
 //#region text样式
@@ -153,7 +157,7 @@
 //#region jsort样式
 @sortUlBackground: #f3f3f3;
 @sortUlColor: #000000;
-@sortUlBorder: #666666;
+@sortUlBorder:@ContentBorder;
 @sortUlHoverBackground: #d4d4d4;
 //#endregion
 
