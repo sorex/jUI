@@ -9,23 +9,22 @@
 /*当前日期高亮*/
 .jui-datetimepicker-now
 {
-	border: 1px solid @datetimepickerNowBorder;
+	border: 1px solid @ContentBorder;
 	font-weight: bold;
-	color: @datetimepickerNowColor;
+	color: @ContentColor;
 	outline: none;
 	display: block;
-	/*padding: .2em;*/
 	margin: .2em;
 	text-decoration: none;
-	background-color: @datetimepickerNowBackground;
+	background-color: @ContentBorder;
 }
 /*外层div*/
 .jui-datetimepicker
 {
 	width: 240px;
-	background-color: @datetimepickerBackground;
+	background-color: @OtherDefaultBackground;
 	padding: .2em .2em;
-	border: 1px solid @datetimepickerBorder;
+	border: 1px solid @OtherDefaultBorder;
 	font-family: @Family;
 	font-size: @FontSize;
 	position: absolute;
@@ -38,8 +37,8 @@
 	margin-left: 2px;
 	padding-bottom: 5px;
 	padding-top: 5px;
-	background-color: @datetimepickerHeadBackground;
-	border:1px solid @datetimepickerHeadBorder;
+	background-color: @HeaderBackground;
+	border:1px solid @HighlightColor;
 }
 /*左按钮*/
 .jui-datetimepicker-prev
@@ -55,23 +54,22 @@
 	cursor: pointer;
 	display: inline-block;
 	margin-left: 6px;
-	margin-left: 6px;
 }
 /*头部中间日期显示层*/
 .jui-datetimepicker-headcenter
 {
 	display: inline-block;
 	width: 180px;
-	color: @datetimepickerHeadcenterColor;
+	color: @HeaderColor;
 	text-align: center;
 }
 /*点击选中项 */
 .jui-datetimepicker .jui-datetimepicker-active
 {
-	border: 1px solid @datetimepickerActiveBorder;
-	background-color: @datetimepickerActiveBackground;
+	border: 1px solid @ActiveBorder;
+	background-color: @ActiveBackground;
 	font-weight: bold;
-	color:@datetimepickerActiveColor;
+	color:@ActiveColor;
 	outline: none;
 	display: block;
 	text-decoration: none;
@@ -79,10 +77,10 @@
 /*表格内容样式*/
 .jui-datetimepicker-table-tr-a
 {
-	border: 1px solid @datetimepickerTableTrABorder;
-	background-color:@datetimepickerTableTrABackground;
+	border: 1px solid @ContentBorder;
+	background-color:@DefaultColor;
 	font-weight: bold;
-	color:@datetimepickerTableTrAColor;
+	color:@layoutTopBackground;
 	outline: none;
 	display: block;
 	margin: .2em;
@@ -91,10 +89,10 @@
 /*鼠标移动到单元格上*/
 .jui-datetimepicker-table tr a:hover
 {
-	border: 1px solid @datetimepickerTableTrAHoverBorder;
-	background-color: @datetimepickerTableTrAHoverBackground;
+	border: 1px solid @HoverBorder;
+	background-color: @HoverBackground;
 	font-weight: bold;
-	color: @datetimepickerTableTrAHoverColor;
+	color: @HoverColor;
 	outline: none;
 }
 /*内容表格样式*/
@@ -112,11 +110,10 @@
 .jui-datetimepicker-week
 {
 	font-weight: bold;
-	color:@datetimepickerWeek;
+	color:@leftMenuItemColor;
 	outline: none;
 	display: block;
 	padding: .2em;
-	font-weight: bolder;
 }
 /*时分秒样式*/
 .jui-datetimepicker-hms
@@ -141,36 +138,36 @@
 		text-align: left;
 	}
 
-.jui-datetimepicker-slider
+/*.jui-datetimepicker-slider
 {
 	position: relative;
 	text-align: left;
 	height: .8em;
 	font-size: 1em;
-	border: 1px solid @datetimepickerSliderBorder;
-	background: @datetimepickerSliderBackground 50% top repeat-x;
-	color: @datetimepickerSliderColor;
+	border: 1px solid @DefaultBorder;
+	background: @DefaultBackground 50% top repeat-x;
+	color: @DefaultColor;
 }
 
 .jui-datetimepicker-handle
 {
 	top: -.3em;
 	margin-left: -.6em;
-	border: 1px solid @datetimepickerHandleBorder;
-	background: @datetimepickerHandleBackground 50% 50% repeat-x;
+	border: 1px solid @ActiveBorder;
+	background: @ActiveBackground 50% 50% repeat-x;
 	font-weight: bold;
-	color: @datetimepickerHandleColor;
+	color: @ActiveColor;
 	position: absolute;
 	z-index: 2;
 	width: 1.2em;
 	height: 1.2em;
 	cursor:default;
-}
+}*/
 
-	.jui-datetimepicker-focus, .jui-datetimepicker-handle:hover, .jui-datetimepicker-butNow:hover, .jui-datetimepicker-butDone:hover
-	{
-		border: 1px solid @datetimepickerOtherBorder;
-		background:@datetimepickerOtherBackground;
-		font-weight: bold;
-		color: @datetimepickerOtherColor;
-	}
+.jui-datetimepicker-focus, .jui-datetimepicker-handle:hover, .jui-datetimepicker-butNow:hover, .jui-datetimepicker-butDone:hover
+{
+	border: 1px solid @HighlightBorder;
+	background:@HighlightBackground;
+	font-weight: bold;
+	color: @HighlightColor;
+}

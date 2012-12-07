@@ -1,7 +1,7 @@
 ﻿
 .jui-headMenu {
     height:40px;
-    background-color: @headMenuBackground;
+    background-color: @HeaderBackground;
     white-space: nowrap; /*禁止文字自动换行*/
     position: relative;
     display: block;
@@ -23,7 +23,7 @@
     }
 
         .jui-headMenu a:hover {
-            background-color: @headMenuLinkHoverBackground;
+            background-color: @HoverBackground;
         }
 
     .jui-headMenu .jui-headMenu-ju {
@@ -58,7 +58,7 @@
 
     .jui-headMenu .jui-headMenu-lass {
         vertical-align: middle;
-        color: @headMenuLass;
+        color: @HeaderColor;
         font-size: @FontSize;
         position: relative;
         padding-left: 4px;
@@ -81,13 +81,13 @@
         z-index: 40000;
         cursor: default;
         display: none;
-        background-color: @headMenuU1Background;
+        background-color: @DefaultColor;
     }
 
         .jui-headMenu .jui-headMenu-u1 li a {
             padding: 6px 15px 6px 15px;
             text-align: left;
-            color: @headMenuU1LiAColor;
+            color: @ContentColor;
             display: block;
             cursor: pointer;
         }
@@ -97,14 +97,14 @@
         }
 
         .jui-headMenu .jui-headMenu-u1 li a:hover {
-            background-color: @headMenuU1LiAHoverBackground;
+            background-color: @leftMenuItemHoverBackground;
         }
 
 
     .jui-headMenu .jui-headMenu-vsolid {
         display: block;
         height: 20px;
-        border-left: 1px solid @headMenuVsolidBorderLeft;
+        border-left: 1px solid @ActiveColor;
         margin-top: 10px;
         margin-bottom: 10px;
         float: left;

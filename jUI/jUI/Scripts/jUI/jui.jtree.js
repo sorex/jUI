@@ -350,6 +350,7 @@
 	            alert("未选中节点。");
 	            return;
 	        }
+            //#region 仅留一层父节点时的样式控制
 	        if (node_id == e.children("ul").children("li:eq(0)").attr("id") && e.children("ul").children("li").length > 2) {
 	            e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch");
 	        }
@@ -367,6 +368,8 @@
 	                }
 	            });
 	        }
+	        //#endregion
+
 	        $("#" + node_id).remove();
 	        $("#saveId").text("");
 	    },
