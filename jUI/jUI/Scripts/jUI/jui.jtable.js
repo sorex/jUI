@@ -92,7 +92,7 @@ items:
                 //生成表框架
 	            $(this.element).append(
                     "<table id='" + tableId + "_tableSorter' style='width:" + o.width + ";height:" + o.height + ";'>" +
-                    "<thead><tr></tr></thead><tbody></tbody>" +
+                    "<thead class='jui-table-head'><tr></tr></thead><tbody></tbody>" +
                     "</table>" +
                     "<span id='dis_checkedItems' style='display:none;'></span>");
 
@@ -176,41 +176,43 @@ items:
 
                 //首列添加图标
 	            var table = $("#" + tableId + "_tableSorter");
-	            //table.find('tr').find('td:eq(0)').find("span:eq(0)").before("<span class='jui-table-columnHeadImage'></span>");
 
 	            //*********表格行样式切换
 	            var $tr = table.children("tbody").find('tr');
-	            //给tr设置LOCK、初始颜色,设置tr默认为没单击,设置背景色
-	            $tr.attr('Lock', 'false').addClass("jui-table-out");
-	            //设置表格样式
-	            $tr.each(function (i) {
-	                var op = $(this); //tr对象
-	                //鼠标悬停事件
-	                op.hover(function () {
-	                    if (op.attr('Lock') == 'false') {
-	                        op.removeClass("jui-table-out");
-	                        op.addClass("jui-table-over");
+	            var doubleTr = table.children("tbody").find("tr:odd");
+	            var singleTr = table.children("tbody").find("tr:even");
+	            //给tr设置LOCK
+	            $tr.attr('Lock', 'false');
+	            singleTr.addClass("jui-table-out");
+	            doubleTr.addClass("jui-table-out-single");
+	            var hoverClassToggle = function (obj) {
+	                obj.mouseover(function () {
+	                    if ($(this).attr("Lock") == "false") {
+	                        $(this).removeClass().addClass("jui-table-over");
 	                    }
-	                },
-                    function () {
-                        if (op.attr('Lock') == 'false') {
-                            op.removeClass("jui-table-over");
-                            op.addClass("jui-table-out");
-                        }
-                    });
-	                op.mousedown(function () {
-	                    $tr.removeClass("jui-table-over");
-	                    $tr.removeClass("jui-table-click");
-	                    $tr.addClass("jui-table-out"); //全部tr初始化未覆盖时候的颜色
-	                    $tr.attr('Lock', 'false'); //全部tr初始化为未锁定状态
-	                    op.attr('Lock', 'true'); //选中tr变更为锁定状态
-	                    if (op.attr('Lock') == 'true') { op.addClass("jui-table-click"); } //选中tr颜色并更为选择状态颜色
 	                });
+	                if (obj == singleTr) {
+	                    obj.mouseout(function () {
+	                        if ($(this).attr("Lock") == "false") {
+	                            $(this).removeClass().addClass("jui-table-out");
+	                        }
+	                    });
+	                } else if (obj == doubleTr) {
+	                    obj.mouseout(function () {
+	                        if ($(this).attr("Lock") == "false") {
+	                            $(this).removeClass().addClass("jui-table-out-single");
+	                        }
+	                    });
+	                }
+	            }
+	            hoverClassToggle(singleTr);
+	            hoverClassToggle(doubleTr);
+	            $tr.mousedown(function () {
+	                singleTr.attr("Lock", "false").removeClass("jui-table-click").addClass("jui-table-out");
+	                doubleTr.attr("Lock", "false").removeClass("jui-table-click").addClass("jui-table-out-single");
+	                //$tr.attr("Lock", "false").removeClass("jui-table-click");
+	                $(this).attr("Lock", "true").removeClass().addClass("jui-table-click");
 	            });
-                //*********
-
-	            table.children("thead").find("td").css("background", "#094ab2");
-	            table.find('tr:eq(0)').css("color", "#ffffff");
 	        }
 	    },
         //返回选中行数据

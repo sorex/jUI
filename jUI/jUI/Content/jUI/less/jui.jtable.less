@@ -1,6 +1,6 @@
 ﻿
 .jui-table {
-    border: 1px solid @tableBorder;
+    border: 1px solid @DefaultBorder;
 }
 
     .jui-table a {
@@ -13,13 +13,27 @@
     /*行样式切换*/
     /*鼠标覆盖*/
     .jui-table .jui-table-over {
-        background-color: @tableOverBackground;
+        background-color: @HoverBackground;
+		color:@HoverColor;
     }
-    /*鼠标移出*/
+    /*鼠标移出，默认样式，偶数行样式*/
     .jui-table .jui-table-out {
-        background-color: @tableOutBackground;
+        background-color: @ContentBackground;
+		color:@ContentColor;
     }
     /*鼠标点击*/
     .jui-table .jui-table-click {
-        background-color: @tableClickBackground;
+        background-color: @ActiveBackground;
+		color:@ActiveColor;
     }
+	/*奇数行样式*/
+    .jui-table .jui-table-out-single {
+        background-color: @HighlightBackground;
+		color:@HighlightColor;		
+	}
+	/*表格头部样式*/
+    .jui-table .jui-table-head {
+        background-color: @HeaderBackground;
+		color:@HeaderColor;				
+	}
+
