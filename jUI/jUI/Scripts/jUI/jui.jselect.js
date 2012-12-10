@@ -67,9 +67,9 @@
 				}
 				for (var i = 0; i < o.items.length; i++) {
 					if (o.items[i].selected) {
-						selectHtml += "<option selected value=" + o.items[i].value + ">" + o.items[i].text +'　'+"</option>";
+						selectHtml += "<option selected value=" + o.items[i].value + ">" + o.items[i].text +"</option>";
 					} else {
-					    selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text + '　' + "</option>";
+					    selectHtml += "<option value=" + o.items[i].value + ">" + o.items[i].text  + "</option>";
 					}
 
 				}
@@ -79,21 +79,31 @@
 			
 				
 				$("#" + selectId).change(function () {
-					if (flag) {
-						var selectList = [];
-						var textList = $(this).find("option:selected").text().substring(0, $(this).find("option:selected").text().length).split('　');
-						var valueList = $(this).val();
+				    if (flag) {
+				        var selectList = [];
+				      
+					    $("option:selected",this).each(function(){
+					        var tempObject = new Object();
+					        tempObject.value = $(this).val();
+					        tempObject.text = $(this).text();
+					        selectList.push(tempObject);
+				        });
+				 
+					    //alert($($(this).find("option:selected")[0]).text());
+                        //var textList = 
+						////var textList = $(this).find("option:selected").text().substring(0, $(this).find("option:selected").text().length).split('　');
+						//var valueList = $(this).val();
 
-						if (valueList != null) {
-							for (var i = 0; i < valueList.length ; i++) {
-							    var tempObject = new Object();
-								tempObject.value = valueList[i];
-								tempObject.text = textList[i];
-								selectList.push(tempObject);
-							}
-						} else {
-							selectList = null;
-						}
+						//if (valueList != null) {
+						//	for (var i = 0; i < valueList.length ; i++) {
+						//	    var tempObject = new Object();
+						//		tempObject.value = valueList[i];
+						//		tempObject.text = textList[i];
+						//		selectList.push(tempObject);
+						//	}
+						//} else {
+						//	selectList = null;
+						//}
 
 						if (self.options.onSelectChange != null) {
 						    self.options.onSelectChange(selectList);
@@ -126,19 +136,28 @@
 			var selectId = tagId + "_select";/*content*/
 		
 			if (o.model == "multiple") {
-				var list = [];
-				var textList = $("#" + selectId).find("option:selected").text().substring(0, $("#" + selectId).find("option:selected").text().length).split('　');
-				var valueList = $("#" + selectId).val();
-				if (valueList != null) {
-					for (var i = 0; i < valueList.length ; i++) {
-					    var tempObject = {};
-						tempObject.value = valueList[i];
-						tempObject.text = textList[i];
-						list.push(tempObject);
-					}
-				} else {
-					list = null;
-				}
+			    var list = [];
+
+
+			    $("option:selected", $("#" + selectId)).each(function () {
+			        var tempObject = new Object();
+			        tempObject.value = $(this).val();
+			        tempObject.text = $(this).text();
+			        list.push(tempObject);
+			    });
+
+				//var textList = $("#" + selectId).find("option:selected").text().substring(0, $("#" + selectId).find("option:selected").text().length).split('　');
+				//var valueList = $("#" + selectId).val();
+				//if (valueList != null) {
+				//	for (var i = 0; i < valueList.length ; i++) {
+				//	    var tempObject = {};
+				//		tempObject.value = valueList[i];
+				//		tempObject.text = textList[i];
+				//		list.push(tempObject);
+				//	}
+				//} else {
+				//	list = null;
+				//}
 				
 			
 				return list;
