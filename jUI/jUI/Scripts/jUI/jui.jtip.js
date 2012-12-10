@@ -73,14 +73,14 @@
 				case "success": /*成功情况*/
 					switch (o.positon) {
 						case "left":/*箭头朝西*/
-
+						  
 							$("body").append("<div id=" + contentId + " class='jui-jtip-success-w-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
-							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead'></div>");
+							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-w-arrowhead-success'></div>");
 							break;
 						case "bottom":/*箭头朝北*/
 
 							$("body").append("<div id=" + contentId + " class='jui-jtip-success-n-content' style='width:" + o.width + "'><span class='ui-icon ui-icon-check' style='float: left; margin-left: 3px; margin-top: 3px; margin-right: 3px;'></span><span style='padding:3px'>" + o.content + "</span></div>");
-							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead'></div>");
+							$("body").append("<div id=" + arrowheadId + " class='jui-jtip-n-arrowhead-success'></div>");
 							break;
 					}
 					break;

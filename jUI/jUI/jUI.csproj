@@ -191,10 +191,12 @@
     <Content Include="Content\jUI\images\jui-jselect-carat-s-666666.png" />
     <Content Include="Content\jUI\images\jui-jheadMenu-carat-s-ffffff.png" />
     <Content Include="Content\jUI\images\jui-jradio.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-w-cccccc.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-w-fef1ec.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-n-cccccc.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-n-fef1ec.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-n-a6a6a6.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-n-da0000.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-n-e5920b.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-w-a6a6a6.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-w-da0000.png" />
+    <Content Include="Content\jUI\images\jui-jtip-carat-w-e5920b.png" />
     <Content Include="Content\jUI\images\jui-logo.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_094ab2_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_ffffff_256x240.png" />
