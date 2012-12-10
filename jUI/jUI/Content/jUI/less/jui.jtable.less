@@ -12,22 +12,28 @@
         }
     /*行样式切换*/
     /*鼠标覆盖*/
-    .jui-table .jui-table-over {
+    .jui-table .jui-table-hover {
         background-color: @tableHoverBackground;
 		color:@tableHoverColor;
-    }
+          a {
+        color: @tableHoverColor;
+        }
+   }
     /*偶数行样式*/
-    .jui-table .jui-table-out {
+    .jui-table .jui-table-odd {
         background-color: @tableOddBackground;
-		color:@tableOddColor;
+        color: @tableOddColor;
     }
     /*鼠标点击*/
-    .jui-table .jui-table-click {
+    .jui-table .jui-table-Active {
         background-color: @tableActiveBackground;
 		color:@tableActiveColor;
-    }
+         a {
+        color: @tableActiveColor;
+        }
+   }
 	/*奇数行样式*/
-    .jui-table .jui-table-out-single {
+    .jui-table .jui-table-even {
         background-color: @tableEvenBackground;
 		color:@tableEvenColor;		
 	}

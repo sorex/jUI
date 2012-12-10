@@ -129,7 +129,6 @@
                 });
             });
 	        //#endregion
-
             e.children("ul").children("li:eq(0)").children("span").removeClass().addClass("jui-jtree-u-switch");
 	    },
 
@@ -153,8 +152,7 @@
 	            var newLi_id , newLi_name;
 	            var lastNodeIcon = $("#" + node_id).children("ul").children("li").last().children("span");
 	            //#region如果最后的节点为父节点
-	            if ($("#" + node_id).children("ul").children("li").last().children("ul").length > 0) {
-	                
+	            if ($("#" + node_id).children("ul").children("li").last().children("ul").length > 0) {	                
 	                if (lastNodeIcon.attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
 	                    //闭合时
 	                    lastNodeIcon.removeClass().addClass("jui-jtree-u-switch-dircorss-close");
@@ -178,6 +176,8 @@
 	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
 	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
 	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	            }else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-close") {
+	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-single-open");
 	            }
 	            $("#" + node_id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
 	            $("#" + node_id).children("span").siblings("ul").slideDown("fast");
@@ -205,7 +205,7 @@
 	        //#endregion
             //#region 具体添加节点的操作
 	        newLi_id = $("#" + node_id).children("ul").attr("id") + "_newLi_" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的id
-	        newLi_name = "NewNode" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的文本内容
+	        newLi_name = "NewNode";//新增节点的文本内容
 	        if ($("#" + node_id).children("ul").children("li").length == 0) {
 	            this.toggleLiCss($("#" + node_id).children("span"));
 	        }
@@ -236,11 +236,11 @@
 	        }
 	        var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
 	        var newUlId = $("#" + node_id).parent("ul").attr("id") + "_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的ulid
-	        var newLi_name = "NewNode" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增节点的文本
+	        var newLi_name = "NewNode";//新增节点的文本
 	        if ($("#" + node_id).parent("ul").parent("li").attr("id") != null) {
-	            var newLi_id = $("#" + node_id).parent("ul").parent("li").attr("id") + "-" + ($("#" + node_id).parent("ul").children("li").length + 1);
+	            var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");
 	        } else {
-	            var newLi_id = e_id + "_li_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的id
+	            var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");//新增li节点的id
 	        }
 	        //#region如果末节点为文件夹(父节点)
 	        if (ul_father.children("li").last().children("ul").length > 0) {
@@ -256,6 +256,11 @@
 	        //#region如果末节点为文件(子节点)
 	        {
 	            ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-cross");
+	        }
+	        if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-close") {
+	            $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch");
+	        } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-open") {
+	            $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-open");
 	        }
 	        //#endregion
 	        //#region具体添加操作 
@@ -325,6 +330,7 @@
 	            } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
 	                $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-open").addClass("jui-jtree-u-switch-dircorss-bottom-close");
 	            }
+
 	            //切换各级图标开与关按钮 
 	            if ($(this).siblings("a").find("span:eq(0)").css("background-position") == "-110px 0px") {
 	                $(this).siblings("a").find("span:eq(0)").css("background-position", "-110px -15px");
@@ -335,7 +341,6 @@
 	        });
 	    },
 	    //#endregion
-
         //#region删除节点
 	    deleteNode: function () {
 	        var
@@ -369,12 +374,139 @@
 	            });
 	        }
 	        //#endregion
-
+	        //#region删除节点为末尾节点时
+	        if ($("#" + node_id).next().length == 0) {
+	            var prev_li = $("#" + node_id).prev().children("span");
+	            if (prev_li.attr("class") == "jui-jtree-u-switch-dircorss-close"){
+	                prev_li.removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	            } else if (prev_li.attr("class") == "jui-jtree-u-switch-dircorss-open") {
+	                prev_li.removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	            } else if (prev_li.attr("class") == "jui-jtree-u-switch-cross") {
+	                prev_li.removeClass().addClass("jui-jtree-u-switch-cross-bottom");
+	            } else if (prev_li.attr("class") == "jui-jtree-u-switch-open") {
+	                prev_li.removeClass().addClass("jui-jtree-u-switch-single-open");
+	            } else if (prev_li.attr("class") == "jui-jtree-u-switch") {
+	                prev_li.removeClass().addClass("jui-jtree-u-switch-single-close");
+	            }
+	            if (prev_li.siblings("ul").length > 0) {
+	                prev_li.siblings("ul").removeClass("line");
+	            }
+	        }
+	        //#endregion
 	        $("#" + node_id).remove();
 	        $("#saveId").text("");
 	    },
 	    //#endregion
+	    //#region编辑节点
+	    editNode: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id");
+	        var node_id = $("#saveId").text();//选中节点ID
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return;
+	        }
+	        var node = $("#" + node_id);
+	        var a_html = node.children("a").clone();
+	        var old_text = node.children("a").children("span:eq(1)").text();
+	        var text_html = "<input type='text' style='height:16px;' id='newText' value='" + old_text + "'/>";
+	        
+	        node.children("a").remove();
+	        node.children("span:eq(0)").after(text_html);
+	        $("#newText").focus();
+	        $("#newText").focusout(function () {
+	            var content = $(this).attr("value");
+	            node.children("input").remove();
+	            node.children("span:eq(0)").after(a_html);
+	            node.children("a").attr("title",content);
+	            node.children("a").children("span:eq(1)").text(content);
+	            self.clickNode(node_id);
+	        });
 
+	    },
+	    //#endregion
+	    //#region遍历节点
+	    //选中子节点，返回父节点
+	    getParentNode: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id");
+	        var node_id = $("#saveId").text();//选中节点ID
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return false;
+	        }
+	        var parent_node = $("#" + node_id).parent("ul").parent("li");
+	        var id = parent_node.attr("id");
+	        var name = parent_node.children("a").children("span:eq(1)").text();
+	        var bgimg = parent_node.children("a").children("span:eq(0)").css("background-image");
+	        var position = parent_node.children("a").children("span:eq(0)").css("background-position");
+	        var objParent = { id: id, name: name, image: bgimg, position: position };
+	        return objParent;
+	    },
+        //选中父节点，返回子节点集合
+	    getChildrenNodes: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id");
+	        var node_id = $("#saveId").text();//选中节点ID
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return false;
+	        }
+	        var objli = $("#" + node_id).children("ul").children("li");
+	        var children_nodes = [],
+                id,
+                name,
+                bgimg,
+                position;
+	        if (objli.length > 0) {
+	            for (var i = 0; i < objli.length; i++) {
+	                id = objli.eq(i).attr("id");
+	                name = objli.eq(i).children("a").children("span:eq(1)").text();
+	                bgimg = objli.eq(i).children("a").children("span:eq(0)").css("background-image");
+	                position = objli.eq(i).children("a").children("span:eq(0)").css("background-position");
+	                children_nodes.push({ id: id, name: name, image: bgimg, position: position });
+	            }
+	            return children_nodes;
+	        } else {
+	            return "N";
+	        }
+	    },
+
+	    //#endregion
+	    //#region查找选中节点的路径
+	    getNodePath: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id");
+	        var node_id = $("#saveId").text();//选中节点ID
+	        var parentsId = $("#" + node_id).parents("li");
+	        var result = "~", id;
+	        for (var i = parentsId.length-1; i >=0; i--) {
+	            id = parentsId.eq(i).attr("id");
+	            result += "/"+id;
+	        }
+	        return result+"/"+node_id;
+	    },
+        //#endregion
 	    _setOption: function (key, value) {
 	        if (value !== undefined || value != null)
 	            this.options[key] = value;

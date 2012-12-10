@@ -7,7 +7,8 @@
 	<link href="@Url.Content("~/Content/jUI/css/jui.jradio.css")" rel="stylesheet" />
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jradioTable.js")"></script>
-    
+    <script src="~/Scripts/jUI/jui.jradio.js"></script>
+
 	<script type="text/javascript">
 	    //编辑
 	    function ActionEdit(id, name, name2) {
@@ -22,6 +23,7 @@
 	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
 	    }
 	    $(function () {
+	        $("#radion_1").jradio();
 	        $("#MyTable1").jtable({
 	            height: '20%', //表高
 	            width: '100%', //表宽
@@ -95,3 +97,5 @@
 
 <div id="MyTable1"></div>
 <button id="_b">显示选中项</button>
+<div id="radion_1">
+    <input id="Radio1" type="radio" name="aa" />11<input id="Radio2" type="radio" name="aa"  checked/>22<input id="Radio3" type="radio" name="aa" />33</div>
