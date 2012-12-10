@@ -77,6 +77,41 @@
             $("#deleteNode").click(function () {
                 $("#tree").jtree("deleteNode");
             });
+            //编辑节点
+            $("#editNode").click(function () {
+                $("#tree").jtree("editNode");
+            });
+            //遍历子节点，返回父节点
+            $("#getParentNode").click(function () {
+                var obj = $("#tree").jtree("getParentNode");
+                if (obj) {
+                    if (!obj["id"]) {
+                        alert("该节点无父节点.");
+                    } else {
+                        alert("父节点信息:\nid:" + obj["id"] + ";\nname:" + obj["name"] + ";\nbackgroundImage:" + obj["image"] + ";\nposition:" + obj["position"] + ";")
+                    }
+                }
+            });
+            //遍历父节点,返回子节点集合
+            $("#getChildrenNodes").click(function () {
+                var obj = $("#tree").jtree("getChildrenNodes");
+                if (obj) {
+                    if (obj == "N") {
+                        alert("该节点无子节点.");
+                    } else {
+                        var result= "";
+                        for (var i = 0; i < obj.length; i++) {
+                            result += "第"+(i+1)+"个子节点信息:\nid:" + obj[i]["id"] + ";\nname:" + obj[i]["name"] + ";\nbackgroundImage:" + obj[i]["image"] + ";\nposition:" + obj[i]["position"] + ";\n\n";
+                        }
+                        alert(result)
+                    }
+                }
+            });
+            //查找选中节点路径
+            $("#getNodePath").click(function () {
+                var result = $("#tree").jtree("getNodePath");
+                alert(result);
+            });
 
         });
     </script>
@@ -108,8 +143,12 @@
             <input id="addChildNode" type="button"  value="添加子节点"/>
             <input id="addSiblingNode" type="button"  value="添加同级节点"/>
             <input id="deleteNode" type="button"  value="删除节点"/>
+            <input id="editNode" type="button"  value="编辑节点"/>
+            <input id="getParentNode" type="button"  value="遍历父节点"/>
+            <input id="getChildrenNodes" type="button"  value="遍历子节点"/>
+            <input id="getNodePath" type="button"  value="获得节点路径"/>
         </div>
-        <div id="showDetail" style="background-color:silver;border:1px solid white;">
+        <div id="showDetail" style="background-color:silver;border:1px solid #F3F3F3;">
         </div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">

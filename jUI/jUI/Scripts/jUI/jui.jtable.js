@@ -183,24 +183,24 @@ items:
 	            var singleTr = table.children("tbody").find("tr:even");
 	            //给tr设置LOCK
 	            $tr.attr('Lock', 'false');
-	            singleTr.addClass("jui-table-out");
-	            doubleTr.addClass("jui-table-out-single");
+	            singleTr.addClass("jui-table-odd");
+	            doubleTr.addClass("jui-table-even");
 	            var hoverClassToggle = function (obj) {
 	                obj.mouseover(function () {
 	                    if ($(this).attr("Lock") == "false") {
-	                        $(this).removeClass().addClass("jui-table-over");
+	                        $(this).removeClass().addClass("jui-table-hover");
 	                    }
 	                });
 	                if (obj == singleTr) {
 	                    obj.mouseout(function () {
 	                        if ($(this).attr("Lock") == "false") {
-	                            $(this).removeClass().addClass("jui-table-out");
+	                            $(this).removeClass().addClass("jui-table-odd");
 	                        }
 	                    });
 	                } else if (obj == doubleTr) {
 	                    obj.mouseout(function () {
 	                        if ($(this).attr("Lock") == "false") {
-	                            $(this).removeClass().addClass("jui-table-out-single");
+	                            $(this).removeClass().addClass("jui-table-even");
 	                        }
 	                    });
 	                }
@@ -208,10 +208,10 @@ items:
 	            hoverClassToggle(singleTr);
 	            hoverClassToggle(doubleTr);
 	            $tr.mousedown(function () {
-	                singleTr.attr("Lock", "false").removeClass("jui-table-click").addClass("jui-table-out");
-	                doubleTr.attr("Lock", "false").removeClass("jui-table-click").addClass("jui-table-out-single");
+	                singleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-odd");
+	                doubleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-even");
 	                //$tr.attr("Lock", "false").removeClass("jui-table-click");
-	                $(this).attr("Lock", "true").removeClass().addClass("jui-table-click");
+	                $(this).attr("Lock", "true").removeClass().addClass("jui-table-Active");
 	            });
 	        }
 	    },
@@ -219,7 +219,7 @@ items:
 	    currentData: function () {
 	        var o = this.options;
 	        var checkedRoll="";
-	        var checkedRollId = $(this.element).find(".jui-table-click").find("td:eq(0)").find("span:eq(1)").text();
+	        var checkedRollId = $(this.element).find(".jui-table-Active").find("td:eq(0)").find("span:eq(1)").text();
 	        for (var i = 0; i < o.data.length; i++) {
 	            if (o.data[i]["ID"] == checkedRollId) {
 	                checkedRoll = o.data[i];
