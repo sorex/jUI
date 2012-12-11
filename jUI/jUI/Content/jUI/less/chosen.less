@@ -1,4 +1,5 @@
 /* @group Base */
+
 .chzn-container
 {
     font-size: 13px;
@@ -10,8 +11,8 @@
 
     .chzn-container .chzn-drop
     { /**/
-        background: @selectChznContainerBackground;
-        border: 1px solid @selectChznContainerBorder; /*下拉框的选择默认颜色为:#aaa*/
+        background: @ContentBackground;
+        border: 1px solid @ContentBorder; /*下拉框的选择默认颜色为:#aaa*/
         border-top: 0;
         position: absolute;
         top: 29px;
@@ -26,15 +27,15 @@
 /* @group Single Chosen */
 .chzn-container-single .chzn-single
 {
-    background-color: @selectChznContainerBackground; /*@selectChznContainerBackground*/
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@selectChznContainerBackground', endColorstr='#eeeeee', GradientType=0 );
+    background-color: @ContentBackground; /*@ContentBackground*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@ContentBackground', endColorstr='#eeeeee', GradientType=0 );*/
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid @selectChznContainerBorder; /*选择之前的样式效果 默认为 #aaaaaa*/
-    -webkit-box-shadow: 0 0 3px @selectChznContainerBackground inset, 0 1px 1px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 0 3px @selectChznContainerBackground inset, 0 1px 1px rgba(0,0,0,0.1);
-    box-shadow: 0 0 3px @selectChznContainerBackground inset, 0 1px 1px rgba(0,0,0,0.1);
+    border: 1px solid @ContentBorder; /*选择之前的样式效果 默认为 #aaaaaa*/
+    -webkit-box-shadow: 0 0 3px @ContentBackground inset, 0 1px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 3px @ContentBackground inset, 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 0 3px @ContentBackground inset, 0 1px 1px rgba(0,0,0,0.1);
     display: block;
     overflow: hidden;
     white-space: nowrap;
@@ -42,13 +43,13 @@
     height: 23px;
     line-height: 24px;
     padding: 0 0 0 8px;
-    color: @selectChznSingleColor;
+    color: @ContentColor;
     text-decoration: none;
 }
 
 .chzn-container-single .chzn-default
 {
-    color: @selectChznSingleDefaultColor;
+    color: @HelperColor;
 }
 
 .chzn-container-single .chzn-single span
@@ -117,7 +118,7 @@
         margin: 1px 0;
         padding: 4px 20px 4px 5px;
         outline: 0;
-        border: 1px solid @selectChznContainerBorder; /*搜索区域的边框颜色 默认#aaa*/
+        border: 1px solid @ContentBorder; /*搜索区域的边框颜色 默认#aaa*/
         font-family: sans-serif;
         font-size: 1em;
     }
@@ -142,8 +143,8 @@
 /* @group Multi Chosen */
 .chzn-container-multi .chzn-choices
 {
-    background-color: @selectChznContainerBackground;
-    border: 1px solid @selectChznContainerBorder; /*多选功能的默认效果#aaa*/
+    background-color: @ContentBackground;
+    border: 1px solid @ContentBorder; /*多选功能的默认效果#aaa*/
     margin: 0;
     padding: 0;
     cursor: text;
@@ -168,7 +169,7 @@
 
         .chzn-container-multi .chzn-choices .search-field input
         {
-            color: @selectChznMultiInputColor;
+            color: @ContentColor;
             background: transparent !important;
             border: 0 !important;
             font-family: sans-serif;
@@ -184,7 +185,7 @@
 
         .chzn-container-multi .chzn-choices .search-field .default
         {
-            color: @selectChznMulitDefaultColor;
+            color: @HelperColor;
         }
 
     .chzn-container-multi .chzn-choices .search-choice
@@ -192,12 +193,12 @@
         -moz-background-clip: padding;
         -webkit-background-clip: padding-box;
         background-clip: padding-box;
-        background-color: @selectChznMultiBackgroud;
-        -webkit-box-shadow: 0 0 2px @selectChznContainerBackground inset, 0 1px 0 rgba(0,0,0,0.05);
-        -moz-box-shadow: 0 0 2px @selectChznContainerBackground inset, 0 1px 0 rgba(0,0,0,0.05);
-        box-shadow: 0 0 2px @selectChznContainerBackground inset, 0 1px 0 rgba(0,0,0,0.05);
+        background-color: @ContentBackground;
+        -webkit-box-shadow: 0 0 2px @ContentBackground inset, 0 1px 0 rgba(0,0,0,0.05);
+        -moz-box-shadow: 0 0 2px @ContentBackground inset, 0 1px 0 rgba(0,0,0,0.05);
+        box-shadow: 0 0 2px @ContentBackground inset, 0 1px 0 rgba(0,0,0,0.05);
         color: #333;
-        border: 1px solid @selectChznContainerBorder; /*多选 已选择项边框#aaaaaa*/
+        border: 1px solid @ContentBorder; /*多选 已选择项边框#aaaaaa*/
         line-height: 13px;
         padding: 3px 20px 3px 5px;
         margin: 3px 0 3px 5px;
@@ -207,15 +208,15 @@
 
         .chzn-container-multi .chzn-choices .search-choice.search-choice-disabled
         {
-            background-color: @selectChznMultiBackgroud;
+            background-color: @ContentBackground;
             color: #666;
-            border: 1px solid @selectChznContainerBorder; /*@selectChznContainerBorder*/
+            border: 1px solid @ContentBorder; /*@ContentBorder*/
             padding-right: 5px;
         }
 
     .chzn-container-multi .chzn-choices .search-choice-focus
     {
-        background: @selectChznMultiChoiceFocusBackground;
+        background: @ContentBackground;
     }
 
     .chzn-container-multi .chzn-choices .search-choice .search-choice-close
@@ -276,14 +277,14 @@
 
 .chzn-container .chzn-results .highlighted
 {
-    background-color: @selectChznResultBackground;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0 );
-    color: @selectChznContainerBackground;
+    background-color: @HoverBackground;
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0 );*/
+    color: @ContentBackground;
 }
 
 .chzn-container .chzn-results li em
 {
-    background: @selectChznContainerBackground;
+    background: @ContentBackground;
     font-style: normal;
 }
 
@@ -294,14 +295,14 @@
 
 .chzn-container .chzn-results .no-results
 {
-    background: @selectChznNoResultBackground;
+    background: @ContentBackground;
     display: list-item;
 }
 
 .chzn-container .chzn-results .group-result
 {
     cursor: default;
-    color: @selectChznResultColor;
+    color: @HelperColor;
     font-weight: bold;
 }
 
@@ -317,7 +318,7 @@
 
 .chzn-container .chzn-results-scroll
 {
-    background: @selectChznContainerBackground;
+    background: @ContentBackground;
     margin: 0 4px;
     position: absolute;
     text-align: center;
@@ -355,17 +356,17 @@
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
     -moz-box-shadow: 0 0 5px rgba(0,0,0,.3);
     box-shadow: 0 0 5px rgba(0,0,0,.3);
-    border: 1px solid @selectChznContainerBorder; /*点击之后文本框的颜色#5897fb*/
+    border: 1px solid @ContentBorder; /*点击之后文本框的颜色#5897fb*/
 }
 
 .chzn-container-active .chzn-single-with-drop
 {
-    border: 1px solid @selectChznContainerBorder; /*点击之后的颜色#aaa*/
+    border: 1px solid @ContentBorder; /*点击之后的颜色#aaa*/
     -webkit-box-shadow: 0 1px 0 #fff inset;
     -moz-box-shadow: 0 1px 0 #fff inset;
-    box-shadow: 0 1px 0 @selectChznContainerBackground inset;
-    background-color: @selectChzeSingleDrop;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='@selectChznContainerBackground', GradientType=0 );
+    box-shadow: 0 1px 0 @ContentBackground inset;
+    background-color: @ContentBackground;
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='@ContentBackground', GradientType=0 );*/
     /*background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eeeeee), color-stop(80%,#ffffff));
 	background-image: -webkit-linear-gradient(top, @selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);
 	background-image: -moz-linear-gradient(top, @selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);
@@ -395,7 +396,7 @@
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
     -moz-box-shadow: 0 0 5px rgba(0,0,0,.3);
     box-shadow: 0 0 5px rgba(0,0,0,.3);
-    border: 1px solid @selectChznContainerBorder; /*多选择框选择之后的颜色 #5897fb;*/
+    border: 1px solid @ContentBorder; /*多选择框选择之后的颜色 #5897fb;*/
 }
 
     .chzn-container-active .chzn-choices .search-field input
@@ -494,7 +495,7 @@
 
     .chzn-rtl .chzn-search input
     {
-        background: @selectChznContainerBackground ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px;
+        background: @ContentBackground ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px;
         /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%,#ffffff));
 		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-linear-gradient(top, @selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom 15%);
 		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -moz-linear-gradient(top,@selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom  15%);
@@ -504,3 +505,40 @@
         direction: rtl;
     }
 /* @end */
+
+
+//#region selectChzn 样式
+/*@selectChznContainerBackground: @ContentBackground; /*所有的背景色*/
+/*@selectChznContainerBorder:@ContentBorder;/*#666666; 所有的边框的颜色*/ 
+
+/*@selectChznSingleColor: @ContentColor; /*单选时候 选中值显示*/
+/*@selectChznSingleDefaultColor:@HelperColor; /*没有默认选中时的提示语颜色*/
+/*@selectChzeSingleDrop:@ContentBackground; /*下拉框展开时 之前选择值的背景颜色*/
+
+/*@selectChznMultiInputColor: @ContentColor;/*@ContentColor;*//*多选框选中之后的颜色*/
+/*@selectChznMulitDefaultColor: @HelperColor;/*多选框没有选中时候的提示语颜色*/
+
+/*@selectChznMultiBackgroud:@ContentBackground; /*#e4e4e4;选中的单个项的背景色*/
+/*@selectChznMultiChoiceFocusBackground: @ContentBackground;/*#d4d4d4单个项的鼠标移入背景色*/
+
+/*@selectChznResultColor: @HelperColor;/*提示语颜色*/
+/*@selectChznResultBackground:@HoverBackground;/* #3875d7鼠标移上之后的背景色*/
+/*@selectChznNoResultBackground:@ContentBackground; /*查询结果的背景色*/
+
+/*@selectChznSingleLinearGradientTop: #ffffff;*/
+/*@selectChznSingleLinearGradientRight: #ff0000;
+@selectChznSingleLinearGradientBottom: #00ff00;
+@selectChznSingleLinearGradientLeft: #0000ff;
+
+@selectChznChoiceLinearGradientTop: #ffffff;
+@selectChznChoiceLinearGradientRight: #ff0000;
+@selectChznChoiceLinearGradientBottom: #00ff00;
+@selectChznChoiceLinearGradientLeft: #0000ff;
+
+@selectChznResultLinearGradientTop: #3875d7;
+@selectChznResultLinearGradientBottom: #2a62bc;
+
+@selectChznSingelDropLinearGradientTop: #eeeeee;
+@selectChznSingelDropLinearGradientBottom: #ffffff;*/
+
+//#endregion
