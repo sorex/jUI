@@ -107,9 +107,16 @@
                     }
                 }
             });
-            //查找选中节点路径
+            //获取选中节点路径
             $("#getNodePath").click(function () {
                 var result = $("#tree").jtree("getNodePath");
+                if (result) {
+                    alert(result);
+                }
+            });
+            //获取最终nodes集合
+            $("#getNodes").click(function () {
+                var result = $("#tree").jtree("getNodes");
                 alert(result);
             });
 
@@ -140,13 +147,16 @@
 	<div id="tab1">
 		<div id="tree"></div>
         <div>
-            <input id="addChildNode" type="button"  value="添加子节点"/>
-            <input id="addSiblingNode" type="button"  value="添加同级节点"/>
-            <input id="deleteNode" type="button"  value="删除节点"/>
-            <input id="editNode" type="button"  value="编辑节点"/>
-            <input id="getParentNode" type="button"  value="遍历父节点"/>
-            <input id="getChildrenNodes" type="button"  value="遍历子节点"/>
-            <input id="getNodePath" type="button"  value="获得节点路径"/>
+            <input style="width:150px;" id="addChildNode" type="button"  value="添加子节点"/>
+            <input style="width:150px;" id="addSiblingNode" type="button"  value="添加同级节点"/>
+            <input style="width:150px;" id="deleteNode" type="button"  value="删除节点"/>
+            <input style="width:150px;" id="editNode" type="button"  value="编辑节点"/>
+        </div>
+        <div>
+            <input style="width:150px;" id="getParentNode" type="button"  value="遍历父节点"/>
+            <input style="width:150px;" id="getChildrenNodes" type="button"  value="遍历子节点"/>
+            <input style="width:150px;" id="getNodePath" type="button"  value="获得节点路径"/>
+            <input style="width:150px;" id="getNodes" type="button"  value="获取最终nodes集合"/>
         </div>
         <div id="showDetail" style="background-color:silver;border:1px solid #F3F3F3;">
         </div>

@@ -498,6 +498,10 @@
                 onClick = o.onClick,
                 e_id = e.attr("id");
 	        var node_id = $("#saveId").text();//选中节点ID
+	        if (node_id == "" || node_id == null) {
+	            alert("未选中节点。");
+	            return false;
+	        }
 	        var parentsId = $("#" + node_id).parents("li");
 	        var result = "~", id;
 	        for (var i = parentsId.length-1; i >=0; i--) {
@@ -505,6 +509,24 @@
 	            result += "/"+id;
 	        }
 	        return result+"/"+node_id;
+	    },
+	    //#endregion
+	    //#region获取最终nodes集合
+	    getNodes: function () {
+	        var
+                self = this,
+                o = this.options,
+                n = o.nodes,
+	            e = $(this.element),
+                onClick = o.onClick,
+                e_id = e.attr("id"),
+                id,
+                name,
+                bgimg,
+                position,
+	            nodes = [],
+                children = [];
+            //调用方法，选取父节点获得子节点解决。
 	    },
         //#endregion
 	    _setOption: function (key, value) {
