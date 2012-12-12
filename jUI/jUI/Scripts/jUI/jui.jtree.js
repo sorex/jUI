@@ -42,10 +42,10 @@
 	        var name, id, image, position;
 	        e.addClass("jui-jtree");
             e.empty();
-            e.append("<span id='saveId' style='display:none;'></span>" +
-                            "<span id='saveName' style='display:none;'></span>" +
-                            "<span id='saveImage' style='display:none;'></span>" +
-                            "<span id='savePosition' style='display:none;'></span>" +
+            e.append("<span id='saveId"+e_id+"' style='display:none;'></span>" +
+                            "<span id='saveName" + e_id + "' style='display:none;'></span>" +
+                            "<span id='saveImage" + e_id + "' style='display:none;'></span>" +
+                            "<span id='savePosition" + e_id + "' style='display:none;'></span>" +
                             "<ul id='" + e_id + "_ul_top'></ul>");//u1
             e.bind("selectstart", function () { return false; });//界面无法选中
 	        //#region生成节点
@@ -142,7 +142,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();
+	        var node_id = $("#saveId" + e_id).text();
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return;
@@ -229,7 +229,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();
+	        var node_id = $("#saveId" + e_id).text();
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return;
@@ -237,11 +237,7 @@
 	        var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
 	        var newUlId = $("#" + node_id).parent("ul").attr("id") + "_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的ulid
 	        var newLi_name = "NewNode";//新增节点的文本
-	        if ($("#" + node_id).parent("ul").parent("li").attr("id") != null) {
-	            var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");
-	        } else {
-	            var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");//新增li节点的id
-	        }
+	        var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");//新增li节点的id
 	        //#region如果末节点为文件夹(父节点)
 	        if (ul_father.children("li").last().children("ul").length > 0) {
 	            if (ul_father.children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
@@ -278,6 +274,7 @@
 	            $("#" + newLi_id).children("a").children("span:eq(0)").css("background-position", "-110px 0px");
 	        }
 	        this.clickNode(newLi_id);// 添加节点点击事件
+	        this.toggleLiCss($("#" + newLi_id).children("span"));
 	        //#endregion
 	    },
         //给节点添加点击事件 str:选中li标签id
@@ -285,7 +282,8 @@
 	        var
                 o = this.options,
 	            e = $(this.element),
-                onClick = o.onClick;
+                onClick = o.onClick,
+	            e_id = e.attr("id");
 
 	        if (onClick != null) {
 	            $("#" + str).children("a").click(function () {
@@ -294,10 +292,10 @@
 	                image = $(this).children("span:eq(0)").css("background-image");
 	                position = $(this).children("span:eq(0)").css("background-position");
 	                onClick({ name: name, id: id, image: image, position: position });
-	                $("#saveId").text(id);
-	                $("#saveName").text(name);
-	                $("#saveImage").text(image);
-	                $("#savePosition").text(position);
+	                $("#saveId" + e_id).text(id);
+	                $("#saveName" + e_id).text(name);
+	                $("#saveImage" + e_id).text(image);
+	                $("#savePosition" + e_id).text(position);
 	            });
 	        }
 	        e.children("ul").find("li").children("a").each(function () {
@@ -350,7 +348,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();
+	        var node_id = $("#saveId" + e_id).text();
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return;
@@ -394,7 +392,7 @@
 	        }
 	        //#endregion
 	        $("#" + node_id).remove();
-	        $("#saveId").text("");
+	        $("#saveId" + e_id).text("");
 	    },
 	    //#endregion
 	    //#region编辑节点
@@ -406,7 +404,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();//选中节点ID
+	        var node_id = $("#saveId"+e_id).text();//选中节点ID
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return;
@@ -440,7 +438,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();//选中节点ID
+	        var node_id = $("#saveId" + e_id).text();//选中节点ID
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return false;
@@ -454,7 +452,7 @@
 	        return objParent;
 	    },
         //选中父节点，返回子节点集合
-	    getChildrenNodes: function () {
+	    getChildrenNodes: function (obj) {
 	        var
                 self = this,
                 o = this.options,
@@ -462,7 +460,8 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();//选中节点ID
+	        var node_id = $("#saveId"+e_id).text();//选中节点ID
+	        //var node_id = obj;//选中节点ID
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return false;
@@ -497,7 +496,7 @@
 	            e = $(this.element),
                 onClick = o.onClick,
                 e_id = e.attr("id");
-	        var node_id = $("#saveId").text();//选中节点ID
+	        var node_id = $("#saveId" + e_id).text();//选中节点ID
 	        if (node_id == "" || node_id == null) {
 	            alert("未选中节点。");
 	            return false;
@@ -515,18 +514,38 @@
 	    getNodes: function () {
 	        var
                 self = this,
-                o = this.options,
-                n = o.nodes,
 	            e = $(this.element),
-                onClick = o.onClick,
-                e_id = e.attr("id"),
-                id,
-                name,
-                bgimg,
-                position,
-	            nodes = [],
-                children = [];
-            //调用方法，选取父节点获得子节点解决。
+                nodes=[],
+                e_id = e.attr("id");
+            //生成子节点集合
+	        var makechildNode = function (obj) {
+	            var id = obj.attr("id");
+	            var name = obj.children("a").children("span:eq(1)").text();
+	            var bgimg = obj.children("a").children("span:eq(0)").css("background-image");
+	            var position = obj.children("a").children("span:eq(0)").css("background-position");
+	            makeParentNode(obj);
+	            return { id: id, name: name, image: bgimg, position: position };
+	        };
+            //生成父节点集合
+	        var makeParentNode = function (obj) {
+	            var id = obj.attr("id");
+	            var name = obj.children("a").children("span:eq(1)").text();
+	            var bgimg = obj.children("a").children("span:eq(0)").css("background-image");
+	            var position = obj.children("a").children("span:eq(0)").css("background-position");
+	            var children = [];
+	            obj.children("ul").children("li").each(function () {
+	                if ($(this).children("ul").children("li").length > 0) {
+	                    children.push(makeParentNode($(this)));
+	                } else {
+	                    children.push(makechildNode($(this)));
+	                }
+	            });
+	            return { id: id, name: name, image: bgimg, position: position, children: children };
+	        };
+	        e.children("ul").children("li").each(function () {
+	            nodes.push(makeParentNode($(this)));
+	        });
+	        return nodes;
 	    },
         //#endregion
 	    _setOption: function (key, value) {

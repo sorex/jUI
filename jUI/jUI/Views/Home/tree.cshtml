@@ -59,6 +59,9 @@
                             { name: "父节点3-2", id: "3-2", image: "../../Images/zTreeStandard.png", position: "-110px -30px" },
                             { name: "父节点3-3", id: "3-3", image: "../../Images/zTreeStandard.png", position: "-110px -30px" }
                         ]
+                    },
+                    {
+                        name: "子节点4", id: "4", image: "../../Images/zTreeStandard.png", position: "-110px -30px"
                     }
                 ],
                 onClick: function (obj) {
@@ -94,7 +97,7 @@
             });
             //遍历父节点,返回子节点集合
             $("#getChildrenNodes").click(function () {
-                var obj = $("#tree").jtree("getChildrenNodes");
+                var obj = $("#tree").jtree("getChildrenNodes", $("#saveId").text());
                 if (obj) {
                     if (obj == "N") {
                         alert("该节点无子节点.");
@@ -119,7 +122,6 @@
                 var result = $("#tree").jtree("getNodes");
                 alert(result);
             });
-
         });
     </script>
 }
