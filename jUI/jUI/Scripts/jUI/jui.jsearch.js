@@ -41,7 +41,7 @@
                   checkbox:多选按钮  { Name: "多选按钮", Id: "btn-checkbox", name: "checkbox-hobby", Type: "checkbox", Value: [{ value: "羽毛球", text: "羽毛球", selected: true }, { value: "篮球", text: "篮球", selected: true }, { value: "乒乓球", text: "乒乓球" }] }
                   selectSingle:单选select { Name: "单选", Id: "txt_State1", Type: "selectSingle", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用", selected: true }] }
 *                 selectMultiple:多选select { Name: "多选", Id: "txt_State", Type: "selectMultiple", Value: [{ value: 0, text: "全部" }, { value: 1, text: "正常" }, { value: 2, text: "停用" }] }
-                  user-defined:用户自定义 { Name: "自定义", Type: "user-defined", Content: "<input  id='txt_content1' name='text' type='text' >" }
+                  custom:用户自定义 { Name: "自定义", Type: "custom", Content: "<input  id='txt_content1' name='text' type='text' >" }
 
             Id:
                 单个item生成之后的ID名称
@@ -59,7 +59,7 @@
                     {} Type为intRange设置为 Brother:{Id: "编号", MaxLength: 长度 };
                        Type为doubleRange和dateRange设置为Brother:{Id: "编号"};
             content:
-                    在Type为 user-defined时 才能设置对自定义内容
+                    在Type为 custom时 才能设置对自定义内容
 
            onSearchButtonClick： //事件返回一个obj
 
@@ -75,13 +75,15 @@
 	    options: {
 	        items:null,
 	        onSearchButtonClick: null
+            
 	    },
 
 	    _create: function () {
 	   
 	        var e = $(this.element);
+	        $(this.element).empty();
 	        o = this.options;
-            
+	    
 	        if (o.items != null) {
 	         
 	            this._showTable();
@@ -174,13 +176,17 @@
 
 	    _onButtonClick: function () {
 	        var self = this;
+	        tag = self.options;
 	        var tagId = this.element.attr("id");/*目标的id*/
 	        var buttonId = tagId + "_btn";
+	  
 	        $("#" + buttonId).click(function () {
-	            if (o.onSearchButtonClick != null) {
-	                o.onSearchButtonClick(self._returnList());
+	            if (tag.onSearchButtonClick != null) {
+	                tag.onSearchButtonClick(self._returnList());
 	            }
-	        });
+	                });
+	        
+	    
 	    },
 
 
@@ -222,6 +228,7 @@
 	        }
 
 	   
+
 	    },
 
 	    _appendLast:function (last) { //添加最后一条数据
@@ -274,7 +281,7 @@
 	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
 	                break;
 
-	            case "user-defined":
+	            case "custom": //custom
 	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[last * 2]["Content"] + "</td><td></td><td></td>");
 	                break;
 
@@ -330,7 +337,7 @@
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
-	            case "user-defined":
+	            case "custom":
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2]["Content"] + "</td>");
 	                break;
 
@@ -376,7 +383,7 @@
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
-	            case "user-defined":
+	            case "custom":
 	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2 + 1]["Content"] + "</td>");
 	                break;
 	        }

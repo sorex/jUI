@@ -88,7 +88,7 @@
 
             $(":checkbox:checked", this.element).each(function () {
                 //if ($(this).is(':checked')) {
-                var tagNextObject = tagObject.next();
+                var tagNextObject = $(this).next();
 
                     tagNextObject.addClass("jui-checkbox-checked");
                     $(this).checked = true;
