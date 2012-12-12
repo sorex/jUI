@@ -86,12 +86,11 @@ items:
 	        if (o.data.length == 0) {
 	            $(this.element).empty().append('<span class="ui-icon ui-icon-alert" style="float: left; margin: 3px 3px 0px 3px;"></span><p>无数据</p>');
 	        } else {
-	            $(this.element).empty().addClass("jui-table");
 	            var tableId = $(this.element).attr("id");
 
                 //生成表框架
 	            $(this.element).append(
-                    "<table id='" + tableId + "_tableSorter' style='width:" + o.width + ";height:" + o.height + ";'>" +
+                    "<table class='jui-table' id='" + tableId + "_tableSorter' style='width:" + o.width + ";height:" + o.height + ";'>" +
                     "<thead class='jui-table-head'><tr></tr></thead><tbody></tbody>" +
                     "</table>" +
                     "<span id='dis_checkedItems' style='display:none;'></span>");
