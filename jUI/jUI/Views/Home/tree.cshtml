@@ -199,7 +199,10 @@
                             { name: "父节点3-3", id: "3-3", image: "../images/zTreeStandard.png", position: "-110px -30px" }
                         ]
                     }
-                ]
+                ],
+                onClick: function (obj) {
+                    $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>"+obj["children"]+"</span>");
+                }
 	        });
 	    });
 &lt;/script&gt;
@@ -255,10 +258,86 @@
 		</div>
 	</div>
 	<div id="eventsTab">
-        无
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onClick</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>点击节点所引发的事件。</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+                    obj:节点对象
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+	                $("#tree").jtree({
+						onClick: function (obj){
+                            $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>"+obj["children"]+"</span>");
+                        }
+					});
+				</pre>
+			</div>
+		</div>
 	</div>
 	<div id="methodsTab">
 		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">addChildNode</span>
+				<span class="description-method-returnType">null</span>
+				<span class="description-method-demo">.jtree("option" , addChildNode , [value])</span>
+			</h3>
+			<div>
+				<p>增加节点。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">deleteNode</span>
+				<span class="description-method-returnType">null</span>
+				<span class="description-method-demo">.jtree("option" , deleteNode , [value])</span>
+			</h3>
+			<div>
+				<p>删除节点。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">editNode</span>
+				<span class="description-method-returnType">null</span>
+				<span class="description-method-demo">.jtree("option" , editNode , [value])</span>
+			</h3>
+			<div>
+				<p>编辑节点。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">getParentNode</span>
+				<span class="description-method-returnType">object</span>
+				<span class="description-method-demo">.jtree("option" , getParentNode , [value])</span>
+			</h3>
+			<div>
+				<p>选中子节点，返回父节点。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">getChildrenNodes</span>
+				<span class="description-method-returnType">object</span>
+				<span class="description-method-demo">.jtree("option" , getChildrenNodes , [value])</span>
+			</h3>
+			<div>
+				<p>选中父节点，返回子节点。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">getNodePath</span>
+				<span class="description-method-returnType">object</span>
+				<span class="description-method-demo">.jtree("option" , getNodePath , [value])</span>
+			</h3>
+			<div>
+				<p>查找选中节点的路径。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">getNodes</span>
+				<span class="description-method-returnType">object</span>
+				<span class="description-method-demo">.jtree("option" , getNodes , [value])</span>
+			</h3>
+			<div>
+				<p>获取最终nodes集合。</p>
+			</div>
 			<h3>
 				<span class="description-method-name">option</span>
 				<span class="description-method-returnType">由optionName定</span>

@@ -40,12 +40,10 @@
 	            str_checked = "jui-jtree-u-cbox-checked",//选中
 	            str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
                 str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
-	        e.find("a").before("<span class='jui-jtree-u-cbox-unChecked'></span>");
+	        e.find("a").prev().addClass("jui-jtree-u-cbox-unChecked");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
-
-	        //#region  对样式的调控
-	        //全选控制
+	        //全选控制 
 	        var controlChildrenClass = function (obj, str) {
 	            obj.removeClass().addClass(str);
 	            obj.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);
@@ -89,11 +87,8 @@
 
 	        }
 	        e.children("ul").find("li").each(function () {
-	            var _t = $(this);
-	            controllChecked(_t);
+	            controllChecked($(this));
 	        });
-	        //#endregion
-
 	    },
 	    //每次选中操作返回选中节点数据的集合
 	    getCheckValue: function () {

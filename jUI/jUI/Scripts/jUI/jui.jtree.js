@@ -54,12 +54,13 @@
                 $("#" + e_id + "_ul_" + str).append(
                     "<li class='jui-jtree-u-li' id='" + e_id + "_li_" + obj["id"] + "'>" +
                     "<span class='jui-jtree-u-switch'></span>" +
+                    "<span style='display:none;'></span>" +
                     "<a title='" + obj["name"] + "' class='jui-jtree-u-a' >" +
                     "<span class='jui-jtree-u-icon' style='background-image:url(" + obj["image"] + ");background-position:" + obj["position"] + ";'></span>" +
                     "<span class='jui-jtree-u-text' >" + obj["name"] +
                     "</span></a></li>");
                 self.clickNode(e_id + "_li_" + obj["id"]);
-            }
+            } 
             //#endregion
             //#region 生成树
             var makeTree = function () {
@@ -81,10 +82,10 @@
                                     makeNode(i.toString()+ j.toString(), n[i]["children"][j]["children"][k]);//u3
                                 }
                             }
-                            $("#" + e_id + "_li_" + n[i]["children"][j]["id"]).children("a").next().children("li").last().children("span").removeClass("jui-jtree-u-switch-cross").addClass("jui-jtree-u-switch-cross-bottom");
-                            $("#" + e_id + "_li_" + n[i]["children"][j]["id"]).children("a").next().children("li").first().children("span").removeClass("jui-jtree-u-switch-cross").addClass("jui-jtree-u-switch-cross-bottom");
+                            $("#" + e_id + "_li_" + n[i]["children"][j]["id"]).children("a").next().children("li").last().children("span:eq(0)").removeClass("jui-jtree-u-switch-cross").addClass("jui-jtree-u-switch-cross-bottom");
+                            $("#" + e_id + "_li_" + n[i]["children"][j]["id"]).children("a").next().children("li").first().children("span:eq(0)").removeClass("jui-jtree-u-switch-cross").addClass("jui-jtree-u-switch-cross-bottom");
                         }
-                        $("#" + e_id + "_li_" + n[i]["id"]).children("a").next().children("li").last().children("span").removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-bottom-close");
+                        $("#" + e_id + "_li_" + n[i]["id"]).children("a").next().children("li").last().children("span:eq(0)").removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-bottom-close");
                     }
                 }                
             }
@@ -93,7 +94,7 @@
 	        //#region 样式的切换
             var
                 dir_All = e.children("ul").find("li").children("a"),//所有含ul的li中的a
-                sw_1 = e.children("ul").children("li").children("span"),//一级switch
+                sw_1 = e.children("ul").children("li").children("span:eq(0)"),//一级switch
                 ul2 = e.children("ul").children("li").children("ul"),//二级ul
                 ul3 = ul2.children("li").children("ul");//三级ul
             sw_1.removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-dircorss-close");
@@ -104,7 +105,7 @@
             ul2.css("display", "none");
             e.children("ul").find("li").each(function () {
                 if ($(this).children("ul").length == 1) {
-                    self.toggleLiCss($(this).children("span"));
+                    self.toggleLiCss($(this).children("span:eq(0)"));
                 }
             });
             e.children("ul").find("li").each(function () {
@@ -129,7 +130,7 @@
                 });
             });
 	        //#endregion
-            e.children("ul").children("li:eq(0)").children("span").removeClass().addClass("jui-jtree-u-switch");
+            e.children("ul").children("li:eq(0)").children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch");
 	    },
 
         //#region增加节点
@@ -150,7 +151,7 @@
 	        //#region选中节点为父节点时
 	        if ($("#" + node_id).children("ul").length > 0) {
 	            var newLi_id , newLi_name;
-	            var lastNodeIcon = $("#" + node_id).children("ul").children("li").last().children("span");
+	            var lastNodeIcon = $("#" + node_id).children("ul").children("li").last().children("span:eq(0)");
 	            //#region如果最后的节点为父节点
 	            if ($("#" + node_id).children("ul").children("li").last().children("ul").length > 0) {	                
 	                if (lastNodeIcon.attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
@@ -170,17 +171,17 @@
 	            }
                 //#endregion
                 //#region 父节点闭合时，添加子节点后，父节点展开
-	            if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch") {
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-open");
-	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-close") {
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
-	            } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
-	            }else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-close") {
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-single-open");
+	            if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch") {
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-open");
+	            } else if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-close") {
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	            } else if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	            } else if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-single-close") {
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-single-open");
 	            }
 	            $("#" + node_id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
-	            $("#" + node_id).children("span").siblings("ul").slideDown("fast");
+	            $("#" + node_id).children("span:eq(0)").siblings("ul").slideDown("fast");
                 //#endregion
 	        }//#endregion
 	        else
@@ -191,13 +192,13 @@
 	                $("#" + node_id).append("<ul class='line' id='" + newUl_id + "'></ul>")
 	            }
 	            //子节点增加子节点,此时子节点变为父节点
-	            if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-cross-bottom") {
+	            if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-cross-bottom") {
 	                //切换图标变更
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-open");
 	                $("#" + node_id).children("ul").removeClass("line");
 	            } else {
 	                //切换图标变更
-	                $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	                $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
 	            }
 	            //文件夹图标变更
 	            $("#" + node_id).children("a").children("span:eq(0)").css("background-position", "-110px -15px");
@@ -207,16 +208,20 @@
 	        newLi_id = $("#" + node_id).children("ul").attr("id") + "_newLi_" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的id
 	        newLi_name = "NewNode";//新增节点的文本内容
 	        if ($("#" + node_id).children("ul").children("li").length == 0) {
-	            this.toggleLiCss($("#" + node_id).children("span"));
+	            this.toggleLiCss($("#" + node_id).children("span:eq(0)"));
 	        }
 	        //添加新节点
 	        $("#" + node_id).children("ul").append(
                 "<li class='jui-jtree-u-li' id='" + newLi_id + "'>" +
                 "<span class='jui-jtree-u-switch-cross-bottom'></span>" +
+                "<span style='display:none;'></span>" +
                 "<a title='" + newLi_name + "' class='jui-jtree-u-a'>" +
                 "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' ></span>" +
                 "<span class='jui-jtree-u-text'>" + newLi_name +
                 "</span></a></li>");
+	        if ($("#" + node_id).children("span:eq(1)").css("display") != "none") {
+	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-cbox-unChecked");
+	        }
 	        this.clickNode(newLi_id);// 添加节点点击事件
             //#endregion
 	    },

@@ -31,7 +31,9 @@
 	<script type="text/javascript">
 	    $(function () {
 	        //默认显示年月日
-	        $("#MyDatetimepicker1").jdatetimepicker();
+	        $("#MyDatetimepicker1").jdatetimepicker({
+                    //value:"2012-12-21"
+	        });
             //仅显示年份
 	        $("#MyDatetimepicker2").jdatetimepicker({
 	            datetimeType: "yyyy"
@@ -46,6 +48,7 @@
 	        });
             //日历总是显示
 	        $("#div8").jdatetimepicker({
+	            //value:"2012-12-21",
 	            display: true//click为点击显示
 	        });
 	        //显示时分秒

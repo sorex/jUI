@@ -76,10 +76,6 @@
 	            }
 	        });
 
-	        //补齐新增列样式
-	        table.children("thead").find("td").css("background", "#094ab2");
-	        table.find("td").css({ "padding-top": "5px", "padding-bottom": "5px" });
-
 	        //if (count > 0) {
 	            //可选项小于全选个数时候，全选按钮不可用
 	            if (count < table.children("tbody").find("tr").length && count>0) {
