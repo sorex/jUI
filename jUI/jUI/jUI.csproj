@@ -184,6 +184,7 @@
       <DependentUpon>jquery.ui.tooltip.less</DependentUpon>
     </Content>
     <Content Include="Content\jUI\css\chosen.css" />
+    <Content Include="Content\jUI\css\jui.jscrollbar.css" />
     <Content Include="Content\jUI\images\chosen-sprite.png" />
     <Content Include="Content\jUI\images\jui-icons-1-094ab2.png" />
     <Content Include="Content\jUI\images\jui-jcheckbox.png" />
@@ -324,6 +325,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jUI\chosen.jquery.js" />
     <Content Include="Scripts\jUI\jiu.jscrollbar.js" />
+    <Content Include="Scripts\jUI\jquery.mousewheel.js" />
     <Content Include="Scripts\jUI\jui.jbutton.js" />
     <Content Include="Scripts\jUI\jui.jcheckbox.js" />
     <Content Include="Scripts\jUI\jui.jcheckTable.js" />
@@ -431,6 +433,8 @@
     <Content Include="Views\Test\tip.cshtml" />
     <Content Include="Views\Test\datetimepicker.cshtml" />
     <Content Include="Views\Standards\ThemeRoller.cshtml" />
+    <Content Include="Views\Home\scrollBar.cshtml" />
+    <Content Include="Views\Home\scrollBarHtml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

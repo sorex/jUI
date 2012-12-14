@@ -186,7 +186,15 @@ namespace jUI.Controllers
 		public ActionResult searchHtml()
 		{
 			return View();
-		}
+        }
+        public ActionResult scrollBar()
+        {
+            return View();
+        }
+        public ActionResult scrollBarHtml()
+        {
+            return View();
+        }
 
 		#endregion
 
