@@ -105,7 +105,7 @@
             ul3.css("display", "none");
             ul2.css("display", "none");
             e.children("ul").find("li").each(function () {
-                if ($(this).children("ul").length == 1) {
+                if ($(this).children("ul").children("li").length > 0) {
                     self.toggleLiCss($(this).children("span:eq(0)"));
                 }
             });
@@ -328,6 +328,7 @@
 	    },
         //切换"+","-"图标 obj为span标签
 	    toggleLiCss: function (obj) {
+	        obj.unbind("click");
 	        obj.bind("click", function () {
 	            //切换各级顶端"+","-"按钮
 	            if ($(this).attr("class") == "jui-jtree-u-switch") {
@@ -451,12 +452,22 @@
 	        var text_html = "<input type='text' style='height:16px;' id='newText' value='" + old_text + "'/>";
 	        
 	        node.children("a").remove();
-	        node.children("span:eq(0)").after(text_html);
+	        var css = $("#" + node_id).children("span:eq(1)").attr("class");
+	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
+	            node.children("span:eq(1)").after(text_html);
+	        } else {
+	            node.children("span:eq(0)").after(text_html);
+	        }
 	        $("#newText").focus();
 	        $("#newText").focusout(function () {
 	            var content = $(this).attr("value");
 	            node.children("input").remove();
 	            node.children("span:eq(0)").after(a_html);
+	            if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
+	                node.children("span:eq(1)").after(a_html);
+	            } else {
+	                node.children("span:eq(0)").after(a_html);
+	            }
 	            node.children("a").attr("title",content);
 	            node.children("a").children("span:eq(1)").text(content);
 	            self.clickNode(node_id);
