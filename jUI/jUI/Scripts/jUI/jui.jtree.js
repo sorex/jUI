@@ -46,6 +46,7 @@
                             "<span id='saveName" + e_id + "' style='display:none;'></span>" +
                             "<span id='saveImage" + e_id + "' style='display:none;'></span>" +
                             "<span id='savePosition" + e_id + "' style='display:none;'></span>" +
+                            "<span id='temp" + e_id + "' style='display:none;'>0</span>" +
                             "<ul id='" + e_id + "_ul_top'></ul>");//u1
             e.bind("selectstart", function () { return false; });//界面无法选中
 	        //#region生成节点
@@ -148,6 +149,7 @@
 	            alert("未选中节点。");
 	            return;
 	        }
+	        var temp = $("#temp" + e_id).text();
 	        //#region选中节点为父节点时
 	        if ($("#" + node_id).children("ul").length > 0) {
 	            var newLi_id , newLi_name;
@@ -205,7 +207,7 @@
 	        }
 	        //#endregion
             //#region 具体添加节点的操作
-	        newLi_id = $("#" + node_id).children("ul").attr("id") + "_newLi_" + ($("#" + node_id).children("ul").children("li").length + 1);//新增节点的id
+	        newLi_id =  "NewLi_" + temp;//新增节点的id
 	        newLi_name = "NewNode";//新增节点的文本内容
 	        if ($("#" + node_id).children("ul").children("li").length == 0) {
 	            this.toggleLiCss($("#" + node_id).children("span:eq(0)"));
@@ -219,10 +221,14 @@
                 "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' ></span>" +
                 "<span class='jui-jtree-u-text'>" + newLi_name +
                 "</span></a></li>");
-	        if ($("#" + node_id).children("span:eq(1)").css("display") != "none") {
+	        var css = $("#" + node_id).children("span:eq(1)").attr("class");
+	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
 	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-cbox-unChecked");
+	            e.jcheckTree("updateCheckedState");//更新选中状态
+	            e.jcheckTree("controllChecked", $("#" + newLi_id));
 	        }
 	        this.clickNode(newLi_id);// 添加节点点击事件
+	        $("#temp" + e_id).text(parseInt(temp)+1);
             //#endregion
 	    },
 	    //添加同级节点
@@ -239,16 +245,17 @@
 	            alert("未选中节点。");
 	            return;
 	        }
+	        var temp = $("#temp" + e_id).text();
 	        var ul_father = $("#" + node_id).parent("ul");//选中li节点的父ul
 	        var newUlId = $("#" + node_id).parent("ul").attr("id") + "_" + ($("#" + node_id).parent("ul").children("li").length + 1);//新增li节点的ulid
 	        var newLi_name = "NewNode";//新增节点的文本
-	        var newLi_id = "NewLi_" + $("#" + node_id).parent("ul").children("li").last().attr("id");//新增li节点的id
+	        var newLi_id = "NewLi_" +temp;//新增li节点的id
 	        //#region如果末节点为文件夹(父节点)
 	        if (ul_father.children("li").last().children("ul").length > 0) {
-	            if (ul_father.children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
-	                ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-close");
-	            } else if (ul_father.children("li").last().children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
-	                ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
+	            if (ul_father.children("li").last().children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                ul_father.children("li").last().children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-close");
+	            } else if (ul_father.children("li").last().children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                ul_father.children("li").last().children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-open");
 	            }
 	            ul_father.children("li").last().children("ul").addClass("line");//ul添加虚线
 	        }
@@ -256,18 +263,19 @@
 	        else
 	        //#region如果末节点为文件(子节点)
 	        {
-	            ul_father.children("li").last().children("span").removeClass().addClass("jui-jtree-u-switch-cross");
+	            ul_father.children("li").last().children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross");
 	        }
-	        if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-close") {
-	            $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch");
-	        } else if ($("#" + node_id).children("span").attr("class") == "jui-jtree-u-switch-single-open") {
-	            $("#" + node_id).children("span").removeClass().addClass("jui-jtree-u-switch-open");
+	        if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-single-close") {
+	            $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch");
+	        } else if ($("#" + node_id).children("span:eq(0)").attr("class") == "jui-jtree-u-switch-single-open") {
+	            $("#" + node_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-open");
 	        }
 	        //#endregion
 	        //#region具体添加操作 
 	        ul_father.append(
             "<li class='jui-jtree-u-li' id='" + newLi_id + "'>" +
             "<span class='jui-jtree-u-switch-cross-bottom'></span>" +
+            "<span style='display:none;'></span>" +
             "<a title='" + newLi_name + "' class='jui-jtree-u-a'>" +
             "<span class='jui-jtree-u-icon' style='background-image:url(../../Images/zTreeStandard.png);background-position:-110px -30px;' ></span>" +
             "<span class='jui-jtree-u-text'>" + newLi_name +
@@ -275,11 +283,17 @@
             "</li>");
 	        if ($("#" + node_id).children("ul").length > 0) {
 	            $("#" + newLi_id).append("<ul id='" + newUlId + "'></ul>");
-	            $("#" + newLi_id).children("span").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	            $("#" + newLi_id).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
 	            $("#" + newLi_id).children("a").children("span:eq(0)").css("background-position", "-110px 0px");
 	        }
 	        this.clickNode(newLi_id);// 添加节点点击事件
-	        this.toggleLiCss($("#" + newLi_id).children("span"));
+	        var css = $("#" + node_id).children("span:eq(1)").attr("class");
+	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
+	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-cbox-unChecked");
+	            e.jcheckTree("controllChecked", $("#" + newLi_id));//点击多选框后更新选中状态
+	            e.jcheckTree("updateCheckedState");//更新选中状态
+	        }
+	        $("#temp" + e_id).text(parseInt(temp) + 1);
 	        //#endregion
 	    },
         //给节点添加点击事件 str:选中li标签id
@@ -360,15 +374,15 @@
 	        }
             //#region 仅留一层父节点时的样式控制
 	        if (node_id == e.children("ul").children("li:eq(0)").attr("id") && e.children("ul").children("li").length > 2) {
-	            e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch");
+	            e.children("ul").children("li:eq(1)").children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch");
 	        }
 	        if (e.children("ul").children("li").length == 2) {
-	            if (e.children("ul").children("li:eq(1)").children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
-	                e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch-single-close");
-	            } else if (e.children("ul").children("li:eq(1)").children("span").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
-	                e.children("ul").children("li:eq(1)").children("span").removeClass().addClass("jui-jtree-u-switch-single-open");                    
+	            if (e.children("ul").children("li:eq(1)").children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                e.children("ul").children("li:eq(1)").children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-single-close");
+	            } else if (e.children("ul").children("li:eq(1)").children("span:eq(0)").attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                e.children("ul").children("li:eq(1)").children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-single-open");
 	            }
-	            e.children("ul").children("li:eq(1)").children("span").click(function () {
+	            e.children("ul").children("li:eq(1)").children("span:eq(0)").click(function () {
 	                if ($(this).attr("class") == "jui-jtree-u-switch-single-close") {
 	                    $(this).removeClass().addClass("jui-jtree-u-switch-single-open");
 	                } else if ($(this).attr("class") == "jui-jtree-u-switch-single-open") {
@@ -379,7 +393,7 @@
 	        //#endregion
 	        //#region删除节点为末尾节点时
 	        if ($("#" + node_id).next().length == 0) {
-	            var prev_li = $("#" + node_id).prev().children("span");
+	            var prev_li = $("#" + node_id).prev().children("span:eq(0)");
 	            if (prev_li.attr("class") == "jui-jtree-u-switch-dircorss-close"){
 	                prev_li.removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
 	            } else if (prev_li.attr("class") == "jui-jtree-u-switch-dircorss-open") {
@@ -395,8 +409,25 @@
 	                prev_li.siblings("ul").removeClass("line");
 	            }
 	        }
+	        //子节点删除完后
+	        if ($("#" + node_id).next().length == 0 && $("#" + node_id).prev().length == 0) {
+	            var switchSpan = $("#" + node_id).parent().parent().children("span:eq(0)");
+	            if (switchSpan.attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                switchSpan.removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	            }
+	            if (switchSpan.attr("class") == "jui-jtree-u-switch-dircorss-open") {
+	                switchSpan.removeClass().addClass("jui-jtree-u-switch-dircorss-close");
+	            }
+	            if (switchSpan.attr("class") == "jui-jtree-u-switch-open") {
+	                switchSpan.removeClass().addClass("jui-jtree-u-switch-close");
+	            }
+	        }
 	        //#endregion
 	        $("#" + node_id).remove();
+	        var css = e.children("ul").children("li:eq(0)").children("span:eq(1)").attr("class");
+	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
+	            e.jcheckTree("updateCheckedState");//更新选中状态
+	        }
 	        $("#saveId" + e_id).text("");
 	    },
 	    //#endregion
