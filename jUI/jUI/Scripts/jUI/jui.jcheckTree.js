@@ -65,12 +65,12 @@
 	    //更新选中状态
 	    updateCheckedState: function () {
 	        var e = $(this.element);
-	        e.children("ul").find("li").has("ul").each(function () {
+	        e.children("ul").find("li").each(function () {
 	            var t2 = $(this);
-	            if (t2.children("ul").children("li").length > 0) {
-	                if (t2.find("span.jui-jtree-u-cbox-unChecked").length == 0) {
+	            if (t2.children("ul").children("li").length >= 0) {
+	                if (t2.find(".jui-jtree-u-cbox-unChecked").length == 0) {
 	                    t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");
-	                } else if (t2.find("span.jui-jtree-u-cbox-checked").length == 0) {
+	                } else if (t2.find(".jui-jtree-u-cbox-checked").length == 0) {
 	                    t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");
 	                } else {
 	                    t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
@@ -104,7 +104,7 @@
 	                controlChildrenClass(t, str_checked);
 	            }
 	            var _count = obj.siblings().length + 1;//同级个数
-	            var checked_span = t.parent().parent().children("li").children("span.jui-jtree-u-cbox-checked").length;//同级选中个数
+	            var checked_span = t.parent().parent().children("li").children(".jui-jtree-u-cbox-checked").length;//同级选中个数
 	            if (_count == checked_span) {
 	                obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");//全部选中样式
 	            }

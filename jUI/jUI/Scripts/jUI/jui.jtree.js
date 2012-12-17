@@ -223,7 +223,7 @@
                 "</span></a></li>");
 	        var css = $("#" + node_id).children("span:eq(1)").attr("class");
 	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
-	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-cbox-unChecked");
+	            $("#" + newLi_id).children("span:eq(1)").addClass(css);
 	            e.jcheckTree("updateCheckedState");//更新选中状态
 	            e.jcheckTree("controllChecked", $("#" + newLi_id));
 	        }
