@@ -3,42 +3,14 @@
 }
 
 @section head{
-    <link href="@Url.Content("~/Content/jUI/css/jui.jdatetimepicker.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/jUI/css/jui.jbutton.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
-    
-	<link href= "@Url.Content("~/Content/jUI/css/chosen.css")" rel="stylesheet" />
 	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
 	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(function () {
             //默认显示年月日
-            $("#txt_datapicker").jdatetimepicker({
-                //datetimeParse: "yyyy-MM-dd"
-                //,//yyyy年MM月dd日(默认),yyyy-MM-dd
-                //datetimeType: "yyyy-MM"
-                //,//yyyy,yyyy-MM,yyyy-MM-dd(默认),hh-mm-ss,hh-mm,hh
-                //value: "1999-10-01",//注:格式XXXX-XX-XX.默认当前时间
-                showToday: true
-                //,//true,fales(默认)
-                //display: true
-            //,//注:仅供div元素调用.true,false(默认)
-                //readonly:true//true,false(默认)
-            });
-            //默认显示年月日
-            $("#txt_datapicker2").jdatetimepicker({
-                //datetimeParse: "yyyy-MM-dd"
-                //,//yyyy年MM月dd日(默认),yyyy-MM-dd
-                //datetimeType: "yyyy-MM"
-                //,//yyyy,yyyy-MM,yyyy-MM-dd(默认),hh-mm-ss,hh-mm,hh
-                //value: "1999-10-01",//注:格式XXXX-XX-XX.默认当前时间
-                showToday: true
-                //,//true,fales(默认)
-                //display: true
-                //,//注:仅供div元素调用.true,false(默认)
-                //readonly:true//true,false(默认)
-            });
+            $("#txt_datapicker").jdatetimepicker({});
         })
     </script>
 }
@@ -59,11 +31,4 @@
 }
 
 <h2>datetimepickerHtml</h2>
-@*<div id="txt_datapicker" > </div>*@
-<table>
-    <tr><td>
-<input type="text" id="txt_datapicker" style="width:50px;" /><input type="text" id="txt_datapicker2" style="width:50px;"  /></td><td>xx
-</td></tr>
-    <tr><td>xx</td><td>xxx</td></tr>
-</table>
-@*<div style="width:40%;height:20%;border:4px solid silver;background-color:yellowgreen;"></div>*@
+<input type="text" id="txt_datapicker" />

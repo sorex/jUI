@@ -37,11 +37,19 @@
                 o = this.options,
 	            e = $(this.element),
                 e_id = e.attr("id");
-	        e.find("a").before("<span class='jui-jtree-u-rbox-unChecked'></span>");
+	        e.find("a").prev().addClass("jui-jtree-u-rbox-unChecked");
 	        var parent_li = e.children("ul").children("li");//顶端li
 	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
-            
-            //控制单选按钮父级与子级菜单间关系
+	        e.children("ul").find("li").each(function () {
+	            self.controllChecked($(this));
+	        });
+	        ////控制单选按钮父级与子级菜单间关系
+	        //self.updateCheckedState();       
+	    },
+	    //更新选中状态
+	    updateCheckedState: function () {
+	        var e = $(this.element);
+	        //控制单选按钮父级与子级菜单间关系
 	        e.children("ul").find("li").each(function () {
 	            var _t = $(this);
 	            _t.children("span:eq(1)").click(function () {
@@ -54,12 +62,17 @@
 	                        _t.children("span:eq(1)").removeClass().addClass("jui-jtree-u-rbox-partChecked");
 	                    }
 	                });
-
 	            });
 	        });
-            
-	    },
 
+	    },
+	    controllChecked: function (obj) {
+	        var
+                self = this;
+	        obj.children("span:eq(1)").click(function () {
+	            self.updateCheckedState();
+	        });
+	    },
 	    //每次选中操作返回选中节点数据的集合
 	    getCheckValue: function () {
 	        var

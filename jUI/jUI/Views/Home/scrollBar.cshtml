@@ -2,8 +2,51 @@
     ViewBag.Title = "scrollBar.cshtml";
 }
 
+<h2>scrollBar</h2>
 @section head{
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jiu.jscrollbar.js")"></script>
+    <link href="~/Content/jUI/css/jui.jscrollbar.css" rel="stylesheet" />
+    <script src="~/Scripts/jUI/jquery.mousewheel.js"></script>
+	<script type="text/javascript">
+	    $(function () {
+	        $("#demoTabs").tabs();
+	        $("#descriptionTabs").tabs();
+	        $("#optionsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#eventsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#methodsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	    });
+	</script>
 
+    
+<script type="text/javascript">
+    $(function () {
+        $("#scrollDiv").jscrollbar({
+            btnDefault: '#bababa'//按钮颜色
+			, btnActive: '#e2e2e2'//按钮点击后颜色
+            , btnHover: '#d4d4d4'//覆盖按钮后颜色
+            , btnBorder: '#666666'//按钮边框颜色 
+
+	        , handleDefault: '#bababa' //滑块背景色
+            , handleActive: '#e2e2e2'//滑块点击后颜色
+			, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+
+			, scrollDefault: '#f3f3f3'//滚动条背景色
+            , scrollBorder: '#000000'//滚动条边框颜色 
+            , scrollWidth: 15//滚动条宽度
+
+            , outDivBorder: '#062f72'//内容层边框颜色
+        });
+    })
+</script>
 }
 
 @section header{
@@ -24,4 +67,344 @@
 }
 
 
-<h2>scrollBar</h2>
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">自定义滚动条</a></li>
+	</ul>
+	<div id="tab1">
+        <div id="scrollDiv">
+	        <div style="width:1200px;height:100px;font-size:3em; background:silver;">
+	        <div style="width:600px;height:100px;font-size:2em; background:silver;float:left;">S</div>
+	        <div style="width:600px;height:100px;font-size:2em; background:silver;float:right;">E</div></div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">2</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">3</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">5</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">6</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">7</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">8</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">9</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">10</div>
+        </div>
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+    <pre class="brush: js; html-script: true;">        
+        &lt;div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv"&gt;
+	        &lt;div class="jui-jscrollbar-scroll-content" style="top: 0px;"&gt;
+                &lt;div style="width:1200px;height:100px;font-size:3em; background:silver;"&gt;
+	            &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:left;"&gt;S&lt;/div&gt;
+	            &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:right;"&gt;E&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;2&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;3&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;5&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;6&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;7&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;8&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;9&lt;/div&gt;
+                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;10&lt;/div&gt;
+	        &lt;/div&gt;	
+        &lt;script type="text/javascript"&gt;
+            $(function () {
+                $("#scrollDiv").jscrollbar({        
+	                btnDefault: '#bababa'//按钮颜色
+			        , btnActive: '#e2e2e2'//按钮点击后颜色
+                    , btnHover: '#d4d4d4'//覆盖按钮后颜色
+                    , btnBorder: '#666666'//按钮边框颜色 
+	                , handleDefault: '#bababa' //滑块背景色
+                    , handleActive: '#e2e2e2'//滑块点击后颜色
+			        , handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+			        , scrollDefault: '#f3f3f3'//滚动条背景色
+                    , scrollBorder: '#000000'//滚动条边框颜色 
+                    , scrollWidth: 15//滚动条宽度
+                    , outDivBorder: '#062f72'//内容层边框颜色
+                });
+            })
+        &lt;/script&gt;
+	</pre>
+	</div>	
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>生成一个样式可控的滚动条</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">btnDefault</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#bababa</span>
+			</h3>
+			<div>
+				<p>默认滚动条箭头按钮的样式</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({btnDefault:'#bababa'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var btnDefault = $("#scrollDiv").jscrollbar( "option", "btnDefault" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","btnDefault","#bababa");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">btnActive</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#e2e2e2</span>
+			</h3>
+			<div>
+				<p>点击滚动条箭头按钮时的样式</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({btnActive:'#e2e2e2'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var btnActive = $("#scrollDiv").jscrollbar( "option", "btnActive" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","btnActive","#e2e2e2");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">btnHover</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#d4d4d4</span>
+			</h3>
+			<div>
+				<p>鼠标覆盖滚动条箭头按钮时的样式</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({btnHover:'#d4d4d4'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var btnHover = $("#scrollDiv").jscrollbar( "option", "btnHover" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","btnHover","#d4d4d4");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">btnBorder</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#666666</span>
+			</h3>
+			<div>
+				<p>滚动条箭头按钮边框样式</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({btnBorder:'#666666'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var btnBorder = $("#scrollDiv").jscrollbar( "option", "btnBorder" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","btnBorder","#666666");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">handleDefault</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#bababa</span>
+			</h3>
+			<div>
+				<p>默认滑块背景色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({handleDefault:'#bababa'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var handleDefault = $("#scrollDiv").jscrollbar( "option", "handleDefault" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","handleDefault","#bababa");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">handleActive</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#e2e2e2</span>
+			</h3>
+			<div>
+				<p>点击滑块时背景色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({handleActive:'#e2e2e2'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var handleActive = $("#scrollDiv").jscrollbar( "option", "handleActive" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","handleActive","#e2e2e2");
+				</pre>
+			</div>            
+			<h3>
+				<span class="description-option-name">handleHover</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#d4d4d4</span>
+			</h3>
+			<div>
+				<p>鼠标移入后滑块的背景色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({handleHover:'#d4d4d4'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var handleHover = $("#scrollDiv").jscrollbar( "option", "handleHover" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","handleHover","#d4d4d4");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">scrollDefault</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#f3f3f3</span>
+			</h3>
+			<div>
+				<p>滚动条背景色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({scrollDefault:'#f3f3f3'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var scrollDefault = $("#scrollDiv").jscrollbar( "option", "scrollDefault" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","scrollDefault","#f3f3f3");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">scrollBorder</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#000000</span>
+			</h3>
+			<div>
+				<p>滚动条边框颜色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({scrollBorder:'#000000'});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var scrollBorder = $("#scrollDiv").jscrollbar( "option", "scrollBorder" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","scrollBorder","#000000");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">scrollWidth</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">15</span>
+			</h3>
+			<div>
+				<p>滚动条边框宽度</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({scrollWidth:15});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var scrollWidth = $("#scrollDiv").jscrollbar( "option", "scrollWidth" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","scrollWidth",15);
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">outDivBorder</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">#062f72</span>
+			</h3>
+			<div>
+				<p>内容层边框颜色</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({outDivBorder:"#062f72"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var outDivBorder = $("#scrollDiv").jscrollbar( "option", "outDivBorder" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","outDivBorder","#062f72");
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+        无
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jscrollbar("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+            &lt;div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv"&gt;
+	            &lt;div class="jui-jscrollbar-scroll-content" style="top: 0px;"&gt;
+                    &lt;div style="width:1200px;height:100px;font-size:3em; background:silver;"&gt;
+	                &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:left;"&gt;S&lt;/div&gt;
+	                &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:right;"&gt;E&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;2&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;3&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;5&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;6&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;7&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;8&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;9&lt;/div&gt;
+                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;10&lt;/div&gt;
+	            &lt;/div&gt;	
+            &lt;div class="jui-jscrollbar-slider-wrap-vertical" style="width: 15px; height: 283px; background-color: rgb(243, 243, 243); border: 1px solid;"&gt;
+                &lt;div class="jui-jscrollbar-slider-top" style="width: 13px; height: 14px; background-color: rgb(192, 192, 192); border: 1px solid rgb(102, 102, 102);"&gt;
+                    &lt;span style="width:15px;height:15px;cursor:pointer;"&gt;&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="jui-jscrollbar-slider-vertical ui-slider ui-widget ui-corner-all" style="margin-top: 58.5px; cursor: default; height: 166px;"&gt;
+                    &lt;div class="ui-slider-range ui-widget-header ui-slider-range-min" style="height: 100%;"&gt;&lt;/div&gt;
+                    &lt;a class="jui-jscrollbar-slider-vhandle" href="#" style="bottom: 100%; background-color: rgb(192, 192, 192); width: 15px; height: 85px; margin-bottom: -42.5px; border: 0px; outline: 0px; background-position: initial initial; background-repeat: initial initial;"&gt;&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="jui-jscrollbar-slider-bottom" style="width: 13px; height: 14px; background-color: rgb(192, 192, 192); border: 1px solid rgb(102, 102, 102);"&gt;
+                    &lt;span style="width:15px;height:15px;cursor:pointer;"&gt;&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+                &lt;div class="jui-jscrollbar-slider-wrap-horizontal" style="height: 15px; width: 283px; background-color: rgb(243, 243, 243); border: 1px solid;"&gt;
+                    &lt;div class="jui-jscrollbar-slider-left" style="width: 14px; height: 13px; background-color: rgb(192, 192, 192); border: 1px solid rgb(102, 102, 102);"&gt;
+                        &lt;span style="width:15px;height:15px;cursor:pointer;"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jui-jscrollbar-slider-horizontal ui-slider ui-widget ui-corner-all" style="margin-left: 48px; cursor: default; width: 187px; height: 15px;"&gt;
+                        &lt;div class="" style="width: 0%; font-size: small;"&gt;&lt;/div&gt;
+                        &lt;a class="ui-corner-all jui-jscrollbar-slider-hhandle" href="#" style="left: 0%; background-color: rgb(192, 192, 192); border: 0px; outline: 0px; z-index: 11; top: 0px; font-size: small; height: 15px; width: 64px; margin-left: -32px;"&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;div class="jui-jscrollbar-slider-right" style="width: 14px; height: 13px; background-color: rgb(192, 192, 192); top: 0px; border: 1px solid rgb(102, 102, 102);"&gt;
+                        &lt;span style="width:15px;height:15px;cursor:pointer;"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+		</pre>
+	</div>
+</div>
+

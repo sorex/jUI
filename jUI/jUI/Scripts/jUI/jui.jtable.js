@@ -209,7 +209,6 @@ items:
 	            $tr.mousedown(function () {
 	                singleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-odd");
 	                doubleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-even");
-	                //$tr.attr("Lock", "false").removeClass("jui-table-click");
 	                $(this).attr("Lock", "true").removeClass().addClass("jui-table-Active");
 	            });
 	        }
@@ -218,7 +217,7 @@ items:
 	    currentData: function () {
 	        var o = this.options;
 	        var checkedRoll="";
-	        var checkedRollId = $(this.element).find(".jui-table-Active").find("td:eq(0)").find("span:eq(1)").text();
+	        var checkedRollId = $(this.element).find(".jui-table-Active").find("td:eq(0)").find("span:eq(0)").text();
 	        for (var i = 0; i < o.data.length; i++) {
 	            if (o.data[i]["ID"] == checkedRollId) {
 	                checkedRoll = o.data[i];

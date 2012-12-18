@@ -43,13 +43,65 @@
                             { name: "父节点3-3", id: "3-3", image: "../images/zTreeStandard.png", position: "-110px -30px" }
                         ]
                     }
-                ]
-            })
-            ;
-
-            //$("#btn_value").click(function () {
-            //    $("#showValue").show().html($("#tree").jcheckTree("option","getCheckValue").length);
-            //});
+                ],
+                onClick: function (obj) {
+                $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>"+obj["children"]+"</span>");
+            }
+            });
+            //添加子节点
+            $("#addChildNode").click(function () {
+                $("#tree").jtree("addChildNode");
+            });
+            //添加同级节点
+            $("#addSiblingNode").click(function () {
+                $("#tree").jtree("addSiblingNode");
+            });
+            //删除节点
+            $("#deleteNode").click(function () {
+                $("#tree").jtree("deleteNode");
+            });
+            //编辑节点
+            $("#editNode").click(function () {
+                $("#tree").jtree("editNode");
+            });
+            //遍历子节点，返回父节点
+            $("#getParentNode").click(function () {
+                var obj = $("#tree").jtree("getParentNode");
+                if (obj) {
+                    if (!obj["id"]) {
+                        alert("该节点无父节点.");
+                    } else {
+                        alert("父节点信息:\nid:" + obj["id"] + ";\nname:" + obj["name"] + ";\nbackgroundImage:" + obj["image"] + ";\nposition:" + obj["position"] + ";")
+                    }
+                }
+            });
+            //遍历父节点,返回子节点集合
+            $("#getChildrenNodes").click(function () {
+                var obj = $("#tree").jtree("getChildrenNodes", $("#saveId").text());
+                if (obj) {
+                    if (obj == "N") {
+                        alert("该节点无子节点.");
+                    } else {
+                        var result = "";
+                        for (var i = 0; i < obj.length; i++) {
+                            result += "第" + (i + 1) + "个子节点信息:\nid:" + obj[i]["id"] + ";\nname:" + obj[i]["name"] + ";\nbackgroundImage:" + obj[i]["image"] + ";\nposition:" + obj[i]["position"] + ";\n\n";
+                        }
+                        alert(result)
+                    }
+                }
+            });
+            //获取选中节点路径
+            $("#getNodePath").click(function () {
+                var result = $("#tree").jtree("getNodePath");
+                if (result) {
+                    alert(result);
+                }
+            });
+            //获取最终nodes集合
+            $("#getNodes").click(function () {
+                var result = $("#tree").jtree("getNodes");
+                alert(result);
+            });
         });
 
        
@@ -73,7 +125,19 @@
 
 <h2>treeHtml</h2>
 <div id="tree"></div>
-<input type="button" id="btn_value" value="点击获取选中项文本" />
-<div id="showValue" style="display:none;">xxxx</div>
+<div>
+<input style="width:150px;" id="addChildNode" type="button"  value="添加子节点"/>
+<input style="width:150px;" id="addSiblingNode" type="button"  value="添加同级节点"/>
+<input style="width:150px;" id="deleteNode" type="button"  value="删除节点"/>
+<input style="width:150px;" id="editNode" type="button"  value="编辑节点"/>
+</div>
+<div>
+<input style="width:150px;" id="getParentNode" type="button"  value="遍历父节点"/>
+<input style="width:150px;" id="getChildrenNodes" type="button"  value="遍历子节点"/>
+<input style="width:150px;" id="getNodePath" type="button"  value="获得节点路径"/>
+<input style="width:150px;" id="getNodes" type="button"  value="获取最终nodes集合"/>
+</div>
+<div id="showDetail" style="background-color:silver;border:1px solid #F3F3F3;">
+</div>
 
 

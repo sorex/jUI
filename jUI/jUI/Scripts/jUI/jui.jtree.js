@@ -227,6 +227,10 @@
 	            e.jcheckTree("updateCheckedState");//更新选中状态
 	            e.jcheckTree("controllChecked", $("#" + newLi_id));
 	        }
+	        if (css == "jui-jtree-u-rbox-unChecked" || css == "jui-jtree-u-rbox-partChecked" || css == "jui-jtree-u-rbox-checked") {
+	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-rbox-unChecked");
+	            e.jradioTree("updateCheckedState");//更新选中状态
+	        }
 	        this.clickNode(newLi_id);// 添加节点点击事件
 	        $("#temp" + e_id).text(parseInt(temp)+1);
             //#endregion
@@ -292,6 +296,10 @@
 	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-cbox-unChecked");
 	            e.jcheckTree("controllChecked", $("#" + newLi_id));//点击多选框后更新选中状态
 	            e.jcheckTree("updateCheckedState");//更新选中状态
+	        }
+	        if (css == "jui-jtree-u-rbox-unChecked" || css == "jui-jtree-u-rbox-partChecked" || css == "jui-jtree-u-rbox-checked") {
+	            $("#" + newLi_id).children("span:eq(1)").addClass("jui-jtree-u-rbox-unChecked");
+	            e.jradioTree("updateCheckedState");//更新选中状态
 	        }
 	        $("#temp" + e_id).text(parseInt(temp) + 1);
 	        //#endregion
@@ -415,6 +423,7 @@
 	            var switchSpan = $("#" + node_id).parent().parent().children("span:eq(0)");
 	            if (switchSpan.attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
 	                switchSpan.removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	                switchSpan.siblings("a").children("span:eq(0)").css("background-position", "-110px 0");
 	            }
 	            if (switchSpan.attr("class") == "jui-jtree-u-switch-dircorss-open") {
 	                switchSpan.removeClass().addClass("jui-jtree-u-switch-dircorss-close");
@@ -428,6 +437,16 @@
 	        var css = e.children("ul").children("li:eq(0)").children("span:eq(1)").attr("class");
 	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
 	            e.jcheckTree("updateCheckedState");//更新选中状态
+	        }
+	        if (css == "jui-jtree-u-rbox-unChecked" || css == "jui-jtree-u-rbox-partChecked" || css == "jui-jtree-u-rbox-checked") {
+	            e.children("ul").find("li").has("ul").each(function () {
+	                var _t = $(this);
+	                if (_t.children("ul").find(".jui-jtree-u-rbox-checked").length > 0) {
+	                    _t.children("span:eq(1)").removeClass().addClass("jui-jtree-u-rbox-partChecked");
+	                } else {
+	                    _t.children("span:eq(1)").removeClass().addClass("jui-jtree-u-rbox-unChecked");
+	                }
+	            });
 	        }
 	        $("#saveId" + e_id).text("");
 	    },
@@ -453,21 +472,23 @@
 	        
 	        node.children("a").remove();
 	        var css = $("#" + node_id).children("span:eq(1)").attr("class");
-	        if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
-	            node.children("span:eq(1)").after(text_html);
-	        } else {
+	        if (!css) {
 	            node.children("span:eq(0)").after(text_html);
+	        } else {
+	            node.children("span:eq(1)").after(text_html);
 	        }
 	        $("#newText").focus();
 	        $("#newText").focusout(function () {
 	            var content = $(this).attr("value");
 	            node.children("input").remove();
 	            node.children("span:eq(0)").after(a_html);
-	            if (css == "jui-jtree-u-cbox-unChecked" || css == "jui-jtree-u-cbox-partChecked2" || css == "jui-jtree-u-cbox-checked") {
-	                node.children("span:eq(1)").after(a_html);
-	            } else {
+	            if (!css) {
 	                node.children("span:eq(0)").after(a_html);
+	            } else {
+	                node.children("span:eq(1)").after(a_html);
 	            }
+	            $("#saveName" + e_id).text(content);
+	            $("#obj_name").text(content);
 	            node.children("a").attr("title",content);
 	            node.children("a").children("span:eq(1)").text(content);
 	            self.clickNode(node_id);
