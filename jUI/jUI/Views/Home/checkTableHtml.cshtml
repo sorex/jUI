@@ -3,79 +3,85 @@
 }
 
 @section head{    
-	<link href="@Url.Content("~/Content/jUI/css/jui.jtable.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/jUI/css/jui.jcheckbox.css")" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTable.js")"></script>
+    <script src="~/Scripts/jUI/jui.jcheckbox.js"></script>
+	<style type="text/css">     
+        .jui-table {
+            border:1px solid #ffffff;
+            width:100%;
+            height:20%;
+        }
+	        .jui-table a {
+                color: #0D0D0D;
+                text-decoration:none;
+	        }
+	        .jui-table a:hover {
+                background-color:transparent;
+	        }
+            /*行样式切换*/
+            /*鼠标覆盖*/
+            .jui-table .jui-table-over{
+                background-color:#e2e2e2;
+            }
+            /*鼠标移出*/
+            .jui-table .jui-table-out{
+                background-color:#f3f3f3;
+            }
+            /*鼠标点击*/
+            .jui-table .jui-table-click{    
+                background-color:#d4d4d4;
+            }
+
+	        .jui-table .jui-table-tr-td {
+	            text-align: left; 
+                vertical-align: top;
+                 height: auto; 
+                 width: auto;
+                 padding:2px 2px 5px 5px;
+            }
+    </style>
     
 	<script type="text/javascript">
-	    //编辑
-	    function ActionEdit(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name)
-	    }
-	    //删除
-	    function ActionDetail(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
-	    //详细
-	    function ActionDelete(id, name, name2) {
-	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-	    }
 	    $(function () {
-	        $("#MyTable1").jtable({
-	            height: '20%', //表高
-	            width: '100%', //表宽
-	            data:
-                    [
-                        { "ID": 1, "Name": "a1", "Name2": "a2", "Name3": "a3", "Name4": "a4", "Name5": "a5" },
-                        { "ID": 2, "Name": "b1", "Name2": "b2", "Name3": "b3", "Name4": "b4", "Name5": "b5" },
-                        { "ID": 3, "Name": "c1", "Name2": "c2", "Name3": "c3", "Name4": "c4", "Name5": "c5" },
-                        { "ID": 4, "Name": "d1", "Name2": "d2", "Name3": "d3", "Name4": "d4", "Name5": "d5" },
-                        { "ID": 5, "Name": "e1", "Name2": "e2", "Name3": "e3", "Name4": "e4", "Name5": "e5" },
-                        { "ID": 6, "Name": "f1", "Name2": "f2", "Name3": "f3", "Name4": "f4", "Name5": "f5" },
-                        { "ID": 7, "Name": "g1", "Name2": "g2", "Name3": "g3", "Name4": "g4", "Name5": "g5" }
-                    ], //数据源
-	            columns:
-                    [
-		                {
-		                    head: "名称1",				                                    //名称
-		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
-		                    maxLength: 5,			                                        //文本最大长度，0不限制
-		                    head_align: "left",                                             //[left], center, right
-		                    v_align: "top",		                                            //[top], middle, bottom
-		                    h_align: "left",		                                            //[left], center, right
-		                    height: "auto",			                                        //150px, 10%
-		                    width: "auto"			                                        //150px, 10%
-		                },
-		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                {
-		                    head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
-		                    maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
-		                }
-                    ]//列名
-	        }).jcheckTable({
-	            field: "名称3"//默认选择项(列名)
-                , checkedItems: ["a3","b3","c3"]//默认选择项(单元格内的值)
-                , count: 0//限制可勾选的个数(0为无限制)
+	        var table = $("#tab");
+	        var $tr = table.children("tbody").find('tr');
+	        var doubleTr = table.children("tbody").find("tr:odd");
+	        var singleTr = table.children("tbody").find("tr:even");
+	        var hoverClassToggle = function (obj) {
+	            obj.mouseover(function () {
+	                if ($(this).attr("Lock") == "false") {
+	                    $(this).removeClass().addClass("jui-table-hover");
+	                }
+	            });
+	            if (obj == singleTr) {
+	                obj.mouseout(function () {
+	                    if ($(this).attr("Lock") == "false") {
+	                        $(this).removeClass().addClass("jui-table-odd");
+	                    }
+	                });
+	            } else if (obj == doubleTr) {
+	                obj.mouseout(function () {
+	                    if ($(this).attr("Lock") == "false") {
+	                        $(this).removeClass().addClass("jui-table-even");
+	                    }
+	                });
+	            }
+	        }
+	        hoverClassToggle(singleTr);
+	        hoverClassToggle(doubleTr);
+	        $tr.mousedown(function () {
+	            singleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-odd");
+	            doubleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-even");
+	            $(this).attr("Lock", "true").removeClass().addClass("jui-table-Active");
 	        });
-	    });
+	        table.find("span").css("cursor", "default");
 
+	        $("#checkboxContent1").jcheckbox();
+	        $("#checkboxContent2").jcheckbox();
+	        $("#checkboxContent3").jcheckbox();
+	        $("#checkboxContent4").jcheckbox();
+	        $("#checkboxContent5").jcheckbox();
+	    });
 	</script>
-    
-    <script type="text/javascript">
-        $(function () {
-            $("#btn_checked").click(function () {
-                if ($("#MyTable1").jcheckTable("checkedValues").length == 0) {
-                    alert("未选中任何行")
-                } else {
-                    alert($("#MyTable1").jcheckTable("checkedValues").join());
-                }
-            });
-        });
-    </script>
 }
 
 @section header{
@@ -94,7 +100,88 @@
 }
 
 <h2>checkTableHtml</h2>
-
-<div id="MyTable1"></div>
-<div id="MyTable2"></div>
-<button id="btn_checked">获取选中项ID</button>
+<div id="MyTable1">
+    <table id="tab" class="jui-table">
+        <thead class="jui-table-head">
+            <tr>
+                <td>
+                <div id="checkboxContent1"><input id="checkbox1" type="checkbox" name="cb"></div>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="名称1">名称1</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="名称2">名称2</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="名称3">名称3</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="操作">操作</span>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="jui-table-odd" lock="false">
+                    <td>
+                    <div id="checkboxContent2"><input id="checkbox2" type="checkbox" name="cb"></div>
+                    </td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>     
+            <tr class="jui-table-even" lock="false">
+                    <td>
+                    <div id="checkboxContent3"><input id="checkbox3" type="checkbox" name="cb"></div>
+                    </td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr> 
+            <tr class="jui-table-odd" lock="false">
+                    <td>
+                    <div id="checkboxContent4"><input id="checkbox4" type="checkbox" name="cb"></div>
+                    </td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>   
+            <tr class="jui-table-even" lock="false">
+                    <td>
+                    <div id="checkboxContent5"><input id="checkbox5" type="checkbox" name="cb"></div>
+                    </td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>   
+        </tbody>
+    </table>
+</div>
