@@ -3,84 +3,79 @@
 }
 
 @section head{
-    <link href="@Url.Content("~/Content/jUI/css/jui.jtable.css")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
-    <script type="text/javascript">
-        //编辑
-        function ActionEdit(id, name, name2) {
-            alert("id:" + id + "\n" + "name:" + name)
+    
+	<style type="text/css">     
+        .jui-table {
+            border:1px solid #ffffff;
+            width:100%;
+            height:20%;
         }
-        //删除
-        function ActionDetail(id, name, name2) {
-            alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-        }
-        //详细
-        function ActionDelete(id, name, name2) {
-            alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
-        }
-        $(function () {
-            $("#MyTable1").jtable({
-                height: '20%', //表高
-                width: '100%', //表宽
-                data:
-                    [
-                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
-                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
-                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
-                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
-                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
-                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
-                    ], //数据源
-                columns:
-                    [
-		                {
-		                    head: "名称名称名称名称",				                    //名称
-		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
-		                    maxLength: 5,			                                        //文本最大长度，0不限制
-		                    head_align: "left",                                             //[left], center, right
-		                    v_align: "top",		                                            //[top], middle, bottom
-		                    h_align: "left",		                                            //[left], center, right
-		                    height: "auto",			                                        //150px, 10%
-		                    width: "auto"			                                        //150px, 10%
-		                    //第一列数据
-		                },
-		                {
-		                    head: "名称1",
-		                    context: "#Name2",
-		                    maxLength: 5,
-		                    head_align: "left",
-		                    v_align: "top",
-		                    h_align: "left",
-		                    height: "auto",
-		                    width: "auto"
-		                    //第二列数据
-		                },
-		                {
-		                    head: "操作",
-		                    context: "<a href='#' onclick=" + "ActionEdit(#ID,'#Name','#Name2')" + ">Edit</a>|<a href='#' onclick=" + "ActionDetail(#ID,'#Name','#Name2')" + ">Detail</a>|<a href='#' onclick=" + "ActionDelete(#ID,'#Name','#Name2')" + ">Delete</a>",
-		                    maxLength: 5,
-		                    head_align: "left",
-		                    v_align: "top",
-		                    h_align: "left",
-		                    height: "auto",
-		                    width: "auto"
-		                    //第三列数据
-		                }
-                    ]//列名
-            });
+	        .jui-table a {
+                text-decoration:none;
+	        }
+	        .jui-table a:hover {
+                background-color:transparent;
+	        }
+            /*行样式切换*/
+            /*鼠标覆盖*/
+            .jui-table .jui-table-over{
+                background-color:#e2e2e2;
+            }
+            /*鼠标移出*/
+            .jui-table .jui-table-out{
+                background-color:#f3f3f3;
+            }
+            /*鼠标点击*/
+            .jui-table .jui-table-click{    
+                background-color:#d4d4d4;
+            }
 
-            $("#_checkdRoll").click(function () {
-                var currentData = $("#MyTable1").jtable("currentData");
-                if (currentData == "") {
-                    alert("未选中行");
-                } else {
-                    alert(currentData["ID"]);
-                }
-            });
+	        .jui-table .jui-table-tr-td {
+	            text-align: left; 
+                vertical-align: top;
+                 height: auto; 
+                 width: auto;
+                 padding:2px 2px 5px 5px;
+            }
+    </style>
+    
+	<script type="text/javascript">
+	    $(function () {
+	        var table = $("#tab");
+	        var $tr = table.children("tbody").find('tr');
+	        var doubleTr = table.children("tbody").find("tr:odd");
+	        var singleTr = table.children("tbody").find("tr:even");
+	        var hoverClassToggle = function (obj) {
+	            obj.mouseover(function () {
+	                if ($(this).attr("Lock") == "false") {
+	                    $(this).removeClass().addClass("jui-table-hover");
+	                }
+	            });
+	            if (obj == singleTr) {
+	                obj.mouseout(function () {
+	                    if ($(this).attr("Lock") == "false") {
+	                        $(this).removeClass().addClass("jui-table-odd");
+	                    }
+	                });
+	            } else if (obj == doubleTr) {
+	                obj.mouseout(function () {
+	                    if ($(this).attr("Lock") == "false") {
+	                        $(this).removeClass().addClass("jui-table-even");
+	                    }
+	                });
+	            }
+	        }
+	        hoverClassToggle(singleTr);
+	        hoverClassToggle(doubleTr);
+	        $tr.mousedown(function () {
+	            singleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-odd");
+	            doubleTr.attr("Lock", "false").removeClass("jui-table-Active").addClass("jui-table-even");
+	            $(this).attr("Lock", "true").removeClass().addClass("jui-table-Active");
+	        });
+	        table.find("span").css("cursor","default");
+	    });
+	</script>
 
-        });
-    </script>
 }
 
 @section header{
@@ -99,6 +94,73 @@
 }
 
 <h2>tableHtml</h2>
-
-<div id="MyTable1"></div>
-<input type="button" value="选中行ID" id="_checkdRoll"/>
+<div id="MyTable1">
+    <table id="tab" class="jui-table">
+        <thead class="jui-table-head">
+            <tr>
+                <td class="jui-table-tr-td">
+                    <span title="名称1">名称1</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="名称2">名称2</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="名称3">名称3</span>
+                </td>
+                <td class="jui-table-tr-td">
+                    <span title="操作">操作</span>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="jui-table-odd" lock="false">
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>     
+            <tr class="jui-table-even" lock="false">
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr> 
+            <tr class="jui-table-odd" lock="false">
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>   
+            <tr class="jui-table-even" lock="false">
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td"><span title="some words">some words</span></td>
+                    <td class="jui-table-tr-td">
+                        <span>
+                            <a href="#" onclick="">Edit</a>|
+                            <a href="#" onclick="">Detail</a>|
+                            <a href="#" onclick="">Delete</a>
+                        </span>
+                    </td>
+                </tr>   
+        </tbody>
+    </table>
+</div>
