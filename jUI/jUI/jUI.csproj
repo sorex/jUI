@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jquery-ui\images\ui-icons_0d0d0d_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_999999_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_da0000_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_e5920b_256x240.png" />
     <Content Include="Content\jquery-ui\less\jquery-ui.min.css">
@@ -185,19 +186,12 @@
     </Content>
     <Content Include="Content\jUI\css\chosen.css" />
     <Content Include="Content\jUI\css\jui.jscrollbar.css" />
-    <Content Include="Content\jUI\images\chosen-sprite.png" />
-    <Content Include="Content\jUI\images\jui-icons-1-094ab2.png" />
-    <Content Include="Content\jUI\images\jui-jcheckbox.png" />
-    <Content Include="Content\jUI\images\jui-jselect-bullet-666666.png" />
-    <Content Include="Content\jUI\images\jui-jselect-carat-s-666666.png" />
-    <Content Include="Content\jUI\images\jui-jheadMenu-carat-s-ffffff.png" />
-    <Content Include="Content\jUI\images\jui-jradio.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-n-a6a6a6.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-n-da0000.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-n-e5920b.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-w-a6a6a6.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-w-da0000.png" />
-    <Content Include="Content\jUI\images\jui-jtip-carat-w-e5920b.png" />
+    <Content Include="Content\jUI\images\jui-icons_094ab2_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_0d0d0d_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_999999_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_da0000_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_e5920b_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_ffffff_78x84.png" />
     <Content Include="Content\jUI\images\jui-logo.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_094ab2_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_ffffff_256x240.png" />
