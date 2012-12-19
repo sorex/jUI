@@ -1,5 +1,15 @@
-﻿.jui-datetimepicker
+﻿/*外层div*/
+.jui-datetimepicker
 {
+	width: 240px;
+	background-color: #f3f3f3;
+	padding: .2em .2em;
+	border: 1px solid #DDD;
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+	position: absolute;
+	float: left;
+	z-index: 100000;
 }
 	/*隐藏无内容的a标签*/
 	.jui-datetimepicker a
@@ -19,23 +29,9 @@
 	text-decoration: none;
 	background-color: #bababa;
 }
-/*外层div*/
-.jui-datetimepicker
-{
-	width: 240px;
-	background-color: #f3f3f3;
-	padding: .2em .2em;
-	border: 1px solid #DDD;
-	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
-	font-size: 0.8em;
-	position: absolute;
-	float: left;
-	z-index: 100000;
-}
 /*头部div中中间div样式*/
 .jui-datetimepicker-dhead
 {
-	margin-left: 2px;
 	padding-bottom: 5px;
 	padding-top: 5px;
 	background-color: #094AB2;
@@ -53,7 +49,6 @@
 {
 	cursor: pointer;
 	display: inline-block;
-	margin-left: 6px;
 	margin-left: 6px;
 }
 /*头部中间日期显示层*/
@@ -110,7 +105,6 @@
 /*星期样式*/
 .jui-datetimepicker-week
 {
-	font-weight: bold;
 	color: Black;
 	outline: none;
 	display: block;

@@ -2,131 +2,393 @@
     ViewBag.Title = "checkTreeHtml";
 }
 
-<h2>checkTreeHtml</h2>
-<script src="~/Scripts/jUI/jui.jtree.js"></script>
-<script src="~/Scripts/jUI/jui.jcheckTree.js"></script>
+@section head{    
+    
+	<style type="text/css">  
+        .jui-jtree-u-cbox-unChecked,.jui-jtree-u-cbox-checked,.jui-jtree-u-cbox-partChecked,
+         .jui-jtree-u-cbox-partChecked2{
+            display:inline-block;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-image:url(../images/zTreeStandard.png);
+            vertical-align: middle;
+            border: 0 none;
+            outline: none;
+            width: 13px;
+            height: 13px;
+            margin: 0 3px 1px 0px;
+            cursor: auto;
 
-    <script type="text/javascript">
-        $(function () {
-            $("#tree").jtree({
-                nodes: [
-                    {
-                        name: "父节点1", id: "1", image: "../Images/zTreeStandard.png", position: "-110px 0", children: [
-                            {
-                                name: "父节点1-1", id: "1-1", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
-                                  { name: "子节点1-1-1", id: "1-1-1", image: "../images/zTreeStandard.png", position: "-110px -30px", },
-                                  { name: "子节点1-1-2", id: "1-1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", },
-                                  { name: "子节点1-1-3", id: "1-1-3", image: "../images/zTreeStandard.png", position: "-110px -30px", }
-                                ]
-                            },
-                            { name: "父节点1-2", id: "1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", }
-                        ]
-                    },
-                    {
-                        name: "父节点2", id: "2", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
-                            {
-                                name: "父节点2-1", id: "2-1", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
-                                    { name: "子节点2-1-1", id: "2-1-1", image: "../images/zTreeStandard.png", position: "-110px -30px", },
-                                    { name: "子节点2-1-2", id: "2-1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", },
-                                    { name: "子节点2-1-3", id: "2-1-3", image: "../images/zTreeStandard.png", position: "-110px -30px", }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        name: "父节点3", id: "3", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
-                            { name: "父节点3-1", id: "3-1", image: "../images/zTreeStandard.png", position: "-110px -30px" },
-                            { name: "父节点3-2", id: "3-2", image: "../images/zTreeStandard.png", position: "-110px -30px" },
-                            { name: "父节点3-3", id: "3-3", image: "../images/zTreeStandard.png", position: "-110px -30px" }
-                        ]
-                    }
-                ],
-                onClick: function (obj) {
-                    $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>" + obj["children"] + "</span>");
-                }
-            }).jcheckTree({});
-            $("#btn_value").click(function () {
-                var v = $("#tree").jcheckTree("getCheckValue");
-                if (v.length == 0) {
-                    alert("无选中节点！");
-                } else {
-                    alert(v.length);
-                }
-            });
+        }
 
-            //添加子节点
-            $("#addChildNode").click(function () {
-                $("#tree").jtree("addChildNode");
-            });
-            //添加同级节点
-            $("#addSiblingNode").click(function () {
-                $("#tree").jtree("addSiblingNode");
-            });
-            //删除节点
-            $("#deleteNode").click(function () {
-                $("#tree").jtree("deleteNode");
-            });
-            //编辑节点
-            $("#editNode").click(function () {
-                $("#tree").jtree("editNode");
-            });
-            //遍历子节点，返回父节点
-            $("#getParentNode").click(function () {
-                var obj = $("#tree").jtree("getParentNode");
-                if (obj) {
-                    if (!obj["id"]) {
-                        alert("该节点无父节点.");
-                    } else {
-                        alert("父节点信息:\nid:" + obj["id"] + ";\nname:" + obj["name"] + ";\nbackgroundImage:" + obj["image"] + ";\nposition:" + obj["position"] + ";")
-                    }
-                }
-            });
-            //遍历父节点,返回子节点集合
-            $("#getChildrenNodes").click(function () {
-                var obj = $("#tree").jtree("getChildrenNodes", $("#saveId").text());
-                if (obj) {
-                    if (obj == "N") {
-                        alert("该节点无子节点.");
-                    } else {
-                        var result = "";
-                        for (var i = 0; i < obj.length; i++) {
-                            result += "第" + (i + 1) + "个子节点信息:\nid:" + obj[i]["id"] + ";\nname:" + obj[i]["name"] + ";\nbackgroundImage:" + obj[i]["image"] + ";\nposition:" + obj[i]["position"] + ";\n\n";
-                        }
-                        alert(result)
-                    }
-                }
-            });
-            //获取选中节点路径
-            $("#getNodePath").click(function () {
-                var result = $("#tree").jtree("getNodePath");
-                if (result) {
-                    alert(result);
-                }
-            });
-            //获取最终nodes集合
-            $("#getNodes").click(function () {
-                var result = $("#tree").jtree("getNodes");
-                alert(result);
-            });
-        });
+        .jui-jtree-u-cbox-unChecked {    
+        background-position: 0 0;
+        }
+        .jui-jtree-u-cbox-unChecked:hover {    
+        background-position: 0 -14px;
+        }
 
+        .jui-jtree-u-cbox-checked { 
+        background-position:-14px  0;
+        }
+        .jui-jtree-u-cbox-checked:hover { 
+        background-position:-14px  -14px;
+        }
+
+        .jui-jtree-u-cbox-partChecked {
+        background-position: 0 -28px;
+        }
+        .jui-jtree-u-cbox-partChecked:hover {
+        background-position: 0 -42px;
+        }
+
+        .jui-jtree-u-cbox-partChecked2 {
+        background-position: -14px -28px;
+        }
+        .jui-jtree-u-cbox-partChecked2:hover {
+        background-position: -14px -42px;
+        }
+        .jui-jtree 
+        {
+            font-size:14px;
+        line-height: 16px !important;
+        }
+        .jui-jtree li ul
+        {    
+            margin: 0;
+            padding: 0 0 0 16px;
+        }
+        .jui-jtree li ul.line
+        {    
+            background: url(../Content/jUI/images/line_conn.gif) 0 0 repeat-y;
+        }
+        .jui-jtree-u1-li {
+            line-height:14px !important;
+            padding: 0 0;
+            margin: 0 0;
+        }
+        .jui-jtree-u-a {
+            padding: 1px 3px 0 0;
+            text-decoration: none;
+            height:17px;
+            margin: 0;
+            display:inline-block;
+            vertical-align: top;
+        }
+        .jui-jtree-u-a:hover {
+            cursor:pointer;
+            background-color:#e2e2e2;
+        }
+        .jui-jtree-u-a:active {
+            background-color:#d4d4d4;
+        }
+        .jui-jtree-u-switch, .jui-jtree-u-icon, .jui-jtree-u-line-b,
+        .jui-jtree-u-icon-file,.jui-jtree-u-switch-cross,.jui-jtree-u-switch-dircorss-close,
+        .jui-jtree-u-switch-dircorss-open,.jui-jtree-u-switch-dircorss-bottom-close,
+        .jui-jtree-u-switch-cross-bottom,.jui-jtree-u-switch-open,.jui-jtree-u-switch-dircorss-open,
+        .jui-jtree-u-switch-dircorss-bottom-open,.jui-jtree-u-icon-open {
+            width:18px;
+            height:18px;          
+            display:inline-block;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-image:url(../images/zTreeStandard.png);
+            vertical-align: top;
+            border: 0 none;
+            cursor: pointer;
+            outline: none;
+        }
+        .jui-jtree-u-switch {
+            background-position: -74px 0;
+            padding-bottom:3px;
+        }
+        .jui-jtree-u-switch-open {
+        background-position: -92px 0;
+            padding-bottom:3px;
+        }
+        .jui-jtree-u-switch-dircorss-open {
+        background-position: -92px -18px;
+        }
+        .jui-jtree-u-switch-dircorss-close {    
+        background-position: -74px -18px;
+        }
+        .jui-jtree-u-switch-dircorss-bottom-close {    
+        background-position: -74px -36px;
+        }
+        .jui-jtree-u-switch-dircorss-bottom-open {
+        background-position: -92px -36px;
+        }
+        .jui-jtree-u-switch-cross {
+        background-position: -56px -18px;  
+            cursor: default;  
+        }
+        .jui-jtree-u-switch-cross-bottom{
+        background-position: -56px -36px;
+            cursor: default;  
+        }
+        .jui-jtree-u-icon {
+            background-position: -110px 0;
+            margin-right:2px;
+        }
+        .jui-jtree-u-icon-open {
+        background-position: -110px -15px;
+            margin-right:2px;
+        }
+        .jui-jtree-u-icon-file {
+            background-position: -110px -30px;
+            margin-right:2px;
+        }
+        .jui-jtree-u-text {    
+            height:16px;
+            padding: 0 0;
+            display:inline-block;
+        }
+	    .jui-jtree-a-clicked {
+	        background-color:#d4d4d4;
+        }
+    </style>
+    
+	<script type="text/javascript">
+	    $(function () {
+	        function toggleLiCss(obj) {
+	            obj.unbind("click");
+	            obj.bind("click", function () {
+	                //切换各级顶端"+","-"按钮
+	                if ($(this).attr("class") == "jui-jtree-u-switch") {
+	                    $(this).removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-open");
+	                } else if ($(this).attr("class") == "jui-jtree-u-switch-open") {
+	                    $(this).removeClass("jui-jtree-u-switch-open").addClass("jui-jtree-u-switch");
+	                }
+	                //切换各级中间"+","-"按钮
+	                if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-close") {
+	                    $(this).removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-open");
+	                } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-open") {
+	                    $(this).removeClass("jui-jtree-u-switch-dircorss-open").addClass("jui-jtree-u-switch-dircorss-close");
+	                }
+	                //切换各级底部"+","-"按钮
+	                if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-close") {
+	                    $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-close").addClass("jui-jtree-u-switch-dircorss-bottom-open");
+	                } else if ($(this).attr("class") == "jui-jtree-u-switch-dircorss-bottom-open") {
+	                    $(this).removeClass("jui-jtree-u-switch-dircorss-bottom-open").addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	                }
+
+	                //切换各级图标开与关按钮 
+	                if ($(this).siblings("a").find("span:eq(0)").css("background-position") == "-110px 0px") {
+	                    $(this).siblings("a").find("span:eq(0)").css("background-position", "-110px -15px");
+	                } else if ($(this).siblings("a").find("span:eq(0)").css("background-position") == "-110px -15px") {
+	                    $(this).siblings("a").find("span:eq(0)").css("background-position", "-110px 0px");
+	                }
+	                $(this).siblings("ul").slideToggle("fast");
+	            });
+	        }
+            
+	        //每次选中操作返回选中节点数据的集合
+	        function getCheckValue() {
+	            var
+                    list = [],
+                    self = this,
+                    o = this.options,
+                    e = $(this.element),
+                    str_checked = "jui-jtree-u-cbox-checked";//选中
+	            e.children("ul").find("li").each(function () {
+	                var _t = $(this);
+	                if ($(this).children("span:eq(1)").attr("class") == str_checked) {
+	                    list.push($(this).children("a").children("span:eq(1)").html());
+	                }
+	            });
+
+	            return list;
+	        }
+	        //更新选中状态
+	        function updateCheckedState() {
+	            var e = $(this.element);
+	            e.children("ul").find("li").each(function () {
+	                var t2 = $(this);
+	                if (t2.children("ul").children("li").length >= 0) {
+	                    if (t2.find(".jui-jtree-u-cbox-unChecked").length == 0) {
+	                        t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");
+	                    } else if (t2.find(".jui-jtree-u-cbox-checked").length == 0) {
+	                        t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");
+	                    } else {
+	                        t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");
+	                    }
+	                } else {
+	                    t2.children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");
+	                }
+	            });
+	        }
+	        //子项选中，影响父项选中
+	        function controllChecked(obj) {
+	            var
+                    self = this,
+                    o = this.options,
+                    e = $(this.element),
+                    e_id = e.attr("id");
+	            str_checked = "jui-jtree-u-cbox-checked",//选中
+                str_unChecked = "jui-jtree-u-cbox-unChecked",//未选中
+                str_checkedPart = "jui-jtree-u-cbox-partChecked2";//部分选中
+	            //全选控制 
+	            var controlChildrenClass = function (obj, str) {
+	                obj.removeClass().addClass(str);
+	                obj.siblings("ul").find("li").find("span:eq(1)").removeClass().addClass(str);
+	            }
+
+	            obj.children("span:eq(1)").click(function () {
+	                var t = $(this);
+	                if (t.attr("class") == str_checked || t.attr("class") == str_checkedPart) {
+	                    controlChildrenClass(t, str_unChecked);
+	                } else if (t.attr("class") == str_unChecked) {
+	                    controlChildrenClass(t, str_checked);
+	                }
+	                var _count = obj.siblings().length + 1;//同级个数
+	                var checked_span = t.parent().parent().children("li").children(".jui-jtree-u-cbox-checked").length;//同级选中个数
+	                if (_count == checked_span) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-checked");//全部选中样式
+	                }
+	                if (_count > checked_span) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-partChecked2");//部分选中样式
+	                }
+	                if (checked_span == 0) {
+	                    obj.parents("li").children("span:eq(1)").removeClass().addClass("jui-jtree-u-cbox-unChecked");//未选中样式
+	                }
+	                self.updateCheckedState();
+	            });
+
+	        }
+
+            //#regionTree
+	        var
+                e = $(".jui-jtree"),
+                dir_All = e.children("ul").find("li").children("a"),//所有含ul的li中的a
+                sw_1 = e.children("ul").children("li").children("span:eq(0)"),//一级switch
+                ul2 = e.children("ul").children("li").children("ul"),//二级ul
+                ul3 = ul2.children("li").children("ul");//三级ul
+	        sw_1.removeClass("jui-jtree-u-switch").addClass("jui-jtree-u-switch-dircorss-close");
+	        sw_1.first().removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch");
+	        sw_1.last().removeClass("jui-jtree-u-switch-dircorss-close").addClass("jui-jtree-u-switch-dircorss-bottom-close");
+
+	        ul3.css("display", "none");
+	        ul2.css("display", "none");
+	        e.children("ul").find("li").each(function () {
+	            if ($(this).children("ul").children("li").length > 0) {
+	                toggleLiCss($(this).children("span:eq(0)"));
+	            }
+	        });
+	        e.children("ul").find("li").each(function () {
+	            if ($(this).children("ul").length == 0) {
+	                $(this).children("a").children("span:eq(0)").css("background-position", "-110px -30px");
+	                if ($(this).nextAll().length == 0) {
+	                    $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross-bottom");
+	                } else {
+	                    $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-cross");
+	                }
+	            } else {
+	                if ($(this).nextAll().length == 0) {
+	                    $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-bottom-close");
+	                } else {
+	                    $(this).children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch-dircorss-close");
+	                }
+	            }
+	            var t = $(this).children("a");
+	            t.click(function () {
+	                e.children("ul").find("a").removeClass("jui-jtree-a-clicked");
+	                t.addClass("jui-jtree-a-clicked");
+	            });
+	        });
+	        e.children("ul").children("li:eq(0)").children("span:eq(0)").removeClass().addClass("jui-jtree-u-switch");
+	        //#endregion
+
+	        //#region CheckTree
+	        e.find("a").prev().addClass("jui-jtree-u-cbox-unChecked");
+	        var parent_li = e.children("ul").children("li");//顶端li
+
+	        var children_li = parent_li.children("ul").find("li").has("ul");//次级li
+	        e.children("ul").find("li").each(function () {
+	            controllChecked($(this));
+	        });
+            //#endregion
+	    });
     </script>
+}
 
+@section header{
+}
 
-		<div id="tree"></div>
-        <div>
-            <input style="width:150px;" id="addChildNode" type="button"  value="添加子节点"/>
-            <input style="width:150px;" id="addSiblingNode" type="button"  value="添加同级节点"/>
-            <input style="width:150px;" id="deleteNode" type="button"  value="删除节点"/>
-            <input style="width:150px;" id="editNode" type="button"  value="编辑节点"/>
-        </div>
-        <div>
-            <input style="width:150px;" id="getParentNode" type="button"  value="遍历父节点"/>
-            <input style="width:150px;" id="getChildrenNodes" type="button"  value="遍历子节点"/>
-            <input style="width:150px;" id="getNodePath" type="button"  value="获得节点路径"/>
-            <input style="width:150px;" id="getNodes" type="button"  value="获取最终nodes集合"/>
-        </div>
-        <input id="btn_value" value="获得选中节点个数" type="button" />
-        <br />
-        <div id="showDetail" style="background-color:silver;border:1px solid #F3F3F3;">
-        </div>
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+<h2>checkTreeHtml</h2>
+<div id="tree" class="jui-jtree">
+    <ul id="tree_ul_top">
+        <li class="jui-jtree-u-li">
+            <span class="jui-jtree-u-switch-open"></span><span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span><a title="父节点1" class="jui-jtree-u-a"><span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/Images/zTreeStandard.png); background-position: -110px -15px;"></span><span class="jui-jtree-u-text">父节点1</span></a>
+            <ul class="line" style="">
+                <li class="jui-jtree-u-li"><span class="jui-jtree-u-switch-dircorss-close"></span><span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span><a title="父节点1-1" class="jui-jtree-u-a"><span class="jui-jtree-u-icon" style="background-image:url(../images/zTreeStandard.png);background-position:-110px 0;"></span><span class="jui-jtree-u-text">父节点1-1</span></a>
+                    <ul class="line" style="display: none;">
+                        <li class="jui-jtree-u-li">
+                            <span class="jui-jtree-u-switch-cross"></span>
+                            <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                            <a title="子节点1-1-1" class="jui-jtree-u-a">
+                                <span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                                <span class="jui-jtree-u-text">子节点1-1-1</span>
+                            </a>
+                        </li>
+                        <li class="jui-jtree-u-li">
+                            <span class="jui-jtree-u-switch-cross"></span>
+                            <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                            <a title="子节点1-1-2" class="jui-jtree-u-a"><span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                                <span class="jui-jtree-u-text">子节点1-1-2</span>
+                            </a>
+                        </li>
+                        <li class="jui-jtree-u-li">
+                            <span class="jui-jtree-u-switch-cross-bottom"></span>
+                            <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                            <a title="子节点1-1-3" class="jui-jtree-u-a">
+                                <span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                                <span class="jui-jtree-u-text">子节点1-1-3</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="jui-jtree-u-li"><span class="jui-jtree-u-switch-cross-bottom"></span><span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span><a title="父节点1-2" class="jui-jtree-u-a"><span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span><span class="jui-jtree-u-text">父节点1-2</span></a></li></ul>
+        </li>
+        <li class="jui-jtree-u-li"><span class="jui-jtree-u-switch-dircorss-bottom-open"></span><span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span><a title="父节点3" class="jui-jtree-u-a"><span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -15px;"></span><span class="jui-jtree-u-text">父节点3</span></a>
+            <ul class="" id="tree_ul_2" style="">
+                <li class="jui-jtree-u-li">
+                    <span class="jui-jtree-u-switch-cross"></span>
+                    <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                    <a title="父节点3-1" class="jui-jtree-u-a">
+                        <span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                        <span class="jui-jtree-u-text">父节点3-1</span>
+                    </a>
+                </li>
+                <li class="jui-jtree-u-li">
+                    <span class="jui-jtree-u-switch-cross"></span>
+                    <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                    <a title="父节点3-2" class="jui-jtree-u-a">
+                        <span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                        <span class="jui-jtree-u-text">父节点3-2</span>
+                    </a>
+                </li>
+                <li class="jui-jtree-u-li">
+                    <span class="jui-jtree-u-switch-cross-bottom"></span>
+                    <span style="display:none;" class="jui-jtree-u-cbox-unChecked"></span>
+                    <a title="父节点3-3" class="jui-jtree-u-a">
+                        <span class="jui-jtree-u-icon" style="background-image: url(http://localhost:5642/images/zTreeStandard.png); background-position: -110px -30px;"></span>
+                        <span class="jui-jtree-u-text">父节点3-3</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

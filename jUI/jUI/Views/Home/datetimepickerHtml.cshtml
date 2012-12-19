@@ -2,17 +2,181 @@
     ViewBag.Title = "datetimepickerHtml";
 }
 
-@section head{
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
-	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
-	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+@section head{    
+<style type="text/css"> 
+/*外层div*/
+.jui-datetimepicker
+{
+	width: 240px;
+	background-color: #f3f3f3;
+	padding: .2em .2em;
+	border: 1px solid #DDD;
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+	position: absolute;
+	float: left;
+	z-index: 100000;
+}
+/*隐藏无内容的a标签*/
+.jui-datetimepicker a
+{
+	padding: 0px;
+}
+/*当前日期高亮*/
+.jui-datetimepicker-now
+{
+	border: 1px solid #bababa;
+	font-weight: bold;
+	color: #094ab2;
+	outline: none;
+	display: block;
+	/*padding: .2em;*/
+	margin: .2em;
+	text-decoration: none;
+	background-color: #bababa;
+}
+/*头部div中中间div样式*/
+.jui-datetimepicker-dhead
+{
+	padding-bottom: 5px;
+	padding-top: 5px;
+	background-color: #094AB2;
+}
+/*左按钮*/
+.jui-datetimepicker-prev
+{
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 6px;
+	margin-left: 6px;
+}
+/*右按钮*/
+.jui-datetimepicker-next
+{
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 6px;
+}
+/*头部中间日期显示层*/
+.jui-datetimepicker-headcenter
+{
+	display: inline-block;
+	width: 180px;
+	color: white;
+	text-align: center;
+}
+/*点击选中项 */
+.jui-datetimepicker .jui-datetimepicker-active
+{
+	border: 1px solid #062f72;
+	background-color: #062f72;
+	font-weight: bold;
+	color: #ffffff;
+	outline: none;
+	display: block;
+	text-decoration: none;
+}
+/*表格内容样式*/
+.jui-datetimepicker-table-tr-a
+{
+	border: 1px solid #bababa;
+	background-color: #ffffff;
+	font-weight: bold;
+	color: #094ab2;
+	outline: none;
+	display: block;
+	margin: .2em;
+	text-decoration: none;
+}
+/*鼠标移动到单元格上*/
+.jui-datetimepicker-table tr a:hover
+{
+	border: 1px solid #062f72;
+	background-color: #073d92;
+	font-weight: bold;
+	color: #ffffff;
+	outline: none;
+}
+/*内容表格样式*/
+.jui-datetimepicker-table
+{
+	width: 240px;
+	margin-top: 5px;
+}
+/*表格内容居中*/
+.jui-datetimepicker-table tr
+{
+	text-align: center;
+}
+/*星期样式*/
+.jui-datetimepicker-week
+{
+	color: Black;
+	outline: none;
+	display: block;
+	padding: .2em;
+	font-weight: bolder;
+}
+/*时分秒样式*/
+.jui-datetimepicker-hms
+{
+	font-size: 80%;
+}
 
-    <script type="text/javascript">
-        $(function () {
-            //默认显示年月日
-            $("#txt_datapicker").jdatetimepicker({});
-        })
-    </script>
+.jui-datetimepicker-hms dl dt
+{
+	height: 25px;
+	margin-bottom: -25px;
+}
+
+.jui-datetimepicker-hms dl dd
+{
+	margin: 0 10px 10px 65px;
+}
+
+.jui-datetimepicker-hms dl
+{
+	text-align: left;
+}
+
+.jui-datetimepicker-slider
+{
+	position: relative;
+	text-align: left;
+	height: .8em;
+	font-size: 1em;
+	border: 1px solid #DDD;
+	background: #FFF 50% top repeat-x;
+	color: #333;
+}
+
+.jui-datetimepicker-handle
+{
+	top: -.3em;
+	margin-left: -.6em;
+	border: 1px solid #CCC;
+	background: #F6F6F6 50% 50% repeat-x;
+	font-weight: bold;
+	color: #1C94C4;
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor: default;
+}
+.jui-datetimepicker-focus, .jui-datetimepicker-handle:hover, .jui-datetimepicker-butNow:hover, .jui-datetimepicker-butDone:hover
+{
+	border: 1px solid #FBCB09;
+	background: #FDF5CE;
+	font-weight: bold;
+	color: #C77405;
+}
+</style>
+<script type="text/javascript">
+    $(function () {
+
+    });
+</script>
 }
 
 @section header{
@@ -31,4 +195,139 @@
 }
 
 <h2>datetimepickerHtml</h2>
-<input type="text" id="txt_datapicker" />
+<div style="display:inline-block;">
+    <input type="text" id="MyDatetimepicker1">
+    <div id="_MyDatetimepicker1_outDiv" class="jui-datetimepicker" style="display: block;">
+        <div id="_MyDatetimepicker1_headDiv" class="jui-datetimepicker-dhead">
+            <a id="_MyDatetimepicker1_prev" title="上一页" class="jui-datetimepicker-prev">
+                <span class="ui-icon ui-icon-circle-triangle-w">&nbsp;</span>
+            </a>
+            <div id="_MyDatetimepicker1_yearDiv" class="jui-datetimepicker-headcenter">
+                <div id="_year_MyDatetimepicker1" style="display:inline-block;">
+                    <input type="button" value="2012" id="_MyDatetimepicker1_btn_y">
+                    <span style="display: inline-block;">年</span>
+                </div>
+                <div id="_month_MyDatetimepicker1" style="display:inline-block;">
+                    <input type="button" value="12" id="_MyDatetimepicker1_btn_m">
+                    <span style="display: inline-block;">月</span>
+                </div>
+            </div>
+            <a id="_MyDatetimepicker1_next" title="下一页" class="jui-datetimepicker-next">
+                <span class="ui-icon ui-icon-circle-triangle-e">&nbsp;</span>
+            </a>
+        </div>
+        <table id="_MyDatetimepicker1_tb" class="jui-datetimepicker-table">
+            <tbody>
+                <tr>
+                    <td><span class="jui-datetimepicker-week" title="星期日">日</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期一">一</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期二">二</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期三">三</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期四">四</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期五">五</span></td>
+                    <td><span class="jui-datetimepicker-week" title="星期六">六</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"></a></td>
+                    <td><a href="#"></a></td>
+                    <td><a href="#"></a></td>
+                    <td><a href="#"></a></td>
+                    <td><a href="#"></a></td>
+                    <td><a href="#"></a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">1</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">2</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">3</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">4</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">5</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">6</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">7</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">8</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">9</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">10</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">11</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">12</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">13</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">14</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">15</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">16</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">17</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">18</a></td>
+                    <td><a href="#" class="jui-datetimepicker-now">19</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">20</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">21</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">22</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">23</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">24</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">25</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">26</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">27</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">28</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">29</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">30</a></td>
+                    <td><a href="#" class="jui-datetimepicker-table-tr-a">31</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="margin-top:240px;">
+    <input type="text" id="MyDatetimepicker9">
+    <div id="_MyDatetimepicker9_outDiv" class="jui-datetimepicker" style="display: block; padding: 0px 15px;">
+        <table style="width:100%;" id="tab__MyDatetimepicker9">
+            <tbody>
+                <tr>
+                    <td style="padding-top: 4px; padding-bottom: 4px;"></td>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">
+                        <span style="padding-left: 4px; padding-right: 4px;">00</span>时
+                        <span style="padding-left: 4px; padding-right: 4px;">00</span>分
+                        <span style="padding-left: 4px; padding-right: 4px;">00</span>秒
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">时:</td>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">
+                        <div id="_MyDatetimepicker9_slider_h" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                            <div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: 0%;"></div>
+                            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">分:</td>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">
+                        <div id="_MyDatetimepicker9_slider_m" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                            <div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: 0%;"></div>
+                            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">秒:</td>
+                    <td style="padding-top: 4px; padding-bottom: 4px;">
+                        <div id="_MyDatetimepicker9_slider_s" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                            <div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: 0%;"></div>
+                            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="height:30px;">
+            <div style="float:left;">
+                <input type="button" value="现在" id="slider_now"></div>
+            <div style="float:right;">
+                <input type="button" value="完成" id="slider_ok"></div>
+        </div>
+    </div>
+</div>

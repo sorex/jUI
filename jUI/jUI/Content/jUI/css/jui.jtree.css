@@ -10,9 +10,9 @@ line-height: 16px !important;
 }
 .jui-jtree li ul.line
 {    
-    background: url(../images/line_conn.gif) 0 0 repeat-y;
+    background: url(../Content/jUI/images/line_conn.gif) 0 0 repeat-y;
 }
-.jui-jtree-u1-li {
+.jui-jtree-u-li {
     line-height:14px !important;
     padding: 0 0;
     margin: 0 0;
@@ -48,17 +48,13 @@ line-height: 16px !important;
     border: 0 none;
     cursor: pointer;
     outline: none;
-    /*margin-bottom:2px;*/
 }
 .jui-jtree-u-switch {
     background-position: -74px 0;
-    padding-bottom:3px;
-    /*vertical-align: bottom;*/
 }
 .jui-jtree-u-switch-open {
 background-position: -92px 0;
     padding-bottom:3px;
-    /*vertical-align: bottom;*/
 }
 .jui-jtree-u-switch-dircorss-open {
 background-position: -92px -18px;
@@ -92,17 +88,9 @@ background-position: -110px -15px;
     background-position: -110px -30px;
     margin-right:2px;
 }
-.jui-jtree-u-line-b {
-    background-color:green;  
-}
-.jui-jtree-u-line-v {
-    background-color:blue;  
-}
-.jui-jtree-u-line-h {
-    background-color:black;  
-}
 .jui-jtree-u-text {    
     height:16px;
     padding: 0 0;
     display:inline-block;
+	vertical-align:bottom;
 }

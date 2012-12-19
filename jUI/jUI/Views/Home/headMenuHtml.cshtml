@@ -3,73 +3,183 @@
 }
 
 @section head{
-   @* <link href="@Url.Content("~/Content/jUI/css/jui.jheadMenu.css")" rel="stylesheet" type="text/css" />*@
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jheadMenu.js")"></script>
+    
+<style type="text/css">  
+    
+        .jui-headMenu {
+            height: 40px;
+            background-color: #094ab2;
+            white-space: nowrap; /*禁止文字自动换行*/
+            position: relative;
+            display: block;
+        }
 
-	<script type="text/javascript">
-	    $(function () {
+            .jui-headMenu .jui-headMenu-solid {
+                display: block;
+                height:10px;
+                width:auto;
+                border-left: 0 none;
+                border-right: 0 none;
+                padding:10px 15px 0px 15px;
+                cursor: default;
+            }
 
+            .jui-headMenu a {
+                text-decoration: none;
+            }
 
-	        $("#MyHeadMenu1").jheadMenu({
-	            data: [
-                    {
-                        name: "创建", image: "../../Images/headMenuTestImage.png", position: "0px 0px", line: true,
-                        children: [
-                            { name: "文件夹",line: true },
-                            { name: "Word 文档"},
-                            { name: "Excel 工作薄Excel" }
-                        ]
-                    }
-                    , { name: "上载", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" }
-                    , { name: "打开", image: "" }
-                    , {
-                        name: "", image: "",
-                        children: [
-                            { name: "重命名"}
-                            , { name: "删除" }
-                            , { name: "移致", line: true }
-                            , { name: "属性"}
-                        ]
-                    }
-                    , {
-                        name: "清除选定内容", image: ""
-                    }]
-                , onItemClick: function (id, name) {
-                    //alert("id:"+id+",name:"+name);
+                .jui-headMenu a:hover {
+                    background-color: #073d92;
                 }
-	        });
+
+            .jui-headMenu .jui-headMenu-ju {
+                float: left;
+                height: 40px;
+            }
+            .jui-headMenu .jui-headMenu-clicked {
+                background-color:#062f72 !important;
+            }
+                .jui-headMenu .jui-headMenu-ju > li {
+                    height: 40px;
+                    position:relative;
+                    float: left;
+                    list-style: none;
+                    cursor: pointer;
+                }
+                .jui-headMenu .jui-headMenu-ju_li {
+                    padding-right: 20px;
+                }
+
+                    .jui-headMenu .jui-headMenu-ju > li > a {
+                        margin-right: 5px;
+                    }
+
+                    .jui-headMenu .jui-headMenu-ju > li:hover {
+                        background-color: #073d92 ;
+                    }
 
 
-	        //$("#MyHeadMenu2").jheadMenu({
-	        //    data: [
-            //        {
-            //            name: "创建", id: "A1", position: "0px 0px", image: "../../Images/headMenuTestImage.png", line: true,
-            //            children: [
-            //                { name: "文件夹", id: "A21", line: true },
-            //                { name: "Word 文档", id: "A22" },
-            //                { name: "Excel 工作薄", id: "A23" }
-            //            ]
-            //        },
-            //        { name: "上载", id: "B1", position: "-54px 0px", image: "../../Images/headMenuTestImage.png" },
-            //        { name: "打开", id: "C1", image: "" },
-            //        {
-            //            name: "管理", id: "G1", image: "",
-            //            children: [
-            //                {name: "重命名", id: "B21" },
-            //                {name: "删除", id: "B22" },
-            //                {name: "移致", id: "B23", line: true },
-            //                { name: "属性", id: "B24" }
-            //            ]
-            //        },
-            //        { name: "清除选定内容", id: "F1", image: "" }
-	        //    ],
-	        //    onItemClick: function (id,name) {
-	        //        alert("id:" + id + ",name:" + name);
-            //    }
-	        //});
-	    });
-	</script>
+            .jui-headMenu .jui-headMenu-lass {
+                vertical-align: middle;
+                color: #fff;
+                font-size: 14px;
+                position: relative;
+                padding-left: 4px;
+            }
 
+            .jui-headMenu .jui-headMenu-lass_endicon {
+                display: inline-block;
+                position: relative;
+                top: 3px;
+            }
+
+            .jui-headMenu .jui-headMenu-u1 {
+                width:auto;
+                padding-top: 4px;
+                padding-bottom: 4px;
+                position: relative;
+                top: 8px;
+                border-style: solid;
+                border-width: 0 2px 2px 2px;
+                border-color: #094AB2;
+                z-index: 40000;
+                cursor: default;
+                display: none;
+                background-color: #ffffff;
+            }
+                .jui-headMenu .jui-headMenu-u1 li a {
+                    padding:6px 15px 6px 15px;
+                    text-align: left;
+                    color: black;
+                    display: block;
+                cursor: pointer;
+                }
+                .jui-headMenu .jui-headMenu-u1 li:hover {
+                    cursor:default;
+                }
+                    .jui-headMenu .jui-headMenu-u1 li a:hover {
+                        background-color: #f0f0f0;
+                    }
+
+            .jui-headMenu .jui-headMenu-showul {
+                visibility: visible;
+            }
+
+            .jui-headMenu .jui-headMenu-hideul {
+                visibility: hidden;
+            }           
+
+        .jui-headMenu .jui-headMenu-endImg {
+            background-image:url(../Content/jUI/images/jui-jheadMenu-carat-s-ffffff.png);
+            background-repeat:no-repeat;
+            display:inline-block;
+            width:12px;
+            height:10px;
+            position:relative;
+            left:5px;
+            top:2px;
+            cursor:default;
+        }
+
+            .jui-headMenu .jui-headMenu-vsolid {
+                display: block;
+                height: 20px;
+                border-left: 1px solid #ffffff;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                float: left;
+            }
+</style>
+    
+<script type="text/javascript">
+    $(function () {
+        var e = $("#MyHeadMenu1");
+        e.children("ul").children("li").click(function () {
+            e.find("li").not(this).has("ul:visible").children("ul").slideUp("fast");
+            $(this).children("ul").slideToggle("fast");
+        });
+        e.children("ul").children("li").mousedown(function () {
+            e.find("li").removeClass("jui-headMenu-clicked");
+            e.find("li").children("a").removeClass("jui-headMenu-clicked");
+            $(this).addClass("jui-headMenu-clicked");
+            $(this).children("a").addClass("jui-headMenu-clicked");
+            $(this).mouseup(function () {
+                $(this).removeClass("jui-headMenu-clicked");
+                $(this).children("a").removeClass("jui-headMenu-clicked");
+            });
+        });
+        //点击空白处下拉列表收起
+        e.click(function (event) {
+            var e = window.event || event;
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            } else {
+                e.cancelBubble = true;
+            }
+        });
+        $(document).bind("click", function () {
+            e.find("li").has("ul:visible").children("ul").slideUp("fast");
+            e.find("li").removeClass("jui-headMenu-clicked");
+            e.find("li").children("a").removeClass("jui-headMenu-clicked");
+        })
+        //当菜单项中无文字而只有下拉图标时候，调整下拉箭头样式
+        e.find("li").has("ul").find(".jui-headMenu-lass").each(function () {
+            var t = $(this).text();
+            var img = $(this).next();
+            var ul = $(this).parent().parent().next();
+            var li = $(this).parent("li");
+            if (t.trim() == "" || t.trim() == null) {
+                $(this).remove();
+                img.css({ "top": "12px", "left": "6px" });
+                ul.css({ "top": "19px" });
+            }
+        });
+        $(".jui-headMenu-ju").find("li").has("ul").addClass("jui-headMenu-ju_li");
+        $(".jui-headMenu-solid").click(function (event) {
+            event.stopPropagation();
+        });
+    });
+</script>
 }
 
 @section header{
@@ -86,7 +196,108 @@
 
 @section scripts{
 }
-
-
-<div id="MyHeadMenu1" style="float:left;"></div>
-@*<div id="MyHeadMenu2" style="float:left;"></div>*@
+<div id="MyHeadMenu1" class="jui-headMenu">
+    <ul class="jui-headMenu-ju">
+        <li style="width: 68px;" class="jui-headMenu-ju_li">
+            <a>
+                <span class="jui-headMenu-las1"> 
+                    <span class="jui-headMenu-lass">
+                         <span class="jui-headMenu-lass_endicon">
+                             <span style="width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(../../Images/headMenuTestImage.png);background-position:0px 0px;"></span>
+                         </span> 创建
+                    </span>
+                    <span class="jui-headMenu-endImg"></span>
+                </span>
+            </a>
+            <ul class="jui-headMenu-u1" style="width: 136px; display: none;">
+                <li>
+                    <a>
+                        <span>文件夹</span>
+                    </a>
+                    <span class="jui-headMenu-solid">
+                        <span style="border-bottom:1px solid #666;display: block;"></span>
+                    </span>
+                </li>
+                <li>
+                    <a>
+                        <span>Word 文档</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>Excel 工作薄</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <span class="jui-headMenu-vsolid "></span>
+        <li class="jui-headMenu-ju_li">
+            <a>
+                <span class="jui-headMenu-las1"> 
+                    <span class="jui-headMenu-lass"> 
+                        <span class="jui-headMenu-lass_endicon">
+                            <span style="width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(../../Images/headMenuTestImage.png);background-position:-54px 0px;"></span>
+                        </span> 上载</span> 
+                </span>
+            </a>
+        </li>
+        <li class="jui-headMenu-ju_li">
+            <a>
+                <span class="jui-headMenu-las1"> 
+                    <span class="jui-headMenu-lass">
+                         <span class="jui-headMenu-lass_endicon">
+                             <span style="height:27px;float:left;position:relative;top:4px;"></span>
+                         </span> 打开
+                    </span> 
+                </span>
+            </a>
+        </li>
+        <li style="width: 41px;" class="jui-headMenu-ju_li">
+            <a>
+                <span class="jui-headMenu-las1"> 
+                    <span class="jui-headMenu-lass">
+                         <span class="jui-headMenu-lass_endicon">
+                             <span style="height:27px;float:left;position:relative;top:4px;"></span>
+                         </span> 管理
+                    </span>
+                    <span class="jui-headMenu-endImg"></span> 
+                </span>
+            </a>
+            <ul class="jui-headMenu-u1" style="width: 182px; display: none;">
+                <li>
+                    <a>
+                        <span>重命名</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>删除</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>移致</span>
+                    </a>
+                    <span class="jui-headMenu-solid">
+                        <span style="border-bottom:1px solid #666;display: block;"></span>
+                    </span>
+                </li>
+                <li>
+                    <a>
+                        <span>属性</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="jui-headMenu-ju_li">
+            <a>
+                <span class="jui-headMenu-las1">
+                     <span class="jui-headMenu-lass">
+                          <span class="jui-headMenu-lass_endicon">
+                              <span style="height:27px;float:left;position:relative;top:4px;"></span>
+                          </span> 清除选定内容</span>
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>
