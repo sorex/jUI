@@ -1,20 +1,53 @@
 ﻿.jui-radio
 {
-	padding-left: 24px;
+	
 	display: inline-block;
-	background: transparent ~`'url(@{jUI_Images}jui-jradio.png)'` no-repeat 0px 0px;
-	height: 22px;
+	background: ~`'url(@{jUI_Images}jui-icons_' + "@{BaseColor}".substr(1) + '_78x84.png)'` no-repeat -21px 0px;
+
+	/*background: transparent ~`'url(@{jUI_Images}jui-jradio.png)'` no-repeat 0px 0px;*/
+	height: 21px;
+	width:21px;
 	line-height: @LineHeight;
 	cursor: pointer;
 	vertical-align: middle;
-}
-
-.jui-radio-checked
-{
-	background-position: 0px -21px;
 }
 
 .jui-radio-label
 {
 	cursor: pointer;
 }
+
+.jui-radio-checked
+{
+	background-position: -21px -42px;
+}
+
+
+
+	.jui-radio:hover
+	{
+		background-position: -21px -21px;
+	}
+
+
+
+	.jui-radio-checked:hover
+	{
+		background-position: -21px -63px;
+	}
+
+	
+    
+    	.jui-radio-checked-hover
+    	{
+			
+		background-position: -21px -21px;
+    	}
+		.jui-radio-checked-checked
+    	{
+			
+		background-position: -21px -63px;
+    	}
+
+
+

@@ -40,6 +40,7 @@
                 var tagNextObject = tagObject.next();
                 if (tagObject.is(':checked')) {
                     tagNextObject.siblings().removeClass("jui-radio-checked");
+                    tagNextObject.removeClass("jui-radio-checked-hover jui-radio-checked-checked");
                     tagNextObject.addClass("jui-radio-checked");
                     tagObject.checked = true;
                 } else {
@@ -56,11 +57,20 @@
                 }
             }).next().mouseover(function (event) {
                 $(this).addClass('jui-radio-label');
+                var tagPrevObject = $(this).prev();
+                if (tagPrevObject.attr("class") == 'jui-radio') {
+                    tagPrevObject.addClass("jui-radio-checked-hover");
+                } else {
+                    
+                    tagPrevObject.addClass("jui-radio-checked-checked");
+                }
                 event.stopPropagation();
             }).mouseout(function (event) {
-
+                var tagPrevObject = $(this).prev();
+                tagPrevObject.removeClass("jui-radio-checked-hover jui-radio-checked-checked");
                 event.stopPropagation();
             });
+
             $(":radio", this.element).each(function () {
 
                 var tagObject = $(this);

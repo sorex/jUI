@@ -18,7 +18,7 @@
 
 	.jui-jsortSelect-ul > li
 	{
-		padding-left: 35px;
+	
 		padding-right: 10px;
 		margin-top: 7px;
 		margin-bottom: 7px;
@@ -28,13 +28,24 @@
 		{
 			background-color:@sortUlHoverBackground;
 		}
-
+     
 		.jui-jsortSelect-ul > li.action
 		{
-			background: transparent ~`'url(@{jUI_Images}jui-jselect-bullet-666666.png)'` no-repeat 0 0;
-			background-position: 18px 8px;
 		}
 
+        .jui-jsortSelect-ul > li i
+        {
+			  display:inline-block;
+				margin-left:15px;
+				margin-right:10px;
+			  height: 11px;
+			  width: 11px;
+		 }
+            .jui-jsortSelect-ul > li i.action
+            {
+			background: ~`'url(@{jUI_Images}jui-icons_' + "@{ContentIcon}".substr(1) + '_78x84.png)'` no-repeat -40px -8px;
+
+            }
 
 	.jui-jsortSelect-ul > div
 	{
@@ -54,7 +65,7 @@
 
 			.jui-jsortSelect-ul > div ul > li
 			{
-				padding-left: 35px;
+				padding-left: 25px;
 				padding-right: 10px;
 				margin-top: 7px;
 				margin-bottom: 10px;
@@ -67,18 +78,29 @@
 
 				.jui-jsortSelect-ul > div ul > li.action
 				{
-
-					background: transparent ~`'url(@{jUI_Images}jui-jselect-bullet-666666.png)'` no-repeat 0 0;
-					background-position: 18px 8px;
 				}
 
-.jui-jsortSelect-downBtn
-{
-	background: transparent ~`'url(@{jUI_Images}jui-jselect-carat-s-666666.png)'` no-repeat 0px 0px;
-	cursor: pointer;
-	display: inline-block;
-	text-indent: -99999px;
-	overflow: hidden;
-	width: 11px;
-	height: 9px;
-}
+                .jui-jsortSelect-ul > div ul > li i
+                {
+					display:inline-block;
+					margin-right:5px;
+					height: 11px;
+					width: 11px;
+                }
+                    .jui-jsortSelect-ul > div ul > li i.action
+                    {
+						background: ~`'url(@{jUI_Images}jui-icons_' + "@{ContentIcon}".substr(1) + '_78x84.png)'` no-repeat -40px -8px;
+                    }
+
+
+				.jui-jsortSelect-downBtn
+				{
+					background: ~`'url(@{jUI_Images}jui-icons_' + "@{ContentIcon}".substr(1) + '_78x84.png)'` no-repeat -42px 0px;
+					cursor: pointer;
+					display: inline-block;
+					text-indent: -99999px;
+					overflow: hidden;
+					width: 11px;
+					height: 9px;
+				
+				}

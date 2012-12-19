@@ -72,17 +72,17 @@
     width: 12px;
     height: 13px;
     font-size: 1px;
-    background: ~`'url(@{jUI_Images}chosen-sprite.png)'` right top no-repeat;
+    /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` right top no-repeat;*/
 }
 
     .chzn-container-single .chzn-single abbr:hover
     {
-        background-position: right -11px;
+        /*background-position: right -11px;*/
     }
 
 .chzn-container-single.chzn-disabled .chzn-single abbr:hover
 {
-    background-position: right top;
+    /*background-position: right top;*/
 }
 
 .chzn-container-single .chzn-single div
@@ -97,7 +97,8 @@
 
     .chzn-container-single .chzn-single div b
     {
-        background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat 0 0;
+	
+        background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{ContentIcon}".substr(1)+'_256x240.png)'` no-repeat -64px -12px;
         display: block;
         width: 100%;
         height: 100%;
@@ -114,15 +115,28 @@
 
     .chzn-container-single .chzn-search input
     {
-        background: #fff ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat 100% -22px;
+     
         margin: 1px 0;
         padding: 4px 20px 4px 5px;
         outline: 0;
+		 width:15px;
         border: 1px solid @ContentBorder; /*搜索区域的边框颜色 默认#aaa*/
         font-family: sans-serif;
         font-size: 1em;
     }
 
+.chzn-container-single .chzn-search span
+{
+position:relative;
+background:~`'url(@{jUI_Images}jui-icons_'+"@{ContentIcon}".substr(1)+'_78x84.png)'` no-repeat -66px 0px;
+height:12px;
+width:12px;
+display:inline-block;
+left:-16px;
+top:3px;
+
+ 
+}
 .chzn-container-single .chzn-drop
 {
     /*-webkit-border-radius: 0 0 4px 4px;
@@ -224,21 +238,21 @@
         display: block;
         position: absolute;
         right: 3px;
-        top: 4px;
-        width: 12px;
-        height: 13px;
+        top: 1px;	
+        width: 16px;
+        height: 16px;
         font-size: 1px;
-        background: ~`'url(@{jUI_Images}chosen-sprite.png)'` right top no-repeat;
+		background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{HelperColor}".substr(1)+'_256x240.png)'` no-repeat -80px -128px;
     }
 
         .chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover
         {
-            background-position: right -11px;
+            background-position: -96px -128px;
         }
 
     .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close
     {
-        background-position: right -11px;
+        background-position: -96px -128px;
     }
 /* @end */
 
@@ -341,12 +355,14 @@
 
     .chzn-container .chzn-results-scroll-down span
     {
-        background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -4px -3px;
+		 /*background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{ContentIcon}".substr(1)+'_256x240.png)'` no-repeat -64px -12px;*/
+        /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -4px -3px;*/
     }
 
 .chzn-container .chzn-results-scroll-up span
 {
-    background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -22px -3px;
+    /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -64px -3px;*/
+	 /*background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{ContentIcon}".substr(1)+'_256x240.png)'` no-repeat -64px -12px;*/
 }
 /* @end */
 
@@ -388,7 +404,7 @@
 
         .chzn-container-active .chzn-single-with-drop div b
         {
-            background-position: -18px 1px;
+            background-position: 0px -14px;
         }
 
 .chzn-container-active .chzn-choices
@@ -495,7 +511,7 @@
 
     .chzn-rtl .chzn-search input
     {
-        background: @ContentBackground ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px;
+        /*background: @ContentBackground ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px;*/
         /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%,#ffffff));
 		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-linear-gradient(top, @selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom 15%);
 		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -moz-linear-gradient(top,@selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom  15%);

@@ -69,7 +69,7 @@
                 event.stopPropagation();
 
             }).next().mouseover(function (event) {
-                $(this).addClass('jui-checkbox-laber');
+                $(this).addClass('jui-checkbox-label');
                 var tagPrevObject = $(this).prev();
                 if (tagPrevObject.attr("class") == 'jui-checkbox') {
                     tagPrevObject.addClass('jui-checkbox-checked-hover');
@@ -85,6 +85,7 @@
                 event.stopPropagation();
             });
 
+           
 
             $(":checkbox:checked", this.element).each(function () {
                 //if ($(this).is(':checked')) {

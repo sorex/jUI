@@ -1,5 +1,495 @@
-﻿@{
-    ViewBag.Title = "text";
+﻿
+@{
+	ViewBag.Title = "text";
+}
+<h2>text</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function () {
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+    <style type="text/css">
+
+        .jtext
+        {
+        }
+        .jtext-err
+        {
+            border:red;
+        }
+    </style>
+
+
+	<script type="text/javascript">
+		$(function () {
+
+		    $("#intBtn").click(function () {
+		        var obj = $("#txt_Int");
+		        CheckIntReg(obj, -6, 5);
+		    });
+		    $("#positiveBtn").click(function () {
+		        var obj = $("#txt_positiveInt");
+		        CheckIntReg(obj, 0, 52,"positive");
+		    });
+		    $("#negativeBtn").click(function () {
+		        var obj = $("#txt_negativeInt");
+		        CheckIntReg(obj,-52, 0, "negative");
+		    });
+	
+
+
+		});
+		function CheckDoubleReg(o,min,max,type) {
+
+
+		}
+
+		function CheckIntReg(o, min, max, type) { //对象 类别 最小值 最大值
+
+		    var reg = /^-?[0-9]\d*$/;
+		    var err = "请输入整数";
+
+		    if ("positive" == type) {
+		        reg = /^[0-9]\d*$/;
+		        err = "请输入非负整数";
+		    }
+		    if ("negative" == type) {
+		        reg = /^-[0-9]\d*$/;
+		        err = "请输入非正整数";
+		    }
+		    if (reg.test(o.val())) { //是整数
+		        if (o.val() > max || o.val() < min) {
+		            o.addClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("输入的整数范围为:" + min + "到" + max);
+		            return false;
+		        } else {
+		            o.removeClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("成功");
+		            return true;
+		        }
+		    } else {
+		        o.addClass("jtext-err");
+		        $("#" + o.attr("id") + "_span").html(err);
+		        return false;
+		    }
+		}
+
+	</script>
 }
 
-<h2>text</h2>
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+
+	<ul>
+		<li><a href="#tab1">整数验证</a></li>
+        <li><a href="#tab2">小数验证</a></li>
+		<li><a href="#tab3">字符串验证</a></li>
+		<li><a href="#tab4">数据比较</a></li>
+	</ul>
+	<div id="tab1">
+            <div class="ui-helper-clearfix">
+            <div class="display-label">整数验证:</div>
+            <div class="display-field">
+                <input id="txt_Int" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_Int_span"></span>
+                <input id="intBtn" type="button" value="整数验证查看" />
+            </div>
+        </div>
+
+		   <div class="ui-helper-clearfix">
+            <div class="display-label">非负整数验证:</div>
+            <div class="display-field">
+                <input id="txt_positiveInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_positiveInt_span"></span>
+                <input id="positiveBtn" type="button" value="非负整数验证" />
+            </div>
+        </div>
+
+           <div class="ui-helper-clearfix">
+            <div class="display-label">非正整数验证:</div>
+            <div class="display-field">
+                <input id="txt_negativeInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_negativeInt_span"></span>
+                <input id="negativeBtn" type="button" value="非正整数验证查看" />
+            </div>
+        </div>
+
+		<br>
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+		
+  
+		</pre>
+	</div>
+
+
+    	<div id="tab2">
+	 <div class="ui-helper-clearfix">
+            <div class="display-label">浮点数验证:</div>
+            <div class="display-field">
+                <input id="txt_double" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_double_span"></span>
+                <input id="doubleBtn" type="button" value="浮点数验证查看" />
+            </div>
+        </div>
+
+		   <div class="ui-helper-clearfix">
+            <div class="display-label">非负浮点数验证:</div>
+            <div class="display-field">
+                <input id="txt_positiveDouble" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_positiveDouble_span"></span>
+                <input id="positiveBtn" type="button" value="非负整数验证" />
+            </div>
+        </div>
+
+           <div class="ui-helper-clearfix">
+            <div class="display-label">非正整数验证:</div>
+            <div class="display-field">
+                <input id="txt_negativeInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_negativeInt_span"></span>
+                <input id="negativeBtn" type="button" value="非正整数验证查看" />
+            </div>
+		<br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			
+		</pre>
+	</div>
+
+	<div id="tab3">
+	
+		<br>
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+		</pre>
+	</div>
+
+  <div id="tab4">
+	 
+		<br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+			
+		</pre>
+	</div>
+
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>单选和多选的复合select控件</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">items</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[{ value: "America", text: "美国", selected: true }]</span>
+			</h3>
+			<div>
+				<p>排序字段的数据源</p>
+				<pre class="brush: js;">
+				items：[{item},{item},{item}] //使用item列表为其赋值
+						item:
+							value        //下拉框实际值
+							text        //下拉框显示值
+							[selected]   //是否被选中 选中为(selected:true)
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+							
+				$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: true },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "100px",
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取(返回的是一个对象)
+					var items = $("#showSortSelect").jdatapager( "option", "items" );
+				</pre>
+			</div>
+
+			<h3>
+				<span class="description-option-name">placeholder</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">请选择...</span>
+			</h3>
+			<div>
+				<p>在没有默认选择情况下 文本的提示内容</p>
+				<pre class="brush: js;">
+					[placeholder] //没有选中之前的提示语 默认为 请选择...
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: true },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "100px",
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取</p>
+				<pre class="brush: js;">
+					//获取
+					var placeholder = $("#showSortSelect").jdatapager( "option", "placeholder" );	
+				</pre>
+			</div>
+
+			
+			<h3>
+				<span class="description-option-name">width</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">150px</span>
+			</h3>
+			<div>
+				<p>选择框的宽度</p>
+				<pre class="brush: js;">
+					[width]  //select的宽度 默认为 150px
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: true },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取</p>
+				<pre class="brush: js;">
+					//获取
+					var width = $("#showSortSelect").jdatapager( "option", "width" );
+				
+					
+				</pre>
+			</div>
+
+				
+			<h3>
+				<span class="description-option-name">model</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">single</span>
+			</h3>
+			<div>
+				<p>单选与多选的切换</p>
+				<pre class="brush: js;">
+					[model]：  //单选和多选的切换 默认的为单选
+							 single(单选)
+							 multiple(多选)[二选一]
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">		
+				$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: true },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+				</pre>
+				<p>获取</p>
+				<pre class="brush: js;">
+					//获取
+					var model = $("#showSortSelect").jdatapager( "option", "model" );			
+				</pre>
+			</div>
+
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onSelectChange</span>
+				<span class="description-event-returnType">[string string]or json</span>
+			</h3>
+			<div>
+				<p>选择下拉框的值发生改变时触发</p>
+				<p>单选参数列表</p>
+				<pre class="brush: js;">
+                    selectValue：选择的值
+					selectText：显示的文本
+				</pre>
+				<p>多选参数列表</p>
+				<pre class="brush: js;">
+                   selectList: //多选的json对象
+							   selectList[i]["value"] //下拉框选中值
+							   selectList[i]["text"] //下拉框显示值
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					//单选下拉框
+					$("#showSelect").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国", selected: true },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择...",
+							width: "150px",
+							model: "single",
+							onSelectChange: function (selectValue, selectText) {
+								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+							}
+						});
+					//多选下拉框
+					$("#showSelect3").jSelect({
+							items: [{ value: "China", text: "中国" },
+								{ value: " Japan", text: "日本" },
+								{ value: "America", text: "美国" },
+								{ value: "Korea  ", text: "朝鲜" },
+								{ value: "Corea  ", text: "韩国" }
+							],
+							placeholder: "请国家选择(可以多选)",
+							width: "200px",
+							model: "multiple",
+							onSelectChange: function (selectList) {
+								var content = "";
+								if (selectList != null) {
+									for (var i = 0; i < selectList.length; i++) {
+										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+									}
+									alert("选择的内容为：" + content.substring(0, content.length - 1));
+								} else {
+									alert("无数据");
+								}
+							}
+						});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">getSelectValueText</span>
+				<span class="description-method-returnType">[string,string]or json</span>
+			</h3>
+			<div>
+		<p>获取下拉框所选中的值</p>
+				<p>单选框的获取值</p>
+						<pre class="brush: js;">
+								var selectObj = $("#showSelect").jSelect("getSelectValueText");
+								alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
+							</pre>
+				<p>多选选框的获取值</p>
+						<pre class="brush: js;">
+								var selectList = $("#showSelect3").jSelect("getSelectValueText");
+								var content = "";
+								if(selectList!=null){
+									for (var i = 0; i < selectList.length; i++) {
+										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+									}
+									alert("选择的内容为：" + content.substring(0, content.length - 1));
+								}else{
+									alert("无数据");
+								}
+							</pre>
+
+			</div>
+
+
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>普通下拉样式如下：</p>
+		<pre class="brush: html;">
+			
+			   &lt;select id="selectHtml" data-placeholder="选择国家" class="chzn-select" style="width: 350px;" tabindex="2"&gt;
+					   &lt;option value=""&gt;  &lt;/option&gt;
+					   &lt;option value="美国"&gt;United States   &lt;/option&gt;
+					   &lt;option value="(大不列颠)联合王国"&gt;United Kingdom   &lt;/option&gt;
+					   &lt;option value="阿富汗"&gt;Afghanistan   &lt;/option&gt;
+					   &lt;option value="阿尔巴尼亚"&gt;Albania   &lt;/option&gt;
+					   &lt;option value="阿尔及利亚"&gt;Algeria   &lt;/option&gt;
+			   &lt;/select&gt;
+		</pre>
+		<p>多选下拉样式如下：</p>
+			<pre class="brush: html;">
+		 &lt;select id="multiSelectHtml" data-placeholder="选择国家" class="chzn-select" multiple style="width: 350px;" tabindex="2"&gt;
+			 &lt;option value=""&gt;  &lt;/option&gt;
+			 &lt;option value="美国"&gt; United States　 &lt;/option&gt;
+			 &lt;option value="(大不列颠)联合王国"&gt; United Kingdom　  &lt;/option&gt;
+			 &lt;option value="阿富汗"&gt;Afghanistan　  &lt;/option&gt;
+			 &lt;option value="阿尔巴尼亚"&gt; Albania　  &lt;/option&gt;
+			 &lt;option value="阿尔及利亚"&gt;Algeria　  &lt;/option&gt;
+		 &lt;/select&gt;
+				</pre>
+	</div>
+</div>

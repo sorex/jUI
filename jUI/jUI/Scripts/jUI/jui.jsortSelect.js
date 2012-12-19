@@ -71,7 +71,7 @@
 					}
 
 				
-					$("#" + tagId).append("<span id=" + titleId + " style='cursor: pointer;'>排序方式:" +
+					$("#" + tagId).append("<span id=" + titleId + " style='cursor: pointer;text-align:right;'>排序方式:" +
 						"<span id=" + selectId + " style='cursor: pointer' data-value=" + defaultDataValue + " data-sort=" + defaultDataSort + ">" + defaultDataContent + "</span>" +
 					"<span class='jui-jsortSelect-downBtn'>&nbsp;&nbsp;</span></span>");
 
@@ -80,23 +80,23 @@
 						var dataSort = (o.items[i]["sort"] != "desc") ? "asc" : "desc";
 						if (flag) {
 							if (o.items[i]["selected"]) {
-								ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + " class='action'>" + o.items[i]["text"] + " </li>";
+							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + " class='action'><i class='action'></i><span>"+ o.items[i]["text"] + "</span> </li>";
 							} else {
-								ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + ">" + o.items[i]["text"] + " </li>";
+							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + "><i></i><span>" + o.items[i]["text"] + "</span></li>";
 							}
 						
 						}else{
 							if (i == 0) {
-								ulHtml += "<li data-value=" + o.items[0]["value"] + " data-sort=" + dataSort + " class='action'>" + o.items[0]["text"] + " </li>";
+							    ulHtml += "<li data-value=" + o.items[0]["value"] + " data-sort=" + dataSort + " class='action'><i class='action'></i><span>" + o.items[0]["text"] + "</span> </li>";
 							} else {
-								ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + ">" + o.items[i]["text"] + " </li>";
+							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + "><i></i><span>" + o.items[i]["text"] + "</span> </li>";
 							}
 						}
 					}
 					if (defaultDataSort == "asc") {
-						ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li class='action'>升序</li><li>降序</li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li class='action'><i class='action'></i><span>升序</span></li><li><i></i><span>降序</span</li></ul></div></ul>"
 					}else{
-						ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li >升序</li><li class='action'>降序</li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li ><i ></i><span>升序<span></li><li class='action'><i class='action'></i><span>降序<span></li></ul></div></ul>"
 					}
 
 		$("body").append(ulHtml); /*body之前追加要显示的ul部分*/
@@ -113,9 +113,13 @@
 
 			$(this).siblings().removeClass("action");
 			$(this).addClass("action");
+			$(this).siblings().find("i").removeClass("action");
+			$(this).find("i").addClass("action");
 
 			if ($("#" + showParentUl + " > li").hasClass("action") && $("#" + showChildUl + " > li").hasClass("action")) {
-				switch ($(this).html()) {
+			   
+			    switch ($(this).find("span").text()) {
+                  
 					case "降序":
 						$("#" + selectId).attr("data-sort", "desc");
 						break;
@@ -126,20 +130,26 @@
 						if ($(this).attr("data-sort") == "desc") {
 							$("#" + showChildUl + " > li").siblings().removeClass("action");
 							$("#" + showChildUl + " > li").eq(1).addClass("action");
+							$("#" + showChildUl + " > li").siblings().find("i").removeClass("action");
+							$("#" + showChildUl + " > li").eq(1).find("i").addClass("action");
 							$("#" + selectId).attr("data-sort", "desc");
 						} else {
 							$("#" + showChildUl + " > li").siblings().removeClass("action");
 							$("#" + showChildUl + " > li").eq(0).addClass("action");
+							$("#" + showChildUl + " > li").siblings().find("i").removeClass("action");
+							$("#" + showChildUl + " > li").eq(0).find("i").addClass("action");
 							$("#" + selectId).attr("data-sort", 'asc');
 						}
+
 						$("#" + selectId).html($(this).html()).attr("data-value", $(this).attr("data-value"));
 
 						break;
 				}
 							
 				$("#" + showParentUl).slideToggle("fast");
-				
-				self.options.onItemClick($("#" + selectId).attr("data-value"), $("#" + selectId).html(), $("#" + selectId).attr("data-sort"));
+				if(o.onItemClick!=null){
+				self.options.onItemClick($("#" + selectId).attr("data-value"), $("#" + selectId).find("span").text(), $("#" + selectId).attr("data-sort"));
+			}
 			}
 			event.stopPropagation();
 
@@ -171,7 +181,7 @@
 
 			var selectObject = Object;
 			selectObject.value = $("#" + selectId).attr("data-value");
-			selectObject.text = $("#" + selectId).html();
+			selectObject.text = $("#" + selectId).find("span").text();
 			selectObject.sort = $("#" + selectId).attr("data-sort");
 			
 			return selectObject;
