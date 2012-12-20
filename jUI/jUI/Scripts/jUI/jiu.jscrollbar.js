@@ -61,6 +61,7 @@
 
 	        var outDivBorder = o.outDivBorder;
 
+
 	        if (scrollWidth < 10 || scrollWidth > 40) {
 	            scrollWidth = 20;
 	        }
@@ -326,11 +327,6 @@
 
 
 	            $('.jui-jscrollbar-slider-right').css("background-color", buttonColor).css("top", "0px").css("border", "1px solid " + buttonBorder);
-	            $('.jui-jscrollbar-slider-right').mouseover(function () {
-	                $(this).css("background", buttonHover);
-	            }).mouseout(function () {
-	                $(this).css("background", buttonColor);
-	            });
 	            $('.jui-jscrollbar-slider-right').mousedown(function (event) {
 	                event.stopPropagation();
 	                $(this).css("background", buttonClickColor);
@@ -340,6 +336,11 @@
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
 	                $(this).css("background", buttonHover);
+	            });
+	            $('.jui-jscrollbar-slider-right').mouseover(function () {
+	                $(this).css("background", buttonHover);
+	            }).mouseout(function () {
+	                $(this).css("background", buttonColor);
 	            });
                 //#endregion
                 //#endregion

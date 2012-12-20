@@ -224,7 +224,7 @@
             .removeClass("ui-state-active").removeClass("ui-slider").removeClass("ui-slider-handle").removeClass("ui-state-focus")
             .addClass("jui-jscrollbar-slider-hhandle").css("background-color", handlebgcolor).css("border", "0").css("outline", "0").css("z-index", "11").css("top", "0px").css("font-size", "small").css("height", scrollWidth + "px");
 
-            //	        设置滑块层的宽度和右边距，以使得滑块层中间位置正好处在滑块位置
+            //设置滑块层的宽度和右边距，以使得滑块层中间位置正好处在滑块位置
             t.find('.jui-jscrollbar-slider-horizontal').find("a").css({ width: handleWidth, 'margin-left': -0.5 * handleWidth });
             var origSliderWidth = t.width() - space_; //读取滚动条总长度
             var sliderWidth = origSliderWidth - handleWidth - 4; //获取滑块可移动范围长度
