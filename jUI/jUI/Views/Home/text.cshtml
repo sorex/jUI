@@ -34,46 +34,70 @@
         }
     </style>
 
-
+<script src="@Url.Content("~/Scripts/jUI/jui.jradio.js")"></script>
+    <script type="text/javascript">
+     
+    </script>
 	<script type="text/javascript">
 		$(function () {
-
+		    $("#radioContent2").jradio();
+		    $("#radioContent1").jradio();
 		    $("#intBtn").click(function () {
 		        var obj = $("#txt_Int");
-		        CheckIntReg(obj, -6, 5);
+		        CheckInt(obj, $("#txt_MinInt").val(), $("#txt_MaxInt").val());
 		    });
-		    $("#positiveBtn").click(function () {
-		        var obj = $("#txt_positiveInt");
-		        CheckIntReg(obj, 0, 52,"positive");
-		    });
-		    $("#negativeBtn").click(function () {
-		        var obj = $("#txt_negativeInt");
-		        CheckIntReg(obj,-52, 0, "negative");
-		    });
-	
+		  
 
 
+		    $("#doubleBtn").click(function () {
+		        var obj = $("#txt_double");
+		        var minFlag = ("true" == $("input[name=radio1]:checked").val()) ? true : false;
+		        var maxFlag = ("true" == $("input[name=radio2]:checked").val()) ? true : false;
+		        CheckDouble(obj, $("#txt_MinDouble").val(), minFlag, $("#txt_MaxDouble").val(), maxFlag);
+		    });
+		    
 		});
-		function CheckDoubleReg(o,min,max,type) {
 
+		function CheckString(int, array, reg, isAscii) {
+
+		}
+		function CheckDouble(o, min,minFlag, max,maxFlag) {//对象 最小值 最大值 
+		   
+		    var reg = /^[-|+]?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/;//匹配通用浮点数
+		    var err = "请输入浮点数";
+		    if (reg.test(o.val())) {
+		        var includ1 = (  parseFloat( o.val()) >=parseFloat( max));
+		        var includ2 = (parseFloat( o.val())< parseFloat(min));
+		        if (!minFlag) {
+		            includ2 = (parseFloat( o.val()) <= parseFloat( min));
+		        }
+		        if(maxFlag){
+		            includ1 = ( parseFloat( o.val())>parseFloat(max));
+		        }
+		        if (includ1 || includ2) { 
+		            o.addClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("输入的浮点数范围:" + min + "到" + max);
+		            return false;
+		         } else {
+		            o.removeClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("成功");
+		            return true;
+		        }
+
+		    } else {
+		        o.addClass("jtext-err");
+		        $("#" + o.attr("id") + "_span").html(err);
+		        return false;
+		    }
 
 		}
 
-		function CheckIntReg(o, min, max, type) { //对象 类别 最小值 最大值
+		function CheckInt(o, min, max) { //对象 类别 最小值 最大值
 
-		    var reg = /^-?[0-9]\d*$/;
+		    var reg = /^[-|+]?([1-9]\d*|0)$/;
 		    var err = "请输入整数";
-
-		    if ("positive" == type) {
-		        reg = /^[0-9]\d*$/;
-		        err = "请输入非负整数";
-		    }
-		    if ("negative" == type) {
-		        reg = /^-[0-9]\d*$/;
-		        err = "请输入非正整数";
-		    }
 		    if (reg.test(o.val())) { //是整数
-		        if (o.val() > max || o.val() < min) {
+		        if ( parseInt( o.val()) >= parseInt(max) ||  parseInt( o.val()) < parseInt(min)) {
 		            o.addClass("jtext-err");
 		            $("#" + o.attr("id") + "_span").html("输入的整数范围为:" + min + "到" + max);
 		            return false;
@@ -116,78 +140,158 @@
 		<li><a href="#tab4">数据比较</a></li>
 	</ul>
 	<div id="tab1">
+               
             <div class="ui-helper-clearfix">
+               最小值:<input id="txt_MinInt" type="text"  style=" width:55px;"/>
+                最大值:<input id="txt_MaxInt" type="text"  style=" width:55px;"/>
             <div class="display-label">整数验证:</div>
             <div class="display-field">
+            
                 <input id="txt_Int" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
                 <br />
                 <span id="txt_Int_span"></span>
+            
                 <input id="intBtn" type="button" value="整数验证查看" />
             </div>
         </div>
-
-		   <div class="ui-helper-clearfix">
-            <div class="display-label">非负整数验证:</div>
-            <div class="display-field">
-                <input id="txt_positiveInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
-                <br />
-                <span id="txt_positiveInt_span"></span>
-                <input id="positiveBtn" type="button" value="非负整数验证" />
-            </div>
-        </div>
-
-           <div class="ui-helper-clearfix">
-            <div class="display-label">非正整数验证:</div>
-            <div class="display-field">
-                <input id="txt_negativeInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
-                <br />
-                <span id="txt_negativeInt_span"></span>
-                <input id="negativeBtn" type="button" value="非正整数验证查看" />
-            </div>
-        </div>
-
+     
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
-		
-  
+
+              &lt;div class="ui-helper-clearfix"&gt;
+                  最小值:&lt;input id="txt_MinInt" type="text"  style=" width:55px;"/&gt;
+                  最大值:&lt;input id="txt_MaxInt" type="text"  style=" width:55px;"/&gt;
+              &lt;div class="display-label"&gt;整数验证:&lt;/div&gt;
+              &lt;div class="display-field"&gt;
+               
+              &lt;input id="txt_Int" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" /&gt;
+              &lt;br /&gt;
+              &lt;span id="txt_Int_span"&gt;&lt;/span&gt;
+              
+              &lt;input id="intBtn" type="button" value="整数验证查看" /&gt;
+              &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;script type="text/javascript"&gt;
+                    $("#intBtn").click(function () {
+		               var obj = $("#txt_Int");
+		               CheckInt(obj, $("#txt_MinInt").val(), $("#txt_MaxInt").val());
+		           });
+
+                   function CheckInt(o, min, max) { //对象 类别 最小值 最大值
+		              var reg = /^[-|+]?([1-9]\d*|0)$/;
+		              var err = "请输入整数";
+		             if (reg.test(o.val())) { //是整数
+		                 if ( parseInt( o.val()) >= parseInt(max) ||  parseInt( o.val()) < parseInt(min)) {
+		                    o.addClass("jtext-err");
+		                    $("#" + o.attr("id") + "_span").html("输入的整数范围为:" + min + "到" + max);
+		                    return false;
+		                  } else {
+		                    o.removeClass("jtext-err");
+		                    $("#" + o.attr("id") + "_span").html("成功");
+		                    return true;
+		                 }
+		              } else {
+		                o.addClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html(err);
+		                return false;
+		             }
+		             }
+               &lt;/script&gt;
 		</pre>
 	</div>
 
 
     	<div id="tab2">
-	 <div class="ui-helper-clearfix">
+
+
+			<div class="ui-helper-clearfix">  
+          最小值:<input id="txt_MinDouble" type="text"  style=" width:80px;"/>  
+          是否包含:<div id="radioContent1" style="display:inline-block;">
+        <input id="radio6" type="radio" value="true" name="radio1"  checked/><label for="radio6">是</label>
+        <input id="radio5" type="radio" value="flag" name="radio1" /><label for="radio5">否</label>
+        </div>
+         <br />
+             最大值:<input id="txt_MaxDouble" type="text"  style=" width:80px;"/>
+           是否包含:<div id="radioContent2" style="display:inline-block;">
+        <input id="radio3" type="radio" value="true" name="radio2"  checked/><label for="radio3">是</label>
+        <input id="radio4" type="radio" value="flag" name="radio2" /><label for="radio4">否</label>
+        </div>
             <div class="display-label">浮点数验证:</div>
             <div class="display-field">
-                <input id="txt_double" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
+                <input id="txt_double" type="text" name="txt_double" style="width: 200px; margin-left: 0px;" />
                 <br />
                 <span id="txt_double_span"></span>
                 <input id="doubleBtn" type="button" value="浮点数验证查看" />
             </div>
         </div>
 
-		   <div class="ui-helper-clearfix">
-            <div class="display-label">非负浮点数验证:</div>
-            <div class="display-field">
-                <input id="txt_positiveDouble" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
-                <br />
-                <span id="txt_positiveDouble_span"></span>
-                <input id="positiveBtn" type="button" value="非负整数验证" />
-            </div>
-        </div>
-
-           <div class="ui-helper-clearfix">
-            <div class="display-label">非正整数验证:</div>
-            <div class="display-field">
-                <input id="txt_negativeInt" type="text" name="txt_int" style="width: 200px; margin-left: 0px;" />
-                <br />
-                <span id="txt_negativeInt_span"></span>
-                <input id="negativeBtn" type="button" value="非正整数验证查看" />
-            </div>
+        
 		<br />
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
-			
+
+          &lt;div class="ui-helper-clearfix"&gt;  
+              最小值:&lt;input id="txt_MinDouble" type="text"  style=" width:80px;"/&gt;  
+              是否包含:&lt;div id="radioContent1" style="display:inline-block;"&gt;
+          &lt;input id="radio6" type="radio" value="true" name="radio1"  checked/&gt; &lt;label for="radio6">是 &lt;/label&gt;
+          &lt;input id="radio5" type="radio" value="flag" name="radio1" /&gt; &lt;label for="radio5">否 &lt;/label&gt;
+          &lt;/div>
+          &lt;br />
+             最大值:&lt;input id="txt_MaxDouble" type="text"  style=" width:80px;"/&gt;
+             是否包含:&lt;div id="radioContent2" style="display:inline-block;"&gt;
+         &lt;input id="radio3" type="radio" value="true" name="radio2"  checked/&gt; &lt;label for="radio3"&gt;是 &lt;/label&gt;
+         &lt;input id="radio4" type="radio" value="flag" name="radio2" /&gt; &lt;label for="radio4"&gt;否 &lt;/label&gt;
+         &lt;/div>
+         &lt;div class="display-label"&gt;浮点数验证:&lt;/div&gt;
+         &lt;div class="display-field"&gt;
+         &lt;input id="txt_double" type="text" name="txt_double" style="width: 200px; margin-left: 0px;" /&gt;/&gt;
+          &lt;br /&gt;
+          &lt;span id="txt_double_span"&gt; &lt;/span&gt;
+          &lt;input id="doubleBtn" type="button" value="浮点数验证查看" /&gt;
+          &lt;/div&gt;
+          &lt;/div&gt;
+	          &lt;script type="text/javascript"&gt;
+
+                      $("#doubleBtn").click(function () {
+	                	        var obj = $("#txt_double");
+	                	        var minFlag = ("true" == $("input[name=radio1]:checked").val()) ? true : false;
+	                	        var maxFlag = ("true" == $("input[name=radio2]:checked").val()) ? true : false;
+	                	        CheckDouble(obj, $("#txt_MinDouble").val(), minFlag, $("#txt_MaxDouble").val(), maxFlag);
+	                	    });   
+	                	});
+
+	                	
+	                	function CheckDouble(o, min,minFlag, max,maxFlag) {//对象 最小值 最大值 
+	                	    var reg = /^[-|+]?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/;//匹配通用浮点数
+	                	    var err = "请输入浮点数";
+	                	    if (reg.test(o.val())) {
+	                	        var includ1 = (  parseFloat( o.val()) >=parseFloat( max));
+	                	        var includ2 = (parseFloat( o.val())< parseFloat(min));
+	                	        if (!minFlag) {
+	                	            includ2 = (parseFloat( o.val()) <= parseFloat( min));
+	                	        }
+	                	        if(maxFlag){
+	                	            includ1 = ( parseFloat( o.val())>parseFloat(max));
+	                	        }
+	                	        if (includ1 || includ2) { 
+	                	            o.addClass("jtext-err");
+	                	            $("#" + o.attr("id") + "_span").html("输入的浮点数范围:" + min + "到" + max);
+	                	            return false;
+	                	         } else {
+	                	            o.removeClass("jtext-err");
+	                	            $("#" + o.attr("id") + "_span").html("成功");
+	                	            return true;
+	                	        }
+
+	                	    } else {
+	                	        o.addClass("jtext-err");
+	                	        $("#" + o.attr("id") + "_span").html(err);
+	                	        return false;
+	                	    }
+
+	                	}
+                           &lt;/script&gt;
 		</pre>
 	</div>
 
@@ -219,7 +323,7 @@
 		<li><a href="#themingTab">主题</a></li>
 	</ul>
 	<div id="overviewTab">
-		<p>单选和多选的复合select控件</p>
+		<p>text的验证</p>
 	</div>
 	<div id="optionsTab">
 		<div id="optionsAccordion">
