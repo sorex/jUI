@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "scrollBarHtml.cshtml";
+    ViewBag.Title = "scrollbarHtml.cshtml";
 }
 @section head{    
 <style type="text/css">
@@ -93,6 +93,33 @@
             t.find('.jui-jscrollbar-slider-vertical').find("a").removeClass("ui-state-default").removeClass("ui-state-hover")
             .removeClass("ui-state-active").removeClass("ui-slider").removeClass("ui-slider-handle").removeClass("ui-state-focus")
             .addClass("jui-jscrollbar-slider-vhandle").css("background-color", handlebgcolor).css("width", scrollWidth + "px");
+
+            //var offtop = t.find('.jui-jscrollbar-slider-vhandle').offset().top; //获得滑动层定位
+            //var offleft = t.find('.jui-jscrollbar-slider-vhandle').offset().left; //获得滑动层定位
+            //var event_y;
+            //var move_lock = true;
+            //t.find(".jui-jscrollbar-slider-vhandle").mousedown(function (event) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            //    move_lock = true;
+            //    event.stopPropagation();
+            //    var diff;
+            //    var now_y = event.pageY;
+            //    //滑块
+            //    var vhandleTop = $(this).offset().top;
+            //    var vhandleLeft = $(this).offset().left;
+            //    $(document).mousemove(function (event) {
+            //        event_y = event.pageY;
+            //        diff = now_y - event_y;
+            //        if (move_lock) {
+            //            t.find(".jui-jscrollbar-slider-vhandle").offset({ top: vhandleTop - diff, left: vhandleLeft });
+            //        }
+            //    });
+            //    var offsetTop = t.find('.jui-jscrollbar-slider-vertical').offset().top; //获得滑动层定位
+
+            //});
+            //$(document).mouseup(function () {
+            //    move_lock = false;
+            //});
+
 
             //设置滑块层的高度和底边距，以使得滑块层中间位置正好处在滑块位置
             t.find('.jui-jscrollbar-slider-vertical').find("a").css({ height: handleHeight, 'margin-bottom': -0.5 * handleHeight });
@@ -312,21 +339,23 @@
 }
 
 
-<h2>scrollBarHtml</h2>
+<h2>scrollbarHtml</h2>
 <div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv" style="border: 1px solid rgb(6, 47, 114);">
 <div class="jui-jscrollbar-scroll-content" style="top: 0px; left: 0px;">
-    <div style="width:1200px;height:100px;font-size:3em; background:silver;">
-	    <div style="width:600px;height:100px;font-size:2em; background:silver;float:left;">S</div>
-	    <div style="width:600px;height:100px;font-size:2em; background:silver;float:right;">E</div>
+    <div style="width:1200px;height:1000px;font-size:3em; background:silver;">        
+	        <div style="width:900px;height:100px;font-size:3em; background:silver;">
+	            <div style="width:500px;height:100px;font-size:2em; background:silver;float:left;">S</div>
+	            <div style="width:600px;height:100px;font-size:2em; background:silver;float:right;">E</div>
+	        </div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">2</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">3</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">5</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">6</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">7</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">8</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">9</div>
+	        <div style="width:100px;height:100px;font-size:3em; background:silver;">10</div>
     </div>
-    <div class="jui-jscrollbar-slider-number">2</div>
-    <div class="jui-jscrollbar-slider-number">3</div>
-    <div class="jui-jscrollbar-slider-number">5</div>
-    <div class="jui-jscrollbar-slider-number">6</div>
-    <div class="jui-jscrollbar-slider-number">7</div>
-    <div class="jui-jscrollbar-slider-number">8</div>
-    <div class="jui-jscrollbar-slider-number">9</div>
-    <div class="jui-jscrollbar-slider-number">10</div>
 </div>
 <div class="jui-jscrollbar-slider-wrap-vertical" style="width: 15px; height: 283px; background-color: rgb(243, 243, 243); border: 1px solid rgb(0, 0, 0);">
     <div class="jui-jscrollbar-slider-top" style="width: 13px; height: 14px; background-color: rgb(186, 186, 186); border: 1px solid rgb(102, 102, 102); background-position: initial initial; background-repeat: initial initial;">

@@ -62,8 +62,14 @@
 	        var outDivBorder = o.outDivBorder;
 
 
-	        if (scrollWidth < 10 || scrollWidth > 40) {
+	        if (scrollWidth < 0 || scrollWidth > 40) {
 	            scrollWidth = 20;
+	        }
+	        if ($(".jui-jscrollbar-slider-wrap-vertical").length > 0) {
+	            $(".jui-jscrollbar-slider-wrap-vertical").remove();
+	        }
+	        if ($(".jui-jscrollbar-slider-wrap-horizontal").length > 0) {
+	            $(".jui-jscrollbar-slider-wrap-horizontal").remove();
 	        }
 	        t.addClass("jui-jscrollbar-scroll-outDiv");
 	        t.css("border", "1px solid " + outDivBorder);
@@ -71,36 +77,7 @@
 	        if (t.find('.jui-jscrollbar-scroll-content').length == 0) {
 	            t.children().wrapAll("<div class='jui-jscrollbar-scroll-content'></div>");
 	        }
-	        //#region垂直滚动条
-	        t.append("<div class='jui-jscrollbar-slider-wrap-vertical' style='width:" + scrollWidth + "px;'>" +
-		                    "<div class='jui-jscrollbar-slider-top' style='width:" + (scrollWidth-2) + "px;height:" + (scrollWidth-1) + "px;'>" +
-                            "<span style='width:" + scrollWidth + "px;height:" + scrollWidth + "px;cursor:pointer;'></span>" +
-                            "</div>" +
-		                    "<div class='jui-jscrollbar-slider-vertical' style='margin-top:" + scrollWidth + "px;'></div>" +
-		                    "<div class='jui-jscrollbar-slider-bottom' style='width:" + (scrollWidth - 2) + "px;height:" + (scrollWidth - 1) + "px;'>" +
-                            "<span style='width:" + scrollWidth + "px;height:" + scrollWidth + "px;cursor:pointer;'></span>" +
-                            "</div>" +
-		                    "</div>"); //添加垂直滚动条外层div及滚动条  
-	        //设置滚动条高度
-	        t.find('.jui-jscrollbar-slider-wrap-vertical').height(t.height() - (scrollWidth + 2)).css("background-color", scrollWrapColor).css("border", "1px solid " + scrollBorder);
-            //#endregion
-	        //#region平行滚动条 
-	        t.append("<div class='jui-jscrollbar-slider-wrap-horizontal' style='height:" + scrollWidth + "px;'>" +
-		                    "<div class='jui-jscrollbar-slider-left' style='width:" + (scrollWidth - 1) + "px;height:" + (scrollWidth - 2) + "px;'>" +
-                            "<span style='width:" + scrollWidth + "px;height:" + scrollWidth + "px;cursor:pointer;'></span>" +
-                            "</div>" +
-		                    "<div class='jui-jscrollbar-slider-horizontal' style='margin-left:" + scrollWidth + "px;'></div>" +
-		                    "<div class='jui-jscrollbar-slider-right' style='width:" + (scrollWidth - 1) + "px;height:" + (scrollWidth - 2) + "px;'>" +
-                            "<span style='width:" + scrollWidth + "px;height:" + scrollWidth + "px;cursor:pointer;'></span>" +
-                            "</div>" +
-		                    "</div>"); //添加横向滚动条外层div及滚动条  
-	        //设置滚动条宽度
-	        t.find('.jui-jscrollbar-slider-wrap-horizontal').width(t.width() - (scrollWidth + 2)).css("background-color", scrollWrapColor).css("border", "1px solid " + scrollBorder);
-            //#endregion
-
-	        t.find(".jui-jscrollbar-slider-wrap-vertical").bind("selectstart", function () { return false; }); //文本不得选中
-	        t.find(".jui-jscrollbar-slider-wrap-horizontal").bind("selectstart", function () { return false; }); //文本不得选中
-            //#region滚动条与内部容器高宽差
+	        //#region滚动条与内部容器高宽差
 	        //比较内部容器高度与目标元素高度
 	        var diff = t.find('.jui-jscrollbar-scroll-content').height() - t.height();
 	        //比较内部容器宽度和目标元素宽度
@@ -111,6 +88,35 @@
 	        t.data('w_diff', w_diff)
 	        var space_ = 3 * scrollWidth;//空白及按钮部分宽度总和
 	        //#endregion
+	        if (diff > 0) {
+	            //#region垂直滚动条
+	            t.append("<div class='jui-jscrollbar-slider-wrap-vertical' style='width:" + scrollWidth + "px;'>" +
+                                "<div class='jui-jscrollbar-slider-top' style='width:" + (scrollWidth - 2) + "px;height:" + (scrollWidth - 1) + "px;'>" +
+                                "</div>" +
+                                "<div class='jui-jscrollbar-slider-vertical' style='margin-top:" + scrollWidth + "px;'></div>" +
+                                "<div class='jui-jscrollbar-slider-bottom' style='width:" + (scrollWidth - 2) + "px;height:" + (scrollWidth - 1) + "px;'>" +
+                                "</div>" +
+                                "</div>"); //添加垂直滚动条外层div及滚动条  
+	            //设置滚动条高度
+	            t.find('.jui-jscrollbar-slider-wrap-vertical').height(t.height() - (scrollWidth + 2)).css("background-color", scrollWrapColor).css("border", "1px solid " + scrollBorder);
+	            //#endregion
+	        }
+	        if (w_diff > 0) {
+	            //#region平行滚动条 
+	            t.append("<div class='jui-jscrollbar-slider-wrap-horizontal' style='height:" + scrollWidth + "px;'>" +
+                                "<div class='jui-jscrollbar-slider-left' style='width:" + (scrollWidth - 1) + "px;height:" + (scrollWidth - 2) + "px;'>" +
+                                "</div>" +
+                                "<div class='jui-jscrollbar-slider-horizontal' style='margin-left:" + scrollWidth + "px;'></div>" +
+                                "<div class='jui-jscrollbar-slider-right' style='width:" + (scrollWidth - 1) + "px;height:" + (scrollWidth - 2) + "px;'>" +
+                                "</div>" +
+                                "</div>"); //添加横向滚动条外层div及滚动条  
+	            //设置滚动条宽度
+	            t.find('.jui-jscrollbar-slider-wrap-horizontal').width(t.width() - (scrollWidth + 2)).css("background-color", scrollWrapColor).css("border", "1px solid " + scrollBorder);
+	            //#endregion
+	        }
+
+	        t.find(".jui-jscrollbar-slider-wrap-vertical").bind("selectstart", function () { return false; }); //文本不得选中
+	        t.find(".jui-jscrollbar-slider-wrap-horizontal").bind("selectstart", function () { return false; }); //文本不得选中
 
 	        //如果需要垂直滚动条
 	        if (diff > 0) {
@@ -127,7 +133,7 @@
 	                value: sliderInitial,
 	                slide: function (event, ui) {
 	                    if (a) {
-	                        t.find('.jui-jscrollbar-slider-vertical').find("a").css("background", handleincolor).css("border", "0");
+	                        t.find('.jui-jscrollbar-slider-vertical').find("a").css("background", handleincolor);
 	                        a = false;
 	                    }
 	                    var topValue = -((100 - ui.value) * diff / 100);
@@ -144,7 +150,7 @@
 	            });
 
 	            //去除slider自带样式
-	            t.find('.jui-jscrollbar-slider-vertical').removeClass("ui-widget-content").removeClass("ui-slider-vertical").css("cursor", "default");
+	            t.find('.jui-jscrollbar-slider-vertical').removeClass("ui-widget-content").removeClass("ui-slider-vertical");
 	            t.find('.jui-jscrollbar-slider-vertical').find("a").removeClass("ui-state-default").removeClass("ui-state-hover")
 				.removeClass("ui-state-active").removeClass("ui-slider").removeClass("ui-slider-handle").removeClass("ui-state-focus")
 				.addClass("jui-jscrollbar-slider-vhandle").css("background-color", handlebgcolor).css("width", scrollWidth+"px");
@@ -191,13 +197,9 @@
 	                    var speed = Math.round(5000 / t.data('diff'));
 	                    if (speed < 1) speed = 1;
 	                    if (speed > 100) speed = 100;
-
 	                    var sliderVal = $(this).find(".jui-jscrollbar-slider-vertical").slider("value"); //读取当前滚动条的值
-
 	                    sliderVal += (delta * speed); //增加当前滑轮值
-
 	                    $(this).find(".jui-jscrollbar-slider-vertical").slider("value", sliderVal); //为滚动条设置新值
-
 	                    event.preventDefault(); //终止默认行为
 	                });
 
@@ -213,9 +215,7 @@
 	            $('.jui-jscrollbar-slider-top').mousedown(function (event) {
 	                $(this).css("background", buttonClickColor);
 	                event.stopPropagation();
-	                intervalId = setInterval(function addfix() {
-	                    var v = t.find(".jui-jscrollbar-slider-vertical").slider("value"); v += 1; t.find(".jui-jscrollbar-slider-vertical").slider("value", v);
-	                }, 10);
+	                intervalId = setInterval(function addfix() {var v = t.find(".jui-jscrollbar-slider-vertical").slider("value"); v += 1; t.find(".jui-jscrollbar-slider-vertical").slider("value", v);}, 10);
 	            }).mouseup(function () {
 	                $(this).css("background", buttonHover);
 	                clearInterval(intervalId);
@@ -230,9 +230,7 @@
 	            $('.jui-jscrollbar-slider-bottom').mousedown(function (event) {
 	                event.stopPropagation();
 	                $(this).css("background", buttonClickColor);
-	                intervalId = setInterval(function addfix() {
-	                    var v = t.find(".jui-jscrollbar-slider-vertical").slider("value"); v -= 1; t.find(".jui-jscrollbar-slider-vertical").slider("value", v);
-	                }, 10);
+	                intervalId = setInterval(function addfix() {var v = t.find(".jui-jscrollbar-slider-vertical").slider("value"); v -= 1; t.find(".jui-jscrollbar-slider-vertical").slider("value", v);}, 10);
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
 	                $(this).css("background", buttonHover);
@@ -272,12 +270,12 @@
 	                }
 	            });
 
-	            t.find('.jui-jscrollbar-slider-horizontal').find("div").removeClass().css("font-size", "small");
+	            //t.find('.jui-jscrollbar-slider-horizontal').find("div").removeClass().css("font-size", "small");
 	            //去除slider自带样式
-	            t.find('.jui-jscrollbar-slider-horizontal').removeClass("ui-widget-content").removeClass("ui-slider-horizontal").css("cursor", "default");
+	            t.find('.jui-jscrollbar-slider-horizontal').removeClass("ui-widget-content").removeClass("ui-slider-horizontal");
 	            t.find('.jui-jscrollbar-slider-horizontal').find("a").removeClass("ui-state-default").removeClass("ui-state-hover")
 				.removeClass("ui-state-active").removeClass("ui-slider").removeClass("ui-slider-handle").removeClass("ui-state-focus")
-				.addClass("jui-jscrollbar-slider-hhandle").css("background-color", handlebgcolor).css("border", "0").css("outline", "0").css("z-index", "11").css("top", "0px").css("font-size", "small").css("height", scrollWidth+"px");
+				.addClass("jui-jscrollbar-slider-hhandle").css("background-color", handlebgcolor).css("height", scrollWidth+"px");
 
 	            //	        设置滑块层的宽度和右边距，以使得滑块层中间位置正好处在滑块位置
 	            t.find('.jui-jscrollbar-slider-horizontal').find("a").css({ width: handleWidth, 'margin-left': -0.5 * handleWidth });
@@ -317,22 +315,18 @@
 	            $('.jui-jscrollbar-slider-left').mousedown(function (event) {
 	                event.stopPropagation();
 	                $(this).css("background", buttonClickColor);
-	                intervalId = setInterval(function addfix() {
-	                    var v = t.find(".jui-jscrollbar-slider-horizontal").slider("value"); v -= 1; t.find(".jui-jscrollbar-slider-horizontal").slider("value", v);
-	                }, 10);
+	                intervalId = setInterval(function addfix() {var v = t.find(".jui-jscrollbar-slider-horizontal").slider("value"); v -= 1; t.find(".jui-jscrollbar-slider-horizontal").slider("value", v);}, 10);
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
 	                $(this).css("background", buttonHover);
 	            });
 
 
-	            $('.jui-jscrollbar-slider-right').css("background-color", buttonColor).css("top", "0px").css("border", "1px solid " + buttonBorder);
+	            $('.jui-jscrollbar-slider-right').css("background-color", buttonColor).css("border", "1px solid " + buttonBorder);
 	            $('.jui-jscrollbar-slider-right').mousedown(function (event) {
 	                event.stopPropagation();
 	                $(this).css("background", buttonClickColor);
-	                intervalId = setInterval(function addfix() {
-	                    var v = t.find(".jui-jscrollbar-slider-horizontal").slider("value"); v += 1; t.find(".jui-jscrollbar-slider-horizontal").slider("value", v);
-	                }, 10);
+	                intervalId = setInterval(function addfix() {var v = t.find(".jui-jscrollbar-slider-horizontal").slider("value"); v += 1; t.find(".jui-jscrollbar-slider-horizontal").slider("value", v);}, 10);
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
 	                $(this).css("background", buttonHover);
@@ -353,6 +347,7 @@
 	            this.options[key] = value;
 	        else
 	            return this.options[key];
+	        this._jscrollbar();
 	    },
 
 	    _setOptions: function (options) {

@@ -187,11 +187,11 @@ namespace jUI.Controllers
 		{
 			return View();
         }
-        public ActionResult scrollBar()
+        public ActionResult scrollbar()
         {
             return View();
         }
-        public ActionResult scrollBarHtml()
+        public ActionResult scrollbarHtml()
         {
             return View();
         }

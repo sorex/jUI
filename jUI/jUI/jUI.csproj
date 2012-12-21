@@ -252,6 +252,7 @@
     <None Include="Content\jUI\less\jui.jradio.less" />
     <None Include="Content\jUI\less\jui.jradioTable.less" />
     <None Include="Content\jUI\less\jui.jradioTree.less" />
+    <Content Include="Content\jUI\less\jui.jscrollbar.less" />
     <None Include="Content\jUI\less\jui.jsearch.less" />
     <None Include="Content\jUI\less\jui.jselect.less" />
     <None Include="Content\jUI\less\jui.jsortSelect.less" />
@@ -318,7 +319,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jUI\chosen.jquery.js" />
-    <Content Include="Scripts\jUI\jiu.jscrollbar.js" />
+    <Content Include="Scripts\jUI\jui.jscrollbar.js" />
     <Content Include="Scripts\jUI\jquery.mousewheel.js" />
     <Content Include="Scripts\jUI\jui.jbutton.js" />
     <Content Include="Scripts\jUI\jui.jcheckbox.js" />
@@ -427,8 +428,8 @@
     <Content Include="Views\Test\tip.cshtml" />
     <Content Include="Views\Test\datetimepicker.cshtml" />
     <Content Include="Views\Standards\ThemeRoller.cshtml" />
-    <Content Include="Views\Home\scrollBar.cshtml" />
-    <Content Include="Views\Home\scrollBarHtml.cshtml" />
+    <Content Include="Views\Home\scrollbar.cshtml" />
+    <Content Include="Views\Home\scrollbarHtml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

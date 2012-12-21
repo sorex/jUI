@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "scrollBar.cshtml";
+    ViewBag.Title = "scrollbar.cshtml";
 }
 
-<h2>scrollBar</h2>
+<h2>scrollbar</h2>
 @section head{
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jiu.jscrollbar.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jscrollbar.js")"></script>
     <link href="~/Content/jUI/css/jui.jscrollbar.css" rel="stylesheet" />
     <script src="~/Scripts/jUI/jquery.mousewheel.js"></script>
 	<script type="text/javascript">
@@ -41,10 +41,70 @@
 
 			, scrollDefault: '#f3f3f3'//滚动条背景色
             , scrollBorder: '#000000'//滚动条边框颜色 
-            , scrollWidth: 15//滚动条宽度
+            , scrollWidth: 25//滚动条宽度
 
             , outDivBorder: '#062f72'//内容层边框颜色
         });
+        //#region 取值
+        var btnDefault = $("#scrollDiv").jscrollbar("option","btnDefault");
+        var btnActive = $("#scrollDiv").jscrollbar("option", "btnActive");
+        var btnHover = $("#scrollDiv").jscrollbar("option", "btnHover");
+        var btnBorder = $("#scrollDiv").jscrollbar("option", "btnBorder");
+
+        var handleDefault = $("#scrollDiv").jscrollbar("option", "handleDefault");
+        var handleActive = $("#scrollDiv").jscrollbar("option", "handleActive");
+        var handleHover = $("#scrollDiv").jscrollbar("option", "handleHover");
+
+        var scrollDefault = $("#scrollDiv").jscrollbar("option", "scrollDefault");
+        var scrollBorder = $("#scrollDiv").jscrollbar("option", "scrollBorder");
+        var scrollWidth = $("#scrollDiv").jscrollbar("option", "scrollWidth");
+
+        var outDivBorder = $("#scrollDiv").jscrollbar("option", "outDivBorder");
+        //#endregion
+        //#region赋值 input
+        $("#txt_btnDefault").attr("value", btnDefault);
+        $("#txt_btnActive").attr("value", btnActive);
+        $("#txt_btnHover").attr("value", btnHover);
+        $("#txt_btnBorder").attr("value", btnBorder);
+
+        $("#txt_handleDefault").attr("value", handleDefault);
+        $("#txt_handleActive").attr("value", handleActive);
+        $("#txt_handleHover").attr("value", handleHover);
+
+        $("#txt_scrollDefault").attr("value", scrollDefault);
+        $("#txt_scrollBorder").attr("value", scrollBorder);
+        $("#txt_scrollWidth").attr("value", scrollWidth);
+
+        $("#txt_outDivBorder").attr("value", outDivBorder);
+        //#endregion
+        //#region赋值 span
+        $("#sp_btnDefault").css("background-color", btnDefault);
+        $("#sp_btnActive").css("background-color", btnActive);
+        $("#sp_btnHover").css("background-color", btnHover);
+        $("#sp_btnBorder").css("background-color", btnBorder);
+
+        $("#sp_handleDefault").css("background-color", handleDefault);
+        $("#sp_handleActive").css("background-color", handleActive);
+        $("#sp_handleHover").css("background-color", handleHover);
+
+        $("#sp_scrollDefault").css("background-color", scrollDefault);
+        $("#sp_scrollBorder").css("background-color", scrollBorder);
+
+        $("#sp_outDivBorder").css("background-color", outDivBorder);
+
+        //#endregion
+        //#region文本框
+        $("input").click(function () {
+            $(this).select();
+        }).focusout(function () {
+            var new_value = $(this).attr("value");
+            if ($(this).attr("id") == "txt_scrollWidth") {
+                new_value = parseInt($(this).attr("value"));
+            }
+            $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
+            $(this).next().css("background-color", new_value);
+        });
+        //#endregion
     })
 </script>
 }
@@ -85,6 +145,43 @@
 	        <div style="width:100px;height:100px;font-size:3em; background:silver;">8</div>
 	        <div style="width:100px;height:100px;font-size:3em; background:silver;">9</div>
 	        <div style="width:100px;height:100px;font-size:3em; background:silver;">10</div>
+        </div>
+        <div style="display:block;position:absolute;top:50px;right:200px;height:310px;width:250px;border:1px solid silver;overflow:scroll;">
+            <table>
+                <tr>
+                    <td>按钮颜色(btnDefault):</td></tr><tr><td><input type="text" id="txt_btnDefault" value=""/><span id="sp_btnDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>按钮点击后颜色(btnActive):</td></tr><tr><td><input type="text" id="txt_btnActive" value=""/><span id="sp_btnActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>按钮覆盖后颜色(btnHover):</td></tr><tr><td><input type="text" id="txt_btnHover" value=""/><span id="sp_btnHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>按钮边框颜色(btnBorder):</td></tr><tr><td><input type="text" id="txt_btnBorder" value=""/><span id="sp_btnBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滑块背景色(handleDefault):</td></tr><tr><td><input type="text" id="txt_handleDefault" value=""/><span id="sp_handleDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滑块点击后颜色(handleActive):</td></tr><tr><td><input type="text" id="txt_handleActive" value=""/><span id="sp_handleActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滑块覆盖后颜色(handleHover):</td></tr><tr><td><input type="text" id="txt_handleHover" value=""/><span id="sp_handleHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滚动条背景色(scrollDefault):</td></tr><tr><td><input type="text" id="txt_scrollDefault" value=""/><span id="sp_scrollDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滚动条边框颜色(scrollBorder):</td></tr><tr><td><input type="text" id="txt_scrollBorder" value=""/><span id="sp_scrollBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滚动条宽度(scrollWidth):</td></tr><tr><td><input type="text" id="txt_scrollWidth" value=""/></td>
+                 </tr>
+                <tr>
+                    <td>内容层边框颜色(outDivBorder):</td></tr><tr><td><input type="text" id="txt_outDivBorder" value=""/><span id="sp_outDivBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                  </tr>
+            </table>
         </div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">        
