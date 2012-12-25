@@ -41,9 +41,11 @@
 
 			, scrollDefault: '#f3f3f3'//滚动条背景色
             , scrollBorder: '#000000'//滚动条边框颜色 
-            , scrollWidth: 25//滚动条宽度
+            , scrollWidth: 30//滚动条宽度
 
             , outDivBorder: '#062f72'//内容层边框颜色
+            , showWidth: 300//显示宽度
+            , showHeight: 300//显示高度
         });
         //#region 取值
         var btnDefault = $("#scrollDiv").jscrollbar("option","btnDefault");
@@ -99,7 +101,7 @@
         }).focusout(function () {
             var new_value = $(this).attr("value");
             if ($(this).attr("id") == "txt_scrollWidth") {
-                new_value = parseInt($(this).attr("value"));
+                new_value = parseInt($("#txt_scrollWidth").attr("value"));
             }
             $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
             $(this).next().css("background-color", new_value);
@@ -133,20 +135,70 @@
 	</ul>
 	<div id="tab1">
         <div id="scrollDiv">
-	        <div style="width:900px;height:100px;font-size:3em; background:silver;">
-	            <div style="width:500px;height:100px;font-size:2em; background:silver;float:left;">S</div>
-	            <div style="width:600px;height:100px;font-size:2em; background:silver;float:right;">E</div>
-	        </div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">2</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">3</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">5</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">6</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">7</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">8</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">9</div>
-	        <div style="width:100px;height:100px;font-size:3em; background:silver;">10</div>
+            Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+            
+            Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+            Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+
+Default scrollbar with scroll buttons
+Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugia
         </div>
-        <div style="display:block;position:absolute;top:50px;right:200px;height:310px;width:250px;border:1px solid silver;overflow:scroll;">
+        <div style="display:block;position:absolute;top:60px;right:200px;height:310px;width:250px;border:1px solid silver;overflow:scroll;">
             <table>
                 <tr>
                     <td>按钮颜色(btnDefault):</td></tr><tr><td><input type="text" id="txt_btnDefault" value=""/><span id="sp_btnDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
@@ -440,6 +492,44 @@
 					var outDivBorder = $("#scrollDiv").jscrollbar( "option", "outDivBorder" );
 					//设置
 					$("#scrollDiv").jscrollbar("option","outDivBorder","#062f72");
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">showWidth</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">300</span>
+			</h3>
+			<div>
+				<p>设置显示宽度</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({showWidth:300});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var showWidth = $("#scrollDiv").jscrollbar( "option", "showWidth" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","showWidth",300);
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">showHeight</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">300</span>
+			</h3>
+			<div>
+				<p>设置显示高度</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({showHeight:300});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var showHeight = $("#scrollDiv").jscrollbar( "option", "showHeight" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","showHeight",300);
 				</pre>
 			</div>
 		</div>

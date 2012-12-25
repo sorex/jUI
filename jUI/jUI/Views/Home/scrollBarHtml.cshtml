@@ -122,9 +122,9 @@
 
 
             //设置滑块层的高度和底边距，以使得滑块层中间位置正好处在滑块位置
-            t.find('.jui-jscrollbar-slider-vertical').find("a").css({ height: handleHeight, 'margin-bottom': -0.5 * handleHeight });
+            t.find('.jui-jscrollbar-slider-vertical').find("a").css({ height: handleHeight+1, 'margin-bottom': -0.5 * handleHeight });
             var origSliderHeight = t.height() - space_; //读取滚动条总长度
-            var sliderHeight = origSliderHeight - handleHeight - 4; //获取滑块可移动范围长度
+            var sliderHeight = origSliderHeight - handleHeight - 6; //获取滑块可移动范围长度
             var sliderMargin = (origSliderHeight - sliderHeight) * 0.5 + scrollWidth - 1; //获取滑块上下边距
 
             if ($.browser.msie) {
@@ -256,7 +256,7 @@
             var origSliderWidth = t.width() - space_; //读取滚动条总长度
             var sliderWidth = origSliderWidth - handleWidth - 4; //获取滑块可移动范围长度
             var w_sliderMargin = (origSliderWidth - sliderWidth) * 0.5 + scrollWidth - 1; //获取滑块左右边距
-            t.find(".jui-jscrollbar-slider-horizontal").css({ 'width': sliderWidth, 'margin-left': w_sliderMargin, 'height': scrollWidth }); //设置滑动层宽度和左边距
+            t.find(".jui-jscrollbar-slider-horizontal").css({ 'width': sliderWidth-1, 'margin-left': w_sliderMargin, 'height': scrollWidth }); //设置滑动层宽度和左边距
 
             $(".jui-jscrollbar-slider-wrap-horizontal").mousedown(function (event) {//点击滚动条非滑动条范围时
                 var offsetLeft = t.find(".jui-jscrollbar-slider-horizontal").offset().left; //获得滑动层定位
@@ -357,22 +357,22 @@
 	        <div style="width:100px;height:100px;font-size:3em; background:silver;">10</div>
     </div>
 </div>
-<div class="jui-jscrollbar-slider-wrap-vertical" style="width: 15px; height: 283px; background-color: rgb(243, 243, 243); border: 1px solid rgb(0, 0, 0);">
+<div class="jui-jscrollbar-slider-wrap-vertical" style="width: 15px; height: 282px; background-color: rgb(243, 243, 243); border: 1px solid rgb(0, 0, 0);">
     <div class="jui-jscrollbar-slider-top" style="width: 13px; height: 14px; background-color: rgb(186, 186, 186); border: 1px solid rgb(102, 102, 102); background-position: initial initial; background-repeat: initial initial;">
         <span style="width:15px;height:15px;cursor:pointer;"></span>
     </div>
-    <div class="jui-jscrollbar-slider-vertical ui-slider ui-widget ui-corner-all" style="margin-top: 58.5px; cursor: default; height: 166px;">
+    <div class="jui-jscrollbar-slider-vertical" style="margin-top: 58.5px; cursor: default; height: 160px;">
         <div class="ui-slider-range ui-widget-header ui-slider-range-min" style="height: 100%;"></div>        
     </div>
     <div class="jui-jscrollbar-slider-bottom" style="width: 13px; height: 14px; background-color: rgb(186, 186, 186); border: 1px solid rgb(102, 102, 102); background-position: initial initial; background-repeat: initial initial;">
         <span style="width:15px;height:15px;cursor:pointer;"></span>
     </div>
 </div>
-<div class="jui-jscrollbar-slider-wrap-horizontal" style="height: 15px; width: 283px; background-color: rgb(243, 243, 243); border: 1px solid rgb(0, 0, 0);">
+<div class="jui-jscrollbar-slider-wrap-horizontal" style="height: 15px; width: 282px; background-color: rgb(243, 243, 243); border: 1px solid rgb(0, 0, 0);">
     <div class="jui-jscrollbar-slider-left" style="width: 14px; height: 13px; background-color: rgb(186, 186, 186); border: 1px solid rgb(102, 102, 102); background-position: initial initial; background-repeat: initial initial;">
         <span style="width:15px;height:15px;cursor:pointer;"></span>
     </div>
-    <div class="jui-jscrollbar-slider-horizontal ui-slider ui-widget ui-corner-all" style="margin-left: 48px; cursor: default; width: 187px; height: 15px;">
+    <div class="jui-jscrollbar-slider-horizontal" style="margin-left: 48px; cursor: default; width: 180px; height: 15px;">
         <div class="" style="width: 0%; font-size: small;"></div>        
     </div>
     <div class="jui-jscrollbar-slider-right" style="width: 14px; height: 13px; background-color: rgb(186, 186, 186); top: 0px; border: 1px solid rgb(102, 102, 102); background-position: initial initial; background-repeat: initial initial;">
