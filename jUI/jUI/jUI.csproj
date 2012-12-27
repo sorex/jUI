@@ -304,6 +304,7 @@
     <Content Include="Content\jquery-ui\less\jquery-ui.less" />
     <Content Include="Content\variables.less" />
     <Content Include="Content\jUI\less\jui.less" />
+    <Content Include="Content\variablesDark.less" />
     <None Include="Properties\PublishProfiles\桌面.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.1-vsdoc.js" />
