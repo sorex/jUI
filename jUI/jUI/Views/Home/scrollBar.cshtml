@@ -35,9 +35,12 @@
             , btnHover: '#d4d4d4'//覆盖按钮后颜色
             , btnBorder: '#666666'//按钮边框颜色 
 
-	        , handleDefault: '#bababa' //滑块背景色
-            , handleActive: '#e2e2e2'//滑块点击后颜色
-			, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+	        //, handleDefault: '#bababa' //滑块背景色
+            //, handleActive: '#e2e2e2'//滑块点击后颜色
+			//, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+	        , handleDefault: 'yellow' //滑块背景色
+            , handleActive: 'red'//滑块点击后颜色
+			, handleHover: 'green'//鼠标移入滑块后背景色
 
 			, scrollDefault: '#f3f3f3'//滚动条背景色
             , scrollBorder: '#000000'//滚动条边框颜色 
@@ -62,6 +65,8 @@
         var scrollWidth = $("#scrollDiv").jscrollbar("option", "scrollWidth");
 
         var outDivBorder = $("#scrollDiv").jscrollbar("option", "outDivBorder");
+        var showWidth = $("#scrollDiv").jscrollbar("option", "showWidth");
+        var showHeight = $("#scrollDiv").jscrollbar("option", "showHeight");
         //#endregion
         //#region赋值 input
         $("#txt_btnDefault").attr("value", btnDefault);
@@ -78,6 +83,8 @@
         $("#txt_scrollWidth").attr("value", scrollWidth);
 
         $("#txt_outDivBorder").attr("value", outDivBorder);
+        $("#txt_showWidth").attr("value", showWidth);
+        $("#txt_showHeight").attr("value", showHeight);
         //#endregion
         //#region赋值 span
         $("#sp_btnDefault").css("background-color", btnDefault);
@@ -103,10 +110,21 @@
             if ($(this).attr("id") == "txt_scrollWidth") {
                 new_value = parseInt($("#txt_scrollWidth").attr("value"));
             }
+            if ($(this).attr("id") == "txt_showWidth") {
+                new_value = parseInt($("#txt_showWidth").attr("value"));
+            }
+            if ($(this).attr("id") == "txt_showHeight") {
+                new_value = parseInt($("#txt_showHeight").attr("value"));
+            }
             $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
             $(this).next().css("background-color", new_value);
+            $("#showControll").width(300);
+            $("#showControll").height(300);
         });
         //#endregion
+        //设置样式控制模块宽度与高度
+        $("#showControll").width(300);
+        $("#showControll").height(300);
     })
 </script>
 }
@@ -198,7 +216,7 @@ Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam fe
 
 Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugia
         </div>
-        <div style="display:block;position:absolute;top:60px;right:200px;height:310px;width:250px;border:1px solid silver;overflow:scroll;">
+        <div id="showControll" style="display:block;position:absolute;top:60px;right:60px;border:1px solid silver;overflow:scroll;">
             <table>
                 <tr>
                     <td>按钮颜色(btnDefault):</td></tr><tr><td><input type="text" id="txt_btnDefault" value=""/><span id="sp_btnDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
@@ -233,6 +251,12 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                 <tr>
                     <td>内容层边框颜色(outDivBorder):</td></tr><tr><td><input type="text" id="txt_outDivBorder" value=""/><span id="sp_outDivBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                   </tr>
+                <tr>
+                    <td>内容层宽度(showWidth):</td></tr><tr><td><input type="text" id="txt_showWidth" value=""/></td>
+                  </tr>
+                <tr>
+                    <td>内容层高度(showHeight):</td></tr><tr><td><input type="text" id="txt_showHeight" value=""/></td>
+                  </tr>
             </table>
         </div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
@@ -266,6 +290,8 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                     , scrollBorder: '#000000'//滚动条边框颜色 
                     , scrollWidth: 15//滚动条宽度
                     , outDivBorder: '#062f72'//内容层边框颜色
+                    , showWidth: 300//显示宽度
+                    , showHeight: 300//显示高度
                 });
             })
         &lt;/script&gt;

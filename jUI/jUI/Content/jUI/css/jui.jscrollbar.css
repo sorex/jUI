@@ -2,7 +2,7 @@
 .jui-jscrollbar-scroll-content {position:absolute;top:0;left:0;width:auto;height:auto;white-space:pre;}
 
 /*垂直滚动条*/
-.jui-jscrollbar-slider-wrap-vertical{position:absolute;right:0;top:0;z-index:9;}
+.jui-jscrollbar-slider-wrap-vertical{position:absolute;top:0;z-index:9;}
 
 .jui-jscrollbar-slider-top{top:0;position:absolute;z-index:10;}
 .jui-jscrollbar-slider-bottom{bottom:0;position:absolute;z-index:10;}
@@ -18,3 +18,8 @@
 .jui-jscrollbar-slider-hhandle{height:20px;margin:0 auto;display:block;position:absolute;}/*滑块样式*/
 
 .jui-jscrollbar-scroll-outDiv{position:relative;overflow:hidden; }
+
+
+.jui-jscrollbar-scroll-containerDiv {
+
+}
