@@ -1,0 +1,157 @@
+﻿@BaseUrl: ~`"http://localhost:5642/"`;
+@JQuery_UI_Images: ~`"@{BaseUrl}" + "Content/jquery-ui/images/"`;
+//编译后使用css则使用下面的路径
+//	@JQuery_UI_Images: ~`"../images/"`;
+//	使用实例：
+//	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
+
+@jUI_Images: ~`"@{BaseUrl}" + "Content/jUI/images/"`;
+//编译后使用css则使用下面的路径
+//	@jUI_Images: ~`"../images/"`;
+//	使用实例：
+//	background-image: ~`'url(@{jUI_Images}ui-icons_256x240.png)'`;
+
+//#region 核心样式
+@Family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
+@FontWeight: normal;
+@FontSize: 14px;
+@LineHeight: 22px;
+@DisabledOpacity: .35;
+@DisabledOpacityPercent: @DisabledOpacity * 100;
+@Transparent: transparent;
+//用于提示
+@HelperColor:#999999;
+//基色
+@BaseColor:#530FAD;
+//#endregion
+
+//#region JQuery UI 样式
+@Corners: 8px;
+
+@HeaderBackground: #530FAD;
+@HeaderBorder: #8243D6;
+@HeaderColor: #ffffff;
+@HeaderIcon: #ffffff;
+
+@ContentBackground: #f2f2f2;
+@ContentBorder: #a6a6a6;
+@ContentColor: #0d0d0d;
+@ContentIcon: #0d0d0d;
+
+@DefaultBackground: #530FAD;
+@DefaultBorder: #8243D6;
+@DefaultColor: #ffffff;
+@DefaultIcon: #ffffff;
+
+@HoverBackground: #4F2982;
+@HoverBorder: #8243D6;
+@HoverColor: #ffffff;
+@HoverIcon: #ffffff;
+
+@ActiveBackground: #330570;
+@ActiveBorder: #8243D6;
+@ActiveColor: #ffffff;
+@ActiveIcon: #ffffff;
+
+@HighlightBackground: #fff0d9;
+@HighlightBorder: #FFE800;
+@HighlightColor: #000000;
+@HighlightIcon: #FFE800;
+
+@ErrorBackground: #ffd9d9;
+@ErrorBorder: #da0000;
+@ErrorColor: #da0000;
+@ErrorIcon: #da0000;
+
+@OverlayBackground: #262626;
+@OverlayOpacity: .3;
+@OverlayOpacityPercent: @OverlayOpacity * 100;
+
+@ShadowBackground: #262626;
+@ShadowOpacity: 0;
+@ShadowOpacityPercent: @ShadowOpacity * 100;
+@ShadowThickness: 0px;
+@TopOffset: 0px;
+@LeftOffset: 0px;
+@ShadowCorners: 0px;
+//#endregion
+
+//#region 这是一组不明显的颜色
+@OtherDefaultBackground: @ContentBackground;
+@OtherDefaultBorder: @ContentBorder;
+@OtherDefaultColor: @DefaultBackground;
+
+@OtherHoverBackground: @ActiveBackground;
+@OtherHoverBorder: @ActiveBorder;
+@OtherHoverColor: @ActiveColor;
+
+@OtherActiveBackground: @ActiveBackground;
+@OtherActiveBorder: @ActiveBorder;
+@OtherActiveColor: @ActiveColor;
+
+@OtherHighlightBackground: @ContentBorder;
+@OtherHighlightBorder: @ContentBorder;
+@OtherHighlightColor: @ContentColor;
+//#endregion
+
+//#region Layout
+@layoutTopBackground: #530FAD;
+@layoutTopColor: #ffffff;
+@layoutContentBackground: #f0f0f0;
+@layoutLeftBackground: #f3f3f3;
+@layoutRightBackground: #ffffff;
+@layoutMainBackground: #ffffff;
+@layoutBottomBackground: #ffffff;
+//#endregion
+
+//#region leftMenu
+@leftMenuItemColor: #0d0d0d;
+@leftMenuItemHoverBackground: #cccccc;
+@leftMenuItemHoverColor: #0d0d0d;
+@leftMenuItemActiveBackground: #a6a6a6;
+@leftMenuItemActiveColor: #0d0d0d;
+//#endregion
+
+//#regionTable样式
+@tableBorder: #000000;
+
+@tableOddBackground: @ContentBackground;
+@tableOddColor: @ContentColor;
+
+@tableEvenBackground: #e5e5e5;
+@tableEvenColor: @ContentColor;
+
+@tableHoverBackground: #cccccc;
+@tableHoverColor: @ContentColor;
+
+@tableActiveBackground: @ActiveBackground;
+@tableActiveColor: @ActiveColor;
+
+@tableHeadBackground: @HeaderBackground;
+@tableHeadColor: @HeaderColor;
+//#endregion
+
+//#region LinkButton样式
+@linkButtonBackground: none;
+//#endregion
+
+//#region tree样式
+@treeULineBBackground: green;
+@treeULineVBackground: blue;
+@treeULineHBackground: #000000;
+//#endregion
+
+
+
+//#region text样式
+@textBorder: #666666;
+//#endregion
+
+//#region jsort样式
+@sortUlBackground: #f3f3f3;
+@sortUlColor: #000000;
+@sortUlBorder: @ContentBorder;
+@sortUlHoverBackground: #d4d4d4;
+//#endregion
+
+
