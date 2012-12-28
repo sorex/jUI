@@ -25,7 +25,7 @@
 	        //btnDefault: '#bababa'//按钮颜色
 			//, btnActive: '#e2e2e2'//按钮点击后颜色
             //, btnHover: '#d4d4d4'//覆盖按钮后颜色
-            //, btnBorder: '#666666'//按钮边框颜色 
+	        //, btnBorder: '#666666'//按钮边框颜色             
 
 	        //, handleDefault: '#bababa' //滑块背景色
             //, handleActive: '#e2e2e2'//滑块点击后颜色
@@ -33,10 +33,15 @@
 
 			//, scrollDefault: '#f3f3f3'//滚动条背景色
             //, scrollBorder: '#000000'//滚动条边框颜色 
-            //, scrollWidth: 15//滚动条宽度
             //, showWidth: 200//显示宽度
             //, showHeight:200//显示高度
-            //, outDivBorder: '#062f72'//内容层边框颜色
+	        //, outDivBorder: '#062f72'//内容层边框颜色
+	        //, scrollWidth: 15//滚动条宽度
+
+	        //,sliderBarWidth:10//滑块宽度
+	        //,borderRadius:8//圆角
+	        //*****btnBackground:url(...)//四个方向按钮背景图片*****
+	        //*****scrollBackground:url(...)//滚动条背景图片*****
 	    },
 
 	    _create: function () {
@@ -61,9 +66,11 @@
 
 	        var scrollWrapColor = o.scrollDefault;
 	        var scrollBorder = o.scrollBorder;
-	        var scrollWidth = o.scrollWidth;
-
 	        var outDivBorder = o.outDivBorder;
+
+	        var scrollWidth = o.scrollWidth;
+	        var borderRadius = o.borderRadius;
+	        var sliderBarWidth = o.sliderBarWidth;
 
 	        if (scrollWidth < 0 || scrollWidth > 40) {
 	            scrollWidth = 20;
@@ -88,19 +95,18 @@
 	            $("#" + t_id + "containerDiv").wrap("<div id='" + t_id + "outDiv'></div>");
 	            $("#" + t_id + "outDiv").css("position", "relative");
 	        }
-	        $("#" + t_id + "outDiv").css({ "border": "1px solid " + outDivBorder, "width": showWidth + scrollWidth + 3, "height": showHeight + scrollWidth + 3 });
+	        $("#" + t_id + "outDiv").css({ "border": "1px solid " + outDivBorder, "width": showWidth + scrollWidth + 3, "height": showHeight + scrollWidth + 3, "border-radius": borderRadius + "px" });
 
 	        if ($("#" + t_id + "sliderWrapVertical").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapVertical'></div>");
-	            $("#" + t_id + "sliderWrapVertical").css({ "position": "absolute", "top": "0", "right": "0", "display": "none" });
+	            $("#" + t_id + "sliderWrapVertical").css({ "position": "absolute", "top": "0", "right": "0", "display": "none"});
 	        }
-	        $("#" + t_id + "sliderWrapVertical").css({ "width": scrollWidth, "height": showHeight, "border": "1px solid " + scrollBorder });
-
+	        $("#" + t_id + "sliderWrapVertical").css({ "width": scrollWidth, "height": showHeight, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        if ($("#" + t_id + "sliderWrapHorizontal").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapHorizontal'></div>");
 	            $("#" + t_id + "sliderWrapHorizontal").css({ "position": "absolute", "left": "0", "bottom":"0","display":"none" });
 	        }
-	        $("#" + t_id + "sliderWrapHorizontal").css({ "width": showWidth, "height": scrollWidth, "border": "1px solid " + scrollBorder });
+	        $("#" + t_id + "sliderWrapHorizontal").css({ "width": showWidth, "height": scrollWidth, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        //比较内部容器高度与目标元素高度
 	        var diff = t_h - showHeight;
 	        //比较内部容器宽度和目标元素宽度
@@ -146,9 +152,9 @@
 	            }
 	            $("#" + t_id + "sliderWrapVertical").append("<div id='" + t_id + "sliderTop'></div><div id='" + t_id + "sliderVertical'></div><div id='" + t_id + "sliderBottom'></div>");
 	            
-	            $("#" + t_id + "sliderTop").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder });
-	            $("#" + t_id + "sliderVertical").css({"width":scrollWidth-2,"position":"absolute"});
-	            $("#" + t_id + "sliderBottom").css({ "position":"absolute","bottom":"0","width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderTop").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius+"px" });
+	            $("#" + t_id + "sliderVertical").css({ "width": scrollWidth - 2, "position": "absolute" });
+	            $("#" + t_id + "sliderBottom").css({ "position": "absolute", "bottom": "0", "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            
 	            var prop = diff / t_h; //高度差与内容层高度比例
 	            var handleHeight = Math.round((1 - prop) * (showHeight - space_)); //计算滑块的高度
@@ -181,8 +187,8 @@
 	            //#endregion
 
 	            //#region 调节滑块样式
-	            $("#" + t_id + "sliderVertical").find("a").removeClass("ui-state-default").css({ "width": scrollWidth, "background-color": handlebgcolor });
-	            $("#" + t_id + "sliderVertical").removeClass("ui-slider-vertical").removeClass("ui-widget-content").css({ "background-color": scrollWrapColor });
+	            $("#" + t_id + "sliderVertical").find("a").removeClass("ui-state-default").css({ "width": sliderBarWidth+"px", "background-color": handlebgcolor, "margin-left": (scrollWidth - sliderBarWidth) * 0.5 + "px" });
+	            $("#" + t_id + "sliderVertical").removeClass("ui-slider-vertical").removeClass("ui-widget-content");
 
 	            //设置滑块层的高度和底边距，以使得滑块层中间位置正好处在滑块位置
 	            $("#" + t_id + "sliderVertical").find("a").css({ 'height': handleHeight, 'margin-bottom': -0.5 * handleHeight });
@@ -268,9 +274,10 @@
 	            }
 	            $("#" + t_id + "sliderWrapHorizontal").append("<div id='" + t_id + "sliderLeft'></div><div id='" + t_id + "sliderHorizontal'></div><div id='" + t_id + "sliderRight'></div>");
 	            
-	            $("#" + t_id + "sliderLeft").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder });
-	            $("#" + t_id + "sliderHorizontal").css({ "height": scrollWidth - 2, "position": "absolute","top":0 });
-	            $("#" + t_id + "sliderRight").css({ "position": "absolute", "right": "0", "top": "0", "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderLeft").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
+	            $("#" + t_id + "sliderHorizontal").css({ "height": scrollWidth - 2, "position": "absolute", "top": 0 });
+	            //$("#" + t_id + "sliderHorizontal").find("a").css("width", sliderBarWidth);
+	            $("#" + t_id + "sliderRight").css({ "position": "absolute", "right": "0", "top": "0", "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
                 
 	            var c = true, d = true;
 	            var w_prop = w_diff / t_w; //宽度差与内容层宽度比例
@@ -304,8 +311,8 @@
 	            //#endregion
                 
 	            //#region 调节滑块样式
-	            $("#" + t_id + "sliderHorizontal").find("a").removeClass("ui-state-default").css({ "height": scrollWidth, "background-color": handlebgcolor });
-	            $("#" + t_id + "sliderHorizontal").removeClass("ui-slider-horizontal").removeClass("ui-widget-content").css({ "background-color": scrollWrapColor });
+	            $("#" + t_id + "sliderHorizontal").find("a").removeClass("ui-state-default").css({ "height": sliderBarWidth+"px", "background-color": handlebgcolor, "margin-top": (scrollWidth - sliderBarWidth)*0.5+"px" });
+	            $("#" + t_id + "sliderHorizontal").removeClass("ui-slider-horizontal").removeClass("ui-widget-content");
 	            
 	            //设置滑块层的宽度和右边距，以使得滑块层中间位置正好处在滑块位置
 	            $("#" + t_id + "sliderHorizontal").find("a").css({ 'width': handleWidth, 'margin-left': -0.5 * handleWidth});

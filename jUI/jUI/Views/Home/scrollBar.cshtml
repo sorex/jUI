@@ -39,13 +39,16 @@
             , handleActive: '#e2e2e2'//滑块点击后颜色
 			, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
 
-			, scrollDefault: '#f3f3f3'//滚动条背景色
+			, scrollDefault: '#fef1ec'//滚动条背景色
             , scrollBorder: '#000000'//滚动条边框颜色 
-            , scrollWidth: 30//滚动条宽度
 
             , outDivBorder: '#062f72'//内容层边框颜色
             , showWidth: 300//显示宽度
             , showHeight: 300//显示高度
+
+            , sliderBarWidth: 8//滑块宽度
+            , scrollWidth: 12//滚动条宽度
+            ,borderRadius:8//圆角
         });
         //#region 取值
         var btnDefault = $("#scrollDiv").jscrollbar("option","btnDefault");
@@ -64,6 +67,8 @@
         var outDivBorder = $("#scrollDiv").jscrollbar("option", "outDivBorder");
         var showWidth = $("#scrollDiv").jscrollbar("option", "showWidth");
         var showHeight = $("#scrollDiv").jscrollbar("option", "showHeight");
+        var sliderBarWidth = $("#scrollDiv").jscrollbar("option", "sliderBarWidth");
+        var borderRadius = $("#scrollDiv").jscrollbar("option", "borderRadius");
         //#endregion
         //#region赋值 input
         $("#txt_btnDefault").attr("value", btnDefault);
@@ -82,6 +87,8 @@
         $("#txt_outDivBorder").attr("value", outDivBorder);
         $("#txt_showWidth").attr("value", showWidth);
         $("#txt_showHeight").attr("value", showHeight);
+        $("#txt_sliderBarWidth").attr("value", sliderBarWidth);
+        $("#txt_borderRadius").attr("value", borderRadius);
         //#endregion
         //#region赋值 span
         $("#sp_btnDefault").css("background-color", btnDefault);
@@ -97,6 +104,7 @@
         $("#sp_scrollBorder").css("background-color", scrollBorder);
 
         $("#sp_outDivBorder").css("background-color", outDivBorder);
+        $("#sp_borderRadius").css("border-radius", borderRadius+"px");
 
         //#endregion
         //#region文本框
@@ -112,6 +120,13 @@
             }
             if ($(this).attr("id") == "txt_showHeight") {
                 new_value = parseInt($("#txt_showHeight").attr("value"));
+            }
+            if ($(this).attr("id") == "txt_borderRadius") {
+                new_value = parseInt($("#txt_borderRadius").attr("value"));
+                $(this).next().css("border-radius", new_value + "px");
+            }
+            if ($(this).attr("id") == "txt_sliderBarWidth") {
+                new_value = parseInt($("#txt_sliderBarWidth").attr("value"));
             }
             $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
             $(this).next().css("background-color", new_value);
@@ -237,6 +252,9 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                     <td>滑块覆盖后颜色(handleHover):</td></tr><tr><td><input type="text" id="txt_handleHover" value=""/><span id="sp_handleHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
+                    <td>滑块宽度(sliderBarWidth):</td></tr><tr><td><input type="text" id="txt_sliderBarWidth" value=""/></td>
+                  </tr>
+                <tr>
                     <td>滚动条背景色(scrollDefault):</td></tr><tr><td><input type="text" id="txt_scrollDefault" value=""/><span id="sp_scrollDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
@@ -253,6 +271,9 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                   </tr>
                 <tr>
                     <td>内容层高度(showHeight):</td></tr><tr><td><input type="text" id="txt_showHeight" value=""/></td>
+                  </tr>
+                <tr>
+                    <td>圆角像素(borderRadius):</td></tr><tr><td><input type="text" id="txt_borderRadius" value=""/><span id="sp_borderRadius" style="width:15px;height:15px;border:2px solid black;display:inline-block;"></span></td>
                   </tr>
             </table>
         </div>

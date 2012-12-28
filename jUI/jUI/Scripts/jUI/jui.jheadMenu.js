@@ -127,19 +127,12 @@
 	            }
 	        });
 
-	        //点击空白处下拉列表收起
-	        e.click(function (event) {
-	            var e = window.event || event;
-	            if (e.stopPropagation) {
-	                e.stopPropagation();
-	            } else {
-	                e.cancelBubble = true;
+	        $(document).bind("mousedown", function (evt) {
+	            if ($(evt.target).parents('#' + eid).length == 0) {
+	                e.find("li").has("ul:visible").children("ul").slideUp("fast");
+	                e.find("li").removeClass("jui-headMenu-clicked");
+	                e.find("li").children("a").removeClass("jui-headMenu-clicked");
 	            }
-	        });
-	        $(document).bind("click", function () {
-	            e.find("li").has("ul:visible").children("ul").slideUp("fast");
-	            e.find("li").removeClass("jui-headMenu-clicked");
-	            e.find("li").children("a").removeClass("jui-headMenu-clicked");
 	        })
 	        //当菜单项中无文字而只有下拉图标时候，调整下拉箭头样式
 	        e.find("li").has("ul").find(".jui-headMenu-lass").each(function () {

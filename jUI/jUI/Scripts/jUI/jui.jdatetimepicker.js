@@ -676,6 +676,9 @@
 	                    span_h.html(ui.value);
 	                }
 	            });
+	            $("#" + elementId + "_slider_h").find("a").mousedown(function () {
+	                $(this).css("outline-color","transparent");
+	            });
 	        }
 	        var hms_mm = function () {
 	            var span_m = $("#tab_" + elementId).find("tr:eq(0)").find("span:eq(1)");
@@ -691,6 +694,10 @@
 	                    span_m.html(ui.value);
 	                }
 	            });
+
+	            $("#" + elementId + "_slider_m").find("a").mousedown(function () {
+	                $(this).css("outline-color", "transparent");
+	            });
 	        }
 	        var hms_ss = function () {
 	            var span_s = $("#tab_" + elementId).find("tr:eq(0)").find("span:eq(2)");
@@ -705,6 +712,9 @@
 	                    }
 	                    span_s.html(ui.value);
 	                }
+	            });
+	            $("#" + elementId + "_slider_s").find("a").mousedown(function () {
+	                $(this).css("outline-color", "transparent");
 	            });
 	        }
             
@@ -734,24 +744,10 @@
 	                $("#" + elementId + "_outDiv").show();
 	            });
 
-	            e.click(function (event) {
-	                var e = window.event || event;
-	                if (e.stopPropagation) {
-	                    e.stopPropagation();
-	                } else {
-	                    e.cancelBubble = true;
+	            $(document).bind("mousedown", function (evt) {
+	                if ($(evt.target).parents('#' + elementId + '_outDiv').length == 0 && $(evt.target).attr("id")!=e.attr("id")) {
+	                    $("#" + elementId + "_outDiv").hide();
 	                }
-	            });
-	            $("#" + elementId + "_outDiv").click(function (event) {
-	                var e = window.event || event;
-	                if (e.stopPropagation) {
-	                    e.stopPropagation();
-	                } else {
-	                    e.cancelBubble = true;
-	                }
-	            });
-	            $(document).bind("click", function () {
-	                $("#" + elementId + "_outDiv").hide();
 	            });
 	        }
 	        if (readonly == true) {

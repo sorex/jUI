@@ -10,6 +10,7 @@
 	position: absolute;
 	float: left;
 	z-index: 100000;
+    border-radius:8px;
 }
 	/*隐藏无内容的a标签*/
 	.jui-datetimepicker a
@@ -35,6 +36,7 @@
 	padding-bottom: 5px;
 	padding-top: 5px;
 	background-color: #094AB2;
+    border-radius:8px;
 }
 /*左按钮*/
 .jui-datetimepicker-prev

@@ -156,7 +156,7 @@
 		});
 
 
-		$(document).bind("mouseup", function (e) {
+		$(document).bind("mousedown", function (e) {
 		    if ($(e.target).parent("#" + showParentUl).length == 0) {
 		        if (!$("#" + showParentUl).is(":hidden")) {
 		        $("#" + showParentUl).slideUp("fast");  
