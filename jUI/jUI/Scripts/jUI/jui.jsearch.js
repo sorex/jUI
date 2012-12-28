@@ -205,7 +205,7 @@
 	        e.addClass("jui-jSearch");
 	        e.append("<table id=" + tableId + " width='100%'  cellpadding='0' cellspacing='0'></table>");
 	        $("#" + tableId).addClass("ui-jsearch-table");
-	        $("#" + tableId).after("<p style='margin-top: 5px; margin-left: 55%;'><input id=" + buttonId + " type='button' value='搜索' /></p>");
+	        $("#" + tableId).after("<p style='margin-top: 5px; margin-left: 50%;'><input id=" + buttonId + " type='button' value='搜索' /></p>");
 
 	        if (count % 2 == 0) { //创建偶数行 
 	            for (var i = 0; i < count / 2; i++) {
@@ -241,48 +241,48 @@
 
 	        switch (o.items[last * 2]["Type"]) {
 	            case "string":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%; padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%; padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 	            case "int":
 
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td><td></td><td></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + "/></td><td></td><td></td>");
 	                break;
 	            case "dateRange":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;'padding-left:5px;><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:36%;'padding-left:5px;><input  id=" + o.items[last * 2]["Id"] + " type='text' maxlength=" + o.items[last * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[last * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td><td></td><td></td>");
 	                break;
 
 	            case "date":
 
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' /></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' /></td><td></td><td></td>");
 	                break;
 	            case "dateRange":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' style='width:75px;'/></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[last * 2]["Id"] + " type='text' style='width:75px;'/>至<input  id=" + o.items[last * 2]["Brother"][0]["Id"] + " type='text' style='width:75px;'/></td><td></td><td></td>");
 	                break;
 
 	            case "radio":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
 	                break;
 	            case "checkbox":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
 	                break;
 
 	            case "selectSingle":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
-	                break;
-
-	            case "selectMultiple":
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
-	                break;
-
-	            case "custom": //custom
-	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 25%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[last * 2]["Content"] + "</td><td></td><td></td>");
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                break;                                                                 
+                                                                                           
+	            case "selectMultiple":                                                     
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width: 36%;padding-left:7px;' id=" + trId + last * 2 + "_td" + "></td><td></td><td></td>");
+	                break;                                                                
+                                                                                          
+	            case "custom": //custom                                                   
+	                $("#" + trId + "" + last).append("<td style='text-align: right; width: 16%;'>" + o.items[last * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;' > " + o.items[last * 2]["Content"] + "</td><td></td><td></td>");
 	                break;
 
 	        }
@@ -297,94 +297,94 @@
 	        var trId = tagId + "_tr_";
 	        switch (o.items[range * 2]["Type"]) {
 	            case "string":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
 	            case "int":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + "/></td>");
 	                break;
 	            case "doubleRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' maxlength=" + o.items[range * 2]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
 	                break;
 
 
 	            case "radio":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "checkbox":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "date":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' /></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text' /></td>");
 	                break;
 	            case "dateRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text'  style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text'  style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2]["Id"] + " type='text'  style='width:75px;'/>至<input  id=" + o.items[range * 2]["Brother"][0]["Id"] + " type='text'  style='width:75px;'/></td>");
 	                break;
 
 	            case "selectSingle":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%;padding-left:5px; padding-top:0;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "selectMultiple":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 25%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width: 36%; padding-left:7px;' id=" + trId + range * 2 + "_td" + "></td>");
 	                break;
 
 	            case "custom":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2]["Content"] + "</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2]["Name"] + "</td><td style='width:36%;padding-left:5px;' > " + o.items[range * 2]["Content"] + "</td>");
 	                break;
 
 	        }
 	        switch (o.items[range * 2 + 1]["Type"]) {
 	            case "string":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "int":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "intRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
 	                break;
 
 	            case "double":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + "/></td>");
 	                break;
 	            case "doubleRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["MaxLength"] + " style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
 	                break;
 
 	            case "radio":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "checkbox":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "date":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' /></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width:16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text' /></td>");
 	                break;
 	            case "dateRange":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text'  style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:36%;padding-left:5px;'><input  id=" + o.items[range * 2 + 1]["Id"] + " type='text'  style='width:75px;'/>至<input  id=" + o.items[range * 2 + 1]["Brother"][0]["Id"] + " type='text' maxlength=" + o.items[range * 2 + 1]["Brother"][0]["MaxLength"] + " style='width:75px;'/></td>");
 	                break;
 
 	            case "selectSingle":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 36%;padding-left:5px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "selectMultiple":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 25%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width: 34%;padding-left:7px;' id=" + trId + (range * 2 + 1) + "_td" + "></td>");
 	                break;
 
 	            case "custom":
-	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 25%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:25%;padding-left:5px;' > " + o.items[range * 2 + 1]["Content"] + "</td>");
+	                $("#" + trId + "" + range).append("<td style='text-align: right; width: 16%;'>" + o.items[range * 2 + 1]["Name"] + "</td><td style='width:34%;padding-left:5px;' > " + o.items[range * 2 + 1]["Content"] + "</td>");
 	                break;
 	        }
 

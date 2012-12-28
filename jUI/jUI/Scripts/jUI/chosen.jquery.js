@@ -117,6 +117,7 @@ Copyright (c) 2011 by Harvest
 		AbstractChosen.prototype.set_default_values = function () {
 			var _this = this;
 			this.click_test_action = function (evt) {
+			 
 				return _this.test_active_click(evt);
 			};
 			this.activate_action = function (evt) {
@@ -474,7 +475,9 @@ Copyright (c) 2011 by Harvest
 		};
 
 		Chosen.prototype.close_field = function () {
-			$(document).unbind("click", this.click_test_action);
+		   
+		    $(document).unbind("click", this.click_test_action);
+		   
 			this.active_field = false;
 			this.results_hide();
 			this.container.removeClass("chzn-container-active");
@@ -492,7 +495,8 @@ Copyright (c) 2011 by Harvest
 		};
 
 		Chosen.prototype.test_active_click = function (evt) {
-			if ($(evt.target).parents('#' + this.container_id).length) {
+		    if ($(evt.target).parents('#' + this.container_id).length) {
+		        alert(this.container_id);
 				return this.active_field = true;
 			} else {
 				return this.close_field();

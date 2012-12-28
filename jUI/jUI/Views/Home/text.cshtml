@@ -23,16 +23,7 @@
 			});
 		});
 	</script>
-    <style type="text/css">
-
-        .jtext
-        {
-        }
-        .jtext-err
-        {
-            border:red;
-        }
-    </style>
+ 
 
 <script src="@Url.Content("~/Scripts/jUI/jui.jradio.js")"></script>
     <script type="text/javascript">
@@ -42,6 +33,7 @@
 		$(function () {
 		    $("#radioContent2").jradio();
 		    $("#radioContent1").jradio();
+		    $("#radioContent3").jradio();
 		    $("#intBtn").click(function () {
 		        var obj = $("#txt_Int");
 		        CheckInt(obj, $("#txt_MinInt").val(), $("#txt_MaxInt").val());
@@ -56,13 +48,109 @@
 		        CheckDouble(obj, $("#txt_MinDouble").val(), minFlag, $("#txt_MaxDouble").val(), maxFlag);
 		    });
 		    
+
+		    $("#StringBtn").click(function () {
+		        var length =  parseInt( $("#txt_StringLength").val()); //长度
+		        var arrayList = new Array();//删除的字符
+		        var deleteString = $("#txt_DeleteString").val();//需要删除的字符
+		        if (deleteString != ""&& deleteString!=null) {
+		            var deleteList = deleteString.split(',');
+		            for (var deleteItem in deleteList) {
+		                arrayList.push(deleteList[deleteItem]);
+		            }
+		        }
+		        var reg = $("#txt_RegString").val().toString(); //匹配的正则表达式  
+		        var isAscii = ("true" == $("input[name=radio3]:checked").val()) ? true : false;
+		        CheckString($("#txt_String"),length, arrayList, reg, isAscii);
+		    });
+
+		    $("#btnSum").click(function () {
+		        var obj1 = $("#txt_NumOne");
+		        var obj2 = $("#txt_NumTwo");
+		        CheckNumComparison(obj1, obj2, "sum");
+		      
+		    });
+
+		    $("#btnEqual").click(function () {
+		        var obj3 = $("#txt_NumPassword");
+		        var obj4 = $("#txt_NumPassword2");
+		      
+		        CheckNumComparison(obj3,obj4,"equal");
+		    });
 		});
 
-		function CheckString(int, array, reg, isAscii) {
+	   
+		function CheckNumComparison(o1, o2, tag) {
+		    if ("sum" == tag) { //求和
+		        try{
+		            $("#" + o2.attr("id") + "_span").html(parseFloat(o1.val()) + parseFloat(o2.val()));
+		        } catch (err) {
+		            $("#" + o2.attr("id") + "_span").html("数据异常,请检查");
+		        }
+		    }
+		    if ("equal"==tag) { //比较
+		    if (o1.val() == o2.val()) {
+		        o2.removeClass("jtext-err");
+		        $("#" + o2.attr("id") + "_span").html("两次输入相等");
+		    } else {
+		        o2.addClass("jtext-err");
+		        $("#" + o2.attr("id") + "_span").html("两次输入不相等");
+		    }
+		  }
+
+		}
+
+
+		function CheckString(o, length, array, reg, isAscii) {//对象 长度 多虑字 正则 ascii编码
+		    if (o.val().length > length) {
+		        o.addClass("jtext - err");
+		        $("#" + o.attr("id") + "_span").html("输入的字符串长度不能超过:" + length+"位数");
+		        return false;
+		    } else {
+		        if (array != null && array!="") {
+		            var contentHtml = o.val();
+		         
+		            for (var i = 0; i < array.length; i++) {
+		                var dl = "/" + array[i] + "/g";
+		                contentHtml = contentHtml.replace(eval(dl),"");
+		            }
+		            o.val(contentHtml);
+		        }
+		        if (reg != null && reg != "") {
+		            var regLimit = eval(reg);
+		        
+		            if (regLimit.test(o.val())) {
+		                o.removeClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("成功");
+		                return true;
+		            } else {
+		                o.addClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("输入的内容不符合要求");
+		                return false;
+		            
+		            }
+		        }
+		        if (isAscii) {
+		            var regHtml = /^[^\x00-\xff]*$/;
+		            if (regHtml.test(o.val())) {
+
+		                o.addClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("请输入ascii码");
+		                return false;
+		            } 
+		        } else {
+		           
+		            o.removeClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("成功");
+		            return true;
+		        
+		        }
+                
+
+		    }
 
 		}
 		function CheckDouble(o, min,minFlag, max,maxFlag) {//对象 最小值 最大值 
-		   
 		    var reg = /^[-|+]?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/;//匹配通用浮点数
 		    var err = "请输入浮点数";
 		    if (reg.test(o.val())) {
@@ -93,7 +181,6 @@
 		}
 
 		function CheckInt(o, min, max) { //对象 类别 最小值 最大值
-
 		    var reg = /^[-|+]?([1-9]\d*|0)$/;
 		    var err = "请输入整数";
 		    if (reg.test(o.val())) { //是整数
@@ -296,19 +383,147 @@
 	</div>
 
 	<div id="tab3">
-	
+	<div class="ui-helper-clearfix">
+                字符串长度:<input id="txt_StringLength" type="text"  style=" width:155px;"/><br />
+                删除的字符:<input id="txt_DeleteString" type="text"  style=" width:155px;"/><br />
+                正则表达式:<input id="txt_RegString" type="text"  style=" width:155px;"/><br />
+                是否包含Ascii:<div id="radioContent3" style="display:inline-block;">
+        <input id="radio7" type="radio" value="true" name="radio3"  checked/><label for="radio7">是</label>
+        <input id="radio8" type="radio" value="flag" name="radio3" /><label for="radio8">否</label>
+        </div>
+            <div class="display-label">字符串:</div>
+            <div class="display-field">
+            
+                <input id="txt_String" type="text" name="txt_String" style="width: 200px; margin-left: 0px;" />
+                <br />
+                <span id="txt_String_span"></span>
+            
+                <input id="StringBtn" type="button" value="字符串验证查看" />
+            </div>
+        </div>
+    
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
+        &lt;div class="ui-helper-clearfix"&gt;
+        字符串长度:&lt;input id="txt_StringLength" type="text"  style=" width:155px;"/&gt;&lt;br /&gt;
+        删除的字符:&lt;input id="txt_DeleteString" type="text"  style=" width:155px;"/&gt;&lt;br /&gt;
+        正则表达式:&lt;input id="txt_RegString" type="text"  style=" width:155px;"/&gt;&lt;br /&gt;
+        是否包含Ascii:&lt;div id="radioContent3" style="display:inline-block;"&gt;
+        &lt;input id="radio7" type="radio" value="true" name="radio3"  checked/&gt;&lt;label for="radio7"&gt;是&lt;/label&gt;
+        &lt;input id="radio8" type="radio" value="flag" name="radio3" /&gt;&lt;label for="radio8"&gt;否&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="display-label"&gt;字符串:&lt;/div&gt;
+        &lt;div class="display-field"&gt;
+        &lt;input id="txt_String" type="text" name="txt_String" style="width: 200px; margin-left: 0px;" /&gt;
+        &lt;br /&gt;
+        &lt;span id="txt_String_span"&gt;&lt;/span&gt;
+        &lt;input id="StringBtn" type="button" value="字符串验证查看" /&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script type="text/javascript"&gt;
+
+           $("#StringBtn").click(function () {
+		        var length =  parseInt( $("#txt_StringLength").val()); //长度
+		        var arrayList = new Array();//删除的字符
+		        var deleteString = $("#txt_DeleteString").val();//需要删除的字符
+		        if (deleteString != ""&& deleteString!=null) {
+		            var deleteList = deleteString.split(',');
+		            for (var deleteItem in deleteList) {
+		                arrayList.push(deleteList[deleteItem]);
+		            }
+		        }
+		        var reg = $("#txt_RegString").val().toString(); //匹配的正则表达式  
+		        var isAscii = ("true" == $("input[name=radio3]:checked").val()) ? true : false;
+		        CheckString($("#txt_String"),length, arrayList, reg, isAscii);
+		    });
+          function CheckString(o, length, array, reg, isAscii) {//对象 长度 多虑字 正则 ascii编码
+		    if (o.val().length > length) {
+		        o.addClass("jtext - err");
+		        $("#" + o.attr("id") + "_span").html("输入的字符串长度不能超过:" + length+"位数");
+		        return false;
+		     } else {
+		        if (array != null && array!="") {
+		            var contentHtml = o.val();
+		            for (var i = 0; i < array.length; i++) {
+		                var dl = "/" + array[i] + "/g";
+		                contentHtml = contentHtml.replace(eval(dl),"");
+		            }
+		            o.val(contentHtml);
+		        }
+		        if (reg != null && reg != "") {
+		            var regLimit = eval(reg);
+		            if (regLimit.test(o.val())) {
+		                o.removeClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("成功");
+		                return true;
+		            } else {
+		                o.addClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("输入的内容不符合要求");
+		                return false;
+		            }
+		        }
+		        if (isAscii) {
+		            var regHtml = /^[^\x00-\xff]*$/;
+		            if (regHtml.test(o.val())) {
+		                o.addClass("jtext-err");
+		                $("#" + o.attr("id") + "_span").html("请输入ascii码");
+		                return false;
+		            } 
+		        } else {
+		            o.removeClass("jtext-err");
+		            $("#" + o.attr("id") + "_span").html("成功");
+		            return true;
+		        }
+		    }
+		 }
+        &lt;/script&gt;
 		</pre>
 	</div>
 
   <div id="tab4">
-	 
+	 	<div class="ui-helper-clearfix">       
+    第一个数:<input id="txt_NumOne" type="text" />第二个数:<input id="txt_NumTwo" type="text" /><span id="txt_NumTwo_span"></span><input id="btnSum" type="button" value="求和" /><br /><br />
+    第一个数:<input id="txt_NumPassword" type="password" />第二个数:<input id="txt_NumPassword2" type="password" /><span id="txt_NumPassword2_span"></span><input id="btnEqual" type="button" value="相等" />
+         </div>
 		<br />
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
-			
+            &lt;div class="ui-helper-clearfix"&gt;      
+                第一个数:&lt;input id="txt_NumOne" type="text" /&gt;  第二个数:&lt;input id="txt_NumTwo" type="text" /&gt;&lt;span id="txt_NumTwo_span"&gt;&lt;/span&gt;&lt;input id="btnSum" type="button" value="求和" /&gt;&lt;br /&gt;&lt;br /&gt;
+                第一个数:&lt;input id="txt_NumPassword" type="password" /&gt;第二个数:&lt;input id="txt_NumPassword2" type="password" /&gt;&lt;span id="txt_NumPassword2_span"&gt;&lt;/span&gt;&lt;input id="btnEqual" type="button" value="相等" /&gt;
+           &lt;/div&gt;
+
+           &lt;script type="text/javascript"&gt;
+                     $("#btnSum").click(function () {
+		                   var obj1 = $("#txt_NumOne");
+		                   var obj2 = $("#txt_NumTwo");
+		                   CheckNumComparison(obj1, obj2, "sum");
+		               });
+		             $("#btnEqual").click(function () {
+		                   var obj3 = $("#txt_NumPassword");
+		                   var obj4 = $("#txt_NumPassword2");
+		                   CheckNumComparison(obj3,obj4,"equal");
+		               });
+              		function CheckNumComparison(o1, o2, tag) {
+	          	        if ("sum" == tag) { //求和
+	          	             try{
+	          	                 $("#" + o2.attr("id") + "_span").html(parseFloat(o1.val()) + parseFloat(o2.val()));
+	          	             } catch (err) {
+	          	                 $("#" + o2.attr("id") + "_span").html("数据异常,请检查");
+	          	             }
+	          	        }
+	          	        if ("equal"==tag) { //比较
+	          	             if (o1.val() == o2.val()) {
+	          	                 o2.removeClass("jtext-err");
+	          	                 $("#" + o2.attr("id") + "_span").html("两次输入相等");
+	          	             } else {
+	          	                 o2.addClass("jtext-err");
+	          	                 $("#" + o2.attr("id") + "_span").html("两次输入不相等");
+	          	             }
+	          	      }
+		          }
+           &lt;/script&gt;
 		</pre>
 	</div>
 
@@ -328,272 +543,40 @@
 	<div id="optionsTab">
 		<div id="optionsAccordion">
 			<h3>
-				<span class="description-option-name">items</span>
-				<span class="description-option-type">Array</span>
-				<span class="description-option-value">[{ value: "America", text: "美国", selected: true }]</span>
+				<span class="description-option-name">null</span>
+				<span class="description-option-type">null</span>
+				<span class="description-option-value">null</span>
 			</h3>
 			<div>
-				<p>排序字段的数据源</p>
-				<pre class="brush: js;">
-				items：[{item},{item},{item}] //使用item列表为其赋值
-						item:
-							value        //下拉框实际值
-							text        //下拉框显示值
-							[selected]   //是否被选中 选中为(selected:true)
-				</pre>
-				<p>初始化</p>
-				<pre class="brush: js;">
-							
-				$("#showSelect").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: true },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择...",
-							width: "100px",
-							model: "single",
-							onSelectChange: function (selectValue, selectText) {
-								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
-							}
-						});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取(返回的是一个对象)
-					var items = $("#showSortSelect").jdatapager( "option", "items" );
-				</pre>
-			</div>
-
-			<h3>
-				<span class="description-option-name">placeholder</span>
-				<span class="description-option-type">string</span>
-				<span class="description-option-value">请选择...</span>
-			</h3>
-			<div>
-				<p>在没有默认选择情况下 文本的提示内容</p>
-				<pre class="brush: js;">
-					[placeholder] //没有选中之前的提示语 默认为 请选择...
-				</pre>
-				<p>初始化</p>
-				<pre class="brush: js;">		
-				$("#showSelect").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: true },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择...",
-							width: "100px",
-							model: "single",
-							onSelectChange: function (selectValue, selectText) {
-								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
-							}
-						});
-				</pre>
-				<p>获取</p>
-				<pre class="brush: js;">
-					//获取
-					var placeholder = $("#showSortSelect").jdatapager( "option", "placeholder" );	
-				</pre>
-			</div>
-
-			
-			<h3>
-				<span class="description-option-name">width</span>
-				<span class="description-option-type">string</span>
-				<span class="description-option-value">150px</span>
-			</h3>
-			<div>
-				<p>选择框的宽度</p>
-				<pre class="brush: js;">
-					[width]  //select的宽度 默认为 150px
-				</pre>
-				<p>初始化</p>
-				<pre class="brush: js;">		
-				$("#showSelect").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: true },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择...",
-							width: "150px",
-							model: "single",
-							onSelectChange: function (selectValue, selectText) {
-								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
-							}
-						});
-				</pre>
-				<p>获取</p>
-				<pre class="brush: js;">
-					//获取
-					var width = $("#showSortSelect").jdatapager( "option", "width" );
+				<p>暂无</p>
 				
-					
-				</pre>
 			</div>
-
-				
-			<h3>
-				<span class="description-option-name">model</span>
-				<span class="description-option-type">string</span>
-				<span class="description-option-value">single</span>
-			</h3>
-			<div>
-				<p>单选与多选的切换</p>
-				<pre class="brush: js;">
-					[model]：  //单选和多选的切换 默认的为单选
-							 single(单选)
-							 multiple(多选)[二选一]
-				</pre>
-				<p>初始化</p>
-				<pre class="brush: js;">		
-				$("#showSelect").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: true },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择...",
-							width: "150px",
-							model: "single",
-							onSelectChange: function (selectValue, selectText) {
-								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
-							}
-						});
-				</pre>
-				<p>获取</p>
-				<pre class="brush: js;">
-					//获取
-					var model = $("#showSortSelect").jdatapager( "option", "model" );			
-				</pre>
-			</div>
-
 		</div>
 	</div>
 	<div id="eventsTab">
 		<div id="eventsAccordion">
 			<h3>
-				<span class="description-event-name">onSelectChange</span>
-				<span class="description-event-returnType">[string string]or json</span>
+				<span class="description-event-name">null</span>
+				<span class="description-event-returnType">null</span>
 			</h3>
 			<div>
-				<p>选择下拉框的值发生改变时触发</p>
-				<p>单选参数列表</p>
-				<pre class="brush: js;">
-                    selectValue：选择的值
-					selectText：显示的文本
-				</pre>
-				<p>多选参数列表</p>
-				<pre class="brush: js;">
-                   selectList: //多选的json对象
-							   selectList[i]["value"] //下拉框选中值
-							   selectList[i]["text"] //下拉框显示值
-				</pre>
-				<p>初始化</p>
-				<pre class="brush: js;">
-					//单选下拉框
-					$("#showSelect").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国", selected: true },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择...",
-							width: "150px",
-							model: "single",
-							onSelectChange: function (selectValue, selectText) {
-								alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
-							}
-						});
-					//多选下拉框
-					$("#showSelect3").jSelect({
-							items: [{ value: "China", text: "中国" },
-								{ value: " Japan", text: "日本" },
-								{ value: "America", text: "美国" },
-								{ value: "Korea  ", text: "朝鲜" },
-								{ value: "Corea  ", text: "韩国" }
-							],
-							placeholder: "请国家选择(可以多选)",
-							width: "200px",
-							model: "multiple",
-							onSelectChange: function (selectList) {
-								var content = "";
-								if (selectList != null) {
-									for (var i = 0; i < selectList.length; i++) {
-										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
-									}
-									alert("选择的内容为：" + content.substring(0, content.length - 1));
-								} else {
-									alert("无数据");
-								}
-							}
-						});
-				</pre>
+				<p>暂无</p>
 			</div>
 		</div>
 	</div>
 	<div id="methodsTab">
 		<div id="methodsAccordion">
 			<h3>
-				<span class="description-method-name">getSelectValueText</span>
-				<span class="description-method-returnType">[string,string]or json</span>
+				<span class="description-method-name">暂无</span>
+				<span class="description-method-returnType">暂无</span>
 			</h3>
-			<div>
-		<p>获取下拉框所选中的值</p>
-				<p>单选框的获取值</p>
-						<pre class="brush: js;">
-								var selectObj = $("#showSelect").jSelect("getSelectValueText");
-								alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
-							</pre>
-				<p>多选选框的获取值</p>
-						<pre class="brush: js;">
-								var selectList = $("#showSelect3").jSelect("getSelectValueText");
-								var content = "";
-								if(selectList!=null){
-									for (var i = 0; i < selectList.length; i++) {
-										content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
-									}
-									alert("选择的内容为：" + content.substring(0, content.length - 1));
-								}else{
-									alert("无数据");
-								}
-							</pre>
-
-			</div>
+	
 
 
 		</div>
 	</div>
 	<div id="themingTab">
-		<p>普通下拉样式如下：</p>
-		<pre class="brush: html;">
-			
-			   &lt;select id="selectHtml" data-placeholder="选择国家" class="chzn-select" style="width: 350px;" tabindex="2"&gt;
-					   &lt;option value=""&gt;  &lt;/option&gt;
-					   &lt;option value="美国"&gt;United States   &lt;/option&gt;
-					   &lt;option value="(大不列颠)联合王国"&gt;United Kingdom   &lt;/option&gt;
-					   &lt;option value="阿富汗"&gt;Afghanistan   &lt;/option&gt;
-					   &lt;option value="阿尔巴尼亚"&gt;Albania   &lt;/option&gt;
-					   &lt;option value="阿尔及利亚"&gt;Algeria   &lt;/option&gt;
-			   &lt;/select&gt;
-		</pre>
-		<p>多选下拉样式如下：</p>
-			<pre class="brush: html;">
-		 &lt;select id="multiSelectHtml" data-placeholder="选择国家" class="chzn-select" multiple style="width: 350px;" tabindex="2"&gt;
-			 &lt;option value=""&gt;  &lt;/option&gt;
-			 &lt;option value="美国"&gt; United States　 &lt;/option&gt;
-			 &lt;option value="(大不列颠)联合王国"&gt; United Kingdom　  &lt;/option&gt;
-			 &lt;option value="阿富汗"&gt;Afghanistan　  &lt;/option&gt;
-			 &lt;option value="阿尔巴尼亚"&gt; Albania　  &lt;/option&gt;
-			 &lt;option value="阿尔及利亚"&gt;Algeria　  &lt;/option&gt;
-		 &lt;/select&gt;
-				</pre>
+		<p>见View Source</p>
+		
 	</div>
 </div>

@@ -71,7 +71,7 @@
 					}
 
 				
-					$("#" + tagId).append("<span id=" + titleId + " style='cursor: pointer;text-align:right;'>排序方式:" +
+					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:128px;'>排序方式:" +
 						"<span id=" + selectId + " style='cursor: pointer' data-value=" + defaultDataValue + " data-sort=" + defaultDataSort + ">" + defaultDataContent + "</span>" +
 					"<span class='jui-jsortSelect-downBtn'>&nbsp;&nbsp;</span></span>");
 
@@ -94,9 +94,9 @@
 						}
 					}
 					if (defaultDataSort == "asc") {
-					    ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li class='action'><i class='action'></i><span>升序</span></li><li><i></i><span>降序</span</li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li class='action'><i class='action'></i><span>升序</span></li><li><i></i><span>降序</span</li></ul></div></ul>"
 					}else{
-					    ulHtml += "<div><hr style='margin:12px;'/><ul id=" + showChildUl + "><li ><i ></i><span>升序<span></li><li class='action'><i class='action'></i><span>降序<span></li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li ><i ></i><span>升序<span></li><li class='action'><i class='action'></i><span>降序<span></li></ul></div></ul>"
 					}
 
 		$("body").append(ulHtml); /*body之前追加要显示的ul部分*/
@@ -156,11 +156,12 @@
 		});
 
 
-		$("body").click(function () {
-			if (!$("#" + showParentUl).is(":hidden")) {
-				$("#" + showParentUl).slideUp("fast");
-			}
-		});
+		$(document).bind("mouseup", function (e) {
+		    if ($(e.target).parent("#" + showParentUl).length == 0) {
+		        if (!$("#" + showParentUl).is(":hidden")) {
+		        $("#" + showParentUl).slideUp("fast");  
+		        }
+		    } 		    });
 		$("#" + showParentUl).position({
 			of: $("#" + titleId),
 			my: "left top",
@@ -172,7 +173,7 @@
 					$("#" + tagId).append("<span style='color:red;'>错误！！！请检查数据源</span>");
 				
 		}
-		},
+			},
 		getSelectValueText: function () {
 			var self = this,
 			o = this.options;
