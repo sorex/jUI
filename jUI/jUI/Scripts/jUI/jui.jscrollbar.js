@@ -22,24 +22,29 @@
 	{
 	    // default options
 	    options: {
-	        //btnDefault: '#bababa'//按钮颜色
-			//, btnActive: '#e2e2e2'//按钮点击后颜色
-            //, btnHover: '#d4d4d4'//覆盖按钮后颜色
-	        //, btnBorder: '#666666'//按钮边框颜色             
 
-	        //, handleDefault: '#bababa' //滑块背景色
-            //, handleActive: '#e2e2e2'//滑块点击后颜色
-			//, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+	        btnDefault: '#bababa'//按钮颜色(less文件中已定义)
+			, btnActive: '#fef1ec'//按钮点击后颜色(less文件中已定义)
+            , btnHover: '#e2e2e2'//覆盖按钮后颜色(less文件中已定义)
+            , btnBorder: '#bababa'//按钮边框颜色       
 
-			//, scrollDefault: '#f3f3f3'//滚动条背景色
-            //, scrollBorder: '#000000'//滚动条边框颜色 
-            //, showWidth: 200//显示宽度
-            //, showHeight:200//显示高度
-	        //, outDivBorder: '#062f72'//内容层边框颜色
-	        //, scrollWidth: 15//滚动条宽度
+            , btnWidth: 12//箭头按钮宽度
+            , btnHeight: 12//箭头按钮高度
 
-	        //,sliderBarWidth:10//滑块宽度
-	        //,borderRadius:8//圆角
+	        , handleDefault: '#bababa' //滑块背景色
+            , handleActive: '#fef1ec'//滑块点击后颜色
+			, handleHover: '#e2e2e2'//鼠标移入滑块后背景色
+
+			, scrollDefault: '#d4d4d4'//滚动条背景色
+            , scrollBorder: '#bababa'//滚动条边框颜色 
+
+            , outDivBorder: '#bababa'//内容层边框颜色
+            , showWidth: 300//显示宽度
+            , showHeight: 300//显示高度
+
+            , sliderBarWidth: 8//滑块宽度
+            , scrollWidth: 12//滚动条宽度
+            , borderRadius: 8//圆角
 	        //*****btnBackground:url(...)//四个方向按钮背景图片*****
 	        //*****scrollBackground:url(...)//滚动条背景图片*****
 	    },
@@ -63,6 +68,8 @@
 	        var buttonClickColor = o.btnActive;
 	        var buttonHover = o.btnHover;
 	        var buttonBorder = o.btnBorder;
+	        var btnWidth = o.btnWidth;
+	        var btnHeight = o.btnHeight;
 
 	        var scrollWrapColor = o.scrollDefault;
 	        var scrollBorder = o.scrollBorder;
@@ -75,7 +82,7 @@
 	        if (scrollWidth < 0 || scrollWidth > 40) {
 	            scrollWidth = 20;
 	        }
-	        t.css({ "position": "absolute", "top": "0", "left": "0", "width": "auto", "height": "auto", "white-space": "pre" });
+	        t.addClass("jui-jscrollbar-scroll-content ");
 	        var t_w = t.width();
 	        var t_h = t.height();
 	        if ($("#" + t_id + "sliderWrapVertical").length > 0) {
@@ -87,24 +94,23 @@
 
 	        if ($("#" + t_id + "containerDiv").length == 0) {
 	            t.wrap("<div id='" + t_id + "containerDiv'></div>");
-	            $("#" + t_id + "containerDiv").css({ "overflow": "hidden", "position": "relative" });
+	            $("#" + t_id + "containerDiv").addClass("jui-jscrollbar-scroll-containerDiv");
 	        }
 	        $("#" + t_id + "containerDiv").css({ "width": showWidth, "height": showHeight });
 
 	        if ($("#" + t_id + "outDiv").length == 0) {
-	            $("#" + t_id + "containerDiv").wrap("<div id='" + t_id + "outDiv'></div>");
-	            $("#" + t_id + "outDiv").css("position", "relative");
+	            $("#" + t_id + "containerDiv").wrap("<div id='" + t_id + "outDiv' style='position:relative;'></div>");
 	        }
 	        $("#" + t_id + "outDiv").css({ "border": "1px solid " + outDivBorder, "width": showWidth + scrollWidth + 3, "height": showHeight + scrollWidth + 3, "border-radius": borderRadius + "px" });
 
 	        if ($("#" + t_id + "sliderWrapVertical").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapVertical'></div>");
-	            $("#" + t_id + "sliderWrapVertical").css({ "position": "absolute", "top": "0", "right": "0", "display": "none"});
+	            $("#" + t_id + "sliderWrapVertical").addClass("jui-jscrollbar-scroll-sliderWrapVertical");
 	        }
 	        $("#" + t_id + "sliderWrapVertical").css({ "width": scrollWidth, "height": showHeight, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        if ($("#" + t_id + "sliderWrapHorizontal").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapHorizontal'></div>");
-	            $("#" + t_id + "sliderWrapHorizontal").css({ "position": "absolute", "left": "0", "bottom":"0","display":"none" });
+	            $("#" + t_id + "sliderWrapHorizontal").addClass("jui-jscrollbar-scroll-sliderWrapHorizontal");
 	        }
 	        $("#" + t_id + "sliderWrapHorizontal").css({ "width": showWidth, "height": scrollWidth, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        //比较内部容器高度与目标元素高度
@@ -116,7 +122,7 @@
 	        //保存宽度差
 	        t.data('w_diff', w_diff);
 	        //按钮部分宽度总和
-	        var space_ = 2 * scrollWidth;
+	        var space_ = 2 * (btnHeight+2);
             //切换按钮样式
 	        var changeBtnCss = function (theA) {
 	            var inbtn = false, isdown = false;
@@ -150,11 +156,16 @@
 	            if (w_diff <= 0) {
 	                $("#" + t_id + "outDiv").css("height", $("#" + t_id + "sliderWrapVertical").height() + 2);
 	            }
-	            $("#" + t_id + "sliderWrapVertical").append("<div id='" + t_id + "sliderTop'></div><div id='" + t_id + "sliderVertical'></div><div id='" + t_id + "sliderBottom'></div>");
-	            
-	            $("#" + t_id + "sliderTop").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius+"px" });
+	            $("#" + t_id + "sliderWrapVertical").append("<div id='" + t_id + "sliderTop'>" +
+                    "<span id='" + t_id + "top_span' class='jui-jscrollbar-scroll-top_span'></span>" +
+                    "</div><div id='" + t_id + "sliderVertical'></div><div id='" + t_id + "sliderBottom'>" +
+                    "<span id='" + t_id + "bottom_span' class='jui-jscrollbar-scroll-bottom_span'></span>" +
+                    "</div>");
+	            $("#" + t_id + "top_span").css({ "margin-left": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "bottom_span").css({ "margin-left": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "sliderTop").css({ "margin-left": 0.5 * (scrollWidth-2 - btnWidth), "width": btnWidth, "height": btnHeight, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            $("#" + t_id + "sliderVertical").css({ "width": scrollWidth - 2, "position": "absolute" });
-	            $("#" + t_id + "sliderBottom").css({ "position": "absolute", "bottom": "0", "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
+	            $("#" + t_id + "sliderBottom").css({"margin-left": 0.5 * (scrollWidth-2 - btnWidth), "position": "absolute", "bottom": "0", "width": btnWidth, "height": btnHeight, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            
 	            var prop = diff / t_h; //高度差与内容层高度比例
 	            var handleHeight = Math.round((1 - prop) * (showHeight - space_)); //计算滑块的高度
@@ -272,12 +283,16 @@
 	            if (diff <= 0) {
 	                $("#" + t_id + "outDiv").css("width", $("#" + t_id + "sliderWrapHorizontal").width() + 2);
 	            }
-	            $("#" + t_id + "sliderWrapHorizontal").append("<div id='" + t_id + "sliderLeft'></div><div id='" + t_id + "sliderHorizontal'></div><div id='" + t_id + "sliderRight'></div>");
-	            
-	            $("#" + t_id + "sliderLeft").css({ "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
+	            $("#" + t_id + "sliderWrapHorizontal").append("<div id='" + t_id + "sliderLeft'>" +
+                    "<span id='" + t_id + "left_span' class='jui-jscrollbar-scroll-left_span'></span>" +
+                    "</div><div id='" + t_id + "sliderHorizontal'></div><div id='" + t_id + "sliderRight'>" +
+                    "<span id='" + t_id + "right_span' class='jui-jscrollbar-scroll-right_span'></span>" +
+                    "</div>");
+	            $("#" + t_id + "left_span").css({ "margin-top": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "right_span").css({ "margin-top": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "sliderLeft").css({ "margin-top": 0.5 * (scrollWidth-2 - btnWidth),"width": btnHeight, "height": btnWidth, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            $("#" + t_id + "sliderHorizontal").css({ "height": scrollWidth - 2, "position": "absolute", "top": 0 });
-	            //$("#" + t_id + "sliderHorizontal").find("a").css("width", sliderBarWidth);
-	            $("#" + t_id + "sliderRight").css({ "position": "absolute", "right": "0", "top": "0", "width": scrollWidth - 2, "height": scrollWidth - 2, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
+	            $("#" + t_id + "sliderRight").css({ "margin-top": 0.5 * (scrollWidth-2 - btnWidth), "position": "absolute", "right": "0", "top": "0", "width": btnHeight, "height": btnWidth, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
                 
 	            var c = true, d = true;
 	            var w_prop = w_diff / t_w; //宽度差与内容层宽度比例
@@ -318,7 +333,7 @@
 	            $("#" + t_id + "sliderHorizontal").find("a").css({ 'width': handleWidth, 'margin-left': -0.5 * handleWidth});
 	            var origSliderWidth = showWidth - space_; //读取滚动条总长度
 	            var sliderWidth = origSliderWidth - handleWidth; //获取滑块可移动范围长度
-	            var sliderMarginLR = 0.5 * handleWidth+scrollWidth; //获取滑块左右边距
+	            var sliderMarginLR = 0.5 * handleWidth + btnHeight+2; //获取滑块左右边距
 	            //设置滑动层宽度和左边距
 	            if ($.browser.msie) {
 	                $("#" + t_id + "sliderHorizontal").css({ 'width': sliderWidth, 'left': sliderMarginLR });

@@ -5,7 +5,7 @@
 <h2>scrollbar</h2>
 @section head{
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jscrollbar.js")"></script>
-    <link href="~/Content/jUI/css/jui.jscrollbar.css" rel="stylesheet" />
+    @*<link href="~/Content/jUI/css/jui.jscrollbar.css" rel="stylesheet" />*@
     <script src="~/Scripts/jUI/jquery.mousewheel.js"></script>
 	<script type="text/javascript">
 	    $(function () {
@@ -29,32 +29,14 @@
     
 <script type="text/javascript">
     $(function () {
-        $("#scrollDiv").jscrollbar({
-            btnDefault: '#bababa'//按钮颜色
-			, btnActive: '#fef1ec'//按钮点击后颜色
-            , btnHover: '#e2e2e2'//覆盖按钮后颜色
-            , btnBorder: '#fef1ec'//按钮边框颜色 
-
-	        , handleDefault: '#bababa' //滑块背景色
-            , handleActive: '#fef1ec'//滑块点击后颜色
-			, handleHover: '#e2e2e2'//鼠标移入滑块后背景色
-
-			, scrollDefault: '#d4d4d4'//滚动条背景色
-            , scrollBorder: '#bababa'//滚动条边框颜色 
-
-            , outDivBorder: '#bababa'//内容层边框颜色
-            , showWidth: 300//显示宽度
-            , showHeight: 300//显示高度
-
-            , sliderBarWidth: 14//滑块宽度
-            , scrollWidth: 14//滚动条宽度
-            ,borderRadius:8//圆角
-        });
+        $("#scrollDiv").jscrollbar();
         //#region 取值
         var btnDefault = $("#scrollDiv").jscrollbar("option","btnDefault");
         var btnActive = $("#scrollDiv").jscrollbar("option", "btnActive");
         var btnHover = $("#scrollDiv").jscrollbar("option", "btnHover");
         var btnBorder = $("#scrollDiv").jscrollbar("option", "btnBorder");
+        var btnWidth = $("#scrollDiv").jscrollbar("option", "btnWidth");
+        var btnHeight = $("#scrollDiv").jscrollbar("option", "btnHeight");
 
         var handleDefault = $("#scrollDiv").jscrollbar("option", "handleDefault");
         var handleActive = $("#scrollDiv").jscrollbar("option", "handleActive");
@@ -75,6 +57,8 @@
         $("#txt_btnActive").attr("value", btnActive);
         $("#txt_btnHover").attr("value", btnHover);
         $("#txt_btnBorder").attr("value", btnBorder);
+        $("#txt_btnWidth").attr("value", btnWidth);
+        $("#txt_btnHeight").attr("value", btnHeight);
 
         $("#txt_handleDefault").attr("value", handleDefault);
         $("#txt_handleActive").attr("value", handleActive);
@@ -127,6 +111,12 @@
             }
             if ($(this).attr("id") == "txt_sliderBarWidth") {
                 new_value = parseInt($("#txt_sliderBarWidth").attr("value"));
+            }
+            if ($(this).attr("id") == "txt_btnWidth") {
+                new_value = parseInt($("#txt_btnWidth").attr("value"));
+            }
+            if ($(this).attr("id") == "txt_btnHeight") {
+                new_value = parseInt($("#txt_btnHeight").attr("value"));
             }
             $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
             $(this).next().css("background-color", new_value);
@@ -252,26 +242,32 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                     <td>滑块覆盖后颜色(handleHover):</td></tr><tr><td><input type="text" id="txt_handleHover" value=""/><span id="sp_handleHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滑块宽度(sliderBarWidth):</td></tr><tr><td><input type="text" id="txt_sliderBarWidth" value=""/></td>
-                  </tr>
-                <tr>
                     <td>滚动条背景色(scrollDefault):</td></tr><tr><td><input type="text" id="txt_scrollDefault" value=""/><span id="sp_scrollDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
                     <td>滚动条边框颜色(scrollBorder):</td></tr><tr><td><input type="text" id="txt_scrollBorder" value=""/><span id="sp_scrollBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滚动条宽度(scrollWidth):</td></tr><tr><td><input type="text" id="txt_scrollWidth" value=""/></td>
-                 </tr>
-                <tr>
                     <td>内容层边框颜色(outDivBorder):</td></tr><tr><td><input type="text" id="txt_outDivBorder" value=""/><span id="sp_outDivBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                   </tr>
                 <tr>
-                    <td>内容层宽度(showWidth):</td></tr><tr><td><input type="text" id="txt_showWidth" value=""/></td>
+                    <td>滑块宽度(sliderBarWidth):</td></tr><tr><td><input type="text" id="txt_sliderBarWidth" value=""/>px</td>
                   </tr>
                 <tr>
-                    <td>内容层高度(showHeight):</td></tr><tr><td><input type="text" id="txt_showHeight" value=""/></td>
+                    <td>滚动条宽度(scrollWidth):</td></tr><tr><td><input type="text" id="txt_scrollWidth" value=""/>px</td>
+                 </tr>
+                <tr>
+                    <td>内容层宽度(showWidth):</td></tr><tr><td><input type="text" id="txt_showWidth" value=""/>px</td>
                   </tr>
+                <tr>
+                    <td>内容层高度(showHeight):</td></tr><tr><td><input type="text" id="txt_showHeight" value=""/>px</td>
+                  </tr>
+                <tr>
+                    <td>上下按钮宽度(btnWidth):</td></tr><tr><td><input type="text" id="txt_btnWidth" value=""/>px</td>
+                </tr>
+                <tr>
+                    <td>上下按钮高度(btnHeight):</td></tr><tr><td><input type="text" id="txt_btnHeight" value=""/>px</td>
+                </tr>
                 <tr>
                     <td>圆角像素(borderRadius):</td></tr><tr><td><input type="text" id="txt_borderRadius" value=""/><span id="sp_borderRadius" style="width:15px;height:15px;border:2px solid black;display:inline-block;"></span></td>
                   </tr>

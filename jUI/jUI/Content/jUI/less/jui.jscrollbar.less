@@ -1,80 +1,60 @@
-﻿/*内容层*/
-.jui-jscrollbar-scroll-content {
+﻿.jui-jscrollbar-scroll-content {
 	position:absolute;
 	top:0;
 	left:0;
+	width:auto;
+	height:auto;
+	white-space:pre;
 }
-
-/*垂直滚动条*/
-.jui-jscrollbar-slider-wrap-vertical{
-	position:absolute;
-	right:0;
-	top:0;
-	z-index:9;
-	cursor:default;
-}
-
-.jui-jscrollbar-slider-top{
-	top:0;
-	position:absolute;
-	z-index:10;
-}
-.jui-jscrollbar-slider-bottom{
-	bottom:0;
-	position:absolute;
-	z-index:10;
-}
-.jui-jscrollbar-slider-left{
-	left:0;
-	position:absolute;
-	z-index:10;
-}
-.jui-jscrollbar-slider-right{
-	right:0;
-	top:0;
-	position:absolute;
-	z-index:10;
-}
-
-.jui-jscrollbar-slider-vertical{
-	position:relative;
-}
-.jui-jscrollbar-slider-vhandle{
-	margin:0 auto;
-	display:block;
-	position:absolute;
-	border:0px;
-	outline:0px;
-	z-index:11
-}/*滑块样式*/
-
-/*平行滚动条*/
-.jui-jscrollbar-slider-wrap-horizontal{
-	position:absolute;
-	left:0;
-	bottom:0;
-	height:20px;
-	z-index:9;
-}
-.jui-jscrollbar-slider-horizontal{ 
-	position:relative;
-}
-.jui-jscrollbar-slider-hhandle{
-	height:20px;
-	margin:0 auto;
-	display:block;
-	position:absolute;
-	border:0;
-	outline:0;
-	z-index:11;
-	top:0;
-	font-size:small;
-	cursor:default;
-}/*滑块样式*/
-
-.jui-jscrollbar-scroll-outDiv{
-	width: 300px;
-	height: 300px;
+.jui-jscrollbar-scroll-containerDiv {
 	overflow:hidden;
-	position:relative; 
+	position:relative;
+}
+.jui-jscrollbar-scroll-sliderWrapVertical {
+	position:absolute;
+	top:0px;
+	right:0px;
+	display:none;
+}
+.jui-jscrollbar-scroll-sliderWrapHorizontal {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	display:none;
+}
+.jui-jscrollbar-scroll-top_span {
+    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
+    background-repeat: no-repeat;
+	background-position:-42px -20px;
+    display:block;
+    width: 10px;
+    height: 12px;
+    position: relative;
+}
+.jui-jscrollbar-scroll-bottom_span {
+    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
+    background-repeat: no-repeat;
+	background-position:-54px -20px;
+    display:block;
+    width: 10px;
+    height: 12px;
+    position: relative;	
+}
+.jui-jscrollbar-scroll-left_span {
+    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
+    background-repeat: no-repeat;
+	background-position:-42px -33px;
+    display:block;
+    width: 12px;
+    height: 10px;
+    position: relative;	
+}
+.jui-jscrollbar-scroll-right_span {
+    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
+    background-repeat: no-repeat;
+	background-position:-56px -33px;
+    display:block;
+    width: 12px;
+    height: 10px;
+    position: relative;	
 }
