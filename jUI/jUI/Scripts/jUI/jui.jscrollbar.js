@@ -35,7 +35,7 @@
             , handleActive: '#666666'//滑块点击后颜色
 			, handleHover: '#cccccc'//鼠标移入滑块后背景色
 
-			, scrollDefault: '#000000'//滚动条背景色
+			, scrollDefault: '#666666'//滚动条背景色
             , scrollBorder: '#f3f3f3'//滚动条边框颜色 
 
             , outDivBorder: '#f3f3f3'//内容层边框颜色
