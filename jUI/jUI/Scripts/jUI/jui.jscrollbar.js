@@ -99,7 +99,7 @@
 	        $("#" + t_id + "containerDiv").css({ "width": showWidth, "height": showHeight });
 
 	        if ($("#" + t_id + "outDiv").length == 0) {
-	            $("#" + t_id + "containerDiv").wrap("<div id='" + t_id + "outDiv' style='position:relative;'></div>");
+	            $("#" + t_id + "containerDiv").wrap("<div id='" + t_id + "outDiv' style='position:relative;margin:5px 5px 5px 5px;'></div>");
 	        }
 	        $("#" + t_id + "outDiv").css({ "border": "1px solid " + outDivBorder, "width": showWidth + scrollWidth + 3, "height": showHeight + scrollWidth + 3, "border-radius": borderRadius + "px" });
 
@@ -107,12 +107,12 @@
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapVertical'></div>");
 	            $("#" + t_id + "sliderWrapVertical").addClass("jui-jscrollbar-scroll-sliderWrapVertical");
 	        }
-	        $("#" + t_id + "sliderWrapVertical").css({ "width": scrollWidth, "height": showHeight, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
+	        $("#" + t_id + "sliderWrapVertical").css({ "left": showWidth + 0.5 * btnWidth, "width": scrollWidth, "height": showHeight, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        if ($("#" + t_id + "sliderWrapHorizontal").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapHorizontal'></div>");
 	            $("#" + t_id + "sliderWrapHorizontal").addClass("jui-jscrollbar-scroll-sliderWrapHorizontal");
 	        }
-	        $("#" + t_id + "sliderWrapHorizontal").css({ "width": showWidth, "height": scrollWidth, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
+	        $("#" + t_id + "sliderWrapHorizontal").css({ "top": showHeight + 0.5 * btnWidth, "width": showWidth, "height": scrollWidth, "border": "1px solid " + scrollBorder, "border-radius": borderRadius + "px", "background-color": scrollWrapColor });
 	        //比较内部容器高度与目标元素高度
 	        var diff = t_h - showHeight;
 	        //比较内部容器宽度和目标元素宽度
