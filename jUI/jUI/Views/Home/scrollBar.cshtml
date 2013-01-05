@@ -31,23 +31,23 @@
     $(function () {
         $("#scrollDiv").jscrollbar({
             btnDefault: '#bababa'//按钮颜色
-			, btnActive: '#e2e2e2'//按钮点击后颜色
-            , btnHover: '#d4d4d4'//覆盖按钮后颜色
-            , btnBorder: '#666666'//按钮边框颜色 
+			, btnActive: '#fef1ec'//按钮点击后颜色
+            , btnHover: '#e2e2e2'//覆盖按钮后颜色
+            , btnBorder: '#fef1ec'//按钮边框颜色 
 
 	        , handleDefault: '#bababa' //滑块背景色
-            , handleActive: '#e2e2e2'//滑块点击后颜色
-			, handleHover: '#d4d4d4'//鼠标移入滑块后背景色
+            , handleActive: '#fef1ec'//滑块点击后颜色
+			, handleHover: '#e2e2e2'//鼠标移入滑块后背景色
 
-			, scrollDefault: '#fef1ec'//滚动条背景色
-            , scrollBorder: '#000000'//滚动条边框颜色 
+			, scrollDefault: '#d4d4d4'//滚动条背景色
+            , scrollBorder: '#bababa'//滚动条边框颜色 
 
-            , outDivBorder: '#062f72'//内容层边框颜色
+            , outDivBorder: '#bababa'//内容层边框颜色
             , showWidth: 300//显示宽度
             , showHeight: 300//显示高度
 
-            , sliderBarWidth: 8//滑块宽度
-            , scrollWidth: 12//滚动条宽度
+            , sliderBarWidth: 14//滑块宽度
+            , scrollWidth: 14//滚动条宽度
             ,borderRadius:8//圆角
         });
         //#region 取值
@@ -278,38 +278,39 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
             </table>
         </div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
-    <pre class="brush: js; html-script: true;">        
-        &lt;div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv"&gt;
-	        &lt;div class="jui-jscrollbar-scroll-content" style="top: 0px;"&gt;
-                &lt;div style="width:1200px;height:100px;font-size:3em; background:silver;"&gt;
-	            &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:left;"&gt;S&lt;/div&gt;
-	            &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:right;"&gt;E&lt;/div&gt;
-                &lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;2&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;3&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;5&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;6&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;7&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;8&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;9&lt;/div&gt;
-                &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;10&lt;/div&gt;
-	        &lt;/div&gt;	
+    <pre class="brush: js; html-script: true;">      
+        &lt;div id="scrollDiv" style="position: absolute; top: 0px; left: 0px; width: auto; height: auto; white-space: pre;"&gt;
+                    Default scrollbar with scroll buttons
+        Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+        Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+        Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+        ......
+
+        &lt;/div&gt;
         &lt;script type="text/javascript"&gt;
             $(function () {
                 $("#scrollDiv").jscrollbar({        
-	                btnDefault: '#bababa'//按钮颜色
-			        , btnActive: '#e2e2e2'//按钮点击后颜色
-                    , btnHover: '#d4d4d4'//覆盖按钮后颜色
-                    , btnBorder: '#666666'//按钮边框颜色 
+                    btnDefault: '#bababa'//按钮颜色
+			        , btnActive: '#fef1ec'//按钮点击后颜色
+                    , btnHover: '#e2e2e2'//覆盖按钮后颜色
+                    , btnBorder: '#fef1ec'//按钮边框颜色 
+
 	                , handleDefault: '#bababa' //滑块背景色
-                    , handleActive: '#e2e2e2'//滑块点击后颜色
-			        , handleHover: '#d4d4d4'//鼠标移入滑块后背景色
-			        , scrollDefault: '#f3f3f3'//滚动条背景色
-                    , scrollBorder: '#000000'//滚动条边框颜色 
-                    , scrollWidth: 15//滚动条宽度
-                    , outDivBorder: '#062f72'//内容层边框颜色
+                    , handleActive: '#fef1ec'//滑块点击后颜色
+			        , handleHover: '#e2e2e2'//鼠标移入滑块后背景色
+
+			        , scrollDefault: '#d4d4d4'//滚动条背景色
+                    , scrollBorder: '#bababa'//滚动条边框颜色 
+
+                    , outDivBorder: '#bababa'//内容层边框颜色
                     , showWidth: 300//显示宽度
                     , showHeight: 300//显示高度
+
+                    , sliderBarWidth: 14//滑块宽度
+                    , scrollWidth: 14//滚动条宽度
+                    ,borderRadius:8//圆角
                 });
             })
         &lt;/script&gt;
@@ -576,6 +577,44 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 					$("#scrollDiv").jscrollbar("option","showHeight",300);
 				</pre>
 			</div>
+			<h3>
+				<span class="description-option-name">sliderBarWidth</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">14</span>
+			</h3>
+			<div>
+				<p>设置滑块宽度</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({sliderBarWidth:14});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var sliderBarWidth = $("#scrollDiv").jscrollbar( "option", "sliderBarWidth" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","sliderBarWidth",14);
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">borderRadius</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">8</span>
+			</h3>
+			<div>
+				<p>设置圆角</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({borderRadius:8});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var borderRadius = $("#scrollDiv").jscrollbar( "option", "borderRadius" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","borderRadius",8);
+				</pre>
+			</div>
 		</div>
 	</div>
 	<div id="eventsTab">
@@ -597,19 +636,13 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
             &lt;div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv"&gt;
-	            &lt;div class="jui-jscrollbar-scroll-content" style="top: 0px;"&gt;
-                    &lt;div style="width:1200px;height:100px;font-size:3em; background:silver;"&gt;
-	                &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:left;"&gt;S&lt;/div&gt;
-	                &lt;div style="width:600px;height:100px;font-size:2em; background:silver;float:right;"&gt;E&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;2&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;3&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;5&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;6&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;7&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;8&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;9&lt;/div&gt;
-                    &lt;div style="width:100px;height:100px;font-size:3em; background:silver;"&gt;10&lt;/div&gt;
+                        Default scrollbar with scroll buttons
+            Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
+
+            Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit. Nullam felis tellus, tristique nec egestas in, luctus sed diam. Suspendisse potenti.
+
+            Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat nec tincidunt massa feugiat. Donec egestas mi turpis. Fusce adipiscing dui eu metus gravida vel facilisis ligula iaculis. Cras a rhoncus massa. Donec sed purus eget nunc placerat consequat.
+            ......
 	            &lt;/div&gt;	
             &lt;div class="jui-jscrollbar-slider-wrap-vertical" style="width: 15px; height: 283px; background-color: rgb(243, 243, 243); border: 1px solid;"&gt;
                 &lt;div class="jui-jscrollbar-slider-top" style="width: 13px; height: 14px; background-color: rgb(192, 192, 192); border: 1px solid rgb(102, 102, 102);"&gt;
@@ -639,4 +672,3 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 		</pre>
 	</div>
 </div>
-
