@@ -23,27 +23,27 @@
 	    // default options
 	    options: {
 
-	        btnDefault: '#bababa'//按钮颜色(less文件中已定义)
-			, btnActive: '#fef1ec'//按钮点击后颜色(less文件中已定义)
-            , btnHover: '#e2e2e2'//覆盖按钮后颜色(less文件中已定义)
-            , btnBorder: '#bababa'//按钮边框颜色       
+	        btnDefault: '#f3f3f3'//按钮颜色(less文件中已定义)
+			, btnActive: '#f3f3f3'//按钮点击后颜色(less文件中已定义)
+            , btnHover: '#f3f3f3'//覆盖按钮后颜色(less文件中已定义)
+            , btnBorder: '#f3f3f3'//按钮边框颜色       
 
             , btnWidth: 12//箭头按钮宽度
             , btnHeight: 12//箭头按钮高度
 
 	        , handleDefault: '#bababa' //滑块背景色
-            , handleActive: '#fef1ec'//滑块点击后颜色
-			, handleHover: '#e2e2e2'//鼠标移入滑块后背景色
+            , handleActive: '#666666'//滑块点击后颜色
+			, handleHover: '#cccccc'//鼠标移入滑块后背景色
 
-			, scrollDefault: '#d4d4d4'//滚动条背景色
-            , scrollBorder: '#bababa'//滚动条边框颜色 
+			, scrollDefault: '#000000'//滚动条背景色
+            , scrollBorder: '#f3f3f3'//滚动条边框颜色 
 
-            , outDivBorder: '#bababa'//内容层边框颜色
+            , outDivBorder: '#f3f3f3'//内容层边框颜色
             , showWidth: 300//显示宽度
             , showHeight: 300//显示高度
 
-            , sliderBarWidth: 8//滑块宽度
-            , scrollWidth: 12//滚动条宽度
+            , sliderBarWidth: 6//滑块宽度
+            , scrollWidth: 2//滚动条宽度
             , borderRadius: 8//圆角
 	        //*****btnBackground:url(...)//四个方向按钮背景图片*****
 	        //*****scrollBackground:url(...)//滚动条背景图片*****
@@ -161,8 +161,8 @@
                     "</div><div id='" + t_id + "sliderVertical'></div><div id='" + t_id + "sliderBottom'>" +
                     "<span id='" + t_id + "bottom_span' class='jui-jscrollbar-scroll-bottom_span'></span>" +
                     "</div>");
-	            $("#" + t_id + "top_span").css({ "margin-left": 0.5 * (btnWidth - 10) });
-	            $("#" + t_id + "bottom_span").css({ "margin-left": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "top_span").css({ "margin-left": 0.5 * (btnWidth - 10), "cursor": "pointer" });
+	            $("#" + t_id + "bottom_span").css({ "margin-left": 0.5 * (btnWidth - 10), "cursor": "pointer" });
 	            $("#" + t_id + "sliderTop").css({ "margin-left": 0.5 * (scrollWidth-2 - btnWidth), "width": btnWidth, "height": btnHeight, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            $("#" + t_id + "sliderVertical").css({ "width": scrollWidth - 2, "position": "absolute" });
 	            $("#" + t_id + "sliderBottom").css({"margin-left": 0.5 * (scrollWidth-2 - btnWidth), "position": "absolute", "bottom": "0", "width": btnWidth, "height": btnHeight, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
@@ -198,7 +198,7 @@
 	            //#endregion
 
 	            //#region 调节滑块样式
-	            $("#" + t_id + "sliderVertical").find("a").removeClass("ui-state-default").css({ "width": sliderBarWidth+"px", "background-color": handlebgcolor, "margin-left": (scrollWidth - sliderBarWidth) * 0.5 + "px" });
+	            $("#" + t_id + "sliderVertical").find("a").removeClass("ui-state-default").css({ "cursor": "pointer", "width": sliderBarWidth + "px", "background-color": handlebgcolor, "margin-left": (scrollWidth - sliderBarWidth) * 0.5 + "px" });
 	            $("#" + t_id + "sliderVertical").removeClass("ui-slider-vertical").removeClass("ui-widget-content");
 
 	            //设置滑块层的高度和底边距，以使得滑块层中间位置正好处在滑块位置
@@ -288,8 +288,8 @@
                     "</div><div id='" + t_id + "sliderHorizontal'></div><div id='" + t_id + "sliderRight'>" +
                     "<span id='" + t_id + "right_span' class='jui-jscrollbar-scroll-right_span'></span>" +
                     "</div>");
-	            $("#" + t_id + "left_span").css({ "margin-top": 0.5 * (btnWidth - 10) });
-	            $("#" + t_id + "right_span").css({ "margin-top": 0.5 * (btnWidth - 10) });
+	            $("#" + t_id + "left_span").css({ "margin-top": 0.5 * (btnWidth - 10), "cursor": "pointer" });
+	            $("#" + t_id + "right_span").css({ "margin-top": 0.5 * (btnWidth - 10), "cursor": "pointer" });
 	            $("#" + t_id + "sliderLeft").css({ "margin-top": 0.5 * (scrollWidth-2 - btnWidth),"width": btnHeight, "height": btnWidth, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
 	            $("#" + t_id + "sliderHorizontal").css({ "height": scrollWidth - 2, "position": "absolute", "top": 0 });
 	            $("#" + t_id + "sliderRight").css({ "margin-top": 0.5 * (scrollWidth-2 - btnWidth), "position": "absolute", "right": "0", "top": "0", "width": btnHeight, "height": btnWidth, "border": "1px solid " + buttonBorder, "border-radius": borderRadius + "px" });
@@ -326,7 +326,7 @@
 	            //#endregion
                 
 	            //#region 调节滑块样式
-	            $("#" + t_id + "sliderHorizontal").find("a").removeClass("ui-state-default").css({ "height": sliderBarWidth+"px", "background-color": handlebgcolor, "margin-top": (scrollWidth - sliderBarWidth)*0.5+"px" });
+	            $("#" + t_id + "sliderHorizontal").find("a").removeClass("ui-state-default").css({ "cursor": "pointer", "height": sliderBarWidth + "px", "background-color": handlebgcolor, "margin-top": (scrollWidth - sliderBarWidth) * 0.5 + "px" });
 	            $("#" + t_id + "sliderHorizontal").removeClass("ui-slider-horizontal").removeClass("ui-widget-content");
 	            
 	            //设置滑块层的宽度和右边距，以使得滑块层中间位置正好处在滑块位置
