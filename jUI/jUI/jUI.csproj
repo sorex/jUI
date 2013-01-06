@@ -431,6 +431,24 @@
     <Content Include="Views\Standards\ThemeRoller.cshtml" />
     <Content Include="Views\Home\scrollbar.cshtml" />
     <Content Include="Views\Home\scrollbarHtml.cshtml" />
+    <Content Include="Views\Test\leftMenu.cshtml" />
+    <Content Include="Views\Test\button.cshtml" />
+    <Content Include="Views\Test\checkbox.cshtml" />
+    <Content Include="Views\Test\radio.cshtml" />
+    <Content Include="Views\Test\headMenu.cshtml" />
+    <Content Include="Views\Test\select.cshtml" />
+    <Content Include="Views\Test\sortSelect.cshtml" />
+    <Content Include="Views\Test\multiSelect.cshtml" />
+    <Content Include="Views\Test\link.cshtml" />
+    <Content Include="Views\Test\linkButton.cshtml" />
+    <Content Include="Views\Test\checkTable.cshtml" />
+    <Content Include="Views\Test\radioTable.cshtml" />
+    <Content Include="Views\Test\tree.cshtml" />
+    <Content Include="Views\Test\text.cshtml" />
+    <Content Include="Views\Test\checkTree.cshtml" />
+    <Content Include="Views\Test\radioTree.cshtml" />
+    <Content Include="Views\Test\search.cshtml" />
+    <Content Include="Views\Test\scrollbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
