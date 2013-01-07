@@ -3,3 +3,38 @@
 }
 
 <h2>tip</h2>
+<script src="~/Scripts/jUI/jui.jtip.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#n_w").jtip({
+            type: "error",
+            positon: "left",
+            width: "250px",
+            content: "您好这里有详细介绍...",
+            autoshow: true
+        });
+        $("#n_n").jtip({
+            type: "nomal",
+            positon: "bottom",
+            width: "100px",
+            content: "您好这里有详细介绍",
+            autoshow: true
+        });
+        //$("#n_w").mouseover(function () {
+        //    $("#n_w").jtip("show");
+        //});
+        //$("#n_w").mouseout(function () {
+        //    $("#n_w").jtip("hide");
+        //});
+        $("#n_n").mouseover(function () {
+            $("#n_n").jtip("show");
+        });
+        $("#n_n").mouseout(function () {
+            $("#n_n").jtip("hide");
+            $("#n_w").jtip("refreshPositon");
+        });
+    });
+</script>
+左边普通:<input id="n_w" type="text"/>
+<br />
+底部普通:<input id="n_n" type="text"/>

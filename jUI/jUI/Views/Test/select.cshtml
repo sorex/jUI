@@ -3,3 +3,53 @@
 }
 
 <h2>select</h2>
+<script src="~/Scripts/jUI/jui.jselect.js"></script>
+<script src="~/Scripts/jUI/chosen.jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#showSelect").jSelect({
+            items: [{ value: "Switzerland", text: "瑞士" },
+                { value: "France", text: "法国" },
+                { value: "Germany", text: "德国"},
+                { value: "Italy  ", text: "意大利" },
+                { value: "England  ", text: "英国" }
+            ],
+            placeholder: "请选择国家...",
+            width: "200px",
+            model: "multiple",
+            //onSelectChange: function (selectValue, selectText) {
+            //    alert("选择的国家中文名为:" + selectText + ":英文名称为:" + selectValue);
+            //}
+            onSelectChange: function (selectList) {
+                var content = "";
+                if (selectList != null) {
+                    for (var i = 0; i < selectList.length; i++) {
+                        content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+                    }
+                    alert("选择的内容为：" + content.substring(0, content.length - 1));
+                } else {
+                    alert("无数据");
+                }
+            }
+        });
+
+        $("#singleBtn").click(function () {
+            //var selectObj = $("#showSelect").jSelect("getSelectValueText");
+            //alert("选择的国家中文名为:" + selectObj.text + ":英文名称为:" + selectObj.value);
+            var selectList = $("#showSelect").jSelect("getSelectValueText");
+            var content = "";
+            if (selectList != null) {
+                for (var i = 0; i < selectList.length; i++) {
+                    content += "英文名称为:" + selectList[i]["value"] + "中文名称为:" + selectList[i]["text"] + "；"
+                }
+                alert("选择的内容为：" + content.substring(0, content.length - 1));
+            } else {
+                alert("无数据");
+            }
+
+        });
+
+    });
+</script>
+<div id="showSelect"></div>
+<input type="button" id="singleBtn" value="获取值" />

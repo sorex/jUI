@@ -26,6 +26,7 @@
 	        btnDefault: '#f3f3f3'//按钮颜色(less文件中已定义)
 			, btnActive: '#f3f3f3'//按钮点击后颜色(less文件中已定义)
             , btnHover: '#f3f3f3'//覆盖按钮后颜色(less文件中已定义)
+
             , btnBorder: '#f3f3f3'//按钮边框颜色       
 
             , btnWidth: 12//箭头按钮宽度

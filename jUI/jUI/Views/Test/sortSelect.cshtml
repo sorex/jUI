@@ -3,3 +3,36 @@
 }
 
 <h2>sortSelect</h2>
+<script src="~/Scripts/jUI/jui.jsortSelect.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#showSortSelect").jsortSelect({
+            items: [{ value: "value1", text: "文本1",sort: "desc" },
+                { value: "value2", text: "文本2", selected: true, sort: "desc" },
+                { value: "value3", text: "文本3", sort: "asc" },
+                { value: "value4", text: "文本4", sort: "desc" }
+            ],
+            onItemClick: function (value, text, sort) {
+                $("#span_showResult").text("选择的字段名称为:" + value + ";\n显示名称为:" + text + ";\n排序方式为:" + sort);
+            }
+        });
+        $("#btnSelect").click(function () {
+            var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
+            alert("选择的字段名称为:" + selectObj.value + ";\n显示名称为:" + selectObj.text + ";\n排序方式为:" + selectObj.sort);
+        });
+        $("p").css({ "color": "red", "font-size": "0.8em" });
+        $("#span_showResult").css({ "outline": "1px solid silver", "background-color": "lightGray"});
+    });
+</script>
+<div id="showSortSelect"></div>
+<input id="btnSelect" type="button" value="获取选择的值" style="margin-left:25px;" />
+
+<br />
+<span id="span_showResult"></span>
+
+<br />
+<p>BUG:</p>
+<p>1.点击首行第二次，下拉列表收回后又下拉显示。</p>
+<p>2.首次加载后，点击获取选择的值按钮，显示名称为空值。</p>
+<p>3.点击两次首行再选择下拉列表值，无效。</p>
+<p>4.下拉列表，当鼠标按下即收回，造成点击后取不到值。</p>

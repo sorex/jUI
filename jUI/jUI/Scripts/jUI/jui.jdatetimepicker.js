@@ -465,13 +465,13 @@
 	            $("#btn_" + elementId).remove();
 	            $("#" + elementId + "_yearDiv").empty();
 	            if (datetimeParse == "yyyy-MM-dd") {
-	                $("#" + elementId + "_yearDiv").append("<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>-</span></div>" +
+	                $("#" + elementId + "_yearDiv").append("<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + getNewDate(save_m) + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>-</span></div>" +
                         "<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/></div>");//年月
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "next");
 	                $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "previous");
 	            } else {
 	                $("#" + elementId + "_yearDiv").append("<div id='_year" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_y + "' id='" + elementId + "_btn_y'/><span style='display: inline-block;'>年</span></div>" +
-                        "<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + save_m + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>月</span></div>");//月年
+                        "<div id='_month" + elementId + "' style='display:inline-block;'><input type='button' value='" + getNewDate(save_m) + "' id='" + elementId + "_btn_m'/><span style='display: inline-block;'>月</span></div>");//月年
 	                $("#" + elementId + "_headDiv").children("a:eq(1)").attr("title", "下一页");
 	                $("#" + elementId + "_headDiv").children("a:eq(0)").attr("title", "上一页");
 	            }

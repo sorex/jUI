@@ -3,3 +3,17 @@
 }
 
 <h2>search</h2>
+<script type="text/javascript">
+    $(function () {
+        var list = {};
+        list["a"] = 1;
+        list["b"] = 2;
+        list["c"] = 3;
+        list["d"] = 4;
+        var result = "";
+        for (var i in list) {
+            result += i + "=" + list[i]+";";
+        }
+        $("#show").text(result);
+    });
+</script>
