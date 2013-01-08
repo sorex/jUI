@@ -286,26 +286,30 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
         &lt;/div&gt;
         &lt;script type="text/javascript"&gt;
             $(function () {
-                $("#scrollDiv").jscrollbar({        
-                    btnDefault: '#bababa'//按钮颜色
-			        , btnActive: '#fef1ec'//按钮点击后颜色
-                    , btnHover: '#e2e2e2'//覆盖按钮后颜色
-                    , btnBorder: '#fef1ec'//按钮边框颜色 
+                $("#scrollDiv").jscrollbar({       
+	                btnDefault: '#f3f3f3'//按钮颜色(less文件中已定义)
+			        , btnActive: '#f3f3f3'//按钮点击后颜色(less文件中已定义)
+                    , btnHover: '#f3f3f3'//覆盖按钮后颜色(less文件中已定义)
+
+                    , btnBorder: '#f3f3f3'//按钮边框颜色       
+
+                    , btnWidth: 12//箭头按钮宽度
+                    , btnHeight: 12//箭头按钮高度
 
 	                , handleDefault: '#bababa' //滑块背景色
-                    , handleActive: '#fef1ec'//滑块点击后颜色
-			        , handleHover: '#e2e2e2'//鼠标移入滑块后背景色
+                    , handleActive: '#666666'//滑块点击后颜色
+			        , handleHover: '#cccccc'//鼠标移入滑块后背景色
 
-			        , scrollDefault: '#d4d4d4'//滚动条背景色
-                    , scrollBorder: '#bababa'//滚动条边框颜色 
+			        , scrollDefault: '#666666'//滚动条背景色
+                    , scrollBorder: '#f3f3f3'//滚动条边框颜色 
 
-                    , outDivBorder: '#bababa'//内容层边框颜色
+                    , outDivBorder: '#f3f3f3'//内容层边框颜色
                     , showWidth: 300//显示宽度
                     , showHeight: 300//显示高度
 
-                    , sliderBarWidth: 14//滑块宽度
-                    , scrollWidth: 14//滚动条宽度
-                    ,borderRadius:8//圆角
+                    , sliderBarWidth: 6//滑块宽度
+                    , scrollWidth: 2//滚动条宽度
+                    , borderRadius: 8//圆角
                 });
             })
         &lt;/script&gt;
@@ -328,7 +332,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 			<h3>
 				<span class="description-option-name">btnDefault</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#bababa</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>默认滚动条箭头按钮的样式</p>                
@@ -347,58 +351,58 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 			<h3>
 				<span class="description-option-name">btnActive</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#e2e2e2</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>点击滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnActive:'#e2e2e2'});
+					$("#scrollDiv").jscrollbar({btnActive:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var btnActive = $("#scrollDiv").jscrollbar( "option", "btnActive" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnActive","#e2e2e2");
+					$("#scrollDiv").jscrollbar("option","btnActive","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">btnHover</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#d4d4d4</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>鼠标覆盖滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnHover:'#d4d4d4'});
+					$("#scrollDiv").jscrollbar({btnHover:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var btnHover = $("#scrollDiv").jscrollbar( "option", "btnHover" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnHover","#d4d4d4");
+					$("#scrollDiv").jscrollbar("option","btnHover","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">btnBorder</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#666666</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>滚动条箭头按钮边框样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnBorder:'#666666'});
+					$("#scrollDiv").jscrollbar({btnBorder:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var btnBorder = $("#scrollDiv").jscrollbar( "option", "btnBorder" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnBorder","#666666");
+					$("#scrollDiv").jscrollbar("option","btnBorder","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
@@ -423,115 +427,115 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 			<h3>
 				<span class="description-option-name">handleActive</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#e2e2e2</span>
+				<span class="description-option-value">#666666</span>
 			</h3>
 			<div>
 				<p>点击滑块时背景色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({handleActive:'#e2e2e2'});
+					$("#scrollDiv").jscrollbar({handleActive:'#666666'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var handleActive = $("#scrollDiv").jscrollbar( "option", "handleActive" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","handleActive","#e2e2e2");
+					$("#scrollDiv").jscrollbar("option","handleActive","#666666");
 				</pre>
 			</div>            
 			<h3>
 				<span class="description-option-name">handleHover</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#d4d4d4</span>
+				<span class="description-option-value">#cccccc</span>
 			</h3>
 			<div>
 				<p>鼠标移入后滑块的背景色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({handleHover:'#d4d4d4'});
+					$("#scrollDiv").jscrollbar({handleHover:'#cccccc'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var handleHover = $("#scrollDiv").jscrollbar( "option", "handleHover" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","handleHover","#d4d4d4");
+					$("#scrollDiv").jscrollbar("option","handleHover","#cccccc");
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">scrollDefault</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
+				<span class="description-option-value">#666666</span>
 			</h3>
 			<div>
 				<p>滚动条背景色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollDefault:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({scrollDefault:'#666666'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var scrollDefault = $("#scrollDiv").jscrollbar( "option", "scrollDefault" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollDefault","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","scrollDefault","#666666");
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">scrollBorder</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#000000</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>滚动条边框颜色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollBorder:'#000000'});
+					$("#scrollDiv").jscrollbar({scrollBorder:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var scrollBorder = $("#scrollDiv").jscrollbar( "option", "scrollBorder" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollBorder","#000000");
+					$("#scrollDiv").jscrollbar("option","scrollBorder","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">scrollWidth</span>
 				<span class="description-option-type">int</span>
-				<span class="description-option-value">15</span>
+				<span class="description-option-value">2</span>
 			</h3>
 			<div>
 				<p>滚动条边框宽度</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollWidth:15});
+					$("#scrollDiv").jscrollbar({scrollWidth:2});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var scrollWidth = $("#scrollDiv").jscrollbar( "option", "scrollWidth" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollWidth",15);
+					$("#scrollDiv").jscrollbar("option","scrollWidth",2);
 				</pre>
 			</div>
 			<h3>
 				<span class="description-option-name">outDivBorder</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#062f72</span>
+				<span class="description-option-value">#f3f3f3</span>
 			</h3>
 			<div>
 				<p>内容层边框颜色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({outDivBorder:"#062f72"});
+					$("#scrollDiv").jscrollbar({outDivBorder:"#f3f3f3"});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var outDivBorder = $("#scrollDiv").jscrollbar( "option", "outDivBorder" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","outDivBorder","#062f72");
+					$("#scrollDiv").jscrollbar("option","outDivBorder","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
@@ -575,20 +579,20 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 			<h3>
 				<span class="description-option-name">sliderBarWidth</span>
 				<span class="description-option-type">int</span>
-				<span class="description-option-value">14</span>
+				<span class="description-option-value">6</span>
 			</h3>
 			<div>
 				<p>设置滑块宽度</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({sliderBarWidth:14});
+					$("#scrollDiv").jscrollbar({sliderBarWidth:6});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var sliderBarWidth = $("#scrollDiv").jscrollbar( "option", "sliderBarWidth" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","sliderBarWidth",14);
+					$("#scrollDiv").jscrollbar("option","sliderBarWidth",6);
 				</pre>
 			</div>
 			<h3>

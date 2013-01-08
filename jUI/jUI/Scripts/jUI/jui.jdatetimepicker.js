@@ -285,70 +285,6 @@
 	                noCss();
 	            });
 	        }
-
-	        //添加年份
-	        var addYears = function () {
-	            var y_items = [], j = 0, default_year="";
-	            for (var i = y - 10; i <= y + 10; i++) {
-	                j++;
-	                datetimeParse == "yyyy-MM-dd" ? y_items.push({ value: i, text: i, selected: false }) : y_items.push({ value: i, text: i + "年", selected: false});
-	                if (i == y) {
-	                    y_items[j - 1]["selected"] = true;
-	                    default_year = y_items[j - 1]["text"];
-	                }
-	            }
-	            $("#_year" + elementId).jSelect({
-	                items: y_items,
-	                placeholder: default_year,
-	                width: "90px",
-	                model: "single",
-	                onSelectChange: function (selectValue, SelectText) {
-	                    var _options = "", _select = $("#_year" + elementId + "_select");
-	                    var select_Value = parseInt($("#_year" + elementId + " option:selected").attr("value"));
-	                    $("#_year" + elementId + "_select_chzn").remove();//删除所有li
-	                    _select.attr("class", "");
-	                    _select.attr("data-placeholder", "");
-	                    _select.find("option").remove();//删除所有option
-	                    for (var i = select_Value - 10; i <= select_Value + 10; i++) {
-	                        _options += "<option></option><option value='"+i+"'>"+i+"年　</option>";
-	                        if (i == select_Value) {
-	                            _options += "<option selected value='" + i + "'>" + i + "年　</option>";
-	                        }
-	                    }
-	                    _select.append(_options);
-	                    _select.chosen();
-
-	                    $("#" + elementId + "_tb a").text("");//清空
-	                    writeDate();
-	                    choseDate();
-	                    setVal();
-	                }
-	            });
-	            $("#_year" + elementId).css("color", "black");
-	        }
-	        //添加月份下拉列表
-	        var addMonths = function () {
-	            var m_items = [];
-	            //添加月下拉列表
-	            for (var i = 0; i < shortMonthNames.length; i++) {
-	                datetimeParse == "yyyy-MM-dd" ? m_items.push({ value: i, text: shortMonthNames[i], selected:false}) : m_items.push({ value: i, text: MonthNamesCN[i], selected:false});
-	            }
-	            m_items[m]["selected"] = true;
-	            $("#_month" + elementId).jSelect({
-	                items: m_items,
-	                placeholder: m_items[m]["text"],
-	                width: "90px",
-	                model: "single",
-	                onSelectChange: function (selectValue, SelectText) {
-	                    $("#" + elementId + "_tb").find("a").removeClass("jui-datetimepicker-active");
-	                    $("#" + elementId + "_tb a").text("");//清空
-	                    writeDate();
-	                    choseDate();
-	                    setVal();
-	                }
-	            });
-	            $("#_month" + elementId).css("color", "black");
-	        }
 	        //高亮并赋值
 	        var lightAndSetValue = function () {
 	            $("#" + elementId + "_tb td").click(function () {
@@ -670,11 +606,14 @@
 	                max: 23,
                     value:0,
                     slide: function (event, ui) {
+                        if ($("#" + elementId + "_slider_h").find("a").attr("outline-color") != "transparent") {
+                            $("#" + elementId + "_slider_h").find("a").css("outline-color", "transparent");
+                        }
                         if (ui.value < 10) {
                             ui.value ="0"+ ui.value;
                         }
 	                    span_h.html(ui.value);
-	                }
+                    }
 	            });
 	            $("#" + elementId + "_slider_h").find("a").mousedown(function () {
 	                $(this).css("outline-color","transparent");
@@ -688,13 +627,15 @@
 	                max: 60,
 	                value: 0,
 	                slide: function (event, ui) {
+	                    if ($("#" + elementId + "_slider_m").find("a").attr("outline-color") != "transparent") {
+	                        $("#" + elementId + "_slider_m").find("a").css("outline-color", "transparent");
+	                    }
 	                    if (ui.value < 10) {
 	                        ui.value = "0" + ui.value;
 	                    }
 	                    span_m.html(ui.value);
 	                }
 	            });
-
 	            $("#" + elementId + "_slider_m").find("a").mousedown(function () {
 	                $(this).css("outline-color", "transparent");
 	            });
@@ -707,6 +648,9 @@
 	                max: 60,
 	                value: 0,
 	                slide: function (event, ui) {
+	                    if ($("#" + elementId + "_slider_s").find("a").attr("outline-color") != "transparent") {
+	                        $("#" + elementId + "_slider_s").find("a").css("outline-color", "transparent");
+	                    }
 	                    if (ui.value < 10) {
 	                        ui.value = "0" + ui.value;
 	                    }
