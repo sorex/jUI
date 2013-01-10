@@ -156,7 +156,7 @@
 		});
 
 
-		$(document).bind("mousedown", function (e) {
+		$(document).bind("click", function (e) {
 		    if ($(e.target).parent("#" + showParentUl).length == 0) {
 		        if (!$("#" + showParentUl).is(":hidden")) {
 		        $("#" + showParentUl).slideUp("fast");  
@@ -182,9 +182,8 @@
 
 			var selectObject = Object;
 			selectObject.value = $("#" + selectId).attr("data-value");
-			selectObject.text = $("#" + selectId).find("span").text();
+			selectObject.text = $("#" + selectId).text();
 			selectObject.sort = $("#" + selectId).attr("data-sort");
-			
 			return selectObject;
 		},
 

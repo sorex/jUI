@@ -2,4 +2,299 @@
     ViewBag.Title = "checkTree";
 }
 
-<h2>checkTree</h2>
+<h2>checkTree测试</h2>
+
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtree.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTree.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#tree").jtree({
+                nodes: [
+                    {
+                        name: "父节点1", id: "1", image: "../Images/zTreeStandard.png", position: "-110px 0", children: [
+                            {
+                                name: "父节点1-1", id: "1-1", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
+                                  { name: "子节点1-1-1", id: "1-1-1", image: "../images/zTreeStandard.png", position: "-110px -30px", },
+                                  { name: "子节点1-1-2", id: "1-1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", },
+                                  { name: "子节点1-1-3", id: "1-1-3", image: "../images/zTreeStandard.png", position: "-110px -30px", }
+                                ]
+                            },
+                            { name: "父节点1-2", id: "1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", }
+                        ]
+                    },
+                    {
+                        name: "父节点2", id: "2", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
+                            {
+                                name: "父节点2-1", id: "2-1", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
+                                    { name: "子节点2-1-1", id: "2-1-1", image: "../images/zTreeStandard.png", position: "-110px -30px", },
+                                    { name: "子节点2-1-2", id: "2-1-2", image: "../images/zTreeStandard.png", position: "-110px -30px", },
+                                    { name: "子节点2-1-3", id: "2-1-3", image: "../images/zTreeStandard.png", position: "-110px -30px", }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "父节点3", id: "3", image: "../images/zTreeStandard.png", position: "-110px 0", children: [
+                            { name: "父节点3-1", id: "3-1", image: "../images/zTreeStandard.png", position: "-110px -30px" },
+                            { name: "父节点3-2", id: "3-2", image: "../images/zTreeStandard.png", position: "-110px -30px" },
+                            { name: "父节点3-3", id: "3-3", image: "../images/zTreeStandard.png", position: "-110px -30px" }
+                        ]
+                    }
+                ],
+                onClick: function (obj) {
+                    $("#showDetail").html("<p>节点文本:   <span id='obj_name'>" + obj["name"] + "</span></p><p>节点id:  <span id='obj_id'>" + obj["id"] + "</span></p><p>节点图标地址:  <span id='obj_image'>" + obj["image"] + "</span></p><p>节点图标定位: <span id='obj_position'>" + obj["position"] + "<span></p><span id='obj_children' style='display:none;'>" + obj["children"] + "</span>");
+                }
+            }).jcheckTree({});
+            $("#btn_value").click(function () {
+                var v = $("#tree").jcheckTree("getCheckValue");
+                if (v.length == 0) {
+                    alert("无选中节点！");
+                } else {
+                    alert(v.length);
+                }
+            });
+
+            //添加子节点
+            $("#addChildNode").click(function () {
+                $("#tree").jtree("addChildNode");
+            });
+            //添加同级节点
+            $("#addSiblingNode").click(function () {
+                $("#tree").jtree("addSiblingNode");
+            });
+            //删除节点
+            $("#deleteNode").click(function () {
+                $("#tree").jtree("deleteNode");
+            });
+            //编辑节点
+            $("#editNode").click(function () {
+                $("#tree").jtree("editNode");
+            });
+            //遍历子节点，返回父节点
+            $("#getParentNode").click(function () {
+                var obj = $("#tree").jtree("getParentNode");
+                if (obj) {
+                    if (!obj["id"]) {
+                        alert("该节点无父节点.");
+                    } else {
+                        alert("父节点信息:\nid:" + obj["id"] + ";\nname:" + obj["name"] + ";\nbackgroundImage:" + obj["image"] + ";\nposition:" + obj["position"] + ";")
+                    }
+                }
+            });
+            //遍历父节点,返回子节点集合
+            $("#getChildrenNodes").click(function () {
+                var obj = $("#tree").jtree("getChildrenNodes", $("#saveId").text());
+                if (obj) {
+                    if (obj == "N") {
+                        alert("该节点无子节点.");
+                    } else {
+                        var result = "";
+                        for (var i = 0; i < obj.length; i++) {
+                            result += "第" + (i + 1) + "个子节点信息:\nid:" + obj[i]["id"] + ";\nname:" + obj[i]["name"] + ";\nbackgroundImage:" + obj[i]["image"] + ";\nposition:" + obj[i]["position"] + ";\n\n";
+                        }
+                        alert(result)
+                    }
+                }
+            });
+            //获取选中节点路径
+            $("#getNodePath").click(function () {
+                var result = $("#tree").jtree("getNodePath");
+                if (result) {
+                    alert(result);
+                }
+            });
+            //获取最终nodes集合
+            $("#getNodes").click(function () {
+                var result = $("#tree").jtree("getNodes");
+                alert(result);
+            });
+        });
+
+    </script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">节点前带checkbox的树形结构</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="tree"></div>
+        <div>
+            <input style="width:150px;" id="addChildNode" type="button"  value="添加子节点"/>
+            <input style="width:150px;" id="addSiblingNode" type="button"  value="添加同级节点"/>
+            <input style="width:150px;" id="deleteNode" type="button"  value="删除节点"/>
+            <input style="width:150px;" id="editNode" type="button"  value="编辑节点"/>
+        </div>
+        <div>
+            <input style="width:150px;" id="getParentNode" type="button"  value="遍历父节点"/>
+            <input style="width:150px;" id="getChildrenNodes" type="button"  value="遍历子节点"/>
+            <input style="width:150px;" id="getNodePath" type="button"  value="获得节点路径"/>
+            <input style="width:150px;" id="getNodes" type="button"  value="获取最终nodes集合"/>
+        </div>
+        <input id="btn_value" value="获得选中节点个数" type="button" />
+        <br />
+        <div id="showDetail" style="background-color:silver;border:1px solid #F3F3F3;">
+        </div>
+        <a class="viewSource" onclick="viewSource(this);">Bug提交</a>
+    <pre class="brush: js; html-script: true;">
+
+	</pre>
+	</div>	
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>生成一个节点前带checkbox的树形菜单</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">nodes</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>生成树需要的数据</p>                
+				<pre class="brush: js;">
+					items:
+						[
+                            item,item
+                            ...
+                        ]	//使用item列表为其赋值
+
+					item:
+		                    name: 节点文本,
+		                    id:节点id,
+                            image:图片地址，
+                            position：小图标定位
+		                    children: 节点的子节点
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#tree").jtree({nodes: [{ name: "父节点1-1", id: "1-1" },{ name: "父节点1-2", id: "1-2" }]});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var nodes = $("#tree").jtree( "option", "nodes" );
+					//设置
+					$("#tree").jtree("option", { "nodes":[{ name: "父节点1-1", id: "1-1" },{ name: "父节点1-2", id: "1-2" }]});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+        无
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jtree("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+&lt;div id="tree" class="jui-jtree"&gt;
+    &lt;ul id="tree_u1"&gt;
+        &lt;li class="jui-jtree-u-li" id="tree_li1_1"&gt;
+        &lt;span class="jui-jtree-u-switch-open" id="tree_switch_1"&gt;&lt;/span&gt;
+        &lt;span class="jui-jtree-u-cbox-partChecked2"&gt;&lt;/span&gt;
+        &lt;a title="父节点1" class="jui-jtree-u-a" id="tree_a_1"&gt;
+            &lt;span class="jui-jtree-u-icon-open" id="tree_icon_1"&gt;&lt;/span&gt;
+            &lt;span class="jui-jtree-u-text" id="tree_text_1"&gt;父节点1&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;ul id="tree_u2_1" class="line" style=""&gt;
+            &lt;li class="jui-jtree-u-li" id="tree_li2_1"&gt;
+                &lt;span class="jui-jtree-u-switch-dircorss-open" id="tree_switch2_1"&gt;&lt;/span&gt;
+                &lt;span class="jui-jtree-u-cbox-checked"&gt;&lt;/span&gt;
+                &lt;a title="父节点1-1" class="jui-jtree-u-a" id="tree_a2_1_1"&gt;
+                    &lt;span class="jui-jtree-u-icon-open" id="tree_icon2_1"&gt;&lt;/span&gt;
+                    &lt;span class="jui-jtree-u-text" id="tree_text2_1"&gt;父节点1-1&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;ul id="tree_u3_1_1" class="line" style=""&gt;
+                    &lt;li class="jui-jtree-u-li" id="tree_li3_1"&gt;
+                        &lt;span class="jui-jtree-u-switch-cross" id="tree_switch3_1"&gt;&lt;/span&gt;
+                        &lt;span class="jui-jtree-u-cbox-checked"&gt;&lt;/span&gt;
+                        &lt;a title="子节点1-1-1" class="jui-jtree-u-a" id="tree_a3_1_1_1"&gt;
+                            &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                            &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-1&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="jui-jtree-u-li" id="tree_li3_2"&gt;
+                            &lt;span class="jui-jtree-u-switch-cross" id="tree_switch3_2"&gt;&lt;/span&gt;
+                            &lt;span class="jui-jtree-u-cbox-checked"&gt;&lt;/span&gt;
+                            &lt;a title="子节点1-1-2" class="jui-jtree-u-a" id="tree_a3_1_1_2"&gt;
+                                &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                                &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-2&lt;/span&gt;
+                            &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="jui-jtree-u-li" id="tree_li3_3"&gt;
+                        &lt;span class="jui-jtree-u-switch-cross-bottom" id="tree_switch3_3"&gt;&lt;/span&gt;
+                        &lt;span class="jui-jtree-u-cbox-checked"&gt;&lt;/span&gt;
+                        &lt;a title="子节点1-1-3" class="jui-jtree-u-a" id="tree_a3_1_1_3"&gt;
+                            &lt;span class="jui-jtree-u-icon-file" id="tree_icon3_1"&gt;&lt;/span&gt;
+                            &lt;span class="jui-jtree-u-text" id="tree_text3_1"&gt;子节点1-1-3&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            ...
+        &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+</div>
+
+

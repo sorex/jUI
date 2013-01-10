@@ -2,4 +2,279 @@
     ViewBag.Title = "checkTable";
 }
 
-<h2>checkTable</h2>
+<h2>checkTable测试</h2>
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jcheckTable.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+
+	<script type="text/javascript">
+	    //编辑
+	    function ActionEdit(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name)
+	    }
+	    //删除
+	    function ActionDetail(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    //详细
+	    function ActionDelete(id, name, name2) {
+	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
+	    }
+	    $(function () {
+
+	        $("#MyTable1").jtable({
+	            height: '20%', //表高
+	            width: '100%', //表宽
+	            data:
+                    [
+                        { "ID": 1, "Name": "a1", "Name2": "a2", "Name3": "a3", "Name4": "a4", "Name5": "a5" },
+                        { "ID": 2, "Name": "b1", "Name2": "b2", "Name3": "b3", "Name4": "b4", "Name5": "b5" },
+                        { "ID": 3, "Name": "c1", "Name2": "c2", "Name3": "c3", "Name4": "c4", "Name5": "c5" },
+                        { "ID": 4, "Name": "d1", "Name2": "d2", "Name3": "d3", "Name4": "d4", "Name5": "d5" },
+                        { "ID": 5, "Name": "e1", "Name2": "e2", "Name3": "e3", "Name4": "e4", "Name5": "e5" },
+                        { "ID": 6, "Name": "f1", "Name2": "f2", "Name3": "f3", "Name4": "f4", "Name5": "f5" },
+                        { "ID": 7, "Name": "g1", "Name2": "g2", "Name3": "g3", "Name4": "g4", "Name5": "g5" }
+                    ], //数据源
+	            columns:
+                    [
+		                {
+		                    head: "名称1",				                                    //名称
+		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
+		                    maxLength: 5,			                                        //文本最大长度，0不限制
+		                    head_align: "left",                                             //[left], center, right
+		                    v_align: "top",		                                            //[top], middle, bottom
+		                    h_align: "left",		                                            //[left], center, right
+		                    height: "auto",			                                        //150px, 10%
+		                    width: "auto"			                                        //150px, 10%
+		                },
+		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                {
+		                    head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
+		                    maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
+		                }
+                    ]//列名
+	        }).jcheckTable({
+	            field: "名称2"//默认选择项(列名)
+                , checkedItems: ["a2", "b2", "g2"]//默认选择项(单元格内的值)
+                , count: 0//限制可勾选的个数(0为无限制)
+	        });
+	       
+	  
+           
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="MyTable1"></div>
+        <a class="viewSource" onclick="viewSource(this);">Bug提交</a>
+    <pre class="brush: js;">
+
+1:height width 在选项没有说明;
+2:columns 和 data 没有进行详细的说明 
+	</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于表格头部生成多个checkbox按钮</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[field]</span>
+				<span class="description-option-type">string</span>
+				<span class="description-option-value">""</span>
+			</h3>
+			<div>
+				<p>默认选中项的列名</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#tableWidth").jcheckTable({ field:""});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var count = $("#myTable").jcheckTable( "option", "field" );
+					//设置
+					$("#myTable").jcheckTable("option", { field:"名称3"});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[checkedItems]</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>默认选中项的值</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myTable").jcheckTable({ checkedItems:[]});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var checkedItems = $("#myTable").jcheckTable( "option", "checkedItems" );
+					//设置
+					$("#myTable").jcheckTable("option", { checkedItems: ["a3","b3","c3"] });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[count]</span>
+				<span class="description-option-type">Int</span>
+				<span class="description-option-value">0</span>
+			</h3>
+			<div>
+				<p>限制可供勾选的checkBox的个数</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#tableWidth").jcheckTable({ count:0});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var count = $("#myTable").jcheckTable( "option", "count" );
+					//设置
+					$("#myTable").jcheckTable("option", { count:6});
+				</pre>
+			</div>
+            
+		</div>
+	</div>
+	<div id="eventsTab">
+
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jcheckTable("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jcheckTable("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">checkedValues</span>
+				<span class="description-method-returnType">返回所选择项的值</span>
+				<span class="description-method-demo">.jcheckTable("option" , checkedValues)</span>
+			</h3>
+			<div>
+				<p>返回所选择项值的数组形式</p>
+			</div>
+
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+&lt;div id="divId" class="jui-table"&gt;
+    &lt;table id="tableSorter" width="90%" height="30%"&gt;
+        &lt;thead&gt;
+            &lt;tr style="color: rgb(255, 255, 255); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px;"&gt;
+                    名称1
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td&gt;名称2&lt;/td&gt;
+                &lt;td&gt;名称3&lt;/td&gt;
+                &lt;td&gt;名称4&lt;/td&gt;
+                &lt;td&gt;名称5&lt;/td&gt;
+                &lt;td&gt;操作&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;a1(a2...
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;a2&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;a3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;a4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;a5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;
+                    &lt;a href="#" onclick="ActionEdit(1,'a1','a2')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(1,'a1','a2')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(1,'a1','a2')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr lock="false" style="background-color: rgb(243, 243, 243); "&gt;
+                &lt;td&gt;&lt;input type="checkbox" name="checkbox_MyTable1"&gt;&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;b1(b2...
+                    &lt;img style="float:left;width:20px;height:20px;margin-left:5px;margin-right:5px;" src="../../Images/orderedList0.png"&gt;
+                &lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb3&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb4&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;bbbbb5&lt;/td&gt;
+                &lt;td style="padding-top: 5px; padding-bottom: 5px; "&gt;&lt;a href="#" onclick="ActionEdit(2,'b1','b2')"&gt;Edit&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDetail(2,'b1','b2')"&gt;Detail&lt;/a&gt;
+                    |&lt;a href="#" onclick="ActionDelete(2,'b1','b2')"&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+</div>

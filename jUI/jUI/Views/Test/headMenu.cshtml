@@ -1,5 +1,350 @@
 ﻿@{
     ViewBag.Title = "headMenu";
 }
+<h2>headMenu测试</h2>
 
-<h2>headMenu</h2>
+@section head{
+	<script type="text/javascript">
+	    $(function () {
+	        $("#demoTabs").tabs();
+	        $("#descriptionTabs").tabs();
+	        $("#optionsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#eventsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#methodsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	    });
+	</script>    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jheadMenu.js")"></script>
+
+	<script type="text/javascript">
+	    $(function () {
+	        $("#MyHeadMenu1").jheadMenu({
+	            data: [
+                    {
+                        name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png",position:"0px 0px",line: true,
+                            children: [
+                                { name: "文件夹", id: "A21", line: true },
+                                { name: "Word 文档", id: "A22" },
+                                { name: "Excel 工作薄", id: "A23" }
+                            ]
+	                }
+                    , { name: "上载", id: "B1", image: "../../Images/headMenuTestImage.png", position: "-54px 0px" }
+                    , { name: "打开", id: "C1", image: "" }
+                    , {
+                        name: "管理", id: "G1", image: "",
+                            children: [
+                                { name: "重命名", id: "B21" }
+                                , { name: "删除", id: "B22" }
+                                , { name: "移致", id: "B23", line: true }
+                                , { name: "属性", id: "B24" }
+                        ]
+                    }
+                    , {
+                        name: "清除选定内容", id: "F1", image: ""
+                    }]
+                , onItemClick: function (id, name) {
+                    alert("id:" + id + ",name:" + name);
+                }
+	        });
+
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认菜单</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<div id="MyHeadMenu1"></div>
+		@*<div id="MyHeadMenu2" style="width:400px;float:left;"></div>*@<a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+            &lt;div id="MyHeadMenu1"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	            $(function () {
+	                $("#MyHeadMenu1").jheadMenu({
+	                    data: [
+                            {name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png", position:"0px 0px",line: true,
+                                children: [
+                                    { name: "文件夹", id: "A21", line: true },
+                                    { name: "Word 文档", id: "A22" },
+                                    { name: "Excel 工作薄", id: "A23" }
+                                ]
+                            },
+                            {name: "上载", id: "B1", image: "../../Images/headMenuTestImage.png",position:"-54px 0px"},
+                            {name: "打开", id: "C1", image: "" },
+                            {name: "管理", id: "G1", image: "",
+                                children: [
+                                    {name: "重命名", id: "B21" },
+                                    {name: "删除", id: "B22" },
+                                    {name: "移致", id: "B23", line: true },
+                                    { name: "属性", id: "B24" }
+                                ]
+                            },
+                            {name: "清除选定内容", id: "F1", image: ""}
+	                    ],
+                        onItemClick: function (id, name) {
+                            alert("id:" + id + ",name:" + name);
+                        }
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+	<div id="tab2">
+		@*<div id="MyHeadMenu2"></div>*@<a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+			&lt;div id="MyHeadMenu2"&gt;&lt;/div&gt;
+	        &lt;script type="text/javascript"&gt;
+	            $(function () {
+	                $("#MyHeadMenu2").jdatapager({
+	                    data: []
+                        , onItemClick: function (id, name) {
+                          }
+	                });
+	            });
+	        &lt;/script&gt;
+		</pre>
+	</div>
+</div>
+
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个二级顶部菜单</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">data</span>
+				<span class="description-option-type">Array</span>
+				<span class="description-option-value">[]</span>
+			</h3>
+			<div>
+				<p>生成菜单的数据源</p>
+				<pre class="brush: js;">
+					Data:
+						[{item...,item...}]	//使用data列表为其赋值
+
+					item:
+						name	        //菜单项的文本
+                        [id]              //菜单项的id
+						[image]			//Default:"" 菜单项前的图标地址
+                        [position]      //Default:"0px 0px" 菜单项前图标地址的选取坐标
+						[line]		    //Default:false 菜单项之间的分割线
+                        [children]      //Default:"" 菜单项的子项
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myHeadMenu").jheadMenu({data:[{name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png", position:"0px 0px", line: true}] });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var data = $("#myHeadMenu").jdatapager( "option", "data" );
+					//设置
+					$("#myHeadMenu").jdatapager("option",{data:[{name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png", position:"0px 0px", line: true}] });
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onItemClick</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>点击菜单时触发的事件</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+                    id:点击项的id
+					name：点击项的文本内容
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myHeadMenu").jheadMenu({
+	                        data: [
+                                {name: "创建", id: "A1", image: "../../Images/headMenuTestImage.png",position:"0px 0px", line: true,
+                                    children: [
+                                        { name: "文件夹", id: "A21", line: true },
+                                        { name: "Word 文档", id: "A22" },
+                                        { name: "Excel 工作薄", id: "A23" }
+                                    ]
+                                },
+                                {name: "上载", id: "B1", image: "../../Images/headMenuTestImage.png",position:"-54px 0px"},
+                                {name: "打开", id: "C1", image: "" },
+                                {name: "管理", id: "G1", image: "",
+                                    children: [
+                                        {name: "重命名", id: "B21" },
+                                        {name: "删除", id: "B22" },
+                                        {name: "移致", id: "B23", line: true },
+                                        { name: "属性", id: "B24" }
+                                    ]
+                                },
+                                {name: "清除选定内容", id: "F1", image: ""}
+	                        ],
+                            onItemClick: function (id, name) {
+                                alert("id:" + id + ",name:" + name);
+                            }
+					});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatapager("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+&lt;div id="MyHeadMenu1" style="float:left;" class="jui-headMenu"&gt;
+    &lt;ul id="MyHeadMenu1_ul" class="jui-headMenu-ju"&gt;
+        &lt;li id="MyHeadMenu1_A1" style="width: 74px; "&gt;
+            &lt;span style="display:none;"&gt;A1&lt;/span&gt;
+            &lt;a&gt;
+                &lt;span class="jui-headMenu-las1"&gt; 
+                    &lt;span class="jui-headMenu-lass"&gt;
+                         &lt;span class="jui-headMenu-lass_endicon"&gt;
+                             &lt;span style="width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(../../Images/headMenuTestImage.png);background-position:0px 0px;"&gt;&lt;/span&gt;
+                         &lt;/span&gt; 创建&lt;/span&gt;
+                    &lt;img class="jui-headMenu-endImg" style="" src="../../Content/images/jui-jheadMenu-carat-s-ffffff.png"&gt; 
+                &lt;/span&gt;
+            &lt;/a&gt;
+            &lt;ul class="jui-headMenu-u1" id="uMyHeadMenu1_A1" style="width: 148px; "&gt;
+                &lt;li id="MyHeadMenu1_A21"&gt;
+                    &lt;span style="display:none;"&gt;A21&lt;/span&gt;
+                    &lt;a&gt; &lt;span&gt;文件夹&lt;/span&gt;&lt;/a&gt;
+                    &lt;span class="jui-headMenu-solid"&gt;&lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li id="MyHeadMenu1_A22"&gt;
+                    &lt;span style="display:none;"&gt;A22&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;Word 文档&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="MyHeadMenu1_A22"&gt;
+                    &lt;span style="display:none;"&gt;A22&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;Excel 工作薄&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;span class="jui-headMenu-vsolid "&gt;&lt;/span&gt;
+        &lt;li id="MyHeadMenu1_B1"&gt;
+            &lt;span style="display:none;"&gt;B1&lt;/span&gt;
+            &lt;a&gt;
+                &lt;span class="jui-headMenu-las1"&gt; 
+                    &lt;span class="jui-headMenu-lass"&gt;
+                         &lt;span class="jui-headMenu-lass_endicon"&gt;
+                             &lt;span style="width:27px;height:27px;float:left;position:relative;top:4px;background-image:url(../../Images/headMenuTestImage.png);background-position:-54px 0px;"&gt;&lt;/span&gt;
+                         &lt;/span&gt; 上载&lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li id="MyHeadMenu1_C1"&gt;
+            &lt;span style="display:none;"&gt;C1&lt;/span&gt;
+            &lt;a&gt;
+                &lt;span class="jui-headMenu-las1"&gt; 
+                    &lt;span class="jui-headMenu-lass"&gt; 
+                        &lt;span class="jui-headMenu-lass_endicon"&gt;
+                            &lt;span style="height:26px;float:left;position:relative;top:4px;"&gt;&lt;/span&gt;
+                        &lt;/span&gt; 打开
+                    &lt;/span&gt; 
+                &lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li id="MyHeadMenu1_G1" style="width: 47px; " class=""&gt;
+            &lt;span style="display:none;"&gt;G1&lt;/span&gt;
+            &lt;a class=""&gt;
+                &lt;span class="jui-headMenu-las1"&gt; 
+                    &lt;span class="jui-headMenu-lass"&gt; 
+                        &lt;span class="jui-headMenu-lass_endicon"&gt;
+                            &lt;span style="height:26px;float:left;position:relative;top:4px;"&gt;&lt;/span&gt;
+                        &lt;/span&gt; 管理&lt;/span&gt;
+                    &lt;img class="jui-headMenu-endImg" style="" src="../../Content/images/jui-jheadMenu-carat-s-ffffff.png"&gt; 
+                &lt;/span&gt;
+            &lt;/a&gt;
+            &lt;ul class="jui-headMenu-u1" id="uMyHeadMenu1_G1" style="width: 94px; display: none; "&gt;
+                &lt;li id="MyHeadMenu1_B21"&gt;
+                    &lt;span style="display:none;"&gt;B21&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;重命名&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="MyHeadMenu1_B22"&gt;
+                    &lt;span style="display:none;"&gt;B22&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;删除&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="MyHeadMenu1_B23"&gt;
+                    &lt;span style="display:none;"&gt;B23&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;移致&lt;/span&gt;&lt;/a&gt;
+                    &lt;span class="jui-headMenu-solid"&gt;&lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li id="MyHeadMenu1_B24"&gt;
+                    &lt;span style="display:none;"&gt;B24&lt;/span&gt;
+                    &lt;a&gt;&lt;span&gt;属性&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li id="MyHeadMenu1_F1"&gt;
+            &lt;span style="display:none;"&gt;F1&lt;/span&gt;
+            &lt;a&gt;
+                &lt;span class="jui-headMenu-las1"&gt; 
+                    &lt;span class="jui-headMenu-lass"&gt;
+                         &lt;span class="jui-headMenu-lass_endicon"&gt;
+                             &lt;span style="height:26px;float:left;position:relative;top:4px;"&gt; &lt;/span&gt;
+                         &lt;/span&gt; 清除选定内容
+                    &lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+</div>
+
+
+
