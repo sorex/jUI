@@ -4,23 +4,286 @@
 
 @section head{
 	<script type="text/javascript">
-		$(function ()
-		{
-			$("#leftMenu").jleftMenu({
-				items: [
-					{ top: 20, text: "Demo" },
-					{ text: "Test", isSelect: true }
-				],
-				onClick: function (index, text)
-				{
-					if (text == "Test")
-						window.location.href = "@Url.Content("~")" + "Test/" + "@ViewBag.Title";
+	    $(function () {
+	        $("#demoTabs").tabs();
+	        $("#descriptionTabs").tabs();
+	        $("#optionsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#eventsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#methodsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	    });
+	</script>
+
+	<script type="text/javascript">
+	    $(function () {
+	        $("#leftMenu").jleftMenu({
+	            items: [{ top: 20, text: "Demo", isSelect: true },
+				{ text: "Test" }],
+	            onClick: function (index, text) {
+	                if (text == "Test")
+	                    window.location.href = "@Url.Content("~")" + "Test/" + "@ViewBag.Title";
 					else
-						window.location.href = "@Url.Content("~")" + "Home/" + "@ViewBag.Title";
+					    window.location.href = "@Url.Content("~")" + "Home/" + "@ViewBag.Title";
 				}
 			});
 		});
 	</script>
+
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatapager.js")"></script>
+
+	<script type="text/javascript">
+	    $(function () {
+	        function refresh1() {
+	            $("#MyPager1").jdatapager({
+	                recordCount: $("#recordCountValue").val(),
+	                pageIndex: $("#pageIndexValue").val(),
+	                pageSize: $("#pageSizeValue").val(),
+	                onPageChange: function (options) {
+	                    $("#action1").text("翻到第" + options.pageIndex + "页，每页" + options.pageSize + "条数据。");
+	                }
+	            });
+	        }
+
+
+	        $("#recordCountValue").bind("click keyup change", refresh1);
+	        $("#pageIndexValue").bind("click keyup change", refresh1);
+	        $("#pageSizeValue").bind("click keyup change", refresh1);
+	        refresh1();
+	 
+	        function refresh2() {
+	            $("#MyPager2").jdatapager({
+	                recordCount: 0,
+	                noResultsText: $("#noResultsTextValue").val()
+	            });
+	        }
+
+	        $("#noResultsTextValue").bind("click keyup change", refresh2);
+	        refresh2();
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
 }
 
 <h2>datapager</h2>
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+		<li><a href="#tab2">无数据</a></li>
+	</ul>
+	<div id="tab1">
+		<span style="display: inline-block; width: 150px;">recordCount:</span><input type="text" id="recordCountValue" value="500" /><br />
+		<span style="display: inline-block; width: 150px;">pageIndex:</span><input type="text" id="pageIndexValue" value="1" /><br />
+		<span style="display: inline-block; width: 150px;">pageSize:</span><input type="text" id="pageSizeValue" value="15" /><br />
+		<div id="MyPager1"></div>
+		<span id="action1"></span><br />
+		<a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<pre class="brush: js; html-script: true;">
+            选项中获取的值 返回值类型不匹配
+		</pre>
+	</div>
+	<div id="tab2">
+		<span style="display: inline-block; width: 150px;">noResultsText:</span><input type="text" id="noResultsTextValue" value="对不起，没有找到您的搜索结果。" style="width: 400px;" /><br />
+		<div id="MyPager2"></div>
+		<pre class="brush: js; html-script: true; collapse:true;" title="查看源代码">
+			&lt;span style="display: inline-block; width: 150px;"&gt;noResultsText:&lt;/span&gt;&lt;input type="text" id="noResultsTextValue" value="对不起，没有找到您的搜索结果。" style="width: 400px;" /&gt;&lt;br /&gt;
+			&lt;div id="MyPager2"&gt;&lt;/div&gt;
+
+			&lt;script type="text/javascript"&gt;
+			$(function ()
+			{
+				function refresh2()
+				{
+					$("#MyPager2").jdatapager({
+						recordCount: 0,
+						noResultsText: $("#noResultsTextValue").val()
+					});
+				}
+
+				$("#noResultsTextValue").bind("click keyup change", refresh2);
+				refresh2();
+			});
+			&lt;/script&gt;
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个翻页控件</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">recordCount</span>
+				<span class="description-option-type">Number</span>
+				<span class="description-option-value">0</span>
+			</h3>
+			<div>
+				<p>获取或设置总数据条数。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatapager").jdatapager({ recordCount: 30 });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var recordCount = $("#myDatapager").jdatapager( "option", "recordCount" );
+					//设置
+					$("#myDatapager").accordion("option", { recordCount: 50 });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[pageIndex]</span>
+				<span class="description-option-type">Number</span>
+				<span class="description-option-value">1</span>
+			</h3>
+			<div>
+				<p>获取或设置当前页数。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatapager").jdatapager({ recordCount: 50, pageIndex: 2 });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var pageIndex = $("#myDatapager").jdatapager( "option", "pageIndex" );
+					//设置
+					$("#myDatapager").accordion("option", { pageIndex: 3 });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[pageSize]</span>
+				<span class="description-option-type">Number</span>
+				<span class="description-option-value">15</span>
+			</h3>
+			<div>
+				<p>获取或设置每页显示数据条数。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatapager").jdatapager({ recordCount: 50, pageSize: 20 });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var pageSize = $("#myDatapager").jdatapager( "option", "pageSize" );
+					//设置
+					$("#myDatapager").accordion("option", { pageSize: 10 });
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[noResultsText]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"对不起，没有找到您的搜索结果。"</span>
+			</h3>
+			<div>
+				<p>获取或设置每页显示数据条数。</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatapager").jdatapager({ recordCount: 50, noResultsText: "无数据！" });
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var noResultsText = $("#myDatapager").jdatapager( "option", "noResultsText" );
+					//设置
+					$("#myDatapager").accordion("option", { noResultsText: "=.=!" });
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+		<div id="eventsAccordion">
+			<h3>
+				<span class="description-event-name">onPageChange</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+			<div>
+				<p>当页面改变时引发的事件。</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+					options：{ 
+						pageIndex,		//当前页号
+						pageSize,		//当前每页数据条数
+						recordCount,	//总数据条数
+						noResultsText,	//无数据时显示的文本
+						onPageChange	//页面改变的事件
+					}
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatapager").jdatapager({
+						recordCount: 75,
+						onPageChange: function (options)
+						{
+							alert("当前页数：" + options.pageIndex + " 每页数据条数：" + options.pageSize + " 总数据条数：" + options.recordCount);
+						}
+					});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatapager("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatapager("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+			&lt;div id="myDatapager" class="jui-datapager ui-helper-clearfix"&gt;
+				&lt;span class="jui-datapager-item-disabled"&gt;首页&lt;/span&gt;
+				&lt;span class="jui-datapager-item-disabled"&gt;&amp;lt;上一页&lt;/span&gt;
+				&lt;span class="jui-datapager-item-active"&gt;1&lt;/span&gt;
+				&lt;span class="jui-datapager-item"&gt;2&lt;/span&gt;
+				&lt;span class="jui-datapager-item"&gt;3&lt;/span&gt;
+				&lt;span class="jui-datapager-item"&gt;下一页&amp;gt;&lt;/span&gt;
+				&lt;span class="jui-datapager-item"&gt;尾页&lt;/span&gt;
+			&lt;/div&gt;
+		</pre>
+	</div>
+</div>

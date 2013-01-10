@@ -1,5 +1,443 @@
-﻿@{
-    ViewBag.Title = "datetimepicker";
+﻿
+
+
+@{
+	ViewBag.Title = "datetimepicker";
 }
 
 <h2>datetimepicker</h2>
+@section head{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#demoTabs").tabs();
+			$("#descriptionTabs").tabs();
+			$("#optionsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#eventsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+			$("#methodsAccordion").accordion({
+				autoHeight: false,
+				navigation: true
+			});
+		});
+	</script>
+
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jdatetimepicker.js")"></script>
+	<script src="@Url.Content("~/Scripts/jUI/chosen.jquery.js")" type="text/javascript" ></script>
+	<script src="@Url.Content("~/Scripts/jUI/jui.jselect.js")" type="text/javascript"></script>
+    
+	<script type="text/javascript">
+	    $(function () {
+	        //默认显示年月日
+	        $("#MyDatetimepicker1").jdatetimepicker({
+                    value:"2012-12-21"
+	        });
+	        $("#MyDatetimepicker7").jdatetimepicker({
+	            datetimeParse: "yyyy-MM-dd"
+	        });
+	  
+            //仅显示年份
+	        $("#MyDatetimepicker2").jdatetimepicker({
+	            datetimeType: "yyyy"
+	        });
+            //仅显示年份及月份
+	        $("#MyDatetimepicker3").jdatetimepicker({
+	            datetimeType: "yyyy-MM"
+	        });
+            //日期显示格式为英文格式
+	        $("#MyDatetimepicker7").jdatetimepicker({
+                datetimeParse: "yyyy-MM-dd"
+	        });
+            //日历总是显示
+	        $("#div8").jdatetimepicker({
+	            //value:"2012-12-21",
+	            display: true//click为点击显示
+	        });
+	        //显示时分秒
+	        $("#MyDatetimepicker9").jdatetimepicker({
+	            datetimeType: "hh-mm-ss"
+	        });
+	        //显示时分
+	        $("#MyDatetimepicker10").jdatetimepicker({
+	            datetimeType: "hh-mm"
+	        });
+	        //显示时
+	        $("#MyDatetimepicker11").jdatetimepicker({
+	            datetimeType: "hh"
+	        });
+	        //显示当天
+	        $("#MyDatetimepicker12").jdatetimepicker({
+	            showToday: true
+	        });
+	    });
+	</script>
+}
+
+@section header{
+}
+
+@section left{
+}
+
+@section right{
+}
+
+@section footer{
+}
+
+@section scripts{
+}
+
+<div id="demoTabs">
+	<ul>
+		<li><a href="#tab1">默认</a></li>
+		@*<li><a href="#tab2">显示年份</a></li>*@
+		@*<li><a href="#tab3">显示年份及月份</a></li>*@
+		<li><a href="#tab7">显示格式为英文格式</a></li>
+		<li><a href="#tab8">日历总是显示</a></li>
+		<li><a href="#tab9">显示时分秒</a></li>
+		<li><a href="#tab10">显示时分</a></li>
+		<li><a href="#tab11">显示时</a></li>
+		<li><a href="#tab12">显示当天</a></li>
+	</ul>
+	<div id="tab1">
+        <input type="text"  id="MyDatetimepicker1"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">bug提交</a>
+<pre class="brush: js; html-script: true;">
+   1： 选项中获取的方法返回的都是object 例如alert($("#myDatetimepicker").jdatetimepicker( "option", "datetimeType" ));返回一个对象 不能返回具体的datetimeType
+		</pre>
+	</div>
+	<div id="tab7">
+        <input type="text"  id="MyDatetimepicker7"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+		&ltinput type="text"  id="MyDatetimepicker7"/&gt
+	    &ltscript type="text/javascript"&gt
+	            $("#MyDatetimepicker7").jdatetimepicker({
+	                datetimeParse: "yyyy-MM-dd"
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab8">
+        @*<input type="text"  id="MyDatetimepicker8"/>*@
+        <div id="div8"></div>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+        &lt div id="div8"&gt&lt/div&gt
+	    &lt script type="text/javascript"&gt
+	            $("#div8").jdatetimepicker({
+                    display: true
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab9">
+        <input type="text"  id="MyDatetimepicker9"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+		&ltinput type="text"  id="MyDatetimepicker9"/&gt
+	    &ltscript type="text/javascript"&gt
+	            $("#MyDatetimepicker9").jdatetimepicker({
+	                datetimeType: "hh-mm-ss"
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab10">
+        <input type="text"  id="MyDatetimepicker10"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+		&ltinput type="text"  id="MyDatetimepicker10"/&gt
+	    &ltscript type="text/javascript"&gt
+	            $("#MyDatetimepicker10").jdatetimepicker({
+	                datetimeType: "hh-mm"
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab11">
+        <input type="text"  id="MyDatetimepicker11"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+		&ltinput type="text"  id="MyDatetimepicker11"/&gt
+	    &ltscript type="text/javascript"&gt
+	            $("#MyDatetimepicker11").jdatetimepicker({
+	                datetimeType: "hh"
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+	<div id="tab12">
+        <input type="text"  id="MyDatetimepicker12"/>
+        <br />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
+<pre class="brush: js; html-script: true;">
+		&ltinput type="text"  id="MyDatetimepicker12"/&gt
+	    &ltscript type="text/javascript"&gt
+	            $("#MyDatetimepicker12").jdatetimepicker({
+	                showToday:true
+	            });
+	    &lt/script&gt
+		</pre>
+	</div>
+</div>
+<div id="descriptionTabs">
+	<ul>
+		<li><a href="#overviewTab">综述</a></li>
+		<li><a href="#optionsTab">选项</a></li>
+		<li><a href="#eventsTab">事件</a></li>
+		<li><a href="#methodsTab">方法</a></li>
+		<li><a href="#themingTab">主题</a></li>
+	</ul>
+	<div id="overviewTab">
+		<p>用于生成一个日期选择器</p>
+	</div>
+	<div id="optionsTab">
+		<div id="optionsAccordion">
+			<h3>
+				<span class="description-option-name">[datetimeType]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy-MM-dd"</span>
+			</h3>
+			<div>
+				<p>日期显示类型</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({datetimeType: "yyyy-MM-dd"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeType" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeType: "yyyy-MM"});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[datetimeParse]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy年MM月dd日"</span>
+			</h3>
+			<div>
+				<p>日期显示格式</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({datetimeParse: "yyyy年MM月dd日"});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "datetimeParse" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{datetimeParse: "yyyy-MM-dd"});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[display]</span>
+				<span class="description-option-type">Boolean</span>
+				<span class="description-option-value">false</span>
+			</h3>
+			<div>
+				<p>始终显示日期选择器</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({display:false});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "display" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{display:true});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[readonly]</span>
+				<span class="description-option-type">Boolean</span>
+				<span class="description-option-value">false</span>
+			</h3>
+			<div>
+				<p>设置文本框只读</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({readonly:false});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "readonly" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{readonly:true});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[showToday]</span>
+				<span class="description-option-type">Boolean</span>
+				<span class="description-option-value">false</span>
+			</h3>
+			<div>
+				<p>是否显示当天按钮</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({showToday:false});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "showToday" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{showToday:true});
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[value]</span>
+				<span class="description-option-type">String</span>
+				<span class="description-option-value">"yyyy-MM-dd"</span>
+			</h3>
+			<div>
+				<p>设定默认显示日期</p>
+				<p>格式:yyyy-MM-dd</p>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#myDatetimepicker").jdatetimepicker({value:""});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var datetimeType = $("#myDatetimepicker").jdatetimepicker( "option", "value" );
+					//设置
+					$("#myDatetimepicker").jdatetimepicker("option",{value:"1999-10-03"});
+				</pre>
+			</div>
+		</div>
+	</div>
+	<div id="eventsTab">
+	</div>
+	<div id="methodsTab">
+		<div id="methodsAccordion">
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">由optionName定</span>
+				<span class="description-method-demo">.jdatetimepicker("option" , optionName , [value])</span>
+			</h3>
+			<div>
+				<p>获取或设置option中optionName的值。</p>
+			</div>
+			<h3>
+				<span class="description-method-name">option</span>
+				<span class="description-method-returnType">无特殊返回值</span>
+				<span class="description-method-demo">.jdatetimepicker("option" , options)</span>
+			</h3>
+			<div>
+				<p>设置option的值为options。</p>
+			</div>
+		</div>
+	</div>
+	<div id="themingTab">
+		<p>标准样式如下：</p>
+		<pre class="brush: html;">
+            
+    &lt;input type="text" id="txt_datapicker" readonly="readonly"&gt;
+    &lt;div id="txt_datapicker_outDiv" class="jui-datetimepicker" style="display: block; "&gt;
+            &lt;div id="txt_datapicker_headDiv" class="jui-datetimepicker-dhead"&gt;
+    &lt;a id="txt_datapicker_prev" title="previous" class="jui-datetimepicker-prev"&gt;
+        &lt;span class="ui-icon ui-icon-circle-triangle-w"&gt;&nbsp;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;div id="txt_datapicker_yearDiv" class="jui-datetimepicker-headcenter"&gt;
+        &lt;div id="_monthtxt_datapicker" style="display: inline-block; color: black;"&gt;
+            &lt;select id="_monthtxt_datapicker_select" data-placeholder="Nov" class="chzn-select chzn-done" style="width: 90px; display: none;" tabindex="-1"&gt;
+                &lt;option&gt;&lt;/option&gt;
+                &lt;option value="0"&gt;Jan　&lt;/option&gt;
+                &lt;option value="1"&gt;Feb　&lt;/option&gt;
+                ...
+                &lt;option value="11"&gt;Dec　&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div id="_monthtxt_datapicker_select_chzn" class="chzn-container chzn-container-single" style="width: 90px;"&gt;
+                &lt;a href="javascript:void(0)" class="chzn-single" tabindex="-1"&gt;
+                    &lt;span&gt;Nov　&lt;/span&gt;
+                    &lt;div&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;
+                &lt;/a&gt;
+                &lt;div class="chzn-drop" style="left: -9000px; width: 88px; top: 0px;"&gt;
+                    &lt;div class="chzn-search"&gt;
+                        &lt;input type="text" autocomplete="off" style="width: 53px;" tabindex="2"&gt;
+                    &lt;/div&gt;
+                    &lt;ul class="chzn-results"&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_1" class="active-result" style=""&gt;Jan　&lt;/li&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_2" class="active-result" style=""&gt;Feb　&lt;/li&gt;
+                        ...
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_11" class="active-result result-selected" style=""&gt;Nov　&lt;/li&gt;
+                        &lt;li id="_monthtxt_datapicker_select_chzn_o_12" class="active-result" style=""&gt;Dec　&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id="_yeartxt_datapicker" style="display: inline-block; color: black;"&gt;
+            &lt;select id="_yeartxt_datapicker_select" data-placeholder="2012" class="chzn-select chzn-done" style="width: 90px; display: none;" tabindex="-1"&gt;
+                &lt;option&gt;&lt;/option&gt;
+                &lt;option value="2002"&gt;2002　&lt;/option&gt;
+                &lt;option value="2003"&gt;2003　&lt;/option&gt;
+                ...
+                &lt;option value="2022"&gt;2022　&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div id="_yeartxt_datapicker_select_chzn" class="chzn-container chzn-container-single" style="width: 90px;"&gt;
+                &lt;a href="javascript:void(0)" class="chzn-single" tabindex="-1"&gt;
+                    &lt;span&gt;2012　&lt;/span&gt;
+                    &lt;div&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;
+                &lt;/a&gt;
+                &lt;div class="chzn-drop" style="left: -9000px; width: 88px; top: 0px;"&gt;
+                    &lt;div class="chzn-search"&gt;
+                        &lt;input type="text" autocomplete="off" style="width: 53px;" tabindex="2"&gt;&lt;/div&gt;
+                    &lt;ul class="chzn-results"&gt;
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_1" class="active-result" style=""&gt;2002　&lt;/li&gt;
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_11" class="active-result result-selected" style=""&gt;2012　&lt;/li&gt;
+                        ...
+                        &lt;li id="_yeartxt_datapicker_select_chzn_o_21" class="active-result" style=""&gt;2022　&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+        &lt;a id="txt_datapicker_next" title="next" class="jui-datetimepicker-next"&gt;
+            &lt;span class="ui-icon ui-icon-circle-triangle-e"&gt;&nbsp;&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+        &lt;table id="txt_datapicker_tb" class="jui-datetimepicker-table"&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期日"&gt;日&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期一"&gt;一&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期二"&gt;二&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期三"&gt;三&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期四"&gt;四&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期五"&gt;五&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;span class="jui-datetimepicker-week" title="星期六"&gt;六&lt;/span&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;a href="#" class=""&gt;&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;1&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;2&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;3&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;4&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;5&lt;/a&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;a href="#" class="jui-datetimepicker-table-tr-a"&gt;6&lt;/a&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+                ...
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+		</pre>
+	</div>
+</div>
+
