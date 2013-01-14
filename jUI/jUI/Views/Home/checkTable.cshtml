@@ -41,47 +41,51 @@
 	        alert("id:" + id + "\n" + "name:" + name + "\n" + "userName:" + name2)
 	    }
 	    $(function () {
-	        $("#MyTable1").jtable({
-	            height: '20%', //表高
-	            width: '100%', //表宽
-	            data:
-                    [
-                        { "ID": 1, "Name": "a1", "Name2": "a2", "Name3": "a3", "Name4": "a4", "Name5": "a5" },
-                        { "ID": 2, "Name": "b1", "Name2": "b2", "Name3": "b3", "Name4": "b4", "Name5": "b5" },
-                        { "ID": 3, "Name": "c1", "Name2": "c2", "Name3": "c3", "Name4": "c4", "Name5": "c5" },
-                        { "ID": 4, "Name": "d1", "Name2": "d2", "Name3": "d3", "Name4": "d4", "Name5": "d5" },
-                        { "ID": 5, "Name": "e1", "Name2": "e2", "Name3": "e3", "Name4": "e4", "Name5": "e5" },
-                        { "ID": 6, "Name": "f1", "Name2": "f2", "Name3": "f3", "Name4": "f4", "Name5": "f5" },
-                        { "ID": 7, "Name": "g1", "Name2": "g2", "Name3": "g3", "Name4": "g4", "Name5": "g5" }
-                    ], //数据源
-	            columns:
-                    [
-		                {
-		                    head: "名称1",				                                    //名称
-		                    context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
-		                    maxLength: 5,			                                        //文本最大长度，0不限制
-		                    head_align: "left",                                             //[left], center, right
-		                    v_align: "top",		                                            //[top], middle, bottom
-		                    h_align: "left",		                                            //[left], center, right
-		                    height: "auto",			                                        //150px, 10%
-		                    width: "auto"			                                        //150px, 10%
-		                },
-		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                {
-		                    head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
-		                    maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
-		                }
-                    ]//列名
-	        }).jcheckTable({
-	            field: "名称2"//默认选择项(列名)
-                , checkedItems: ["a2", "b2", "c2"]//默认选择项(单元格内的值)
-                , count: 0//限制可勾选的个数(0为无限制)
-	        });
+	            $("#MyTable1").jtable({
+	                height: '20%', //表高
+	                width: '100%', //表宽
+	                data:
+                        [
+                            { "ID": 1, "Name": "a1", "Name2": "a2", "Name3": "a3", "Name4": "a4", "Name5": "a5" },
+                            { "ID": 2, "Name": "b1", "Name2": "b2", "Name3": "b3", "Name4": "b4", "Name5": "b5" },
+                            { "ID": 3, "Name": "c1", "Name2": "c2", "Name3": "c3", "Name4": "c4", "Name5": "c5" },
+                            { "ID": 4, "Name": "d1", "Name2": "d2", "Name3": "d3", "Name4": "d4", "Name5": "d5" },
+                            { "ID": 5, "Name": "e1", "Name2": "e2", "Name3": "e3", "Name4": "e4", "Name5": "e5" },
+                            { "ID": 6, "Name": "f1", "Name2": "f2", "Name3": "f3", "Name4": "f4", "Name5": "f5" },
+                            { "ID": 7, "Name": "g1", "Name2": "g2", "Name3": "g3", "Name4": "g4", "Name5": "g5" }
+                        ], //数据源
+	                columns:
+                        [
+                            {
+                                head: "名称1",				                                    //名称
+                                context: "#Name(#Name2)(#ID)",			            //#Name(#Name2)(#ID)
+                                maxLength: 5,			                                        //文本最大长度，0不限制
+                                head_align: "left",                                             //[left], center, right
+                                v_align: "top",		                                            //[top], middle, bottom
+                                h_align: "left",		                                            //[left], center, right
+                                height: "auto",			                                        //150px, 10%
+                                width: "auto"			                                        //150px, 10%
+                            },
+                            { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+                            { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+                            { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+                            { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+                            {
+                                head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
+                                maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
+                            }
+                        ]//列名
+	            }).jcheckTable({
+	                field: "名称2"//默认选择项(列名)
+                    , checkedItems: ["a2", "b2", "c2"]//默认选择项(单元格内的值)
+                    , count: 0//限制可勾选的个数(0为无限制)
+	            });
 
-	    });
+	            $("#returnValue").click(function () {
+	                var v = $("#MyTable1").jcheckTable("checkedValues");
+	                alert(v);
+	            });
+	        });
 	</script>
 }
 
@@ -107,6 +111,7 @@
 	</ul>
 	<div id="tab1">
 		<div id="MyTable1"></div>
+        <input id="returnValue" type="button" value="返回所选项的值"/>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
         <pre class="brush: js; html-script: true;">
     &lt;div id="MyTable1"&gt;&lt;/div&gt;
@@ -266,7 +271,7 @@
 			<h3>
 				<span class="description-method-name">checkedValues</span>
 				<span class="description-method-returnType">返回所选择项的值</span>
-				<span class="description-method-demo">.jcheckTable("option" , checkedValues)</span>
+				<span class="description-method-demo">.jcheckTable("checkedValues")</span>
 			</h3>
 			<div>
 				<p>返回所选择项值的数组形式</p>

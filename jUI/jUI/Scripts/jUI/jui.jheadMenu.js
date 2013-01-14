@@ -127,7 +127,7 @@
 	            }
 	        });
 
-	        $(document).bind("mousedown", function (evt) {
+	        $(document).bind("mouseup", function (evt) {
 	            if ($(evt.target).parents('#' + eid).length == 0) {
 	                e.find("li").has("ul:visible").children("ul").slideUp("fast");
 	                e.find("li").removeClass("jui-headMenu-clicked");
