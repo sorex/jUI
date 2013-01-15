@@ -136,20 +136,16 @@ items:
                         );
 	                if (sortItem["sortColumn"] == g_context) {
 	                    var head = g["head"];
-	                    $("#" + tableId + g_head).append("<span style='display:inline-block;float:right;'>" +
-                            "<span class='jui-table-icon-up'></span>" +
-                            "<span class='jui-table-icon-down'></span>" +
-                            "</span>").css("cursor", "pointer");
-	                    $("#" + tableId + g_head).children("span:eq(0)").css("cursor", "pointer");
+	                    $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                    $("#" + tableId + head).children("span:eq(0)").css("cursor", "pointer");
 	                    var flag = true;
-	                    $("#" + tableId + g_head).click(function () {
+	                    $("#" + tableId + head).click(function () {
+	                        $("#" + tableId + head).children("span:eq(1)").remove();
 	                        if (flag) {
 	                            if (sortItem["sortType"] == "desc") {
-	                                $(".jui-table-icon-up").css("display", "none");
-	                                $(".jui-table-icon-down").css("display", "inline-block");
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
 	                            } else if (sortItem["sortType"] == "asc") {
-	                                $(".jui-table-icon-down").css("display", "none");
-	                                $(".jui-table-icon-up").css("display", "inline-block");
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
 	                            }
 	                            onSortChange(sortItem["sortColumn"], head, sortItem["sortType"]);
 	                            flag = false;
@@ -157,12 +153,10 @@ items:
 	                        }
 	                        if (!flag) {
 	                            if (sortItem["sortType"] == "desc") {
-	                                $(".jui-table-icon-down").css("display", "none");
-	                                $(".jui-table-icon-up").css("display", "inline-block");
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
 	                                onSortChange(sortItem["sortColumn"], head, "asc");
 	                            } else if (sortItem["sortType"] == "asc") {
-	                                $(".jui-table-icon-down").css("display", "inline-block");
-	                                $(".jui-table-icon-up").css("display", "none");
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
 	                                onSortChange(sortItem["sortColumn"], head, "desc");
 	                            }
 	                            flag = true;
@@ -291,7 +285,7 @@ items:
 	                        head = o.columns[c]["head"];
 	                    }
 	                }
-	                onSortChange(value["sortColumn"],head, value["sortType"]);
+	                onSortChange(value["sortColumn"], head, value["sortType"]);
 	            }
 	        }
 	        else {
@@ -301,6 +295,9 @@ items:
 
 	    _setOptions: function (options) {
 	        var self = this;
+	        var o = this.options;
+	        var onSortChange = o.onSortChange;
+	        var sortItem = o.sortItem;
 	        $.each(options, function (key, value) {
 	            self._setOption(key, value);
 	        });
