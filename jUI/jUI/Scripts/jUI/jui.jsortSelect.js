@@ -1,4 +1,5 @@
-﻿/// <reference path="../jquery-1.8.1-vsdoc.js" />
+﻿/// <reference path="../../Views/Home/checkTable.cshtml" />
+/// <reference path="../jquery-1.8.1-vsdoc.js" />
 /// <reference path="../jquery-ui-1.8.23.js" />
 
 //JQuery UI jsortSelect Plugin
@@ -17,19 +18,20 @@
 * Description: 排序功能的select
 */
 
-//items: [{ value: "Id", text: "编号" }, 
-//				{ value: "Age", text: "年龄",selected:true sort: "desc" }, /sort值区分大小写/
-//				{ value: "finishData", text: "完成日期", sort: "asc" },
-//				{ value: "size", text: "大小", sort: "desc" }
+//items: [{ sortColumn: "Id", text: "编号" }, 
+//				{ sortColumn: "Age", text: "年龄",sortType: "desc" }, /sort值区分大小写/
+//				{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+//				{ sortColumn: "size", text: "大小", sortType: "desc" }
 /*
 * options:
 *		items ：
-*				value: 表示排序字段的名称  text: 字段显示的值 sort:排序方式
+*				sortColumn: 表示排序字段的名称  text: 字段显示的值 sortType:排序方式
 *
-*		onItemClick:回调函数 项选择之后触发
+*		onSortChange:回调函数 项选择之后触发
+*       sortItem:{sortColumn:"大小",sortType:"desc"}
 *		
 * event
-*		getSelectValueText
+*		getSelectedItem
 *		
 *	    
 */
@@ -39,11 +41,11 @@
 		{
 			options: {
 				items: null,
-				onItemClick: null
+				onSortChange: null,
+				sortItem: { sortColumn: "size", sortType: "desc" }
 			},
-
 			_create: function () {
-				$(this.element).empty();
+			    $(this.element).empty();
 				var self = this,
 				o = this.options;
 				var tagId = this.element.attr("id");/*目标的id*/
@@ -51,19 +53,17 @@
 				var selectId = tagId + "-selectId";/*content*/
 				var showParentUl = tagId + "-showParentUl";
 				var showChildUl = tagId + "-showChildUl";
-				var defaultDataSort, defaultDataValue, defaultDataContent; /*默认排序 实际值 显示值*/
+				var defaultDataSortType, defaultDataSortColumn, defaultDataContent; /*默认排序 实际值 显示值*/
 				
 				if (o.items != null) {
-
-					defaultDataSort = (o.items[0]["sort"] != "desc") ? "asc" : "desc";
-					defaultDataValue = o.items[0]["value"];
+				    defaultDataSortType = (o.items[0]["sortType"] != "desc") ? "asc" : "desc";
+					defaultDataSortColumn = o.items[0]["sortColumn"];
 					defaultDataContent = o.items[0]["text"];
 					var flag = false;
-
 					for (var i = 0; i < o.items.length ; i++) {
-						if (o.items[i]["selected"]) {
-							defaultDataSort = (o.items[i]["sort"] != "desc") ? "asc" : "desc";
-							defaultDataValue = o.items[i]["value"];
+					    if (o.sortItem != null && o.items[i]["sortColumn"] == o.sortItem.sortColumn) {
+						    defaultDataSortType = (o.sortItem.sortType!= "desc") ? "asc" : "desc";
+							defaultDataSortColumn = o.items[i]["sortColumn"];
 							defaultDataContent = o.items[i]["text"];
 							flag = true;
 							break;
@@ -71,29 +71,30 @@
 					}
 
 				
-					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:128px;'>排序方式:" +
-						"<span id=" + selectId + " style='cursor: pointer' data-value=" + defaultDataValue + " data-sort=" + defaultDataSort + ">" + defaultDataContent + "</span>" +
+					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:130px;'>排序方式:" +
+						"<span id=" + selectId + " style='cursor: pointer' data-sortColumn=" + defaultDataSortColumn + " data-sortType=" + defaultDataSortType + ">" + defaultDataContent + "</span>" +
 					"<span class='jui-jsortSelect-downBtn'>&nbsp;&nbsp;</span></span>");
 
 					var ulHtml = "<ul id=" + showParentUl + " class='jui-jsortSelect-ul'>";
 					for (var i = 0; i < o.items.length; i++) {
-						var dataSort = (o.items[i]["sort"] != "desc") ? "asc" : "desc";
+					    var dataSortType = (o.items[i]["sortType"] != "desc") ? "asc" : "desc";
 						if (flag) {
-							if (o.items[i]["selected"]) {
-							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + " class='action'><i class='action'></i><span>"+ o.items[i]["text"] + "</span> </li>";
+						    if (o.sortItem.sortColumn != null && o.items[i]["sortColumn"] == o.sortItem.sortColumn) {
+
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action'></i><span>" + o.items[i]["text"] + "</span> </li>";
 							} else {
-							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + "><i></i><span>" + o.items[i]["text"] + "</span></li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i></i><span>" + o.items[i]["text"] + "</span></li>";
 							}
 						
 						}else{
 							if (i == 0) {
-							    ulHtml += "<li data-value=" + o.items[0]["value"] + " data-sort=" + dataSort + " class='action'><i class='action'></i><span>" + o.items[0]["text"] + "</span> </li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[0]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action'></i><span>" + o.items[0]["text"] + "</span> </li>";
 							} else {
-							    ulHtml += "<li data-value=" + o.items[i]["value"] + " data-sort=" + dataSort + "><i></i><span>" + o.items[i]["text"] + "</span> </li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i></i><span>" + o.items[i]["text"] + "</span> </li>";
 							}
 						}
 					}
-					if (defaultDataSort == "asc") {
+					if (defaultDataSortType == "asc") {
 					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li class='action'><i class='action'></i><span>升序</span></li><li><i></i><span>降序</span</li></ul></div></ul>"
 					}else{
 					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li ><i ></i><span>升序<span></li><li class='action'><i class='action'></i><span>降序<span></li></ul></div></ul>"
@@ -110,7 +111,7 @@
 
 		//里面的点击事件
 		$("#" + showParentUl + " > li,#" + showChildUl + " > li").click(function (event) {
-
+		  
 			$(this).siblings().removeClass("action");
 			$(this).addClass("action");
 			$(this).siblings().find("i").removeClass("action");
@@ -121,41 +122,37 @@
 			    switch ($(this).find("span").text()) {
                   
 					case "降序":
-						$("#" + selectId).attr("data-sort", "desc");
+					    $("#" + selectId).attr("data-sortType", "desc");
 						break;
 					case "升序":
-						$("#" + selectId).attr("data-sort", 'asc');
+					    $("#" + selectId).attr("data-sortType", 'asc');
 						break;
 					default:
-						if ($(this).attr("data-sort") == "desc") {
+					    if ($(this).attr("data-sortType") == "desc") {
 							$("#" + showChildUl + " > li").siblings().removeClass("action");
 							$("#" + showChildUl + " > li").eq(1).addClass("action");
 							$("#" + showChildUl + " > li").siblings().find("i").removeClass("action");
 							$("#" + showChildUl + " > li").eq(1).find("i").addClass("action");
-							$("#" + selectId).attr("data-sort", "desc");
+							$("#" + selectId).attr("data-sortType", "desc");
 						} else {
 							$("#" + showChildUl + " > li").siblings().removeClass("action");
 							$("#" + showChildUl + " > li").eq(0).addClass("action");
 							$("#" + showChildUl + " > li").siblings().find("i").removeClass("action");
 							$("#" + showChildUl + " > li").eq(0).find("i").addClass("action");
-							$("#" + selectId).attr("data-sort", 'asc');
+							$("#" + selectId).attr("data-sortType", 'asc');
 						}
-
-						$("#" + selectId).html($(this).html()).attr("data-value", $(this).attr("data-value"));
-
+						$("#" + selectId).html($(this).html()).attr("data-sortColumn", $(this).attr("data-sortColumn"));
 						break;
 				}
-							
 				$("#" + showParentUl).slideToggle("fast");
-				if(o.onItemClick!=null){
-				self.options.onItemClick($("#" + selectId).attr("data-value"), $("#" + selectId).find("span").text(), $("#" + selectId).attr("data-sort"));
+				if (o.onSortChange != null) {
+				   
+				    self.options.onSortChange($("#" + selectId).attr("data-sortColumn"), $("#" + selectId).find("span").text(), $("#" + selectId).attr("data-sortType"));
 			}
 			}
 			event.stopPropagation();
 
 		});
-
-
 		$(document).bind("click", function (e) {
 		    if ($(e.target).parent("#" + showParentUl).length == 0) {
 		        if (!$("#" + showParentUl).is(":hidden")) {
@@ -174,30 +171,68 @@
 				
 		}
 			},
-		getSelectValueText: function () {
+		getSelectedItem: function () {
 			var self = this,
 			o = this.options;
 			var tagId = this.element.attr("id");/*目标的id*/
 			var selectId = tagId + "-selectId";/*content*/
-
 			var selectObject = Object;
-			selectObject.value = $("#" + selectId).attr("data-value");
+			selectObject.sortColumn = $("#" + selectId).attr("data-sortColumn");
 			selectObject.text = $("#" + selectId).text();
-			selectObject.sort = $("#" + selectId).attr("data-sort");
+			selectObject.sortType = $("#" + selectId).attr("data-sortType");
 			return selectObject;
 		},
 
 		_setOption: function (key, value) {
-			if (value !== undefined || value != null)
-				this.options[key] = value;
-			else
-				return this.options[key];
+		    if (value !== undefined || value != null){
+		        this.options[key] = value;
+		       
+		    } else{     
+		        return this.options[key];
+		    }
 		},
 		
 		_setOptions: function (options) {
-			$.each(options, function (key, value) {
-				this._setOption(key, value);
-			});
+		    var self = this, refresh = false;
+		    $.each(options, function (key, value) {
+		        self._setOption(key, value);
+		        if (key == "sortItem") {
+                    refresh = true;
+		        }
+		    });
+		    if (refresh) {
+			    o = this.options;
+		        var tagId = this.element.attr("id");/*目标的id*/
+		        var selectId = tagId + "-selectId";/*content*/                                    //改效果
+		        var showParentUl = tagId + "-showParentUl";
+		        var showChildUl = tagId + "-showChildUl";
+		        $("#" + selectId).attr("data-sortColumn", o.sortItem.sortColumn);
+		        $("#" + selectId).attr("data-sortType", o.sortItem.sortType);
+		        for (var i = 0; i < o.items.length; i++) {
+		            if (o.items[i]["sortColumn"] == o.sortItem.sortColumn) {
+		                $("#" + selectId).html(o.items[i]["text"]);
+		                break;
+		            }
+		        }
+		        $("#" + showParentUl + ">li").each(function () {
+		            $(this).find("i").removeClass("action");
+		            if ($(this).attr("data-sortColumn") == o.sortItem.sortColumn) {
+		                $(this).attr("data-sortType", o.sortItem.sortType);
+                        $(this).find("i").addClass("action")
+		            }
+		        });
+		        $("#" + showChildUl + " > li").find("i").removeClass("action");
+		        if (o.sortItem.sortType == "asc") {
+		            $("#" + showChildUl + " > li").eq(0).find("i").addClass("action");
+		        } else {
+		            $("#" + showChildUl + " > li").eq(1).find("i").addClass("action");
+		        }
+
+	
+		   
+		    }
+		   
+		    
 		},
 		
 		

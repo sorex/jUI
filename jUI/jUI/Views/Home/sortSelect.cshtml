@@ -26,16 +26,18 @@
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jsortSelect.js")"></script>
 
 	<script type="text/javascript">
-		$(function () {
+	    $(function () {
 
-			$("#showSortSelect").jsortSelect({
-				items: [{ value: "Id", text: "编号" },
-					{ value: "Age", text: "年龄",selected: true, sort: "desc" },
-					{ value: "finishData", text: "完成日期", sort: "asc" },
-					{ value: "size", text: "大小", sort: "desc" }
-				],
-				onItemClick: function (value,text, sort) {
-					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+	        $("#showSortSelect").jsortSelect({
+	            items: [{ sortColumn: "Id", text: "编号" },
+					{ sortColumn: "Age", text: "年龄",sortType: "desc" },
+					{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+					{ sortColumn: "size", text: "大小", sortType: "desc" }
+	            ],
+	            onSortChange: function (sortColumn, text, sortType) {
+	               
+	                    alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
+	            
 				}
 				
 			});
@@ -43,20 +45,20 @@
 
 			$("#showSortSelect2").jsortSelect({
 				item: null,
-				onItemClick: function (value, text, sort) {
-					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+				onSortChange: function (sortColumn, text, sortType) {
+				    alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
 				}
 			});
 
 			$("#btnSelect").click(function () {
-				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
-				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+			    var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem");
+				alert("选择的字段名称为:" + selectObj.sortColumn + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sortType);
 
 	
 			});
 
-			$("#aDelete").click(function () {
-				alert('a');
+			$("#btnSet").click(function () {
+			    $("#showSortSelect").jsortSelect("option", "sortItem", { sortColumn: "Age", sortType: "desc" });
 			});
 		});
 
@@ -86,6 +88,7 @@
 	<div id="tab1">
 		<div id="showSortSelect"></div>
 		<input id="btnSelect" type="button" value="获取选择的值" style="margin-left:25px;" />
+        <input id="btnSet" type="button" value="点击排序" style="margin-left:25px;" />
 		<br>
 		<a class="viewSource" onclick="viewSource(this);">View Source</a>
 		<pre class="brush: js; html-script: true;">
@@ -95,20 +98,20 @@
 	            $(function () {
 	        
 			$("#showSortSelect").jsortSelect({
-				items: [{ value: "Id", text: "编号" },
-					{ value: "Age", text: "年龄",selected: true, sort: "desc" },
-					{ value: "finishData", text: "完成日期", sort: "asc" },
-					{ value: "size", text: "大小", sort: "desc" }
+				items: [{ sortColumn: "Id", text: "编号" },
+					{ sortColumn: "Age", text: "年龄", sortType: "desc" },
+					{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+					{ sortColumn: "size", text: "大小", sortType: "desc" }
 				],
-				onItemClick: function (value,text, sort) {
-					alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+				onSortChange: function (sortColumn,text, sortType) {
+					alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
 				}
 				
 			});
 			$("#btnSelect").click(function () {
-				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
+				var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem");
 				
-				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+				alert("选择的字段名称为:" + selectObj.sortColumn + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sortType);
 
 	
 			});
@@ -128,8 +131,8 @@
 	       $(function () {
 	        	$("#showSortSelect2").jsortSelect({
 						items: null,
-						onItemClick: function (value, text, sort) {
-							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						onSortChange: function (sortColumn, text, sortType) {
+							alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
 						}
 						});
 	            });
@@ -154,7 +157,7 @@
 			<h3>
 				<span class="description-option-name">items</span>
 				<span class="description-option-type">Array</span>
-				<span class="description-option-value">[{ name: "finishData", text: "完成日期", sort: "asc" }]</span>
+				<span class="description-option-value">[{ name: "finishData", text: "完成日期", sortType: "asc" }]</span>
 			</h3>
 			<div>
 				<p>排序字段的数据源</p>
@@ -162,23 +165,22 @@
 				
 				items：[{item},{item}];//使用item列表为其赋值
 						item:
-							value       //下拉框实际值
+							sortColumn       //下拉框实际值
 							text        //下拉框显示的值
-							[selected]	//是否被选中 可选参数 设置选中为:(selected:true)
-							[sort]		//排序方式 可选参数 默认是升序(asc)， 设置降序(sort:"desc") 
+							[sortType]		//排序方式 可选参数 默认是升序(asc)， 设置降序(sortType:"desc") 
 										//asc和desc区分大小写 使用时请用小写
 						
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
 				$("#showSortSelect").jsortSelect({
-						items: [{ value: "Id", text: "编号" },
-							{ value: "Age", text: "年龄",selected: true, sort: "desc" },
-							{ value: "finishData", text: "完成日期", sort: "asc" },
-							{ value: "size", text: "大小", sort: "desc" }
+						items: [{ sortColumn: "Id", text: "编号" },
+							{ sortColumn: "Age", text: "年龄",sortType: "desc" },
+							{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+							{ sortColumn: "size", text: "大小", sortType: "desc" }
 						],
-						onItemClick: function (value,text, sort) {
-							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						onSortChange: function (sortColumn,text, sortType) {
+							alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
 						}
 				
 						});		
@@ -193,31 +195,63 @@
 	</div>
 	<div id="eventsTab">
 		<div id="eventsAccordion">
-			<h3>
-				<span class="description-event-name">onItemClick</span>
+
+            <h3>
+				<span class="description-event-name">onSortChange</span>
 				<span class="description-event-returnType">Null</span>
 			</h3>
+			
 			<div>
 				<p>点击排序字段或者排序方式时触发</p>
 				<p>参数列表：</p>
 				<pre class="brush: js;">
-                    value   //选择实际值
+                    sortColumn   //选择实际值
 					text    //选择显示的值
-					sort    //选择排序方式
+					sortType    //选择排序方式
 				</pre>
 				<p>初始化</p>
 				<pre class="brush: js;">
 					$("#showSortSelect").jsortSelect({
-						items: [{ value: "Id", text: "编号" },
-							{ value: "Age", text: "年龄",selected: true, sort: "desc" },
-							{ value: "finishData", text: "完成日期", sort: "asc" },
-							{ value: "size", text: "大小", sort: "desc" }
+						items: [{ sortColumn: "Id", text: "编号" },
+							{ sortColumn: "Age", text: "年龄", sortType: "desc" },
+							{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+							{ sortColumn: "size", text: "大小", sortType: "desc" }
 						],
-						onItemClick: function (value,text, sort) {
-							alert("选择的字段名称为:" + value + ";显示名称为:" + text + ";排序方式为:" + sort);
+						onSortChange: function (sortColumn,text, sortType) {
+							alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
 						}
 				
 						});		
+				</pre>
+			</div>
+
+            <h3>
+				<span class="description-event-name">sortItem</span>
+				<span class="description-event-returnType">Null</span>
+			</h3>
+            <div>
+				<p>选中项的设置</p>
+				<p>参数列表：</p>
+				<pre class="brush: js;">
+                    sortColumn   //选择实际值
+					sortType    //选择排序方式
+				</pre>
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#showSortSelect").jsortSelect({
+						items: [{ sortColumn: "Id", text: "编号" },
+							{ sortColumn: "Age", text: "年龄", sortType: "desc" },
+							{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
+							{ sortColumn: "size", text: "大小", sortType: "desc" }
+						],
+						onSortChange: function (sortColumn,text, sortType) {
+							alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
+						}
+				
+						});	
+                    //设置	
+                    $("#showSortSelect").jsortSelect("option", "sortItem", { sortColumn: "Age", sortType: "desc" });
+
 				</pre>
 			</div>
 		</div>
@@ -225,18 +259,18 @@
 	<div id="methodsTab">
 		<div id="methodsAccordion">
 			<h3>
-				<span class="description-method-name">getSelectValueText</span>
+				<span class="description-method-name">getSelectedItem</span>
 				<span class="description-method-returnType">object</span>
 			
 			</h3>
 			<div>
 				<p>获取值</p>
 				<pre class="brush: js;">
-               var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText"); 
-				//该对象有三个属性 value(选中值) text(显示值) sort(排序方式)
+               var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem"); 
+				//该对象有三个属性 sortColumn(选中值) text(显示值) sort(排序方式)
 				$("#btnSelect").click(function () {
-				var selectObj = $("#showSortSelect").jsortSelect("getSelectValueText");
-				alert("选择的字段名称为:" + selectObj.value + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sort);
+				var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem");
+				alert("选择的字段名称为:" + selectObj.sortColumn + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sortType);
 			});
 				</pre>
 			</div>
@@ -248,13 +282,13 @@
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
 			
-&lt;span id="tag" style="cursor: pointer; border: 1px solid red;"&gt;排序方式:&lt;span id="content" style="cursor: pointer" data-sort="asc" data-value="name"&gt;名称/span&gt;&lt;span
+&lt;span id="tag" style="cursor: pointer; border: 1px solid red;"&gt;排序方式:&lt;span id="content" style="cursor: pointer" data-sortType="asc" data-sortColumn="name"&gt;名称/span&gt;&lt;span
 	class="jui-jsortSelect-downBtn"&gt;&nbsp;&nbsp;&lt;/span&gt;&lt;/span&gt;
 	&lt;ul class="jui-jsortSelect-ul" id="testUl"&gt;
-	&lt;li data-value="name" default="asc" class="action"&gt;名称&lt;/li&gt;
-	&lt;li data-value="startDate" default="desc"&gt;创建日期&lt;/li&gt;
-	&lt;li data-value="finisthDate" default="desc"&gt;完成日期&lt;/li&gt;
-	&lt;li data-value="size" default="desc"&gt;大小&lt;/li&gt;
+	&lt;li data-sortColumn="name" default="asc" class="action"&gt;名称&lt;/li&gt;
+	&lt;li data-sortColumn="startDate" default="desc"&gt;创建日期&lt;/li&gt;
+	&lt;li data-sortColumn="finisthDate" default="desc"&gt;完成日期&lt;/li&gt;
+	&lt;li data-sortColumn="size" default="desc"&gt;大小&lt;/li&gt;
 	&lt;div&gt;
 		&lt;hr style="margin: 12px" /&gt;
 		&lt;ul id="testUl2">
