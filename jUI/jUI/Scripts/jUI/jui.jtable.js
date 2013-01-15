@@ -32,7 +32,9 @@ items:
             v_align: "top",		                                                //表格单元格纵向分布 [top], middle, bottom
             h_align: "left",		                                                //表格单元格横向分布 [left], center, right
             height: "auto",			                                            //单元格高度 150px, 10%
-            width: "auto"			                                            //单元格宽度 150px, 10%
+            width: "auto",			                                            //单元格宽度 150px, 10%
+            sortColumn:"",                                                         //需要排序的data列名
+            sortType:""                                                           //升序或降序
 */
 
 (function ($, undefined) {
@@ -70,7 +72,9 @@ items:
 		                //    head: "操作", context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
 		                //    maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto"
 		                //}
-	        ]//列
+	        ],//列
+	        onSortChange:null,
+	        sortItem: { sortColumn: "", sortType: "" }
 	    },
 
 	    _create: function () {
@@ -81,6 +85,8 @@ items:
 	        var self = this,
             o = this.options;
 	        $(this.element).empty();
+	        var onSortChange = o.onSortChange;
+	        var sortItem = o.sortItem;
 	        $(document).bind("selectstart", function () { return false; }); //控制文本不能被选中
 	        //无数据时，显示错误提示信息
 	        if (o.data.length == 0) {
@@ -89,7 +95,7 @@ items:
 	            var tableId = $(this.element).attr("id");
 
                 //生成表框架
-	            $(this.element).append(
+	            $(this.element).empty().append(
                     "<table class='jui-table' id='" + tableId + "_tableSorter' style='width:" + o.width + ";height:" + o.height + ";'>" +
                     "<thead class='jui-table-head'><tr></tr></thead><tbody></tbody>" +
                     "</table>" +
@@ -123,9 +129,41 @@ items:
                         + "; vertical-align: " + g_v_align
                         + "; height: " + g_height
                         + "; width: " + g_width + ";padding-left: 2px; padding-right: 2px;padding-top:5px;padding-bottom:5px;'>"
-                        + "<span style='cursor:default;' title='" + g_head + "'>" + short_g_head + "</span>" +
+                        + "<div id='" + tableId + g_head + "' style='position:relative;'>" +
+                        "<span style='cursor:default;display:inline-block;' title='" + g_head + "'>" + short_g_head + "</span>"
+                        +"</div>"+
                         "</td>"
                         );
+	                if (sortItem["sortColumn"] == g_context) {
+	                    var head = g["head"];
+	                    $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                    $("#" + tableId + head).children("span:eq(0)").css("cursor", "pointer");
+	                    var flag = true;
+	                    $("#" + tableId + head).click(function () {
+	                        $("#" + tableId + head).children("span:eq(1)").remove();
+	                        if (flag) {
+	                            if (sortItem["sortType"] == "desc") {
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                            } else if (sortItem["sortType"] == "asc") {
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                            }
+	                            onSortChange(sortItem["sortColumn"], head, sortItem["sortType"]);
+	                            flag = false;
+	                            return;
+	                        }
+	                        if (!flag) {
+	                            if (sortItem["sortType"] == "desc") {
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                                onSortChange(sortItem["sortColumn"], head, "asc");
+	                            } else if (sortItem["sortType"] == "asc") {
+	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                                onSortChange(sortItem["sortColumn"], head, "desc");
+	                            }
+	                            flag = true;
+	                            return;
+	                        }
+	                    });
+	                }
 	            }
 
                 //生成表格
@@ -235,14 +273,31 @@ items:
 	    },
 
 	    _setOption: function (key, value) {
-	        if (value !== undefined || value != null)
+	        var o = this.options;
+	        var onSortChange = o.onSortChange;
+	        var sortItem = o.sortItem;
+	        if (value !== undefined || value != null) {
 	            this.options[key] = value;
-	        else
+	            if (key == "sortItem") {
+	                var head;
+	                for (var c in o.columns) {
+	                    if(o.columns[c]["context"] == value["sortColumn"]){
+	                        head = o.columns[c]["head"];
+	                    }
+	                }
+	                onSortChange(value["sortColumn"], head, value["sortType"]);
+	            }
+	        }
+	        else {
 	            return this.options[key];
+	        }
 	    },
 
 	    _setOptions: function (options) {
 	        var self = this;
+	        var o = this.options;
+	        var onSortChange = o.onSortChange;
+	        var sortItem = o.sortItem;
 	        $.each(options, function (key, value) {
 	            self._setOption(key, value);
 	        });

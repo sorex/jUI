@@ -1,14 +1,15 @@
-﻿.jui-linkButton
+﻿.jui-linkButton:link,.jui-linkButton:visited,
+.jui-linkButton:active,.jui-linkButton:hover,
+.jui-linkButton
 {
+    cursor:pointer;
+    text-decoration:none;
     background:@linkButtonBackground !important;
     border:none !important;
     color:@DefaultBackground !important;
-    cursor:pointer;          
-    /*font-family:'Microsoft YaHei';  
-    font-size:14px;*/    
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
+    font-family:@Family;  
+    font-size:@FontSize;    
+    font-weight: @FontSize;
 }
     .jui-linkButton:hover {
         text-decoration:underline;

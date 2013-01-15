@@ -67,13 +67,20 @@
 		                    height: "auto",			                                        //150px, 10%
 		                    width: "auto"			                                        //150px, 10%
 		                },
-		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },//,sortValue:"#Name2",sortType:"asc" 
 		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
 		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
 		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
 		                { head: "操作",context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
 		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
-		            ]//列名
+                    ]//列名                
+		        , sortItem: { sortColumn: "#Name5", sortType: "asc" }
+                , onSortChange: function (sortColumn, head, sortType) {
+                    alert(sortColumn + "\n" + head + "\n" + sortType);
+                }
+		    });
+		    $("#dd").click(function () {
+		        $("#MyTable1").jtable("option", "sortItem", { sortColumn: "#Name2", sortType: "desc" });
 		    });
 		});
 	</script>
@@ -100,7 +107,9 @@
 		<li><a href="#tab1">默认</a></li>
 	</ul>
 	<div id="tab1">
-		<div id="MyTable1"></div><a class="viewSource" onclick="viewSource(this);">View Source</a>
+		<div id="MyTable1"></div>
+        <input id="dd" value="设置排序列" type="button" />
+        <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
 &lt;div id="MyTable1"&gt;
 &lt;script type="text/javascript"&gt;
