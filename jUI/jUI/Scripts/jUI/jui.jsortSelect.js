@@ -31,7 +31,7 @@
 *       sortItem:{sortColumn:"大小",sortType:"desc"}
 *		
 * event
-*		getSelectedItem
+*		getSelectedItem：
 *		
 *	    
 */
