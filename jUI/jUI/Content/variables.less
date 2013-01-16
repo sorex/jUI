@@ -1,11 +1,13 @@
 ﻿@BaseUrl: ~`"http://localhost:5642/"`;
-@JQuery_UI_Images: ~`"@{BaseUrl}" + "Content/jquery-ui/images/"`;
+//@JQuery_UI_Images: ~`"@{BaseUrl}" + "Content/jquery-ui/images/"`;
+@JQuery_UI_Images: ~`"../images/"`;
 //编译后使用css则使用下面的路径
 //	@JQuery_UI_Images: ~`"../images/"`;
 //	使用实例：
 //	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
 
-@jUI_Images: ~`"@{BaseUrl}" + "Content/jUI/images/"`;
+//@jUI_Images: ~`"@{BaseUrl}" + "Content/jUI/images/"`;
+@jUI_Images: ~`"../images/"`;
 //编译后使用css则使用下面的路径
 //	@jUI_Images: ~`"../images/"`;
 //	使用实例：
