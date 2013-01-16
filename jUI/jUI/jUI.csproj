@@ -132,6 +132,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery-ui\css\jquery-ui.css" />
     <Content Include="Content\jquery-ui\images\ui-icons_0d0d0d_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_999999_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_da0000_256x240.png" />
@@ -184,8 +185,7 @@
     <Content Include="Content\jquery-ui\less\jquery.ui.tooltip.min.css">
       <DependentUpon>jquery.ui.tooltip.less</DependentUpon>
     </Content>
-    <Content Include="Content\jUI\css\chosen.css" />
-    <Content Include="Content\jUI\css\jui.jscrollbar.css" />
+    <Content Include="Content\jUI\css\jui.css" />
     <Content Include="Content\jUI\images\jui-icons_094ab2_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_0d0d0d_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_999999_78x84.png" />
@@ -195,32 +195,9 @@
     <Content Include="Content\jUI\images\jui-logo.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_094ab2_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\jquery-ui\css\jquery-ui.css" />
     <Content Include="Content\jui.description.css" />
     <Content Include="Content\jUI\images\line_conn.gif" />
     <Content Include="Content\jUI\images\zTreeStandard.png" />
-    <Content Include="Content\jUI\css\jui.jbutton.css" />
-    <Content Include="Content\jUI\css\jui.jcheckbox.css" />
-    <Content Include="Content\jUI\css\jui.jcheckTable.css" />
-    <Content Include="Content\jUI\css\jui.jcheckTree.css" />
-    <Content Include="Content\jUI\css\jui.jdatapager.css" />
-    <Content Include="Content\jUI\css\jui.jdatetimepicker.css" />
-    <Content Include="Content\jUI\css\jui.jheadMenu.css" />
-    <Content Include="Content\jUI\css\jui.jlayout.css" />
-    <Content Include="Content\jUI\css\jui.jleftMenu.css" />
-    <Content Include="Content\jUI\css\jui.jlink.css" />
-    <Content Include="Content\jUI\css\jui.jlinkButton.css" />
-    <Content Include="Content\jUI\css\jui.jmultiSelect.css" />
-    <Content Include="Content\jUI\css\jui.jradio.css" />
-    <Content Include="Content\jUI\css\jui.jradioTable.css" />
-    <Content Include="Content\jUI\css\jui.jradioTree.css" />
-    <Content Include="Content\jUI\css\jui.jsearch.css" />
-    <Content Include="Content\jUI\css\jui.jselect.css" />
-    <Content Include="Content\jUI\css\jui.jsortSelect.css" />
-    <Content Include="Content\jUI\css\jui.jtable.css" />
-    <Content Include="Content\jUI\css\jui.jtext.css" />
-    <Content Include="Content\jUI\css\jui.jtip.css" />
-    <Content Include="Content\jUI\css\jui.jtree.css" />
     <Content Include="Content\jquery-ui\less\jquery.ui.core.less" />
     <Content Include="Content\jquery-ui\less\jquery.ui.resizable.less" />
     <Content Include="Content\jquery-ui\less\jquery.ui.selectable.less" />
