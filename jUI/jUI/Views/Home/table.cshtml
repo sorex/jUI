@@ -70,18 +70,16 @@
                             , sortColumn: ""                                                //排序列
                             , sortType: "desc"                                              //排序规则
 		                },
-		                { head: "编号", context: "#Id", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Id" },
+		                { head: "编号", context: "#Id", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name2", sortType: "asc" },
 		                { head: "年龄", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name3", sortType: "desc" },
 		                { head: "完成日期", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name4", sortType: "asc" },
 		                { head: "大小", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name5", sortType: "desc" },
 		                { head: "操作",context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
 		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
                     ]//列名                
-		        , sortItem: { sortColumn: "Name3", sortType: "asc" }
+		        , sortItem: { sortColumn: "Name5", sortType: "asc" }
                 , onSortChange: function (sortColumn, head, sortType) {
-                    //alert(sortColumn + ":" + sortType);
                     $("#sort").jsortSelect("option", "sortItem", { sortColumn: sortColumn, sortType: sortType });
-                    //alert(sortColumn + "\n" + head + "\n" + sortType);
                 }
 		    });
 
