@@ -1,42 +1,3 @@
-/*编译后使用css则使用下面的路径
-	@JQuery_UI_Images: ~`"../images/"`;
-	使用实例：
-	background-image: ~`'url(@{JQuery_UI_Images}ui-icons_' + "@{ContentIcon}".substr(1) + '_256x240.png)'`;
-*/
-/*编译后使用css则使用下面的路径
-	@jUI_Images: ~`"../images/"`;
-	使用实例：
-	background-image: ~`'url(@{jUI_Images}ui-icons_256x240.png)'`;
-*/
-/*@PrimaryBackground: #094ab2;
-@PrimaryBorder: #094ab2;
-@PrimaryColor: #ffffff;
-@PrimaryIcon: #ffffff;
-
-@InfoBackground: #094ab2;
-@InfoBorder: #094ab2;
-@InfoColor: #ffffff;
-@InfoIcon: #ffffff;
-
-@SuccessBackground: #094ab2;
-@SuccessBorder: #094ab2;
-@SuccessColor: #ffffff;
-@SuccessIcon: #ffffff;
-
-@WarningBackground: #094ab2;
-@WarningBorder: #094ab2;
-@WarningColor: #ffffff;
-@WarningIcon: #ffffff;
-
-@DangerBackground: #094ab2;
-@DangerBorder: #094ab2;
-@DangerColor: #ffffff;
-@DangerIcon: #ffffff;
-
-@InverseBackground: #094ab2;
-@InverseBorder: #094ab2;
-@InverseColor: #ffffff;
-@InverseIcon: #ffffff;*/
 html {
   height: 100%;
 }
@@ -92,7 +53,7 @@ body {
 }
 #TopLogoDiv {
   float: left;
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-logo.png);
+  background-image: url(../images/jui-logo.png);
   height: 40px;
   width: 150px;
 }
@@ -104,19 +65,35 @@ input[type="reset"] {
   background-color: #094ab2;
   cursor: pointer;
   color: #ffffff;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -khtml-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -khtml-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -khtml-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -khtml-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover {
-  background-color: #073d92;
+  background-color: #145bcc;
 }
 .jui-checkbox {
-  padding-left: 24px;
   cursor: pointer;
-  background: url(http://localhost:5642/Content/jUI/images/jui-jcheckbox.png) no-repeat 0px 0px;
+  background: url(../images/jui-icons_094ab2_78x84.png) no-repeat 0px 0px;
   vertical-align: middle;
   line-height: 22px;
   height: 21px;
+  width: 21px;
   display: inline-block;
 }
 .jui-checkbox:hover {
@@ -128,7 +105,7 @@ input[type="reset"]:hover {
 .jui-checkbox-checked:hover {
   background-position: 0px -63px;
 }
-.jui-checkbox-laber {
+.jui-checkbox-label {
   cursor: pointer;
 }
 .jui-checkbox-checked-hover {
@@ -137,6 +114,7 @@ input[type="reset"]:hover {
 .jui-checkbox-checked-checked {
   background-position: 0px -63px;
 }
+.jui-link,
 .jui-link:link,
 .jui-link:visited,
 .jui-link:active,
@@ -144,40 +122,60 @@ input[type="reset"]:hover {
   color: #094ab2;
   cursor: pointer;
   text-decoration: none;
+  font-family: "Microsoft Yahei", Verdana, Simsun, "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, "sans-serif";
+  font-weight: normal;
+  font-size: 14px;
 }
 .jui-link:hover {
   background-color: transparent;
   text-decoration: underline;
 }
+.jui-linkButton:link,
+.jui-linkButton:visited,
+.jui-linkButton:active,
+.jui-linkButton:hover,
 .jui-linkButton {
+  cursor: pointer;
+  text-decoration: none;
   background: none !important;
   border: none !important;
   color: #094ab2 !important;
-  cursor: pointer;
-  /*font-family:'Microsoft YaHei';  
-    font-size:14px;*/
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
+  font-family: "Microsoft Yahei", Verdana, Simsun, "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, "sans-serif";
+  font-size: 14px;
+  font-weight: 14px;
 }
 .jui-linkButton:hover {
   text-decoration: underline;
   background: none !important;
 }
 .jui-radio {
-  padding-left: 24px;
   display: inline-block;
-  background: transparent url(http://localhost:5642/Content/jUI/images/jui-jradio.png) no-repeat 0px 0px;
-  height: 22px;
+  background: url(../images/jui-icons_094ab2_78x84.png) no-repeat -21px 0px;
+  /*background: transparent ~`'url(@{jUI_Images}jui-jradio.png)'` no-repeat 0px 0px;*/
+
+  height: 21px;
+  width: 21px;
   line-height: 22px;
   cursor: pointer;
   vertical-align: middle;
 }
-.jui-radio-checked {
-  background-position: 0px -21px;
-}
 .jui-radio-label {
   cursor: pointer;
+}
+.jui-radio-checked {
+  background-position: -21px -42px;
+}
+.jui-radio:hover {
+  background-position: -21px -21px;
+}
+.jui-radio-checked:hover {
+  background-position: -21px -63px;
+}
+.jui-radio-checked-hover {
+  background-position: -21px -21px;
+}
+.jui-radio-checked-checked {
+  background-position: -21px -63px;
 }
 input[type="text"],
 input[type="password"] {
@@ -187,59 +185,76 @@ input[type="password"] {
   font-weight: normal;
   font-size: 14px;
 }
+.jtext-err {
+  border: #da0000;
+}
 .jui-jtip-w-arrowhead {
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-jtip-carat-w-cccccc.png);
-  background-repeat: no-repeat;
+  background: url(../images/jui-icons_999999_78x84.png) no-repeat -54px 0px;
+  height: 13px;
+  width: 7px;
+}
+.jui-jtip-w-arrowhead-success {
+  /*background-image: ~`'url(@{jUI_Images}jui-jtip-carat-w-' + "@{tipSuccessIcon}".substr(1) + '.png)'`;
+            background-repeat: no-repeat;*/
+
+  background: url(../images/jui-icons_e5920b_78x84.png) no-repeat -54px 0px;
   height: 13px;
   width: 7px;
 }
 .jui-jtip-w-arrowhead-error {
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-jtip-carat-w-fef1ec.png);
-  background-repeat: no-repeat;
+  background: url(../images/jui-icons_da0000_78x84.png) no-repeat -54px 0px;
   height: 13px;
   width: 7px;
 }
 .jui-jtip-n-arrowhead {
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-jtip-carat-n-cccccc.png);
-  background-repeat: no-repeat;
+  background: url(../images/jui-icons_999999_78x84.png) no-repeat -53px 0px;
+  height: 7px;
+  width: 13px;
+}
+.jui-jtip-n-arrowhead-success {
+  background: url(../images/jui-icons_e5920b_78x84.png) no-repeat -53px 0px;
+  height: 13px;
   height: 7px;
   width: 13px;
 }
 .jui-jtip-n-arrowhead-error {
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-jtip-carat-n-fef1ec.png);
-  background-repeat: no-repeat;
+  background: url(../images/jui-icons_da0000_78x84.png) no-repeat -53px 0px;
   height: 7px;
   width: 13px;
 }
 .jui-jitp-nomal-w-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #ffffff;
+  border: 5px solid #a6a6a6;
+  background-color: #f2f2f2;
+  color: #0d0d0d;
 }
 .jui-jtip-success-w-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #ffffff;
+  border: 5px solid #e5920b;
+  /*border-width:3px !important;*/
+
+  background-color: #fff0d9;
+  color: #000000;
 }
 .jui-jtip-error-w-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #cd0a0a;
+  border-width: 5px !important;
+  background-color: #ffd9d9;
+  color: #da0000;
 }
 .jui-jitp-nomal-n-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #ffffff;
+  border: 5px solid #a6a6a6;
+  /*border-width:3px !important;*/
+
+  background-color: #f2f2f2;
+  color: #0d0d0d;
 }
 .jui-jtip-success-n-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #ffffff;
+  border: 5px solid #e5920b;
+  background-color: #fff0d9;
+  color: #000000;
 }
 .jui-jtip-error-n-content {
-  border-width: 3px !important;
-  background-color: #cccccc;
-  color: #cd0a0a;
+  border-width: 5px !important;
+  background-color: #ffd9d9;
+  color: #da0000;
 }
 /* @group Base */
 .chzn-container {
@@ -252,8 +267,8 @@ input[type="password"] {
 .chzn-container .chzn-drop {
   /**/
 
-  background: #ffffff;
-  border: 1px solid #666666;
+  background: #f2f2f2;
+  border: 1px solid #a6a6a6;
   /*下拉框的选择默认颜色为:#aaa*/
 
   border-top: 0;
@@ -268,24 +283,20 @@ input[type="password"] {
 /* @end */
 /* @group Single Chosen */
 .chzn-container-single .chzn-single {
-  background-color: #ffffff;
-  /*@selectChznContainerBackground*/
+  background-color: #f2f2f2;
+  /*@ContentBackground*/
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@selectChznContainerBackground', endColorstr='#eeeeee', GradientType=0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
-  background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@ContentBackground', endColorstr='#eeeeee', GradientType=0 );*/
+
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #666666;
+  border: 1px solid #a6a6a6;
   /*选择之前的样式效果 默认为 #aaaaaa*/
 
-  -webkit-box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 3px #f2f2f2 inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 3px #f2f2f2 inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 3px #f2f2f2 inset, 0 1px 1px rgba(0, 0, 0, 0.1);
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -293,7 +304,7 @@ input[type="password"] {
   height: 23px;
   line-height: 24px;
   padding: 0 0 0 8px;
-  color: #444444;
+  color: #0d0d0d;
   text-decoration: none;
 }
 .chzn-container-single .chzn-default {
@@ -316,13 +327,16 @@ input[type="password"] {
   width: 12px;
   height: 13px;
   font-size: 1px;
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) right top no-repeat;
+  /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` right top no-repeat;*/
+
 }
 .chzn-container-single .chzn-single abbr:hover {
-  background-position: right -11px;
+  /*background-position: right -11px;*/
+
 }
 .chzn-container-single.chzn-disabled .chzn-single abbr:hover {
-  background-position: right top;
+  /*background-position: right top;*/
+
 }
 .chzn-container-single .chzn-single div {
   position: absolute;
@@ -333,7 +347,7 @@ input[type="password"] {
   width: 18px;
 }
 .chzn-container-single .chzn-single div b {
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 0 0;
+  background: url(../images/ui-icons_0d0d0d_256x240.png) no-repeat -64px -12px;
   display: block;
   width: 100%;
   height: 100%;
@@ -346,20 +360,24 @@ input[type="password"] {
   z-index: 1010;
 }
 .chzn-container-single .chzn-search input {
-  background: #ffffff url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px;
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat 100% -22px, linear-gradient(#eeeeee 1%, #ffffff 15%);
   margin: 1px 0;
   padding: 4px 20px 4px 5px;
   outline: 0;
-  border: 1px solid #666666;
+  width: 15px;
+  border: 1px solid #a6a6a6;
   /*搜索区域的边框颜色 默认#aaa*/
 
   font-family: sans-serif;
   font-size: 1em;
+}
+.chzn-container-single .chzn-search span {
+  position: relative;
+  background: url(../images/jui-icons_0d0d0d_78x84.png) no-repeat -66px 0px;
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  left: -16px;
+  top: 3px;
 }
 .chzn-container-single .chzn-drop {
   /*-webkit-border-radius: 0 0 4px 4px;
@@ -377,13 +395,8 @@ input[type="password"] {
 }
 /* @group Multi Chosen */
 .chzn-container-multi .chzn-choices {
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
-  border: 1px solid #666666;
+  background-color: #f2f2f2;
+  border: 1px solid #a6a6a6;
   /*多选功能的默认效果#aaa*/
 
   margin: 0;
@@ -404,7 +417,7 @@ input[type="password"] {
   padding: 0;
 }
 .chzn-container-multi .chzn-choices .search-field input {
-  color: #666666;
+  color: #0d0d0d;
   background: transparent !important;
   border: 0 !important;
   font-family: sans-serif;
@@ -424,18 +437,12 @@ input[type="password"] {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background-color: #e4e4e4;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  -webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  background-color: #f2f2f2;
+  -webkit-box-shadow: 0 0 2px #f2f2f2 inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 2px #f2f2f2 inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 2px #f2f2f2 inset, 0 1px 0 rgba(0, 0, 0, 0.05);
   color: #333;
-  border: 1px solid #666666;
+  border: 1px solid #a6a6a6;
   /*多选 已选择项边框#aaaaaa*/
 
   line-height: 13px;
@@ -445,38 +452,31 @@ input[type="password"] {
   cursor: default;
 }
 .chzn-container-multi .chzn-choices .search-choice.search-choice-disabled {
-  background-color: #e4e4e4;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0);
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -ms-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-color: #f2f2f2;
   color: #666;
-  border: 1px solid #666666;
-  /*@selectChznContainerBorder*/
+  border: 1px solid #a6a6a6;
+  /*@ContentBorder*/
 
   padding-right: 5px;
 }
 .chzn-container-multi .chzn-choices .search-choice-focus {
-  background: #d4d4d4;
+  background: #f2f2f2;
 }
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close {
   display: block;
   position: absolute;
   right: 3px;
-  top: 4px;
-  width: 12px;
-  height: 13px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
   font-size: 1px;
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) right top no-repeat;
+  background: url(../images/ui-icons_999999_256x240.png) no-repeat -80px -128px;
 }
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover {
-  background-position: right -11px;
+  background-position: -96px -128px;
 }
 .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
-  background-position: right -11px;
+  background-position: -96px -128px;
 }
 /* @end */
 /* @group Results */
@@ -505,24 +505,20 @@ input[type="password"] {
   display: list-item;
 }
 .chzn-container .chzn-results .highlighted {
-  background-color: #3875d7;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #3875d7), color-stop(90%, #2a62bc));
-  background-image: -webkit-linear-gradient(top, #3875d7 20%, #2a62bc 90%);
-  background-image: -moz-linear-gradient(top, #3875d7 20%, #2a62bc 90%);
-  background-image: -o-linear-gradient(top, #3875d7 20%, #2a62bc 90%);
-  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
-  color: #ffffff;
+  background-color: #145bcc;
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3875d7', endColorstr='#2a62bc', GradientType=0 );*/
+
+  color: #f2f2f2;
 }
 .chzn-container .chzn-results li em {
-  background: #ffffff;
+  background: #f2f2f2;
   font-style: normal;
 }
 .chzn-container .chzn-results .highlighted em {
   background: transparent;
 }
 .chzn-container .chzn-results .no-results {
-  background: #f4f4f4;
+  background: #f2f2f2;
   display: list-item;
 }
 .chzn-container .chzn-results .group-result {
@@ -537,7 +533,7 @@ input[type="password"] {
   display: none;
 }
 .chzn-container .chzn-results-scroll {
-  background: #ffffff;
+  background: #f2f2f2;
   margin: 0 4px;
   position: absolute;
   text-align: center;
@@ -556,10 +552,16 @@ input[type="password"] {
   bottom: 0;
 }
 .chzn-container .chzn-results-scroll-down span {
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -4px -3px;
+  /*background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{ContentIcon}".substr(1)+'_256x240.png)'` no-repeat -64px -12px;*/
+
+  /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -4px -3px;*/
+
 }
 .chzn-container .chzn-results-scroll-up span {
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -22px -3px;
+  /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -64px -3px;*/
+
+  /*background: ~`'url(@{JQuery_UI_Images}ui-icons_'+"@{ContentIcon}".substr(1)+'_256x240.png)'` no-repeat -64px -12px;*/
+
 }
 /* @end */
 /* @group Active  */
@@ -567,24 +569,26 @@ input[type="password"] {
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid #666666;
+  border: 1px solid #a6a6a6;
   /*点击之后文本框的颜色#5897fb*/
 
 }
 .chzn-container-active .chzn-single-with-drop {
-  border: 1px solid #666666;
+  border: 1px solid #a6a6a6;
   /*点击之后的颜色#aaa*/
 
   -webkit-box-shadow: 0 1px 0 #fff inset;
   -moz-box-shadow: 0 1px 0 #fff inset;
-  box-shadow: 0 1px 0 #ffffff inset;
-  background-color: #eeeeee;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='@selectChznContainerBackground', GradientType=0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eeeeee), color-stop(80%, #ffffff));
-  background-image: -webkit-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: -moz-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: -o-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: linear-gradient(#eeeeee 20%, #ffffff 80%);
+  box-shadow: 0 1px 0 #f2f2f2 inset;
+  background-color: #f2f2f2;
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='@ContentBackground', GradientType=0 );*/
+
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eeeeee), color-stop(80%,#ffffff));
+	background-image: -webkit-linear-gradient(top, @selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);
+	background-image: -moz-linear-gradient(top, @selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);
+	background-image: -o-linear-gradient(top,@selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);
+	background-image: linear-gradient(@selectChznSingelDropLinearGradientTop 20%, @selectChznSingelDropLinearGradientBottom 80%);*/
+
   /*-webkit-border-bottom-left-radius: 0;
 	-webkit-border-bottom-right-radius: 0;
 	-moz-border-radius-bottomleft: 0;
@@ -598,13 +602,13 @@ input[type="password"] {
   border-left: none;
 }
 .chzn-container-active .chzn-single-with-drop div b {
-  background-position: -18px 1px;
+  background-position: 0px -14px;
 }
 .chzn-container-active .chzn-choices {
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid #666666;
+  border: 1px solid #a6a6a6;
   /*多选择框选择之后的颜色 #5897fb;*/
 
 }
@@ -671,19 +675,47 @@ input[type="password"] {
   border-right: none;
 }
 .chzn-rtl .chzn-search input {
-  background: #ffffff url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px;
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url(http://localhost:5642/Content/jUI/images/chosen-sprite.png) no-repeat -38px -22px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  /*background: @ContentBackground ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px;*/
+
+  /*background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%,#ffffff));
+		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -webkit-linear-gradient(top, @selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom 15%);
+		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -moz-linear-gradient(top,@selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom  15%);
+		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, -o-linear-gradient(top, @selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom 15%);
+		background: ~`'url(@{jUI_Images}chosen-sprite.png)'` no-repeat -38px -22px, linear-gradient(@selectChznSingelDropLinearGradientTop 1%, @selectChznSingelDropLinearGradientBottom 15%);*/
+
   padding: 4px 5px 4px 20px;
   direction: rtl;
 }
 /* @end */
+/*@selectChznContainerBackground: @ContentBackground; /*所有的背景色*/
+/*@selectChznContainerBorder:@ContentBorder;/*#666666; 所有的边框的颜色*//*@selectChznSingleColor: @ContentColor; /*单选时候 选中值显示*/
+/*@selectChznSingleDefaultColor:@HelperColor; /*没有默认选中时的提示语颜色*/
+/*@selectChzeSingleDrop:@ContentBackground; /*下拉框展开时 之前选择值的背景颜色*/
+/*@selectChznMultiInputColor: @ContentColor;/*@ContentColor;*//*多选框选中之后的颜色*/
+/*@selectChznMulitDefaultColor: @HelperColor;/*多选框没有选中时候的提示语颜色*/
+/*@selectChznMultiBackgroud:@ContentBackground; /*#e4e4e4;选中的单个项的背景色*/
+/*@selectChznMultiChoiceFocusBackground: @ContentBackground;/*#d4d4d4单个项的鼠标移入背景色*/
+/*@selectChznResultColor: @HelperColor;/*提示语颜色*/
+/*@selectChznResultBackground:@HoverBackground;/* #3875d7鼠标移上之后的背景色*/
+/*@selectChznNoResultBackground:@ContentBackground; /*查询结果的背景色*/
+/*@selectChznSingleLinearGradientTop: #ffffff;*/
+/*@selectChznSingleLinearGradientRight: #ff0000;
+@selectChznSingleLinearGradientBottom: #00ff00;
+@selectChznSingleLinearGradientLeft: #0000ff;
+
+@selectChznChoiceLinearGradientTop: #ffffff;
+@selectChznChoiceLinearGradientRight: #ff0000;
+@selectChznChoiceLinearGradientBottom: #00ff00;
+@selectChznChoiceLinearGradientLeft: #0000ff;
+
+@selectChznResultLinearGradientTop: #3875d7;
+@selectChznResultLinearGradientBottom: #2a62bc;
+
+@selectChznSingelDropLinearGradientTop: #eeeeee;
+@selectChznSingelDropLinearGradientBottom: #ffffff;*/
 .jui-jsortSelect-ul {
   list-style: none;
-  border: 2px solid #666666;
+  border: 2px solid #a6a6a6;
   background-color: #f3f3f3;
   color: #000000;
   margin: 0px;
@@ -694,17 +726,22 @@ input[type="password"] {
   position: relative;
 }
 .jui-jsortSelect-ul > li {
-  padding-left: 35px;
-  padding-right: 10px;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 5px;
+  padding: 8px 2px 2px 10px;
+  height: 26px;
 }
-.jui-jsortSelect-ul > li.hover {
+.jui-jsortSelect-ul > li:hover {
   background-color: #d4d4d4;
 }
-.jui-jsortSelect-ul > li.action {
-  background: transparent url(http://localhost:5642/Content/jUI/images/jui-jselect-bullet-666666.png) no-repeat 0 0;
-  background-position: 18px 8px;
+.jui-jsortSelect-ul > li i {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 10px;
+  height: 11px;
+  width: 11px;
+}
+.jui-jsortSelect-ul > li i.action {
+  background: url(../images/jui-icons_0d0d0d_78x84.png) no-repeat -40px -8px;
 }
 .jui-jsortSelect-ul > div {
   margin: 0px;
@@ -719,20 +756,29 @@ input[type="password"] {
   cursor: pointer;
 }
 .jui-jsortSelect-ul > div ul > li {
-  padding-left: 35px;
-  padding-right: 10px;
-  margin-top: 7px;
-  margin-bottom: 10px;
+  /*padding-left: 25px;
+				padding-right: 10px;
+				margin-top: 7px;
+				margin-bottom: 10px;*/
+
+  margin-top: 5px;
+  padding: 8px 10px 2px 25px;
+  height: 26px;
 }
 .jui-jsortSelect-ul > div ul > li:hover {
   background-color: #d4d4d4;
 }
-.jui-jsortSelect-ul > div ul > li.action {
-  background: transparent url(http://localhost:5642/Content/jUI/images/jui-jselect-bullet-666666.png) no-repeat 0 0;
-  background-position: 18px 8px;
+.jui-jsortSelect-ul > div ul > li i {
+  display: inline-block;
+  margin-right: 5px;
+  height: 11px;
+  width: 11px;
+}
+.jui-jsortSelect-ul > div ul > li i.action {
+  background: url(../images/jui-icons_0d0d0d_78x84.png) no-repeat -40px -8px;
 }
 .jui-jsortSelect-downBtn {
-  background: transparent url(http://localhost:5642/Content/jUI/images/jui-jselect-carat-s-666666.png) no-repeat 0px 0px;
+  background: url(../images/jui-icons_0d0d0d_78x84.png) no-repeat -42px 0px;
   cursor: pointer;
   display: inline-block;
   text-indent: -99999px;
@@ -743,7 +789,7 @@ input[type="password"] {
 .jui-datapager {
   /*color: #094ab2;*/
 
-  color: #ffffff;
+  color: #094ab2;
 }
 .jui-datapager span {
   display: block;
@@ -757,26 +803,27 @@ input[type="password"] {
   padding-right: 2px;
 }
 .jui-datapager .jui-datapager-item {
-  border: 1px solid #094ab2;
-  background-color: #094ab2;
-  color: #ffffff;
+  border: 1px solid #a6a6a6;
+  background-color: #f2f2f2;
+  color: #094ab2;
   cursor: pointer;
 }
 .jui-datapager .jui-datapager-item:hover {
-  border: 1px solid #073d92;
-  background-color: #073d92;
+  border: 1px solid #226de5;
+  background-color: #226de5;
   color: #ffffff;
 }
 .jui-datapager .jui-datapager-item-active {
-  border: 1px solid transparent;
+  border: 1px solid #a6a6a6;
+  background: #a6a6a6;
   font-weight: bold;
   cursor: default;
-  color: #000000;
+  color: #0d0d0d;
 }
 .jui-datapager .jui-datapager-item-disabled {
-  border: 1px solid #094ab2;
-  background-color: #094ab2;
-  color: #ffffff;
+  border: 1px solid #a6a6a6;
+  background-color: #f2f2f2;
+  color: #094ab2;
   cursor: default;
   -moz-opacity: 0.35;
   opacity: 0.35;
@@ -805,14 +852,14 @@ input[type="password"] {
   text-decoration: none;
 }
 .jui-headMenu a:hover {
-  background-color: #073d92;
+  background-color: #145bcc;
 }
 .jui-headMenu .jui-headMenu-ju {
   float: left;
   height: 40px;
 }
 .jui-headMenu .jui-headMenu-clicked {
-  background-color: #062f72 !important;
+  background-color: #226de5 !important;
 }
 .jui-headMenu .jui-headMenu-ju > li {
   height: 40px;
@@ -826,9 +873,10 @@ input[type="password"] {
 }
 .jui-headMenu .jui-headMenu-ju > li > a {
   margin-right: 5px;
+  background-color: transparent;
 }
 .jui-headMenu .jui-headMenu-ju > li:hover {
-  background-color: #073d92;
+  background-color: #145bcc;
 }
 .jui-headMenu .jui-headMenu-lass {
   vertical-align: middle;
@@ -859,7 +907,7 @@ input[type="password"] {
 .jui-headMenu .jui-headMenu-u1 li a {
   padding: 6px 15px 6px 15px;
   text-align: left;
-  color: #000000;
+  color: #0d0d0d;
   display: block;
   cursor: pointer;
 }
@@ -867,7 +915,9 @@ input[type="password"] {
   cursor: default;
 }
 .jui-headMenu .jui-headMenu-u1 li a:hover {
-  background-color: #f0f0f0;
+  background-color: #cccccc;
+  /*border:2px solid @HeaderBackground;*/
+
 }
 .jui-headMenu .jui-headMenu-vsolid {
   display: block;
@@ -884,14 +934,21 @@ input[type="password"] {
   visibility: hidden;
 }
 .jui-headMenu .jui-headMenu-endImg {
-  background-image: url(http://localhost:5642/Content/jUI/images/jui-jheadMenu-carat-s-ffffff.png);
+  background-image: url(../images/jui-icons_ffffff_78x84.png);
   background-repeat: no-repeat;
+  background-position: -42px 0px;
   display: inline-block;
-  width: 12px;
-  height: 10px;
+  width: 11px;
+  height: 9px;
   position: relative;
   left: 5px;
   top: 2px;
+}
+.jui-headMenu .jui-headMenu-endImg:hover {
+  background-image: url(../images/jui-icons_ffffff_78x84.png);
+}
+.jui-headMenu .jui-headMenu-endImg:active {
+  background-image: url(../images/jui-icons_ffffff_78x84.png);
 }
 .jui-leftMenu div {
   font-size: 150%;
@@ -902,18 +959,18 @@ input[type="password"] {
 }
 .jui-leftMenu .jui-leftMenu-item {
   background-color: transparent;
-  color: #094ab2;
+  color: #0d0d0d;
 }
 .jui-leftMenu .jui-leftMenu-item:hover {
-  background-color: #e2e2e2;
-  color: #094ab2;
+  background-color: #cccccc;
+  color: #0d0d0d;
 }
 .jui-leftMenu .jui-leftMenu-item-active {
-  background-color: #d4d4d4;
-  color: #094ab2;
+  background-color: #a6a6a6;
+  color: #0d0d0d;
 }
 .jui-table {
-  border: 1px solid #ffffff;
+  border: 1px solid #000000;
 }
 .jui-table a {
   text-decoration: none;
@@ -923,16 +980,37 @@ input[type="password"] {
 }
 /*行样式切换*/
 /*鼠标覆盖*/
-.jui-table .jui-table-over {
-  background-color: #e2e2e2;
+.jui-table .jui-table-hover {
+  background-color: #cccccc;
+  color: #0d0d0d;
 }
-/*鼠标移出*/
-.jui-table .jui-table-out {
-  background-color: #f3f3f3;
+.jui-table .jui-table-hover a {
+  color: #0d0d0d;
+}
+/*偶数行样式*/
+.jui-table .jui-table-odd {
+  background-color: #f2f2f2;
+  color: #0d0d0d;
 }
 /*鼠标点击*/
-.jui-table .jui-table-click {
-  background-color: #d4d4d4;
+.jui-table .jui-table-Active {
+  background-color: #226de5;
+  color: #ffffff;
+}
+.jui-table .jui-table-Active a {
+  color: #ffffff;
+}
+/*奇数行样式*/
+.jui-table .jui-table-even {
+  background-color: #e5e5e5;
+  color: #0d0d0d;
+}
+/*表格头部样式*/
+.jui-table .jui-table-head {
+  background-color: #094ab2;
+  color: #ffffff;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .jui-jtree {
   font-size: 14px;
@@ -943,7 +1021,7 @@ input[type="password"] {
   padding: 0 0 0 16px;
 }
 .jui-jtree li ul.line {
-  background: url(http://localhost:5642/Content/jUI/images/line_conn.gif) 0 0 repeat-y;
+  background: url(../images/line_conn.gif) 0 0 repeat-y;
 }
 .jui-jtree-u1-li {
   line-height: 13.992px !important;
@@ -951,8 +1029,9 @@ input[type="password"] {
   margin: 0 0;
 }
 .jui-jtree-a-clicked {
-  border: 1px solid #666666;
-  background-color: #e2e2e2;
+  /*border:1px solid @HighlightColor;*/
+
+  background-color: #226de5;
 }
 .jui-jtree-u-a {
   padding: 1px 3px 0 0;
@@ -964,10 +1043,10 @@ input[type="password"] {
 }
 .jui-jtree-u-a:hover {
   cursor: pointer;
-  background-color: #e2e2e2;
+  background-color: #145bcc;
 }
 .jui-jtree-u-a:active {
-  background-color: #d4d4d4;
+  background-color: #226de5;
 }
 .jui-jtree-u-switch,
 .jui-jtree-u-icon,
@@ -981,14 +1060,16 @@ input[type="password"] {
 .jui-jtree-u-switch-open,
 .jui-jtree-u-switch-dircorss-open,
 .jui-jtree-u-switch-dircorss-bottom-open,
-.jui-jtree-u-icon-open {
+.jui-jtree-u-icon-open,
+.jui-jtree-u-switch-single-close,
+.jui-jtree-u-switch-single-open {
   width: 18px;
   height: 18px;
   display: inline-block;
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url(http://localhost:5642/Content/jUI/images/zTreeStandard.png);
+  background-image: url(../images/zTreeStandard.png);
   vertical-align: top;
   border: 0 none;
   cursor: pointer;
@@ -1008,6 +1089,12 @@ input[type="password"] {
 }
 .jui-jtree-u-switch-dircorss-bottom-close {
   background-position: -74px -36px;
+}
+.jui-jtree-u-switch-single-close {
+  background-position: -74px -54px;
+}
+.jui-jtree-u-switch-single-open {
+  background-position: -92px -54px;
 }
 .jui-jtree-u-switch-dircorss-bottom-open {
   background-position: -92px -36px;
@@ -1049,15 +1136,21 @@ input[type="password"] {
   vertical-align: bottom;
   display: inline-block;
 }
+.jui-jtree-u-text:hover {
+  color: #ffffff;
+}
+.jui-jtree-u-text:active {
+  color: #ffffff;
+}
 .jui-jtree-u-cbox-unChecked,
 .jui-jtree-u-cbox-checked,
 .jui-jtree-u-cbox-partChecked,
 .jui-jtree-u-cbox-partChecked2 {
-  display: inline-block;
+  display: inline-block !important;
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url(http://localhost:5642/Content/jUI/images/zTreeStandard.png);
+  background-image: url(../images/zTreeStandard.png);
   vertical-align: middle;
   border: 0 none;
   outline: none;
@@ -1094,11 +1187,11 @@ input[type="password"] {
 .jui-jtree-u-rbox-checked,
 .jui-jtree-u-rbox-partChecked,
 .jui-jtree-u-cbox-partChecked2 {
-  display: inline-block;
+  display: inline-block !important;
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url(http://localhost:5642/Content/jUI/images/zTreeStandard.png);
+  background-image: url(../images/zTreeStandard.png);
   vertical-align: middle;
   border: 0 none;
   outline: none;
@@ -1136,35 +1229,35 @@ background-position: -14px -42px;
 }
 /*当前日期高亮*/
 .jui-datetimepicker-now {
-  border: 1px solid #bababa;
+  border: 1px solid #a6a6a6;
   font-weight: bold;
-  color: #094ab2;
+  color: #0d0d0d;
   outline: none;
   display: block;
-  /*padding: .2em;*/
-
   margin: .2em;
   text-decoration: none;
-  background-color: #bababa;
+  background-color: #a6a6a6;
 }
 /*外层div*/
 .jui-datetimepicker {
   width: 240px;
-  background-color: #f3f3f3;
+  background-color: #f2f2f2;
   padding: .2em .2em;
-  border: 1px solid #dddddd;
+  border: 1px solid #a6a6a6;
   font-family: "Microsoft Yahei", Verdana, Simsun, "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, "sans-serif";
   font-size: 14px;
   position: absolute;
   float: left;
-  z-index: 100000;
+  z-index: 33;
+  border-radius: 8px;
 }
 /*头部div中中间div样式*/
 .jui-datetimepicker-dhead {
-  margin-left: 2px;
   padding-bottom: 5px;
   padding-top: 5px;
   background-color: #094ab2;
+  border: 1px solid #000000;
+  border-radius: 8px;
 }
 /*左按钮*/
 .jui-datetimepicker-prev {
@@ -1188,8 +1281,8 @@ background-position: -14px -42px;
 }
 /*点击选中项 */
 .jui-datetimepicker .jui-datetimepicker-active {
-  border: 1px solid #062f72;
-  background-color: #062f72;
+  border: 1px solid #226de5;
+  background-color: #226de5;
   font-weight: bold;
   color: #ffffff;
   outline: none;
@@ -1198,7 +1291,7 @@ background-position: -14px -42px;
 }
 /*表格内容样式*/
 .jui-datetimepicker-table-tr-a {
-  border: 1px solid #bababa;
+  border: 1px solid #a6a6a6;
   background-color: #ffffff;
   font-weight: bold;
   color: #094ab2;
@@ -1209,8 +1302,8 @@ background-position: -14px -42px;
 }
 /*鼠标移动到单元格上*/
 .jui-datetimepicker-table tr a:hover {
-  border: 1px solid #062f72;
-  background-color: #073d92;
+  border: 1px solid #145bcc;
+  background-color: #145bcc;
   font-weight: bold;
   color: #ffffff;
   outline: none;
@@ -1227,11 +1320,10 @@ background-position: -14px -42px;
 /*星期样式*/
 .jui-datetimepicker-week {
   font-weight: bold;
-  color: #000000;
+  color: #0d0d0d;
   outline: none;
   display: block;
   padding: .2em;
-  font-weight: bolder;
 }
 /*时分秒样式*/
 .jui-datetimepicker-hms {
@@ -1249,34 +1341,105 @@ background-position: -14px -42px;
 .jui-datetimepicker-hms dl {
   text-align: left;
 }
-.jui-datetimepicker-slider {
-  position: relative;
-  text-align: left;
-  height: .8em;
-  font-size: 1em;
-  border: 1px solid #dddddd;
-  background: #ffffff 50% top repeat-x;
-  color: #333333;
+/*.jui-datetimepicker-slider
+{
+	position: relative;
+	text-align: left;
+	height: .8em;
+	font-size: 1em;
+	border: 1px solid @DefaultBorder;
+	background: @DefaultBackground 50% top repeat-x;
+	color: @DefaultColor;
 }
-.jui-datetimepicker-handle {
-  top: -0.3em;
-  margin-left: -0.6em;
-  border: 1px solid #cccccc;
-  background: #f6f6f6 50% 50% repeat-x;
-  font-weight: bold;
-  color: #1c94c4;
-  position: absolute;
-  z-index: 2;
-  width: 1.2em;
-  height: 1.2em;
-  cursor: default;
-}
+
+.jui-datetimepicker-handle
+{
+	top: -.3em;
+	margin-left: -.6em;
+	border: 1px solid @ActiveBorder;
+	background: @ActiveBackground 50% 50% repeat-x;
+	font-weight: bold;
+	color: @ActiveColor;
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor:default;
+}*/
 .jui-datetimepicker-focus,
 .jui-datetimepicker-handle:hover,
 .jui-datetimepicker-butNow:hover,
 .jui-datetimepicker-butDone:hover {
-  border: 1px solid #fbcb09;
-  background: #fdf5ce;
+  border: 1px solid #e5920b;
+  background: #fff0d9;
   font-weight: bold;
-  color: #c77405;
+  color: #000000;
+}
+.jui-jSearch table {
+  border: 1px solid #a6a6a6;
+  border-collapse: collapse;
+  width: 100%;
+}
+.jui-jSearch table tr {
+  line-height: 30px;
+}
+.jui-jscrollbar-scroll-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  white-space: pre;
+}
+.jui-jscrollbar-scroll-containerDiv {
+  overflow: hidden;
+  position: relative;
+}
+.jui-jscrollbar-scroll-sliderWrapVertical {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: none;
+}
+.jui-jscrollbar-scroll-sliderWrapHorizontal {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  display: none;
+}
+.jui-jscrollbar-scroll-top_span {
+  background-image: url(../images/jui-icons_999999_78x84.png);
+  background-repeat: no-repeat;
+  background-position: -42px -19px;
+  display: block;
+  width: 10px;
+  height: 12px;
+  position: relative;
+}
+.jui-jscrollbar-scroll-bottom_span {
+  background-image: url(../images/jui-icons_999999_78x84.png);
+  background-repeat: no-repeat;
+  background-position: -54px -19px;
+  display: block;
+  width: 10px;
+  height: 12px;
+  position: relative;
+}
+.jui-jscrollbar-scroll-left_span {
+  background-image: url(../images/jui-icons_999999_78x84.png);
+  background-repeat: no-repeat;
+  background-position: -42px -33px;
+  display: block;
+  width: 12px;
+  height: 10px;
+  position: relative;
+}
+.jui-jscrollbar-scroll-right_span {
+  background-image: url(../images/jui-icons_999999_78x84.png);
+  background-repeat: no-repeat;
+  background-position: -56px -33px;
+  display: block;
+  width: 12px;
+  height: 10px;
+  position: relative;
 }
