@@ -31,8 +31,8 @@ items:
             head_align: "left",                                                 //表头单元格横向分布 [left], center, right
             v_align: "top",		                                                //表格单元格纵向分布 [top], middle, bottom
             h_align: "left",		                                                //表格单元格横向分布 [left], center, right
-            height: "auto",			                                            //单元格高度 150px, 10%
-            width: "auto",			                                            //单元格宽度 150px, 10%
+            tableHeight: "auto",			                                            //单元格高度 150px, 10%
+            tableWidth: "auto",			                                            //单元格宽度 150px, 10%
             sortColumn:"",                                                         //需要排序的data列名
             sortType:""                                                           //升序或降序
 */
@@ -42,8 +42,8 @@ items:
 	{
 	    // default options
 	    options: {
-	        height: '', //表高
-	        width: '', //表宽
+	        tableHeight: '', //表高
+	        tableWidth: '', //表宽
 	        data: [
                         //{ "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
                         //{ "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
@@ -80,6 +80,9 @@ items:
 	    _create: function () {
 	        this._jtableCreate();
 	    },
+	    //_init: function () {
+	    //    this._jtableCreate();            
+	    //},
 
 	    _jtableCreate: function () {
 	        var self = this,
@@ -96,7 +99,7 @@ items:
 
                 //生成表框架
 	            $(this.element).empty().append(
-                    "<table class='jui-table' id='" + tableId + "_tableSorter' style='width:" + o.width + ";height:" + o.height + ";'>" +
+                    "<table class='jui-table' id='" + tableId + "_tableSorter' style='width:" + o.tableWidth + ";height:" + o.tableHeight + ";'>" +
                     "<thead class='jui-table-head'><tr></tr></thead><tbody></tbody>" +
                     "</table>" +
                     "<span id='dis_checkedItems' style='display:none;'></span>");
@@ -110,7 +113,7 @@ items:
                 //生成表头
 	            var g, short_g_head;
 	            for (var j in o.columns) {
-	                g = o.columns[j];
+	                var g = o.columns[j];
 	                var g_head = g["head"];
 	                var g_maxLength = g["maxLength"];
 	                if (g_head.length > g_maxLength && g_maxLength !=0) {
@@ -124,6 +127,8 @@ items:
 	                var g_h_align = g["h_align"];
 	                var g_height = g["height"];
 	                var g_width = g["width"];
+	                var g_sortColumn = g["sortColumn"];
+	                var g_sortType = g["sortType"];
 	                $("#" + tableId + "_tableSorter thead tr").append(
                         "<td style='text-align: " + g_head_align
                         + "; vertical-align: " + g_v_align
@@ -134,37 +139,81 @@ items:
                         +"</div>"+
                         "</td>"
                         );
-	                if (sortItem["sortColumn"] == g_context) {
-	                    var head = g["head"];
-	                    $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
-	                    $("#" + tableId + head).children("span:eq(0)").css("cursor", "pointer");
-	                    var flag = true;
-	                    $("#" + tableId + head).click(function () {
-	                        $("#" + tableId + head).children("span:eq(1)").remove();
-	                        if (flag) {
-	                            if (sortItem["sortType"] == "desc") {
-	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
-	                            } else if (sortItem["sortType"] == "asc") {
-	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                if (g_sortColumn != "" && g_sortColumn != null) {
+	                    $("#" + tableId + g_head).children("span:eq(0)").css("cursor", "pointer");
+	                    $("#" + tableId + g_head).append("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                    if (sortItem["sortColumn"] == g_sortColumn) {
+	                        var g_head2 = g["head"];
+	                        $("#" + tableId + g_head2).children("span:eq(1)").remove();
+	                        if (sortItem["sortType"] == "desc") {
+	                            $("#" + tableId + g_head2).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                        } else if (sortItem["sortType"] == "asc" || sortItem["sortType"] == "" || sortItem["sortType"] == null) {
+	                            $("#" + tableId + g_head2).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
+	                        }
+	                    }	                    
+	                }
+	            }
+
+	            $("#" + tableId + "_tableSorter thead tr").children("td").each(function () {
+	                var t = $(this);
+	                var text = t.children("div").children("span:eq(0)").text();
+	                var column, sort;
+	                for (var c in o.columns) {
+	                    if (o.columns[c]["head"] == text) {
+	                        column = o.columns[c]["sortColumn"];
+	                        sort = o.columns[c]["sortType"];
+	                    }
+	                }
+	                if (column != "" && column != null) {
+	                    var flag2 = true;
+	                    t.children("div").click(function () {
+	                        if (flag2) {
+	                            $(".ui-icon-triangle-1-s").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
+	                            $(".ui-icon-triangle-1-n").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
+	                            if (column != sortItem["sortColumn"]) {
+	                                if (sort == "desc") {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                } else if (sort == "asc" || sort == "" || sort == null) {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                }
+	                                onSortChange(column, text, sort);
+	                            } else {
+	                                if (sort == "desc") {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                    onSortChange(column, text, "asc");
+	                                } else if (sort == "asc" || sort == "" || sort == null) {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                    onSortChange(column, text, "desc");
+	                                }
 	                            }
-	                            onSortChange(sortItem["sortColumn"], head, sortItem["sortType"]);
-	                            flag = false;
+	                            flag2 = false;
 	                            return;
 	                        }
-	                        if (!flag) {
-	                            if (sortItem["sortType"] == "desc") {
-	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
-	                                onSortChange(sortItem["sortColumn"], head, "asc");
-	                            } else if (sortItem["sortType"] == "asc") {
-	                                $("#" + tableId + head).append("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>").css("cursor", "pointer");
-	                                onSortChange(sortItem["sortColumn"], head, "desc");
+	                        if (!flag2) {
+	                            $(".ui-icon-triangle-1-s").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
+	                            $(".ui-icon-triangle-1-n").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
+	                            if (column != sortItem["sortColumn"]) {
+	                                if (sort == "desc") {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                    onSortChange(column, text, "asc");
+	                                } else if (sort == "asc" || sort == "" || sort == null) {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                    onSortChange(column, text, "desc");
+	                                }
+	                            } else {
+	                                if (sort == "desc") {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                } else if (sort == "asc" || sort == "" || sort == null) {
+	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
+	                                }
+	                                onSortChange(column, text, sort);
 	                            }
-	                            flag = true;
+	                            flag2 = true;
 	                            return;
 	                        }
 	                    });
 	                }
-	            }
+	            });
 
                 //生成表格
 	            var v, short_v_head;
@@ -264,9 +313,9 @@ items:
 	        return checkedRoll;
 	    },
 
-	    _init: function () {
-	        this._jtableCreate();
-	    },
+	    //_init: function () {
+	    //    this._jtableCreate();
+	    //},
 
 	    _sortNum: function (a, b) {
 	        return a.length - b.length;
@@ -281,11 +330,11 @@ items:
 	            if (key == "sortItem") {
 	                var head;
 	                for (var c in o.columns) {
-	                    if(o.columns[c]["context"] == value["sortColumn"]){
+	                    if (o.columns[c]["sortColumn"] == value["sortColumn"]) {
 	                        head = o.columns[c]["head"];
 	                    }
 	                }
-	                onSortChange(value["sortColumn"], head, value["sortType"]);
+	                //onSortChange(value["sortColumn"], head, value["sortType"]);
 	            }
 	        }
 	        else {

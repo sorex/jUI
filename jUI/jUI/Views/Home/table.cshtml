@@ -26,6 +26,7 @@
 	</script>
 
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jtable.js")"></script>
+    <script src="~/Scripts/jUI/jui.jsortSelect.js"></script>
 
 	<script type="text/javascript">
 	    //编辑
@@ -43,17 +44,17 @@
 		$(function ()
 		{
 		    $("#MyTable1").jtable({
-		        height: '20%', //表高
-		        width: '100%', //表宽
+		        tableHeight: '20%', //表高
+		        tableWidth: '100%', //表宽
 		        data:
                     [
-                        { "ID": 1, "Name": "AAAAA", "Name2": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
-                        { "ID": 2, "Name": "BBBBBBB", "Name2": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
-                        { "ID": 3, "Name": "CCCCCC", "Name2": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
-                        { "ID": 4, "Name": "DDDDDD", "Name2": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
-                        { "ID": 5, "Name": "EEEEEEE", "Name2": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
-                        { "ID": 6, "Name": "FFFFFFF", "Name2": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
-                        { "ID": 7, "Name": "GGGGG", "Name2": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
+                        { "ID": 1, "Name": "AAAAA", "Id": "aaaaa", "Name3": "aaaaa3", "Name4": "aaaaaa4", "Name5": "aaaaaaaa5" },
+                        { "ID": 2, "Name": "BBBBBBB", "Id": "bbbbb", "Name3": "bbbbb3", "Name4": "bbbbb4", "Name5": "bbbbb5" },
+                        { "ID": 3, "Name": "CCCCCC", "Id": "cccccc", "Name3": "cccccc3", "Name4": "cccccc4", "Name5": "cccccc5" },
+                        { "ID": 4, "Name": "DDDDDD", "Id": "dddddd", "Name3": "dddddd3", "Name4": "dddddd4", "Name5": "dddddd5" },
+                        { "ID": 5, "Name": "EEEEEEE", "Id": "eeeeeee", "Name3": "eeeeeee3", "Name4": "eeeeeee4", "Name5": "eeeeeee5" },
+                        { "ID": 6, "Name": "FFFFFFF", "Id": "ffffffff", "Name3": "ffffffff3", "Name4": "ffffffff4", "Name5": "ffffffff5" },
+                        { "ID": 7, "Name": "GGGGG", "Id": "gggggg", "Name3": "gggggg3", "Name4": "gggggg4", "Name5": "gggggg5" }
                     ], //数据源
 		        columns:
                     [
@@ -66,21 +67,39 @@
 		                    h_align: "left",		                                            //[left], center, right
 		                    height: "auto",			                                        //150px, 10%
 		                    width: "auto"			                                        //150px, 10%
+                            , sortColumn: ""                                                //排序列
+                            , sortType: "desc"                                              //排序规则
 		                },
-		                { head: "名称2", context: "#Name2", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },//,sortValue:"#Name2",sortType:"asc" 
-		                { head: "名称3", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称4", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
-		                { head: "名称5", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto" },
+		                { head: "编号", context: "#Id", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Id" },
+		                { head: "年龄", context: "#Name3", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name3", sortType: "desc" },
+		                { head: "完成日期", context: "#Name4", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name4", sortType: "asc" },
+		                { head: "大小", context: "#Name5", maxLength: 5, head_align: "left", v_align: "top", h_align: "left", height: "auto", width: "auto", sortColumn: "Name5", sortType: "desc" },
 		                { head: "操作",context: "<a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')>Edit</a>|<a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')>Detail</a>|<a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')>Delete</a>",
 		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
                     ]//列名                
-		        , sortItem: { sortColumn: "#Name5", sortType: "asc" }
+		        , sortItem: { sortColumn: "Name3", sortType: "asc" }
                 , onSortChange: function (sortColumn, head, sortType) {
-                    alert(sortColumn + "\n" + head + "\n" + sortType);
+                    //alert(sortColumn + ":" + sortType);
+                    $("#sort").jsortSelect("option", "sortItem", { sortColumn: sortColumn, sortType: sortType });
+                    //alert(sortColumn + "\n" + head + "\n" + sortType);
                 }
 		    });
+
 		    $("#dd").click(function () {
-		        $("#MyTable1").jtable("option", "sortItem", { sortColumn: "#Name2", sortType: "desc" });
+		        $("#MyTable1").jtable("option", "sortItem", { sortColumn: "Name4", sortType: "desc" });
+		    });
+		    $("#sort").jsortSelect({
+		        items: [{ sortColumn: "Name2", text: "编号" },
+					{ sortColumn: "Name3", text: "年龄", sortType: "desc" },
+					{ sortColumn: "Name4", text: "完成日期", sortType: "asc" },
+					{ sortColumn: "Name5", text: "大小", sortType: "desc" }
+		        ],
+		        onSortChange: function (sortColumn, text, sortType) {
+
+		            alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
+
+		        }
+
 		    });
 		});
 	</script>
@@ -107,8 +126,10 @@
 		<li><a href="#tab1">默认</a></li>
 	</ul>
 	<div id="tab1">
+        <div id="sort"></div>
 		<div id="MyTable1"></div>
         <input id="dd" value="设置排序列" type="button" />
+
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">
 &lt;div id="MyTable1"&gt;
@@ -150,6 +171,10 @@
 		                { head: "操作",context: "&lt;a href='#' onclick=ActionEdit(#ID,'#Name','#Name2')&gt;Edit&lt;/a&gt;|&lt;a href='#' onclick=ActionDetail(#ID,'#Name','#Name2')&gt;Detail&lt;/a&gt;|&lt;a href='#' onclick=ActionDelete(#ID,'#Name','#Name2')&gt;Delete&lt;/a&gt;",
 		                    maxLength: 5,head_align: "left",v_align: "top",h_align: "left",height: "auto",width: "auto"}
 		            ]//列名
+		        , sortItem: { sortColumn: "#Name5", sortType: "asc" }
+                , onSortChange: function (sortColumn, head, sortType) {
+                    alert(sortColumn + "\n" + head + "\n" + sortType);
+                }
 		    });
 		});
 &lt;/script&gt;
