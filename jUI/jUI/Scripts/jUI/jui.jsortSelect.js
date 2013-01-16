@@ -42,7 +42,7 @@
 			options: {
 				items: null,
 				onSortChange: null,
-				sortItem: { sortColumn: "size", sortType: "desc" }
+				sortItem: null
 			},
 			_create: function () {
 			    $(this.element).empty();
@@ -222,10 +222,10 @@
 		            }
 		        });
 		        $("#" + showChildUl + " > li").find("i").removeClass("action");
-		        if (o.sortItem.sortType == "asc") {
-		            $("#" + showChildUl + " > li").eq(0).find("i").addClass("action");
-		        } else {
+		        if (o.sortItem.sortType == "desc") {
 		            $("#" + showChildUl + " > li").eq(1).find("i").addClass("action");
+		        } else {
+		            $("#" + showChildUl + " > li").eq(0).find("i").addClass("action");
 		        }
 
 	
