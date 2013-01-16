@@ -1,26 +1,27 @@
 ﻿@{
-	ViewBag.Title = "sortSelect";
+    ViewBag.Title = "sortSelect";
 }
 <h2>sortSelect</h2>
+<div id="test"></div>
 
 @section head{
 	<script type="text/javascript">
-		$(function () {
-			$("#demoTabs").tabs();
-			$("#descriptionTabs").tabs();
-			$("#optionsAccordion").accordion({
-				autoHeight: false,
-				navigation: true
-			});
-			$("#eventsAccordion").accordion({
-				autoHeight: false,
-				navigation: true
-			});
-			$("#methodsAccordion").accordion({
-				autoHeight: false,
-				navigation: true
-			});
-		});
+	    $(function () {
+	        $("#demoTabs").tabs();
+	        $("#descriptionTabs").tabs();
+	        $("#optionsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#eventsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	        $("#methodsAccordion").accordion({
+	            autoHeight: false,
+	            navigation: true
+	        });
+	    });
 	</script>
 
 	<script type="text/javascript" src="@Url.Content("~/Scripts/jUI/jui.jsortSelect.js")"></script>
@@ -30,37 +31,37 @@
 
 	        $("#showSortSelect").jsortSelect({
 	            items: [{ sortColumn: "Id", text: "编号" },
-					{ sortColumn: "Age", text: "年龄",sortType: "desc" },
+					{ sortColumn: "Age", text: "年龄", sortType: "desc" },
 					{ sortColumn: "finishData", text: "完成日期", sortType: "asc" },
 					{ sortColumn: "size", text: "大小", sortType: "desc" }
 	            ],
 	            onSortChange: function (sortColumn, text, sortType) {
-	               
-	            alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
-	            
-				}
-				
-			});
+
+	                alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
+
+	            }
+
+	        });
 
 
-			$("#showSortSelect2").jsortSelect({
-				item: null,
-				onSortChange: function (sortColumn, text, sortType) {
-				    alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
-				}
-			});
+	        $("#showSortSelect2").jsortSelect({
+	            item: null,
+	            onSortChange: function (sortColumn, text, sortType) {
+	                alert("选择的字段名称为:" + sortColumn + ";显示名称为:" + text + ";排序方式为:" + sortType);
+	            }
+	        });
 
-			$("#btnSelect").click(function () {
-			    var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem");
-				alert("选择的字段名称为:" + selectObj.sortColumn + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sortType);
+	        $("#btnSelect").click(function () {
+	            var selectObj = $("#showSortSelect").jsortSelect("getSelectedItem");
+	            alert("选择的字段名称为:" + selectObj.sortColumn + ";显示名称为:" + selectObj.text + ";排序方式为:" + selectObj.sortType);
 
-	
-			});
 
-			$("#btnSet").click(function () {
-			    $("#showSortSelect").jsortSelect("option", "sortItem", { sortColumn: "Age", sortType: "desc" });
-			});
-		});
+	        });
+
+	        $("#btnSet").click(function () {
+	            $("#showSortSelect").jsortSelect("option", "sortItem", { sortColumn: "Age", sortType: "desc" });
+	        });
+	    });
 
 	</script>
 }

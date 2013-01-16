@@ -49,6 +49,7 @@
 				var self = this,
 				o = this.options;
 				var tagId = this.element.attr("id");/*目标的id*/
+				
 				var titleId = tagId + "-title"; /*title*/
 				var selectId = tagId + "-selectId";/*content*/
 				var showParentUl = tagId + "-showParentUl";
@@ -74,39 +75,40 @@
 					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:130px;'>排序方式:" +
 						"<span id=" + selectId + " style='cursor: pointer' data-sortColumn=" + defaultDataSortColumn + " data-sortType=" + defaultDataSortType + ">" + defaultDataContent + "</span>" +
 					"<span class='jui-jsortSelect-downBtn'>&nbsp;&nbsp;</span></span>");
-
 					var ulHtml = "<ul id=" + showParentUl + " class='jui-jsortSelect-ul'>";
 					for (var i = 0; i < o.items.length; i++) {
 					    var dataSortType = (o.items[i]["sortType"] != "desc") ? "asc" : "desc";
 						if (flag) {
 						    if (o.sortItem.sortColumn != null && o.items[i]["sortColumn"] == o.sortItem.sortColumn) {
 
-							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action'></i><span>" + o.items[i]["text"] + "</span> </li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action' /><span>" + o.items[i]["text"] + "</span> </li>";
 							} else {
-							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i></i><span>" + o.items[i]["text"] + "</span></li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i /><span>" + o.items[i]["text"] + "</span></li>";
 							}
 						
 						}else{
 							if (i == 0) {
-							    ulHtml += "<li data-sortColumn=" + o.items[0]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action'></i><span>" + o.items[0]["text"] + "</span> </li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[0]["sortColumn"] + " data-sortType=" + dataSortType + " class='action'><i class='action' /><span>" + o.items[0]["text"] + "</span> </li>";
 							} else {
-							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i></i><span>" + o.items[i]["text"] + "</span> </li>";
+							    ulHtml += "<li data-sortColumn=" + o.items[i]["sortColumn"] + " data-sortType=" + dataSortType + "><i /><span>" + o.items[i]["text"] + "</span> </li>";
 							}
 						}
 					}
 					if (defaultDataSortType == "asc") {
-					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li class='action'><i class='action'></i><span>升序</span></li><li><i></i><span>降序</span</li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li class='action'><i class='action' /><span>升序</span></li><li><i /><span>降序</span></li></ul></div></ul>"
 					}else{
-					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li ><i ></i><span>升序<span></li><li class='action'><i class='action'></i><span>降序<span></li></ul></div></ul>"
+					    ulHtml += "<div><hr style='margin:12px;cursor:default;'/><ul id=" + showChildUl + "><li ><i /><span>升序<span></li><li class='action'><i class='action' /><span>降序</span></li></ul></div></ul>"
 					}
-
+                 
+					
 		$("body").append(ulHtml); /*body之前追加要显示的ul部分*/
 
 		//鼠标点击展开事件
 		$("#" + titleId).click(function (event) {
 			//取消事件冒泡
-			event.stopPropagation();
-			$("#" + showParentUl).slideToggle("fast");
+		    event.stopPropagation();
+		   $("#"+showParentUl).slideToggle("fast");
+		   
 		});
 
 		//里面的点击事件
