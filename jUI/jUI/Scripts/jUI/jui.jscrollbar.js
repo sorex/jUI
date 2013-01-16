@@ -83,9 +83,9 @@
 	        if (scrollWidth < 0 || scrollWidth > 40) {
 	            scrollWidth = 20;
 	        }
-	        t.addClass("jui-jscrollbar-scroll-content ");
 	        var t_w = t.width();
 	        var t_h = t.height();
+	        t.addClass("jui-jscrollbar-scroll-content ");
 	        if ($("#" + t_id + "sliderWrapVertical").length > 0) {
 	            $("#" + t_id + "sliderWrapVertical").remove();
 	        }
@@ -170,6 +170,7 @@
 	            
 	            var prop = diff / t_h; //高度差与内容层高度比例
 	            var handleHeight = Math.round((1 - prop) * (showHeight - space_)); //计算滑块的高度
+
 	            var sliderInitial = 100;
 	            var a = true, b = true;
 	            //#region设置滑动条
@@ -207,11 +208,8 @@
 	            var origSliderHeight = showHeight - space_; //读取滚动条总长度
 	            var sliderHeight = origSliderHeight - handleHeight; //获取滑块可移动范围长度
 	            var sliderMargin = 0.5 * handleHeight; //获取滑块上下边距
-	            if ($.browser.msie) {
-	                $("#" + t_id + "sliderVertical").css({ 'height': sliderHeight, 'top': sliderMargin }); //设置滑动层高度和上边距
-	            } else {
-	                $("#" + t_id + "sliderVertical").css({ 'height': sliderHeight, 'margin-top': sliderMargin }); //设置滑动层高度和上边距                    
-	            }
+
+	            $("#" + t_id + "sliderVertical").css({ 'height': sliderHeight, 'margin-top': sliderMargin }); //设置滑动层高度和上边距       
                 //#endregion
 
 	            //#region按钮样式切换
