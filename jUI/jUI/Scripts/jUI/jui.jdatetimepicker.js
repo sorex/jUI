@@ -428,7 +428,7 @@
 	                    short_week = shortWeekCN; break;
 	            }
 	            for (var k = 0; k < short_week.length; k++) {
-	                $("#" + elementId + "_tb tr").append("<td ><span class='jui-datetimepicker-week' title='" + long_week[k] + "'>" + short_week[k] + "</span></td>");
+	                $("#" + elementId + "_tb tr").append("<td><span class='jui-datetimepicker-week' title='" + long_week[k] + "'>" + short_week[k] + "</span></td>");
 	            }
 	            for (var i = 0; i < 5; i++) {
 	                $("#" + elementId + "_tb").append("<tr></tr>");
