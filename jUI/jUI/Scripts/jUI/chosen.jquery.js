@@ -496,7 +496,6 @@ Copyright (c) 2011 by Harvest
 
 		Chosen.prototype.test_active_click = function (evt) {
 		    if ($(evt.target).parents('#' + this.container_id).length) {
-		        alert(this.container_id);
 				return this.active_field = true;
 			} else {
 				return this.close_field();
