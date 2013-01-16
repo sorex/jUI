@@ -153,7 +153,8 @@ items:
 	                    }	                    
 	                }
 	            }
-
+	            var span_n = "<span class='ui-icon ui-icon-triangle-1-n' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>";
+	            var span_s = "<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>";
 	            $("#" + tableId + "_tableSorter thead tr").children("td").each(function () {
 	                var t = $(this);
 	                var text = t.children("div").children("span:eq(0)").text();
@@ -170,6 +171,7 @@ items:
 	                        if (flag2) {
 	                            $(".ui-icon-triangle-1-s").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
 	                            $(".ui-icon-triangle-1-n").replaceWith("<span class='ui-icon ui-icon-triangle-2-n-s' style='position:absolute;display:inline-block;right:0px;top:2px;'></span>");
+	                            
 	                            if (column != sortItem["sortColumn"]) {
 	                                if (sort == "desc") {
 	                                    $(this).children("span:eq(1)").replaceWith("<span class='ui-icon ui-icon-triangle-1-s' style='position:absolute;display:inline-block;right:0px;top:2px;cursor:pointer;'></span>");
@@ -334,7 +336,7 @@ items:
 	                        head = o.columns[c]["head"];
 	                    }
 	                }
-	                //onSortChange(value["sortColumn"], head, value["sortType"]);
+	                onSortChange(value["sortColumn"], head, value["sortType"]);
 	            }
 	        }
 	        else {
