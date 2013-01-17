@@ -1,5 +1,45 @@
 ﻿@{
     ViewBag.Title = "checkbox";
 }
+<script type="text/javascript">
 
+    $(function () {
+       
+        $("#aa").click(function () {
+            //alert($(this).prev().is(":checked"));
+            //if ($(this).prev().val()) {
+            //}
+            if ($(this).prev().is(":checked")) {
+                $(this).prev().removeAttr("checked");             
+            alert($(this).prev().is(":checked"));
+            } else {
+                $(this).prev().attr("checked", true);
+                alert($(this).prev().is(":checked"));
+            }
+        });
+        $("#checkbox2").click(function () {alert("显示的");});
+    });
+
+    function Aover(id) {
+        $("#log").text($("#log").text() + ",Aover:" + id);
+    }
+    function Aout(id) {
+        $("#log").text($("#log").text() + ",Aout:" + id);
+    }
+    function Achange(id) {
+        $("#log").text($("#log").text() + ",Achange:" + id);
+    }
+    function Aclick(id) {
+        $("#log").text($("#log").text() + ",Aclick:" + id);
+    }
+</script>
 <h2>checkbox</h2>
+
+<input id ="checkboxTest" type="checkbox" onmouseover="Aover('c');" onmouseout="Aout('c');" onchange="Achange('c');" />
+<span id="checkboxTest_icon" onmouseover="Aover('s');" onmouseout="Aout('s');" onclick="Aclick('c');">zz</span>
+<label for="checkboxTest_icon" onmouseover="Aover('l');" onmouseout="Aout('l');" onclick="Aclick('l');">this is label for</label>
+<br />
+<span id="log"></span>
+<br />
+<input id="checkbox1" type="checkbox" value="选项一" name="cb" style="display:none" /><span id="aa" style=" display:inline-block"></span><label for="aa">111</label>
+<input id="checkbox2" type="checkbox" value="选项2" name="cb"  style=" cursor:pointer"/><label for="checkbox2">选项2</label>

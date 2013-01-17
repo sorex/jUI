@@ -35,39 +35,50 @@
         _create: function () {
             var self = this,
             o = this.options;
-            $(":checkbox",this.element).after("<span class='jui-checkbox'></span>").click(function (event) {//checkbox的点击事件
+            $(":checkbox", this.element).each(function () {
+                var spanId = $(this).attr("id") + "_ico";
+                if ($.browser.msie) { //IE浏览器
+                    $(this).after("<span class='jui-checkbox' id=" + spanId + "></span>");
+                    if ($(this).next().next().attr("for")==$(this).attr("id")) {
+                        $(this).next().next().attr("for", spanId);
+                    }
+                } else {//非IE浏览器
+                    $(this).after("<span class='jui-checkbox'></span>");
+                }
+
+            }).click(function (event) {//checkbox的点击事件
 
                 var tagObject = $(this);
                 var tagNextObject = tagObject.next();
-
                 if (tagObject.is(':checked')) {
                     tagNextObject.addClass("jui-checkbox-checked");
                     tagObject.checked = true;
                     tagNextObject.removeClass("jui-checkbox-checked-hover jui-checkbox-checked-checked");
-                    //tagNextObject.removeClass('jui-checkbox-checked-checked');
+                  
                 }
                 else {
 
                     tagNextObject.removeClass('jui-checkbox-checked-checked jui-checkbox-checked');
-                    //tagNextObject.removeClass('jui-checkbox-checked');
                     tagNextObject.addClass("jui-checkbox-checked-hover");
                     tagObject.checked = false;
                 }
                 event.stopPropagation();
 
             }).hide().next().click(function (event) { //背景图片点击事件
-
+             
                 var myObject = document.getElementById($(this).prev().attr("id"));
-
+                var tagObject = $(this);
+                var tagNextObject = tagObject.next();
                 if (myObject.checked == true) {
-                    $(this).removeClass('jui-checkbox-checked');
+                    $(this).removeClass('jui-checkbox-checked jui-checkbox-checked-hover jui-checkbox-checked-checked');
                     myObject.checked = false;
                 } else {
                     myObject.checked = true;
+                    $(this).removeClass('jui-checkbox-checked-hover jui-checkbox-checked-checked');
                     $(this).addClass('jui-checkbox-checked')
                 }
                 event.stopPropagation();
-
+      
             }).next().mouseover(function (event) {
                 $(this).addClass('jui-checkbox-label');
                 var tagPrevObject = $(this).prev();
@@ -97,6 +108,8 @@
                     //tagNextObject.removeClass('jui-checkbox-checked-checked');
                 //}
             });
+
+           
         },
 
 

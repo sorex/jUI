@@ -72,7 +72,7 @@
 					}
 
 				
-					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:130px;'>排序方式:" +
+					$("#" + tagId).append("<span id=" + titleId + " style='cursor:pointer;text-align:right;display:-moz-inline-box; display:inline-block; width:140px;'>排序方式 : " +
 						"<span id=" + selectId + " style='cursor: pointer' data-sortColumn=" + defaultDataSortColumn + " data-sortType=" + defaultDataSortType + ">" + defaultDataContent + "</span>" +
 					"<span class='jui-jsortSelect-downBtn'>&nbsp;&nbsp;</span></span>");
 					var ulHtml = "<ul id=" + showParentUl + " class='jui-jsortSelect-ul'>";

@@ -35,7 +35,19 @@
         _create: function () {
             var self = this,
             o = this.options;
-            $(":radio", this.element).after("<span class='jui-radio'></span>").click(function () {
+            $(":radio", this.element).each(function () {
+
+                var spanId = $(this).attr("id") + "_ico";
+                if ($.browser.msie) { //IE浏览器
+                    $(this).after("<span class='jui-radio' id=" + spanId + "></span>");
+                    if ($(this).next().next().attr("for") == $(this).attr("id")) {
+                        $(this).next().next().attr("for", spanId);
+                    }
+                } else {//非IE浏览器
+                    $(this).after("<span class='jui-radio'></span>");
+                }
+
+            }).click(function () {
                 var tagObject = $(this);
                 var tagNextObject = tagObject.next();
                 if (tagObject.is(':checked')) {
@@ -49,12 +61,15 @@
 
                 }
             }).hide().next().click(function () {
-                $(this).siblings().removeClass("jui-radio-checked");
+              
+                $(this).siblings().removeClass('jui-radio-checked jui-radio-checked-hover jui-radio-checked-checked');
                 var tagPrevObject = $(this).prev();
                 if (!tagPrevObject.is(":checked")) {
-                    tagPrevObject[0].checked = true;
-                    $(this).addClass("jui-radio-checked");
+                    tagPrevObject.attr("checked",true);
+                    $(this).removeClass('jui-radio-checked-hover jui-radio-checked-checked');
+                    $(this).addClass('jui-radio-checked');
                 }
+           
             }).next().mouseover(function (event) {
                 $(this).addClass('jui-radio-label');
                 var tagPrevObject = $(this).prev();
@@ -75,7 +90,6 @@
 
                 var tagObject = $(this);
                 var tagNextObject = tagObject.next();
-
                 if (tagObject.is(':checked')) {
                     tagNextObject.siblings().removeClass("jui-radio-checked");
                     tagNextObject.addClass("jui-radio-checked");
