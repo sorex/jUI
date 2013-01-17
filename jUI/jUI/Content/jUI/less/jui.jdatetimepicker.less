@@ -30,7 +30,7 @@
 	position: absolute;
 	float: left;
 	z-index: 33;
-	border-radius:8px;
+	border-radius:@Corners;
 }
 /*头部div中中间div样式*/
 .jui-datetimepicker-dhead
@@ -39,7 +39,7 @@
 	padding-top: 5px;
 	background-color: @HeaderBackground;
 	border:1px solid @HighlightColor;
-	border-radius:8px;
+	border-radius:@Corners;
 }
 /*左按钮*/
 .jui-datetimepicker-prev
@@ -69,7 +69,6 @@
 {
 	border: 1px solid @ActiveBorder;
 	background-color: @ActiveBackground;
-	font-weight: bold;
 	color:@ActiveColor;
 	outline: none;
 	display: block;
@@ -80,7 +79,6 @@
 {
 	border: 1px solid @ContentBorder;
 	background-color:@DefaultColor;
-	font-weight: bold;
 	color:@layoutTopBackground;
 	outline: none;
 	display: block;
@@ -92,7 +90,6 @@
 {
 	border: 1px solid @HoverBorder;
 	background-color: @HoverBackground;
-	font-weight: bold;
 	color: @HoverColor;
 	outline: none;
 }

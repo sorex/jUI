@@ -1249,7 +1249,7 @@ background-position: -14px -42px;
   position: absolute;
   float: left;
   z-index: 33;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 /*头部div中中间div样式*/
 .jui-datetimepicker-dhead {
@@ -1257,7 +1257,7 @@ background-position: -14px -42px;
   padding-top: 5px;
   background-color: #094ab2;
   border: 1px solid #000000;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 /*左按钮*/
 .jui-datetimepicker-prev {
@@ -1283,30 +1283,29 @@ background-position: -14px -42px;
 .jui-datetimepicker .jui-datetimepicker-active {
   border: 1px solid #226de5;
   background-color: #226de5;
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: #ffffff;
   outline: none;
   display: block;
-  text-decoration: none;
+text-decoration: none;
 }
 /*表格内容样式*/
 .jui-datetimepicker-table-tr-a {
   border: 1px solid #a6a6a6;
   background-color: #ffffff;
-  font-weight: bold;
   color: #094ab2;
   outline: none;
   display: block;
   margin: .2em;
-  text-decoration: none;
+text-decoration: none;
 }
 /*鼠标移动到单元格上*/
 .jui-datetimepicker-table tr a:hover {
   border: 1px solid #145bcc;
   background-color: #145bcc;
-  font-weight: bold;
-  color: #ffffff;
-  outline: none;
+  /*font-weight: bold;*/
+color: #ffffff;
+outline: none;
 }
 /*内容表格样式*/
 .jui-datetimepicker-table {
