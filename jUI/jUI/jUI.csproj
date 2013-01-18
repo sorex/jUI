@@ -188,7 +188,10 @@
     <Content Include="Content\jUI\css\jui.css" />
     <Content Include="Content\jUI\images\jui-icons_094ab2_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_0d0d0d_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_666666_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_999999_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_bababa_78x84.png" />
+    <Content Include="Content\jUI\images\jui-icons_cccccc_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_da0000_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_e5920b_78x84.png" />
     <Content Include="Content\jUI\images\jui-icons_ffffff_78x84.png" />
