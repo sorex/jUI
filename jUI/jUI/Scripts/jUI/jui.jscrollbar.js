@@ -23,11 +23,11 @@
 	    // default options
 	    options: {
 
-	        //buttonDefault: '#f3f3f3'//按钮颜色(less文件中已定义)
-			//, buttonActive: '#f3f3f3'//按钮点击后颜色(less文件中已定义)
-            //, buttonHover: '#f3f3f3'//覆盖按钮后颜色(less文件中已定义)
+	        buttonDefault: '#bababa'//按钮颜色(less文件中已定义)
+			, buttonActive: '#666666'//按钮点击后颜色(less文件中已定义)
+            , buttonHover: '#cccccc'//覆盖按钮后颜色(less文件中已定义)
             
-            //, 
+            , 
                 buttonBorder: 'transparent'//顶端按钮边框颜色    
 
             , buttonWidth: 11//纵向滚动条顶端按钮宽度
@@ -64,8 +64,8 @@
 	        var handleincolor = o.handleHover;
 	        var handleActive = o.handleActive;
 
-	        var buttonColor = o.buttonDefault;
-	        var buttonClickColor = o.buttonActive;
+	        var buttonDefault = o.buttonDefault;
+	        var buttonActive = o.buttonActive;
 	        var buttonHover = o.buttonHover;
 	        var buttonBorder = o.buttonBorder;
 	        var buttonWidth = o.buttonWidth;
@@ -251,32 +251,40 @@
                 //#region垂直滚动条按钮点击事件
 	            var intervalId;
 	            $("#" + t_id + "sliderTop").mousedown(function (event) {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonTop").addClass("jui-jscrollbar-scroll-buttonTop-active");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonTop").addClass("jui-jscrollbar-scroll-buttonTop-active");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonActive.substring(1) + "_78x84.png)");
 	                event.stopPropagation();
 	                intervalId = setInterval(function addfix() { var v = $("#" + t_id + "sliderVertical").slider("value"); v += 1; $("#" + t_id + "sliderVertical").slider("value", v); }, 10);
 	            }).mouseover(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonTop").addClass("jui-jscrollbar-scroll-buttonTop-hover");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonTop").addClass("jui-jscrollbar-scroll-buttonTop-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
 	            }).mouseout(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonTop-hover jui-jscrollbar-scroll-buttonTop-active").addClass("jui-jscrollbar-scroll-buttonTop");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonTop-hover jui-jscrollbar-scroll-buttonTop-active").addClass("jui-jscrollbar-scroll-buttonTop");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonDefault.substring(1) + "_78x84.png)");
 	                clearInterval(intervalId);
 	            }).mouseup(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonTop-active").addClass("jui-jscrollbar-scroll-buttonTop-hover");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonTop-active").addClass("jui-jscrollbar-scroll-buttonTop-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
 	                clearInterval(intervalId);
 	            });
 
 	            $("#" + t_id + "sliderBottom").css("border", "1px solid " + buttonBorder);
 	            $("#" + t_id + "sliderBottom").mouseover(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonBottom").addClass("jui-jscrollbar-scroll-buttonBottom-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonBottom").addClass("jui-jscrollbar-scroll-buttonBottom-hover");
 	            }).mousedown(function (event) {
 	                event.stopPropagation();
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonBottom").addClass("jui-jscrollbar-scroll-buttonBottom-active");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonBottom").addClass("jui-jscrollbar-scroll-buttonBottom-active");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonActive.substring(1) + "_78x84.png)");
 	                intervalId = setInterval(function addfix() { var v = $("#" + t_id + "sliderVertical").slider("value"); v -= 1; $("#" + t_id + "sliderVertical").slider("value", v); }, 10);
 	            }).mouseout(function () {
 	                clearInterval(intervalId);
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonBottom-hover jui-jscrollbar-scroll-buttonBottom-active").addClass("jui-jscrollbar-scroll-buttonBottom");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonDefault.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonBottom-hover jui-jscrollbar-scroll-buttonBottom-active").addClass("jui-jscrollbar-scroll-buttonBottom");
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonBottom-active").addClass("jui-jscrollbar-scroll-buttonBottom-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonBottom-active").addClass("jui-jscrollbar-scroll-buttonBottom-hover");
 	            });
                 //#endregion
 	        }
@@ -375,31 +383,39 @@
 	            var intervalId;
 	            $("#" + t_id + "sliderLeft").css("border", "1px solid " + buttonBorder);
 	            $("#" + t_id + "sliderLeft").mousedown(function (event) {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonLeft").addClass("jui-jscrollbar-scroll-buttonLeft-active");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonLeft").addClass("jui-jscrollbar-scroll-buttonLeft-active");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonActive.substring(1) + "_78x84.png)");
 	                event.stopPropagation();
 	                intervalId = setInterval(function addfix() { var v = $("#" + t_id + "sliderHorizontal").slider("value"); v -= 1; $("#" + t_id + "sliderHorizontal").slider("value", v); }, 10);
 	            }).mouseover(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonLeft").addClass("jui-jscrollbar-scroll-buttonLeft-hover");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonLeft").addClass("jui-jscrollbar-scroll-buttonLeft-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
 	            }).mouseout(function () {
 	                clearInterval(intervalId);
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonLeft-hover jui-jscrollbar-scroll-buttonLeft-active").addClass("jui-jscrollbar-scroll-buttonLeft");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonDefault.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonLeft-hover jui-jscrollbar-scroll-buttonLeft-active").addClass("jui-jscrollbar-scroll-buttonLeft");
 	            }).mouseup(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonLeft-active").addClass("jui-jscrollbar-scroll-buttonLeft-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonLeft-active").addClass("jui-jscrollbar-scroll-buttonLeft-hover");
 	                clearInterval(intervalId);
 	            });
 	            $("#" + t_id + "sliderRight").css("border", "1px solid " + buttonBorder);
 	            $("#" + t_id + "sliderRight").mousedown(function (event) {
 	                event.stopPropagation();
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonRight").addClass("jui-jscrollbar-scroll-buttonRight-active");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonActive.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonRight").addClass("jui-jscrollbar-scroll-buttonRight-active");
 	                intervalId = setInterval(function addfix() { var v = $("#" + t_id + "sliderHorizontal").slider("value"); v += 1; $("#" + t_id + "sliderHorizontal").slider("value", v); }, 10);
 	            }).mouseover(function () {
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonRight").addClass("jui-jscrollbar-scroll-buttonRight-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonRight").addClass("jui-jscrollbar-scroll-buttonRight-hover");
 	            }).mouseout(function () {
 	                clearInterval(intervalId);
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonRight-hover jui-jscrollbar-scroll-buttonRight-active").addClass("jui-jscrollbar-scroll-buttonRight");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonDefault.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonRight-hover jui-jscrollbar-scroll-buttonRight-active").addClass("jui-jscrollbar-scroll-buttonRight");
 	            }).mouseup(function () {
 	                clearInterval(intervalId);
-	                $(this).removeClass("jui-jscrollbar-scroll-buttonRight-active").addClass("jui-jscrollbar-scroll-buttonRight-hover");
+	                $(this).css("background-image", "url(../../Content/JUI/images/jui-icons_" + buttonHover.substring(1) + "_78x84.png)");
+	                //$(this).removeClass("jui-jscrollbar-scroll-buttonRight-active").addClass("jui-jscrollbar-scroll-buttonRight-hover");
 	            });
 	            //#endregion
 

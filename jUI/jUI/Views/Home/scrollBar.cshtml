@@ -291,7 +291,10 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
         &lt;/div&gt;
         &lt;script type="text/javascript"&gt;
             $(function () {
-                $("#scrollDiv").jscrollbar({             
+                $("#scrollDiv").jscrollbar({        
+	                buttonDefault: '#bababa'//按钮颜色(less文件中已定义)
+			        , buttonActive: '#666666'//按钮点击后颜色(less文件中已定义)
+                    , buttonHover: '#cccccc'//覆盖按钮后颜色(less文件中已定义)     
                     , buttonBorder: '#f3f3f3'//顶端按钮边框颜色    
 
                     , buttonWidth: 12//纵向滚动条顶端按钮宽度
@@ -330,10 +333,10 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 	</div>
 	<div id="optionsTab">
 		<div id="optionsAccordion">
-@*			<h3>
-				<span class="description-option-name">buttonDefault</span>
+			<h3>
+				<span class="description-option-name">[buttonDefault]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
+				<span class="description-option-value">#bababa</span>
 			</h3>
 			<div>
 				<p>默认滚动条箭头按钮的样式</p>                
@@ -350,43 +353,43 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">buttonActive</span>
+				<span class="description-option-name">[buttonActive]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
+				<span class="description-option-value">#666666</span>
 			</h3>
 			<div>
 				<p>点击滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({buttonActive:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({buttonActive:'#666666'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var buttonActive = $("#scrollDiv").jscrollbar( "option", "buttonActive" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","buttonActive","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","buttonActive","#666666");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">buttonHover</span>
+				<span class="description-option-name">[buttonHover]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
+				<span class="description-option-value">#cccccc</span>
 			</h3>
 			<div>
 				<p>鼠标覆盖滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({buttonHover:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({buttonHover:'#cccccc'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
 					var buttonHover = $("#scrollDiv").jscrollbar( "option", "buttonHover" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","buttonHover","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","buttonHover","#cccccc");
 				</pre>
-			</div>*@
+			</div>
 			<h3>
 				<span class="description-option-name">[buttonBorder]</span>
 				<span class="description-option-type">String</span>
