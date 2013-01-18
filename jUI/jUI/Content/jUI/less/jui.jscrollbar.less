@@ -22,39 +22,73 @@
 	bottom:0px;
 	display:none;
 }
-.jui-jscrollbar-scroll-top_span {
-    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
+.jui-jscrollbar-scroll-buttonTop, .jui-jscrollbar-scroll-buttonRight,
+.jui-jscrollbar-scroll-buttonLeft, .jui-jscrollbar-scroll-buttonBottom
+,.jui-jscrollbar-scroll-buttonTop-hover,.jui-jscrollbar-scroll-buttonTop-active 
+,.jui-jscrollbar-scroll-buttonBottom-hover,.jui-jscrollbar-scroll-buttonBottom-active
+,.jui-jscrollbar-scroll-buttonLeft-hover,.jui-jscrollbar-scroll-buttonLeft-active
+,.jui-jscrollbar-scroll-buttonRight-hover,.jui-jscrollbar-scroll-buttonRight-active{
     background-repeat: no-repeat;
+    display: block;
+    cursor:pointer;
+    position:relative;
+
+}
+.jui-jscrollbar-scroll-buttonTop{
+    background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
 	background-position:-42px -19px;
-    display:block;
-    width: 10px;
-    height: 12px;
-    position: relative;
+	top:0px;
+	right:0px;
 }
-.jui-jscrollbar-scroll-bottom_span {
+.jui-jscrollbar-scroll-buttonTop-hover {
+    background-image: url(../images/jui-icons_0d0d0d_78x84.png);
+    background-position: -42px -19px;
+    top:0px;
+    right:0px;
+}
+.jui-jscrollbar-scroll-buttonTop-active {
+    background-image: url(../images/jui-icons_e5920b_78x84.png);
+    background-position: -42px -19px;
+    top:0px;
+    right:0px;
+}
+
+.jui-jscrollbar-scroll-buttonBottom {
     background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
-    background-repeat: no-repeat;
 	background-position:-54px -19px;
-    display:block;
-    width: 10px;
-    height: 12px;
-    position: relative;	
 }
-.jui-jscrollbar-scroll-left_span {
+.jui-jscrollbar-scroll-buttonBottom-hover {
+    background-image: url(../images/jui-icons_0d0d0d_78x84.png);
+  background-position: -54px -19px;
+}
+.jui-jscrollbar-scroll-buttonBottom-active {
+    background-image: url(../images/jui-icons_e5920b_78x84.png);
+  background-position: -54px -19px;
+}
+
+.jui-jscrollbar-scroll-buttonLeft {
     background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
-    background-repeat: no-repeat;
 	background-position:-42px -33px;
-    display:block;
-    width: 12px;
-    height: 10px;
-    position: relative;	
 }
-.jui-jscrollbar-scroll-right_span {
+.jui-jscrollbar-scroll-buttonLeft-hover {
+  background-image: url(../images/jui-icons_0d0d0d_78x84.png);
+  background-position: -42px -33px;
+}
+.jui-jscrollbar-scroll-buttonLeft-active {
+  background-image: url(../images/jui-icons_e5920b_78x84.png);
+  background-position: -42px -33px;
+}
+
+.jui-jscrollbar-scroll-buttonRight {
     background-image: ~`'url(@{jUI_Images}jui-icons_' + "@{HelperColor}".substr(1) + '_78x84.png)'`;
-    background-repeat: no-repeat;
 	background-position:-56px -33px;
-    display:block;
-    width: 12px;
-    height: 10px;
-    position: relative;	
 }
+.jui-jscrollbar-scroll-buttonRight-hover {
+  background-image: url(../images/jui-icons_0d0d0d_78x84.png);
+  background-position: -56px -33px;
+}
+.jui-jscrollbar-scroll-buttonRight-active {
+  background-image: url(../images/jui-icons_e5920b_78x84.png);
+  background-position: -56px -33px;
+}
+
