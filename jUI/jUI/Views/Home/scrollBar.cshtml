@@ -28,66 +28,67 @@
     
 <script type="text/javascript">
     $(function () {
-        $("#scrollDiv").jscrollbar();
+        $("#scrollDiv").jscrollbar({ showWidth: 300, showHeight: 300 });
+        //$("#scrollDiv").jscrollbar();
         //#region 取值
-        var btnDefault = $("#scrollDiv").jscrollbar("option","btnDefault");
-        var btnActive = $("#scrollDiv").jscrollbar("option", "btnActive");
-        var btnHover = $("#scrollDiv").jscrollbar("option", "btnHover");
-        var btnBorder = $("#scrollDiv").jscrollbar("option", "btnBorder");
-        var btnWidth = $("#scrollDiv").jscrollbar("option", "btnWidth");
-        var btnHeight = $("#scrollDiv").jscrollbar("option", "btnHeight");
+        var buttonDefault = $("#scrollDiv").jscrollbar("option","buttonDefault");
+        var buttonActive = $("#scrollDiv").jscrollbar("option", "buttonActive");
+        var buttonHover = $("#scrollDiv").jscrollbar("option", "buttonHover");
+        var buttonBorder = $("#scrollDiv").jscrollbar("option", "buttonBorder");
+        var buttonWidth = $("#scrollDiv").jscrollbar("option", "buttonWidth");
+        var buttonHeight = $("#scrollDiv").jscrollbar("option", "buttonHeight");
 
         var handleDefault = $("#scrollDiv").jscrollbar("option", "handleDefault");
         var handleActive = $("#scrollDiv").jscrollbar("option", "handleActive");
         var handleHover = $("#scrollDiv").jscrollbar("option", "handleHover");
 
-        var scrollDefault = $("#scrollDiv").jscrollbar("option", "scrollDefault");
-        var scrollBorder = $("#scrollDiv").jscrollbar("option", "scrollBorder");
-        var scrollWidth = $("#scrollDiv").jscrollbar("option", "scrollWidth");
+        var grooveColor = $("#scrollDiv").jscrollbar("option", "grooveColor");
+        var grooveBorder = $("#scrollDiv").jscrollbar("option", "grooveBorder");
+        var grooveWidth = $("#scrollDiv").jscrollbar("option", "grooveWidth");
 
-        var outDivBorder = $("#scrollDiv").jscrollbar("option", "outDivBorder");
         var showWidth = $("#scrollDiv").jscrollbar("option", "showWidth");
         var showHeight = $("#scrollDiv").jscrollbar("option", "showHeight");
-        var sliderBarWidth = $("#scrollDiv").jscrollbar("option", "sliderBarWidth");
-        var borderRadius = $("#scrollDiv").jscrollbar("option", "borderRadius");
+        var handleWidth = $("#scrollDiv").jscrollbar("option", "handleWidth");
+        var grooveRadius = $("#scrollDiv").jscrollbar("option", "grooveRadius");
+        var handleRadius = $("#scrollDiv").jscrollbar("option", "handleRadius");
         //#endregion
         //#region赋值 input
-        $("#txt_btnDefault").attr("value", btnDefault);
-        $("#txt_btnActive").attr("value", btnActive);
-        $("#txt_btnHover").attr("value", btnHover);
-        $("#txt_btnBorder").attr("value", btnBorder);
-        $("#txt_btnWidth").attr("value", btnWidth);
-        $("#txt_btnHeight").attr("value", btnHeight);
+        $("#txt_btnDefault").attr("value", buttonDefault);
+        $("#txt_btnActive").attr("value", buttonActive);
+        $("#txt_btnHover").attr("value", buttonHover);
+        $("#txt_buttonBorder").attr("value", buttonBorder);
+        $("#txt_buttonWidth").attr("value", buttonWidth);
+        $("#txt_buttonHeight").attr("value", buttonHeight);
 
         $("#txt_handleDefault").attr("value", handleDefault);
         $("#txt_handleActive").attr("value", handleActive);
         $("#txt_handleHover").attr("value", handleHover);
 
-        $("#txt_scrollDefault").attr("value", scrollDefault);
-        $("#txt_scrollBorder").attr("value", scrollBorder);
-        $("#txt_scrollWidth").attr("value", scrollWidth);
+        $("#txt_grooveColor").attr("value", grooveColor);
+        $("#txt_grooveBorder").attr("value", grooveBorder);
+        $("#txt_grooveWidth").attr("value", grooveWidth);
 
-        $("#txt_outDivBorder").attr("value", outDivBorder);
         $("#txt_showWidth").attr("value", showWidth);
         $("#txt_showHeight").attr("value", showHeight);
-        $("#txt_sliderBarWidth").attr("value", sliderBarWidth);
-        $("#txt_borderRadius").attr("value", borderRadius);
+        $("#txt_handleWidth").attr("value", handleWidth);
+        $("#txt_grooveRadius").attr("value", grooveRadius);
+        $("#txt_handleRadius").attr("value", handleRadius);
         //#endregion
         //#region赋值 span
-        $("#sp_btnDefault").css("background-color", btnDefault);
-        $("#sp_btnActive").css("background-color", btnActive);
-        $("#sp_btnHover").css("background-color", btnHover);
-        $("#sp_btnBorder").css("background-color", btnBorder);
+        $("#sp_btnDefault").css("background-color", buttonDefault);
+        $("#sp_btnActive").css("background-color", buttonActive);
+        $("#sp_btnHover").css("background-color", buttonHover);
+        $("#sp_buttonBorder").css("background-color", buttonBorder);
 
         $("#sp_handleDefault").css("background-color", handleDefault);
         $("#sp_handleActive").css("background-color", handleActive);
         $("#sp_handleHover").css("background-color", handleHover);
 
-        $("#sp_scrollDefault").css("background-color", scrollDefault);
-        $("#sp_scrollBorder").css("background-color", scrollBorder);
+        $("#sp_grooveColor").css("background-color", grooveColor);
+        $("#sp_grooveBorder").css("background-color", grooveBorder);
 
-        $("#sp_outDivBorder").css("background-color", outDivBorder);
-        $("#sp_borderRadius").css("border-radius", borderRadius+"px");
+        $("#sp_grooveRadius").css("border-radius", grooveRadius + "px");
+        $("#sp_handleRadius").css("border-radius", handleRadius + "px");
 
         //#endregion
         //#region文本框
@@ -95,8 +96,12 @@
             $(this).select();
         }).focusout(function () {
             var new_value = $(this).attr("value");
-            if ($(this).attr("id") == "txt_scrollWidth") {
-                new_value = parseInt($("#txt_scrollWidth").attr("value"));
+            if ($(this).attr("id") == "txt_grooveWidth") {
+                new_value = parseInt($("#txt_grooveWidth").attr("value"));
+            }
+            if ($(this).attr("id") == "txt_handleRadius") {
+                new_value = parseInt($("#txt_handleRadius").attr("value"));
+                $(this).next().css("border-radius", new_value + "px");
             }
             if ($(this).attr("id") == "txt_showWidth") {
                 new_value = parseInt($("#txt_showWidth").attr("value"));
@@ -104,18 +109,18 @@
             if ($(this).attr("id") == "txt_showHeight") {
                 new_value = parseInt($("#txt_showHeight").attr("value"));
             }
-            if ($(this).attr("id") == "txt_borderRadius") {
-                new_value = parseInt($("#txt_borderRadius").attr("value"));
+            if ($(this).attr("id") == "txt_grooveRadius") {
+                new_value = parseInt($("#txt_grooveRadius").attr("value"));
                 $(this).next().css("border-radius", new_value + "px");
             }
-            if ($(this).attr("id") == "txt_sliderBarWidth") {
-                new_value = parseInt($("#txt_sliderBarWidth").attr("value"));
+            if ($(this).attr("id") == "txt_handleWidth") {
+                new_value = parseInt($("#txt_handleWidth").attr("value"));
             }
-            if ($(this).attr("id") == "txt_btnWidth") {
-                new_value = parseInt($("#txt_btnWidth").attr("value"));
+            if ($(this).attr("id") == "txt_buttonWidth") {
+                new_value = parseInt($("#txt_buttonWidth").attr("value"));
             }
-            if ($(this).attr("id") == "txt_btnHeight") {
-                new_value = parseInt($("#txt_btnHeight").attr("value"));
+            if ($(this).attr("id") == "txt_buttonHeight") {
+                new_value = parseInt($("#txt_buttonHeight").attr("value"));
             }
             $("#scrollDiv").jscrollbar("option", $(this).attr("id").substring(4), new_value);
             $(this).next().css("background-color", new_value);
@@ -153,7 +158,7 @@
 		<li><a href="#tab1">自定义滚动条</a></li>
 	</ul>
 	<div id="tab1">
-        <div id="scrollDiv">
+        <div id="scrollDiv" style="width:200px;height:300px;">
             Default scrollbar with scroll buttons
 Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
 
@@ -219,42 +224,39 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
         </div>
         <div id="showControll" style="display:block;position:absolute;top:60px;right:60px;border:1px solid silver;overflow:scroll;">
             <table>
-                <tr>
-                    <td>按钮颜色(btnDefault):</td></tr><tr><td><input type="text" id="txt_btnDefault" value=""/><span id="sp_btnDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+              @*  <tr>
+                    <td>顶端按钮图片颜色(buttonDefault):</td></tr><tr><td><input type="text" id="txt_buttonDefault" value=""/><span id="sp_buttonDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>按钮点击后颜色(btnActive):</td></tr><tr><td><input type="text" id="txt_btnActive" value=""/><span id="sp_btnActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>顶端按钮点击时颜色(buttonActive):</td></tr><tr><td><input type="text" id="txt_buttonActive" value=""/><span id="sp_buttonActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>按钮覆盖后颜色(btnHover):</td></tr><tr><td><input type="text" id="txt_btnHover" value=""/><span id="sp_btnHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>鼠标移入顶端按钮时颜色(buttonHover):</td></tr><tr><td><input type="text" id="txt_buttonHover" value=""/><span id="sp_buttonHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>*@
+                <tr>
+                    <td>顶端按钮边框颜色(buttonBorder):</td></tr><tr><td><input type="text" id="txt_buttonBorder" value=""/><span id="sp_buttonBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>按钮边框颜色(btnBorder):</td></tr><tr><td><input type="text" id="txt_btnBorder" value=""/><span id="sp_btnBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>滑块颜色(handleDefault):</td></tr><tr><td><input type="text" id="txt_handleDefault" value=""/><span id="sp_handleDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滑块背景色(handleDefault):</td></tr><tr><td><input type="text" id="txt_handleDefault" value=""/><span id="sp_handleDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>点击时滑块颜色(handleActive):</td></tr><tr><td><input type="text" id="txt_handleActive" value=""/><span id="sp_handleActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滑块点击后颜色(handleActive):</td></tr><tr><td><input type="text" id="txt_handleActive" value=""/><span id="sp_handleActive" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>鼠标移入滑块时颜色(handleHover):</td></tr><tr><td><input type="text" id="txt_handleHover" value=""/><span id="sp_handleHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滑块覆盖后颜色(handleHover):</td></tr><tr><td><input type="text" id="txt_handleHover" value=""/><span id="sp_handleHover" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                    <td>滚动槽颜色(grooveColor):</td></tr><tr><td><input type="text" id="txt_grooveColor" value=""/><span id="sp_grooveColor" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
                 </tr>
                 <tr>
-                    <td>滚动条背景色(scrollDefault):</td></tr><tr><td><input type="text" id="txt_scrollDefault" value=""/><span id="sp_scrollDefault" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
-                </tr>
-                <tr>
-                    <td>滚动条边框颜色(scrollBorder):</td></tr><tr><td><input type="text" id="txt_scrollBorder" value=""/><span id="sp_scrollBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
-                </tr>
-                <tr>
-                    <td>内容层边框颜色(outDivBorder):</td></tr><tr><td><input type="text" id="txt_outDivBorder" value=""/><span id="sp_outDivBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
-                  </tr>
-                <tr>
-                    <td>滑块宽度(sliderBarWidth):</td></tr><tr><td><input type="text" id="txt_sliderBarWidth" value=""/>px</td>
-                  </tr>
-                <tr>
-                    <td>滚动条宽度(scrollWidth):</td></tr><tr><td><input type="text" id="txt_scrollWidth" value=""/>px</td>
+                    <td>滚动槽宽度(grooveWidth):</td></tr><tr><td><input type="text" id="txt_grooveWidth" value=""/>px</td>
                  </tr>
+                <tr>
+                    <td>滚动槽边框颜色(grooveBorder):</td></tr><tr><td><input type="text" id="txt_grooveBorder" value=""/><span id="sp_grooveBorder" style="width:15px;height:15px;border:2px solid white;display:inline-block;"></span></td>
+                </tr>
+                <tr>
+                    <td>滑块宽度(handleWidth):</td></tr><tr><td><input type="text" id="txt_handleWidth" value=""/>px</td>
+                  </tr>
                 <tr>
                     <td>内容层宽度(showWidth):</td></tr><tr><td><input type="text" id="txt_showWidth" value=""/>px</td>
                   </tr>
@@ -262,19 +264,22 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
                     <td>内容层高度(showHeight):</td></tr><tr><td><input type="text" id="txt_showHeight" value=""/>px</td>
                   </tr>
                 <tr>
-                    <td>上下按钮宽度(btnWidth):</td></tr><tr><td><input type="text" id="txt_btnWidth" value=""/>px</td>
+                    <td>纵向滚动条顶端按钮宽度(buttonWidth):</td></tr><tr><td><input type="text" id="txt_buttonWidth" value=""/>px</td>
                 </tr>
                 <tr>
-                    <td>上下按钮高度(btnHeight):</td></tr><tr><td><input type="text" id="txt_btnHeight" value=""/>px</td>
+                    <td>纵向滚动条顶端按钮高度(buttonHeight):</td></tr><tr><td><input type="text" id="txt_buttonHeight" value=""/>px</td>
                 </tr>
                 <tr>
-                    <td>圆角像素(borderRadius):</td></tr><tr><td><input type="text" id="txt_borderRadius" value=""/><span id="sp_borderRadius" style="width:15px;height:15px;border:2px solid black;display:inline-block;"></span></td>
+                    <td>滚动槽圆角(grooveRadius):</td></tr><tr><td><input type="text" id="txt_grooveRadius" value=""/><span id="sp_grooveRadius" style="width:15px;height:15px;border:2px solid black;display:inline-block;"></span></td>
+                  </tr>
+                <tr>
+                    <td>滑块圆角(handleRadius):</td></tr><tr><td><input type="text" id="txt_handleRadius" value=""/><span id="sp_handleRadius" style="width:15px;height:15px;border:2px solid black;display:inline-block;"></span></td>
                   </tr>
             </table>
         </div>
         <a class="viewSource" onclick="viewSource(this);">View Source</a>
     <pre class="brush: js; html-script: true;">      
-        &lt;div id="scrollDiv" style="position: absolute; top: 0px; left: 0px; width: auto; height: auto; white-space: pre;"&gt;
+        &lt;div id="scrollDiv" style="width:200px;height:300px;"&gt;
                     Default scrollbar with scroll buttons
         Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
 
@@ -286,30 +291,26 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
         &lt;/div&gt;
         &lt;script type="text/javascript"&gt;
             $(function () {
-                $("#scrollDiv").jscrollbar({       
-	                btnDefault: '#f3f3f3'//按钮颜色(less文件中已定义)
-			        , btnActive: '#f3f3f3'//按钮点击后颜色(less文件中已定义)
-                    , btnHover: '#f3f3f3'//覆盖按钮后颜色(less文件中已定义)
+                $("#scrollDiv").jscrollbar({             
+                    , buttonBorder: '#f3f3f3'//顶端按钮边框颜色    
 
-                    , btnBorder: '#f3f3f3'//按钮边框颜色       
+                    , buttonWidth: 12//纵向滚动条顶端按钮宽度
+                    , buttonHeight: 12//纵向滚动条顶端按钮高度度
 
-                    , btnWidth: 12//箭头按钮宽度
-                    , btnHeight: 12//箭头按钮高度
+	                , handleDefault: '#bababa' //滑块颜色
+                    , handleActive: '#ffffff'//点击时滑块颜色
+			        , handleHover: '#cccccc'//鼠标移入滑块时颜色
 
-	                , handleDefault: '#bababa' //滑块背景色
-                    , handleActive: '#666666'//滑块点击后颜色
-			        , handleHover: '#cccccc'//鼠标移入滑块后背景色
+			        , grooveColor: '#666666'//滚动槽颜色
+                    , grooveBorder: '#f3f3f3'//滚动槽边框颜色 
 
-			        , scrollDefault: '#666666'//滚动条背景色
-                    , scrollBorder: '#f3f3f3'//滚动条边框颜色 
-
-                    , outDivBorder: '#f3f3f3'//内容层边框颜色
                     , showWidth: 300//显示宽度
                     , showHeight: 300//显示高度
 
-                    , sliderBarWidth: 6//滑块宽度
-                    , scrollWidth: 2//滚动条宽度
-                    , borderRadius: 8//圆角
+                    , handleWidth: 6//滑块宽度
+                    , grooveWidth: 12//滚动槽宽度
+                    , grooveRadius: 8//滚动槽圆角
+                    , handleRadius:8//滑块圆角
                 });
             })
         &lt;/script&gt;
@@ -329,8 +330,8 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 	</div>
 	<div id="optionsTab">
 		<div id="optionsAccordion">
-			<h3>
-				<span class="description-option-name">btnDefault</span>
+@*			<h3>
+				<span class="description-option-name">buttonDefault</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#f3f3f3</span>
 			</h3>
@@ -338,18 +339,18 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>默认滚动条箭头按钮的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnDefault:'#bababa'});
+					$("#scrollDiv").jscrollbar({buttonDefault:'#bababa'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var btnDefault = $("#scrollDiv").jscrollbar( "option", "btnDefault" );
+					var buttonDefault = $("#scrollDiv").jscrollbar( "option", "buttonDefault" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnDefault","#bababa");
+					$("#scrollDiv").jscrollbar("option","buttonDefault","#bababa");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">btnActive</span>
+				<span class="description-option-name">buttonActive</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#f3f3f3</span>
 			</h3>
@@ -357,18 +358,18 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>点击滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnActive:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({buttonActive:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var btnActive = $("#scrollDiv").jscrollbar( "option", "btnActive" );
+					var buttonActive = $("#scrollDiv").jscrollbar( "option", "buttonActive" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnActive","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","buttonActive","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">btnHover</span>
+				<span class="description-option-name">buttonHover</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#f3f3f3</span>
 			</h3>
@@ -376,37 +377,37 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>鼠标覆盖滚动条箭头按钮时的样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnHover:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({buttonHover:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var btnHover = $("#scrollDiv").jscrollbar( "option", "btnHover" );
+					var buttonHover = $("#scrollDiv").jscrollbar( "option", "buttonHover" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnHover","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","buttonHover","#f3f3f3");
 				</pre>
-			</div>
+			</div>*@
 			<h3>
-				<span class="description-option-name">btnBorder</span>
+				<span class="description-option-name">[buttonBorder]</span>
 				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
+				<span class="description-option-value">transparent</span>
 			</h3>
 			<div>
 				<p>滚动条箭头按钮边框样式</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({btnBorder:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({buttonBorder:'transparent'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var btnBorder = $("#scrollDiv").jscrollbar( "option", "btnBorder" );
+					var buttonBorder = $("#scrollDiv").jscrollbar( "option", "buttonBorder" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","btnBorder","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","buttonBorder","transparent");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">handleDefault</span>
+				<span class="description-option-name">[handleDefault]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#bababa</span>
 			</h3>
@@ -425,7 +426,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">handleActive</span>
+				<span class="description-option-name">[handleActive]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#666666</span>
 			</h3>
@@ -444,7 +445,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>            
 			<h3>
-				<span class="description-option-name">handleHover</span>
+				<span class="description-option-name">[handleHover]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#cccccc</span>
 			</h3>
@@ -463,7 +464,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">scrollDefault</span>
+				<span class="description-option-name">[grooveColor]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#666666</span>
 			</h3>
@@ -471,18 +472,18 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>滚动条背景色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollDefault:'#666666'});
+					$("#scrollDiv").jscrollbar({grooveColor:'#666666'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var scrollDefault = $("#scrollDiv").jscrollbar( "option", "scrollDefault" );
+					var grooveColor = $("#scrollDiv").jscrollbar( "option", "grooveColor" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollDefault","#666666");
+					$("#scrollDiv").jscrollbar("option","grooveColor","#666666");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">scrollBorder</span>
+				<span class="description-option-name">[grooveBorder]</span>
 				<span class="description-option-type">String</span>
 				<span class="description-option-value">#f3f3f3</span>
 			</h3>
@@ -490,18 +491,18 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>滚动条边框颜色</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollBorder:'#f3f3f3'});
+					$("#scrollDiv").jscrollbar({grooveBorder:'#f3f3f3'});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var scrollBorder = $("#scrollDiv").jscrollbar( "option", "scrollBorder" );
+					var grooveBorder = $("#scrollDiv").jscrollbar( "option", "grooveBorder" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollBorder","#f3f3f3");
+					$("#scrollDiv").jscrollbar("option","grooveBorder","#f3f3f3");
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">scrollWidth</span>
+				<span class="description-option-name">[grooveWidth]</span>
 				<span class="description-option-type">int</span>
 				<span class="description-option-value">2</span>
 			</h3>
@@ -509,39 +510,20 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>滚动条边框宽度</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({scrollWidth:2});
+					$("#scrollDiv").jscrollbar({grooveWidth:2});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var scrollWidth = $("#scrollDiv").jscrollbar( "option", "scrollWidth" );
+					var grooveWidth = $("#scrollDiv").jscrollbar( "option", "grooveWidth" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","scrollWidth",2);
+					$("#scrollDiv").jscrollbar("option","grooveWidth",2);
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">outDivBorder</span>
-				<span class="description-option-type">String</span>
-				<span class="description-option-value">#f3f3f3</span>
-			</h3>
-			<div>
-				<p>内容层边框颜色</p>                
-				<p>初始化</p>
-				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({outDivBorder:"#f3f3f3"});
-				</pre>
-				<p>获取和设置</p>
-				<pre class="brush: js;">
-					//获取
-					var outDivBorder = $("#scrollDiv").jscrollbar( "option", "outDivBorder" );
-					//设置
-					$("#scrollDiv").jscrollbar("option","outDivBorder","#f3f3f3");
-				</pre>
-			</div>
-			<h3>
-				<span class="description-option-name">showWidth</span>
+				<span class="description-option-name">[showWidth]</span>
 				<span class="description-option-type">int</span>
-				<span class="description-option-value">300</span>
+				<span class="description-option-value">null</span>
 			</h3>
 			<div>
 				<p>设置显示宽度</p>                
@@ -558,9 +540,9 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">showHeight</span>
+				<span class="description-option-name">[showHeight]</span>
 				<span class="description-option-type">int</span>
-				<span class="description-option-value">300</span>
+				<span class="description-option-value">null</span>
 			</h3>
 			<div>
 				<p>设置显示高度</p>                
@@ -577,7 +559,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">sliderBarWidth</span>
+				<span class="description-option-name">handleWidth</span>
 				<span class="description-option-type">int</span>
 				<span class="description-option-value">6</span>
 			</h3>
@@ -585,33 +567,52 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 				<p>设置滑块宽度</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({sliderBarWidth:6});
+					$("#scrollDiv").jscrollbar({handleWidth:6});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var sliderBarWidth = $("#scrollDiv").jscrollbar( "option", "sliderBarWidth" );
+					var handleWidth = $("#scrollDiv").jscrollbar( "option", "handleWidth" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","sliderBarWidth",6);
+					$("#scrollDiv").jscrollbar("option","handleWidth",6);
 				</pre>
 			</div>
 			<h3>
-				<span class="description-option-name">borderRadius</span>
+				<span class="description-option-name">[grooveRadius]</span>
 				<span class="description-option-type">int</span>
 				<span class="description-option-value">8</span>
 			</h3>
 			<div>
-				<p>设置圆角</p>                
+				<p>设置滚动槽圆角</p>                
 				<p>初始化</p>
 				<pre class="brush: js;">
-					$("#scrollDiv").jscrollbar({borderRadius:8});
+					$("#scrollDiv").jscrollbar({grooveRadius:8});
 				</pre>
 				<p>获取和设置</p>
 				<pre class="brush: js;">
 					//获取
-					var borderRadius = $("#scrollDiv").jscrollbar( "option", "borderRadius" );
+					var grooveRadius = $("#scrollDiv").jscrollbar( "option", "grooveRadius" );
 					//设置
-					$("#scrollDiv").jscrollbar("option","borderRadius",8);
+					$("#scrollDiv").jscrollbar("option","grooveRadius",8);
+				</pre>
+			</div>
+			<h3>
+				<span class="description-option-name">[handleRadius]</span>
+				<span class="description-option-type">int</span>
+				<span class="description-option-value">8</span>
+			</h3>
+			<div>
+				<p>滑块圆角</p>                
+				<p>初始化</p>
+				<pre class="brush: js;">
+					$("#scrollDiv").jscrollbar({handleRadius:8});
+				</pre>
+				<p>获取和设置</p>
+				<pre class="brush: js;">
+					//获取
+					var handleRadius = $("#scrollDiv").jscrollbar( "option", "handleRadius" );
+					//设置
+					$("#scrollDiv").jscrollbar("option","handleRadius",8);
 				</pre>
 			</div>
 		</div>
@@ -634,7 +635,7 @@ Consectetur adipiscing elit. Nulla consectetur libero consectetur quam consequat
 	<div id="themingTab">
 		<p>标准样式如下：</p>
 		<pre class="brush: html;">
-            &lt;div id="scrollDiv" class="jui-jscrollbar-scroll-outDiv"&gt;
+            &lt;div id="scrollDiv" style="width: auto; height: auto; position: absolute; white-space: pre;"&gt;
                         Default scrollbar with scroll buttons
             Lorem ipsum dolor sit amet. Aliquam erat volutpat. Maecenas non tortor nulla, non malesuada velit.
 
