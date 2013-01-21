@@ -78,7 +78,10 @@
 	        var grooveWidth = o.grooveWidth;
 	        var handleWidth_v_h = o.handleWidth;
 	        var handleRadius = o.handleRadius;
-
+	        var sliderBorderWidth = 1;
+	        if (grooveWidth <= handleWidth_v_h) {
+	            sliderBorderWidth = 0;
+	        }
 	        if (grooveWidth < 0 || grooveWidth > 40) {
 	            grooveWidth = 20;
 	        }
@@ -117,12 +120,12 @@
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapVertical'></div>");
 	            $("#" + t_id + "sliderWrapVertical").addClass("jui-jscrollbar-scroll-sliderWrapVertical");
 	        }
-	        $("#" + t_id + "sliderWrapVertical").css({ "left": showWidth, "width": grooveWidth, "height": showHeight - 2 * (buttonHeight + 2), "border": "1px solid " + grooveBorder, "border-radius": grooveRadius + "px", "background-color": scrollWrapColor, "margin-top": buttonHeight + 2 });
+	        $("#" + t_id + "sliderWrapVertical").css({ "left": showWidth, "width": grooveWidth, "height": showHeight - 2 * (buttonHeight + 2), "border": "" + sliderBorderWidth + "px solid " + grooveBorder, "border-radius": grooveRadius + "px", "background-color": scrollWrapColor, "margin-top": buttonHeight + 2 });
 	        if ($("#" + t_id + "sliderWrapHorizontal").length == 0) {
 	            $("#" + t_id + "outDiv").append("<div id='" + t_id + "sliderWrapHorizontal'></div>");
 	            $("#" + t_id + "sliderWrapHorizontal").addClass("jui-jscrollbar-scroll-sliderWrapHorizontal");
 	        }
-	        $("#" + t_id + "sliderWrapHorizontal").css({ "top": showHeight, "width": showWidth - 2 * (buttonWidth + 2), "height": grooveWidth, "border": "1px solid " + grooveBorder, "border-radius": grooveRadius + "px", "background-color": scrollWrapColor, "margin-left": buttonHeight + 2 });
+	        $("#" + t_id + "sliderWrapHorizontal").css({ "top": showHeight, "width": showWidth - 2 * (buttonWidth + 2), "height": grooveWidth, "border": "" + sliderBorderWidth + "px solid " + grooveBorder, "border-radius": grooveRadius + "px", "background-color": scrollWrapColor, "margin-left": buttonHeight + 2 });
 	        //比较内部容器高度与目标元素高度
 	        var diff = t_h - showHeight;
 	        //比较内部容器宽度和目标元素宽度
@@ -171,9 +174,9 @@
                     .append("<div id='" + t_id + "sliderTop' class='jui-jscrollbar-scroll-buttonTop'></div>")
                     .append("<div id='" + t_id + "sliderBottom' class='jui-jscrollbar-scroll-buttonBottom '></div>");
 
-	            $("#" + t_id + "sliderTop").css({ "margin-top":-buttonHeight-1,"margin-left": 0.5 * (grooveWidth - 2 - buttonWidth), "width": buttonWidth, "height": buttonHeight, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderTop").css({ "margin-top": -buttonHeight - 2 - sliderBorderWidth, "margin-left": 0.5 * (grooveWidth - 2 - buttonWidth), "width": buttonWidth, "height": buttonHeight, "border": "1px solid " + buttonBorder });
 	            $("#" + t_id + "sliderVertical").css({ "width": grooveWidth - 2, "position": "absolute" });
-	            $("#" + t_id + "sliderBottom").css({ "margin-bottom": -buttonHeight - 1, "margin-left": 0.5 * (grooveWidth - 2 - buttonWidth), "position": "absolute", "bottom": "0", "width": buttonWidth, "height": buttonHeight, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderBottom").css({ "margin-bottom": -buttonHeight - 2 - sliderBorderWidth, "margin-left": 0.5 * (grooveWidth - 2 - buttonWidth), "position": "absolute", "bottom": "0", "width": buttonWidth, "height": buttonHeight, "border": "1px solid " + buttonBorder });
 	            
 	            var prop = diff / t_h; //高度差与内容层高度比例
 	            var handleHeight = Math.round((1 - prop) * (showHeight - space_)); //计算滑块的高度
@@ -214,8 +217,11 @@
 	            var origSliderHeight = showHeight - space_; //读取滚动条总长度
 	            var sliderHeight = origSliderHeight - handleHeight; //获取滑块可移动范围长度
 	            var sliderMargin = 0.5 * handleHeight; //获取滑块上下边距
-
-	            $("#" + t_id + "sliderVertical").css({ 'height': sliderHeight-4, 'margin-top': sliderMargin+2 }); //设置滑动层高度和上边距       
+	            if (handleWidth_v_h < grooveWidth) {
+	                sliderMargin = sliderMargin + 0.5 * (grooveWidth - handleWidth_v_h);
+	                sliderHeight = sliderHeight - grooveWidth + handleWidth_v_h;
+	            } 
+	            $("#" + t_id + "sliderVertical").css({ 'height': sliderHeight, 'margin-top': sliderMargin}); //设置滑动层高度和上边距       
                 //#endregion
 
 	            //#region按钮样式切换
@@ -300,9 +306,9 @@
                     "<div id='" + t_id + "sliderLeft' class='jui-jscrollbar-scroll-buttonLeft'></div>" +
                     "<div id='" + t_id + "sliderHorizontal'></div>" +
                     "<div id='" + t_id + "sliderRight' class='jui-jscrollbar-scroll-buttonRight'></div>");
-	            $("#" + t_id + "sliderLeft").css({ "margin-left": -buttonWidth-2, "margin-top": 0.5 * (grooveWidth  -1- buttonWidth), "width": buttonHeight, "height": buttonWidth, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderLeft").css({ "margin-left": -buttonWidth - 3 - sliderBorderWidth, "margin-top": 0.5 * (grooveWidth - 1 - buttonWidth), "width": buttonHeight, "height": buttonWidth, "border": "1px solid " + buttonBorder });
 	            $("#" + t_id + "sliderHorizontal").css({ "height": grooveWidth - 2, "position": "absolute", "top": 0 });
-	            $("#" + t_id + "sliderRight").css({ "margin-right": -buttonWidth - 2, "margin-top": 0.5 * (grooveWidth-1 - buttonWidth), "position": "absolute", "right": "0", "top": "0", "width": buttonHeight, "height": buttonWidth, "border": "1px solid " + buttonBorder });
+	            $("#" + t_id + "sliderRight").css({ "margin-right": -buttonWidth - 3 - sliderBorderWidth, "margin-top": 0.5 * (grooveWidth - 1 - buttonWidth), "position": "absolute", "right": "0", "top": "0", "width": buttonHeight, "height": buttonWidth, "border": "1px solid " + buttonBorder });
                 
 	            var c = true, d = true;
 	            var w_prop = w_diff / t_w; //宽度差与内容层宽度比例
@@ -344,7 +350,11 @@
 	            var origSliderWidth = showWidth - space_; //读取滚动条总长度
 	            var sliderWidth = origSliderWidth - handleWidth; //获取滑块可移动范围长度
 	            var sliderMarginLR = 0.5 * handleWidth; //获取滑块左右边距
-	            $("#" + t_id + "sliderHorizontal").css({ 'width': sliderWidth - 2, 'margin-left': sliderMarginLR+2 });
+	            if (handleWidth_v_h < grooveWidth) {
+	                sliderMarginLR = sliderMarginLR + 0.5 * (grooveWidth - handleWidth_v_h);
+	                sliderWidth = sliderWidth - grooveWidth+ handleWidth_v_h;
+	            }
+	            $("#" + t_id + "sliderHorizontal").css({ 'width': sliderWidth+2, 'margin-left': sliderMarginLR });
                 //#endregion
 
 	            //#region按钮样式切换
