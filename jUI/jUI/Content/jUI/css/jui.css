@@ -722,7 +722,7 @@ input[type="password"] {
   padding: 0px;
   cursor: pointer;
   z-index: 9999;
-  width: 120px;
+  width: 135px;
   position: relative;
 }
 .jui-jsortSelect-ul > li {
@@ -1283,11 +1283,10 @@ background-position: -14px -42px;
 .jui-datetimepicker .jui-datetimepicker-active {
   border: 1px solid #226de5;
   background-color: #226de5;
-  /*font-weight: bold;*/
   color: #ffffff;
   outline: none;
   display: block;
-text-decoration: none;
+  text-decoration: none;
 }
 /*表格内容样式*/
 .jui-datetimepicker-table-tr-a {
@@ -1297,15 +1296,14 @@ text-decoration: none;
   outline: none;
   display: block;
   margin: .2em;
-text-decoration: none;
+  text-decoration: none;
 }
 /*鼠标移动到单元格上*/
 .jui-datetimepicker-table tr a:hover {
   border: 1px solid #145bcc;
   background-color: #145bcc;
-  /*font-weight: bold;*/
-color: #ffffff;
-outline: none;
+  color: #ffffff;
+  outline: none;
 }
 /*内容表格样式*/
 .jui-datetimepicker-table {
@@ -1382,6 +1380,14 @@ outline: none;
 .jui-jSearch table tr {
   line-height: 30px;
 }
+.jui-jscrollbar-scroll-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  white-space: pre;
+}
 .jui-jscrollbar-scroll-containerDiv {
   overflow: hidden;
   position: relative;
@@ -1398,54 +1404,53 @@ outline: none;
   bottom: 0px;
   display: none;
 }
-.jui-jscrollbar-scroll-buttonTop, .jui-jscrollbar-scroll-buttonRight,
-.jui-jscrollbar-scroll-buttonLeft, .jui-jscrollbar-scroll-buttonBottom
-,.jui-jscrollbar-scroll-buttonTop-hover,.jui-jscrollbar-scroll-buttonTop-active 
-,.jui-jscrollbar-scroll-buttonBottom-hover,.jui-jscrollbar-scroll-buttonBottom-active
-,.jui-jscrollbar-scroll-buttonLeft-hover,.jui-jscrollbar-scroll-buttonLeft-active
-,.jui-jscrollbar-scroll-buttonRight-hover,.jui-jscrollbar-scroll-buttonRight-active{
-    background-repeat: no-repeat;
-    display: block;
-    cursor:pointer;
-    position:relative;
-
+.jui-jscrollbar-scroll-buttonTop,
+.jui-jscrollbar-scroll-buttonRight,
+.jui-jscrollbar-scroll-buttonLeft,
+.jui-jscrollbar-scroll-buttonBottom,
+.jui-jscrollbar-scroll-buttonTop-hover,
+.jui-jscrollbar-scroll-buttonTop-active,
+.jui-jscrollbar-scroll-buttonBottom-hover,
+.jui-jscrollbar-scroll-buttonBottom-active,
+.jui-jscrollbar-scroll-buttonLeft-hover,
+.jui-jscrollbar-scroll-buttonLeft-active,
+.jui-jscrollbar-scroll-buttonRight-hover,
+.jui-jscrollbar-scroll-buttonRight-active {
+  background-repeat: no-repeat;
+  display: block;
+  cursor: pointer;
+  position: relative;
 }
-
-
 .jui-jscrollbar-scroll-buttonTop {
-    background-image: url(../images/jui-icons_bababa_78x84.png);
-    background-position: -42px -19px;
-    top:0px;
-    right:0px;
+  background-image: url(../images/jui-icons_bababa_78x84.png);
+  background-position: -42px -19px;
+  top: 0px;
+  right: 0px;
 }
 .jui-jscrollbar-scroll-buttonTop-hover {
-    background-image: url(../images/jui-icons_cccccc_78x84.png);
-    background-position: -42px -19px;
-    top:0px;
-    right:0px;
+  background-image: url(../images/jui-icons_cccccc_78x84.png);
+  background-position: -42px -19px;
+  top: 0px;
+  right: 0px;
 }
 .jui-jscrollbar-scroll-buttonTop-active {
-    background-image: url(../images/jui-icons_666666_78x84.png);
-    background-position: -42px -19px;
-    top:0px;
-    right:0px;
+  background-image: url(../images/jui-icons_666666_78x84.png);
+  background-position: -42px -19px;
+  top: 0px;
+  right: 0px;
 }
-
-
 .jui-jscrollbar-scroll-buttonBottom {
   background-image: url(../images/jui-icons_999999_78x84.png);
   background-position: -54px -19px;
 }
 .jui-jscrollbar-scroll-buttonBottom-hover {
-    background-image: url(../images/jui-icons_0d0d0d_78x84.png);
+  background-image: url(../images/jui-icons_0d0d0d_78x84.png);
   background-position: -54px -19px;
 }
 .jui-jscrollbar-scroll-buttonBottom-active {
-    background-image: url(../images/jui-icons_e5920b_78x84.png);
+  background-image: url(../images/jui-icons_e5920b_78x84.png);
   background-position: -54px -19px;
 }
-
-
 .jui-jscrollbar-scroll-buttonLeft {
   background-image: url(../images/jui-icons_999999_78x84.png);
   background-position: -42px -33px;
@@ -1458,8 +1463,6 @@ outline: none;
   background-image: url(../images/jui-icons_e5920b_78x84.png);
   background-position: -42px -33px;
 }
-
-
 .jui-jscrollbar-scroll-buttonRight {
   background-image: url(../images/jui-icons_999999_78x84.png);
   background-position: -56px -33px;
