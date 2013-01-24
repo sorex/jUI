@@ -1023,14 +1023,7 @@ input[type="password"] {
 .jui-jtree li ul.line {
   background: url(../images/line_conn.gif) 0 0 repeat-y;
 }
-.jui-jtree-u1-li {
-  line-height: 13.992px !important;
-  padding: 0 0;
-  margin: 0 0;
-}
 .jui-jtree-a-clicked {
-  /*border:1px solid @HighlightColor;*/
-
   background-color: #226de5;
 }
 .jui-jtree-u-a {
@@ -1066,14 +1059,9 @@ input[type="password"] {
   width: 18px;
   height: 18px;
   display: inline-block;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
   background-image: url(../images/zTreeStandard.png);
   vertical-align: top;
-  border: 0 none;
   cursor: pointer;
-  outline: none;
 }
 .jui-jtree-u-switch {
   background-position: -74px 0;
@@ -1107,29 +1095,7 @@ input[type="password"] {
   background-position: -56px -36px;
   cursor: default;
 }
-.jui-jtree-u-icon,
-.jui-jtree-u-icon-open,
-.jui-jtree-u-icon-file {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  border: 0 none;
-  cursor: pointer;
-  outline: none;
-  margin-right: 2px;
-}
-.jui-jtree-u-line-b {
-  background-color: #008000;
-}
-.jui-jtree-u-line-v {
-  background-color: #0000ff;
-}
-.jui-jtree-u-line-h {
-  background-color: #000000;
-}
+
 .jui-jtree-u-text {
   height: 16px;
   padding: 0 0;
@@ -1324,8 +1290,6 @@ background-position: -14px -42px;
 }
 /*时分秒样式*/
 .jui-datetimepicker-hms {
-  /*font-size: 80%;*/
-
   font-size: 14px;
 }
 .jui-datetimepicker-hms dl dt {
@@ -1338,31 +1302,6 @@ background-position: -14px -42px;
 .jui-datetimepicker-hms dl {
   text-align: left;
 }
-/*.jui-datetimepicker-slider
-{
-	position: relative;
-	text-align: left;
-	height: .8em;
-	font-size: 1em;
-	border: 1px solid @DefaultBorder;
-	background: @DefaultBackground 50% top repeat-x;
-	color: @DefaultColor;
-}
-
-.jui-datetimepicker-handle
-{
-	top: -.3em;
-	margin-left: -.6em;
-	border: 1px solid @ActiveBorder;
-	background: @ActiveBackground 50% 50% repeat-x;
-	font-weight: bold;
-	color: @ActiveColor;
-	position: absolute;
-	z-index: 2;
-	width: 1.2em;
-	height: 1.2em;
-	cursor:default;
-}*/
 .jui-datetimepicker-focus,
 .jui-datetimepicker-handle:hover,
 .jui-datetimepicker-butNow:hover,
@@ -1379,14 +1318,6 @@ background-position: -14px -42px;
 }
 .jui-jSearch table tr {
   line-height: 30px;
-}
-.jui-jscrollbar-scroll-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  white-space: pre;
 }
 .jui-jscrollbar-scroll-containerDiv {
   overflow: hidden;
@@ -1424,20 +1355,14 @@ background-position: -14px -42px;
 .jui-jscrollbar-scroll-buttonTop {
   background-image: url(../images/jui-icons_bababa_78x84.png);
   background-position: -42px -19px;
-  top: 0px;
-  right: 0px;
 }
 .jui-jscrollbar-scroll-buttonTop-hover {
   background-image: url(../images/jui-icons_cccccc_78x84.png);
   background-position: -42px -19px;
-  top: 0px;
-  right: 0px;
 }
 .jui-jscrollbar-scroll-buttonTop-active {
   background-image: url(../images/jui-icons_666666_78x84.png);
   background-position: -42px -19px;
-  top: 0px;
-  right: 0px;
 }
 .jui-jscrollbar-scroll-buttonBottom {
   background-image: url(../images/jui-icons_999999_78x84.png);

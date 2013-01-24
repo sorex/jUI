@@ -1,11 +1,8 @@
-﻿.jui-datetimepicker
+﻿/*隐藏无内容的a标签*/
+.jui-datetimepicker a
 {
+	padding: 0px;
 }
-	/*隐藏无内容的a标签*/
-	.jui-datetimepicker a
-	{
-		padding: 0px;
-	}
 /*当前日期高亮*/
 .jui-datetimepicker-now
 {
@@ -99,11 +96,11 @@
 	width: 240px;
 	margin-top: 5px;
 }
-	/*表格内容居中*/
-	.jui-datetimepicker-table tr
-	{
-		text-align: center;
-	}
+/*表格内容居中*/
+.jui-datetimepicker-table tr
+{
+	text-align: center;
+}
 /*星期样式*/
 .jui-datetimepicker-week
 {
@@ -116,52 +113,24 @@
 /*时分秒样式*/
 .jui-datetimepicker-hms
 {
-	/*font-size: 80%;*/
 	font-size: @FontSize;
 }
 
-	.jui-datetimepicker-hms dl dt
-	{
-		height: @LineHeight*1.136;
-		margin-bottom: -25px;
-	}
-
-	.jui-datetimepicker-hms dl dd
-	{
-		margin: 0 10px 10px 65px;
-	}
-
-	.jui-datetimepicker-hms dl
-	{
-		text-align: left;
-	}
-
-/*.jui-datetimepicker-slider
+.jui-datetimepicker-hms dl dt
 {
-	position: relative;
-	text-align: left;
-	height: .8em;
-	font-size: 1em;
-	border: 1px solid @DefaultBorder;
-	background: @DefaultBackground 50% top repeat-x;
-	color: @DefaultColor;
+	height: @LineHeight*1.136;
+	margin-bottom: -25px;
 }
 
-.jui-datetimepicker-handle
+.jui-datetimepicker-hms dl dd
 {
-	top: -.3em;
-	margin-left: -.6em;
-	border: 1px solid @ActiveBorder;
-	background: @ActiveBackground 50% 50% repeat-x;
-	font-weight: bold;
-	color: @ActiveColor;
-	position: absolute;
-	z-index: 2;
-	width: 1.2em;
-	height: 1.2em;
-	cursor:default;
-}*/
+	margin: 0 10px 10px 65px;
+}
 
+.jui-datetimepicker-hms dl
+{
+	text-align: left;
+}
 .jui-datetimepicker-focus, .jui-datetimepicker-handle:hover, .jui-datetimepicker-butNow:hover, .jui-datetimepicker-butDone:hover
 {
 	border: 1px solid @HighlightBorder;
